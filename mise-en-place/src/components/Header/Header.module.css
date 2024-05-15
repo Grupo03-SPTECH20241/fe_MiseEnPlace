@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+}
+
+.header {
+    background-color: #29BDEA;
+    color: white;
+    height: 80px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .header-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  @font-face {
+    font-family: "Palace";
+    src: url("../../utils/fonts/Palace.ttf") format("truetype");
+  }
+  
+  .header-logo h1 {
+    font-family: "Palace";
+    font-size: 48px;
+  }
+
+  @font-face {
+    font-family: "Nunito-Bold";
+    src: url("../../utils/fonts/Nunito-Bold.ttf") format("truetype");
+  }
+  
+  .header-navigation a {
+    font-family: "Nunito-Bold";
+    font-size: 16px;
+  }
+
+
+  
+  .header-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+  }
+  
+  .header-navigation a {
+    color: white;
+    text-decoration: none;
+  }
