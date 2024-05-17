@@ -1,0 +1,45 @@
+import React, { useState } from 'react';
+import styles from '../Sidebar/sidebar.module.css';
+import homeImage from '../../utils/img/home.png';
+import agendaImage from '../../utils/img/calendar.png';
+import listImage from '../../utils/img/List.png';
+import setaImage from '../../utils/img/seta.png';
+import esquerda from '../../utils/img/esquerda.png';
+
+const Sidebar = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    return (
+        <div className={`${styles.sidebar} ${isSidebarOpen ? '' : styles['sidebar-closed']}`}>
+            <div className={styles['sidebar-header']}>
+                <span>{isSidebarOpen ? 'Jessica Bolos' : 'J B'}</span>
+                <div className={styles['divisao-header']}></div>
+            </div>
+            <div className={styles['sidebar-content']}>
+                <div className={styles['div-item']}>
+                    <img className='home' src={homeImage} alt="Icon home" />
+                    <a href="#">Início</a>
+                </div>
+                <div className={styles['div-item']}>
+                    <img className='agenda' src={agendaImage} alt="Icon Calendar" />
+                    <a href="#">Planejamento</a>
+                </div>
+                <div className={styles['div-item']}>
+                    <img className='list' src={listImage} alt="Icon List" />
+                    <a href="#">Produtos</a>
+                </div>
+            </div>
+            <div className={styles['minimizar-div']} >
+                <div className={styles['div-bola']}>
+                <img src={isSidebarOpen ?  esquerda : setaImage} alt="Icon seta" onClick={toggleSidebar} />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Sidebar;

@@ -1,0 +1,148 @@
+body {
+    margin: 0px;
+}
+
+/* Sidebar  */
+
+.sidebar {
+    height: 100vw;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    transition: width 0.0.200s;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+
+}
+
+.sidebar-closed {
+    width: 76.27px; 
+    transition: width 0.5s;
+}
+
+/* Sidebar Header */
+
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 10%;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 50px;
+    padding-top: 50px;
+
+}
+
+.divisao-header {
+    height: 2px;
+    width: 188px;
+    background-color: #17ACD9;
+    border-radius: 100px;
+
+}
+
+@font-face {
+    font-family: "Palace";
+    src: url("../../utils/fonts/Palace.ttf") format("truetype");
+}
+
+.sidebar-header span {
+    font-family: "Palace";
+    font-size: 48px;
+}
+
+.sidebar-closed .divisao-header {
+    width: 60px;
+    height: 2px;
+    border-radius: 100px;
+}
+
+/* Sidebar Content */
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+/* Div-item */
+
+.div-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 76%;
+    gap: 10px;
+    height: 100%;
+    width: 80%;
+    padding-left: 10px;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 12px;
+}
+
+.div-item a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 80%;
+    height: 100%;
+    color: #000;
+    font-family: "arial";
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.div-item:hover {
+    background-color: #17ACD9;
+    border-radius: 12px;
+}
+
+.sidebar-closed .div-item a {
+    display: none; 
+}
+
+.sidebar-closed .div-item {
+    padding-left: 0;
+}
+
+/* Minimizar-div */
+
+.minimizar-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    padding-top: 50px;
+}
+
+.sidebar-closed .minimizar-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    padding-top: 50px;
+}   
+
+
+
+
+
+
+
+
+
+
