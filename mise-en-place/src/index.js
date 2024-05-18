@@ -9,10 +9,11 @@ import Cancelar from './components/Button/Cancelar/cancelar';
 import Disabled from './components/Button/Disabled/disabled';
 import Defaultv from './components/Button/Default-variant/defaultv';
 import Cancelarv from './components/Button/Cancelar-variant/cancelarv';
+import Filter from './components/Filter/filter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <React.StrictMode>
-<Cancelarv />
+<Filter />
 </React.StrictMode>
 );
