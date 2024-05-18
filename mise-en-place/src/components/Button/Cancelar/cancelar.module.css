@@ -1,0 +1,28 @@
+/* Button.css */
+.custom-button {
+    width: 137px;
+    height: 40px;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E83A6C;
+    color: #000000; 
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "arial";
+  }
+  
+  .custom-button:hover {
+    background-color: #DD0543; 
+  }
+
+  .custom-button img {
+    margin-right: 10px; 
+    margin-left: 10px;
+    width: 16px;
+    height: 16px;
+}
+  
