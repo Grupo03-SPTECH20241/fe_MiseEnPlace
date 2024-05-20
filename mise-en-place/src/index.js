@@ -11,10 +11,14 @@ import Defaultv from './components/Button/Default-variant/defaultv';
 import Cancelarv from './components/Button/Cancelar-variant/cancelarv';
 import Filter from './components/Filter/filter';
 import Spinner from './components/Spinner/spinner';
+import Breadcrumbs from './components/Texts/Breadcrumbs/breadcrumbs';
+import Contente from './components/Texts/Contente/contente';
+import Divisor from './components/Texts/Divisor/divisor';
+import Avatar from './components/Texts/Avatar/avatar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <React.StrictMode>
-<Spinner />
+<Avatar />
 </React.StrictMode>
 );
