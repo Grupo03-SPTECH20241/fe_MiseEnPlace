@@ -15,10 +15,15 @@ import Breadcrumbs from './components/Texts/Breadcrumbs/breadcrumbs';
 import Contente from './components/Texts/Contente/contente';
 import Divisor from './components/Texts/Divisor/divisor';
 import Avatar from './components/Texts/Avatar/avatar';
+import Text from './components/Input/Text/text';
+import Password from './components/Input/Password/password';
+import TextField from './components/Input/Text Field/textField';
+import Select from './components/Input/Select/select';
+import Search from './components/Input/Search/search';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <React.StrictMode>
-<Avatar />
+<Search />
 </React.StrictMode>
 );
