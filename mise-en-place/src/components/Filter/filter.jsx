@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styles from './filter.module.css';
 import Seta from '../../utils/img/setaBaixo.png';
 
-const Dropdown = () => {
+const Dropdown = ({options}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState('');
 
-  const [itens, setA] = useState(['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']);
+  
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -19,7 +19,7 @@ const Dropdown = () => {
       {isOpen && (
         <div className={styles['dropdown-menu']}>
           {
-            itens.map((item, index) => {
+            options.map((item, index) => {
               return (
                 <div key={index} className={styles['dropdown-item']} onClick={() => setSelected(item)}>{item}</div>
               )

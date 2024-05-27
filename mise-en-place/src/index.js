@@ -15,10 +15,12 @@ import Breadcrumbs from './components/Texts/Breadcrumbs/breadcrumbs';
 import Contente from './components/Texts/Contente/contente';
 import Divisor from './components/Texts/Divisor/divisor';
 import Avatar from './components/Texts/Avatar/avatar';
+// import Login from './pages/Login/login';
+import Cadastro from './pages/Cadastro/Cadastro';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <React.StrictMode>
-<Avatar />
+<Cadastro />
 </React.StrictMode>
 );
