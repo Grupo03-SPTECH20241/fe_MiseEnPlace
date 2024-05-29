@@ -24,11 +24,11 @@ function Cadastro() {
                     <span>Mise en Place</span>
                     <div className={cadastroStyles['form-group']}>
                         <label>Nome da empresa:</label>
-                        <input type="text" name="companyName" placeholder="Jessica Bolos" />
+                        <input type="text" name="companyName" placeholder="Inserir nome" />
                     </div>
                     <div className={cadastroStyles['form-group']}>
                         <label>E-mail:</label>
-                        <input type="email" name="email" placeholder="jessicabolos@gmail.com" />
+                        <input type="email" name="email" placeholder="Inserir e-mail" />
                     </div>
                     <div className={cadastroStyles['form-group']}>
                         <label>CNPJ:</label>
