@@ -1,0 +1,263 @@
+/* App.css */
+@font-face {
+    font-family: "Nunito-Bold";
+    src: url("../../utils/fonts/Nunito-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Italianno-Regular";
+    src: url("../../utils/fonts/Italianno-Regular.ttf") format("truetype");
+}
+
+body {
+    margin: none;
+}
+
+.App {
+    text-align: center;
+    font-family: Nunito-Bold;
+    width: 100%;
+    height: 100%;
+}
+
+.left-container span {
+    font-size: 40px;
+    color: #000000;
+}
+
+p {
+    color: #000000;
+    font-weight: normal;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.form-content span {
+    font-family: Italianno-Regular;
+    color: #0066cc;
+    font-size: 62px;
+    font-weight: normal;
+}
+
+.left-container {
+    padding-left: 75px;
+    width: 40%;
+}
+
+.form-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 800px;
+    height: 350px;
+}
+
+.confeiteira {
+    width: 350px;
+    height: 350px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 622px;
+    height: 43px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 500px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 500px;
+    width: 140px;
+    height: 43px;
+}
+
+button:hover {
+    background-color: #004c99;
+}
+
+@media screen and (max-width: 1024px){
+    .form-container {
+        flex-direction: column;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100vh !important;
+        width: 100% !important;
+    }
+
+    .left-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .form-content {
+        width: 100%;
+        height: 40%;
+        gap: none;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .form-content span {
+        display: none;
+    }
+
+    .confeiteira {
+        width: 450px;
+        height: 450px;
+    }
+
+    .initial-container {
+        width: 90%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100% !important;
+    }
+
+    .form-group {
+        width: 90%;
+    }
+
+    .App {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    input {
+        font-size: 20px;
+        border: 2px solid #ccc !important;
+        height: 50px !important;
+    }
+
+    label {
+        font-size: 25px !important;
+    }
+
+    p {
+        font-size: 25px !important;
+    }
+
+    button {
+        width: 20% !important;
+        height: 60px !important;
+        font-size: 25px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 850px;
+        width: 350px;
+    }
+
+    .left-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .form-content {
+        width: 100%;
+        height: 40%;
+        gap: none;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .form-content span {
+        display: none;
+    }
+
+    .confeiteira {
+        width: 300px;
+        height: 300px;
+    }
+
+    .initial-container {
+        width: 90%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100% !important;
+    }
+
+    input {
+        font-size: 18px;
+        border: 2px solid #ccc !important;
+    }
+
+    label {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 19px !important;
+    }
+
+    .form-group {
+        width: 90%;
+    }
+
+    .App {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button {
+        width: 30% !important;
+        font-size: 18px;
+    }
+    
+}
+
