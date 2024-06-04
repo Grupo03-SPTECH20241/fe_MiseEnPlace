@@ -1,5 +1,5 @@
 /* Button.css */
-.custom-button {
+.cancel-variant-button {
     width: 137px;
     height: 40px;
     border-radius: 500px;
@@ -15,11 +15,11 @@
     font-family: "arial";
   }
   
-  .custom-button:hover {
+  .cancel-variant-button:hover {
     background-color: #DD0543; 
   }
 
-  .custom-button img {
+  .cancel-variant-button img {
     margin-right: 10px; 
     margin-left: 10px;
     width: 16px;

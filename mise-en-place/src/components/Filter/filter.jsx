@@ -14,7 +14,7 @@ const Dropdown = ({options}) => {
   return (
     <div className={styles.dropdown}>
       <button onClick={toggleDropdown} className={`${styles['dropdown-btn']} ${isOpen ? styles.open : ''}`}>
-        Label <img src={Seta} alt="Seta" />
+        Label <img className={styles['dropdown-arrow']} src={Seta} alt="Seta" />
       </button>
       {isOpen && (
         <div className={styles['dropdown-menu']}>
