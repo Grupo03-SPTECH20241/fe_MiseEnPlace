@@ -1,5 +1,5 @@
 /* Button.css */
-.custom-button {
+.default-button {
     width: 137px;
     height: 40px;
     border-radius: 500px;
@@ -15,11 +15,11 @@
     font-family: "arial";
   }
   
-  .custom-button:hover {
+  .default-button:hover {
     background-color: #17ACD9; 
   }
 
-  .custom-button img {
+  .default-button img {
     margin-right: 10px; 
     margin-left: 10px;
     width: 16px;

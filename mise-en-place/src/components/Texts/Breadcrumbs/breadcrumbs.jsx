@@ -15,7 +15,7 @@ export default function ActiveLastBreadcrumb() {
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
       <Link underline="hover" color="text.primary" href="/">
-      <img src={Home} alt="Seta"/>
+      <img className={style['breadcrumbs-arrow']} src={Home} alt="Seta"/>
         </Link>
         <Link underline="hover" color="text.primary" href="/">
         page

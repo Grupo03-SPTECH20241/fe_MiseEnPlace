@@ -1,0 +1,38 @@
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.mainContainer{
+    display: flex;
+}
+
+.dashboardTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 90%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5vh;
+    padding: 1vh;
+    border-radius: 12px;
+    /* background-image: linear-gradient(to left, #E5246B, linear-gradient(#DE0052, #FFE9F9)); */
+}
+
+.dashboardTittleCard h2, .dashboardTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.dashboardTittleCard h2 {
+    margin: 0;
+}
+
+.chartContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 5vh;
+}

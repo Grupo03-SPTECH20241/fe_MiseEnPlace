@@ -17,10 +17,23 @@ import Divisor from './components/Texts/Divisor/divisor';
 import Avatar from './components/Texts/Avatar/avatar';
 import Login from './pages/Login/login';
 import Cadastro from './pages/Cadastro/Cadastro';
+import Dashboard from './pages/Dashboard/dashboard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <React.StrictMode>
-<Login />
+<Cancelar></Cancelar>
+<Cancelarv></Cancelarv>
+<Default></Default>
+<Defaultv></Defaultv>
+<Disabled></Disabled>
+<Filter></Filter>
+<Header></Header>
+<Sidebar></Sidebar>
+<Spinner></Spinner>
+<Avatar></Avatar>
+<Breadcrumbs></Breadcrumbs>
+<Contente></Contente>
+<Divisor></Divisor>
 </React.StrictMode>
 );
