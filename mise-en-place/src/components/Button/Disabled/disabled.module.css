@@ -1,5 +1,5 @@
 /* Button.css */
-.custom-button {
+.disabled-button {
     width: 137px;
     height: 40px;
     border-radius: 500px;
@@ -14,11 +14,11 @@
     font-family: "arial";
   }
   
-  /* .custom-button:hover {
+  /* .disabled-button:hover {
     background-color: #17ACD9; 
   } */
 
-  .custom-button img {
+  .disabled-button img {
     margin-right: 10px; 
     margin-left: 10px;
     width: 16px;

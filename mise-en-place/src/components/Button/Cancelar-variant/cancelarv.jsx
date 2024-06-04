@@ -4,7 +4,7 @@ import PlusImage from '../../../utils/img/plus.png'
 
 const Button = () => {
   return (
-    <button className={styles['custom-button']}>
+    <button className={styles['cancel-variant-button']}>
       <img src={PlusImage} alt="Button icon" />
       Button
       <img src={PlusImage} alt="Button icon" />
