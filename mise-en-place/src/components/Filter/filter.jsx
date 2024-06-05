@@ -23,7 +23,7 @@ const Dropdown = ({options}) => {
               return (
                 <div key={index} className={styles['dropdown-item']} onClick={() => setSelected(item)}>{item}</div>
               )
-            }) 
+            })
           }
 
         </div>
