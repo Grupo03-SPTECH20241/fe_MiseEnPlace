@@ -1,0 +1,150 @@
+/* App.css */
+@font-face {
+    font-family: "Nunito-Bold";
+    src: url("../../utils/fonts/Nunito-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Italianno-Regular";
+    src: url("../../utils/fonts/Italianno-Regular.ttf") format("truetype");
+}
+
+body {
+    margin: none;
+}
+
+.App {
+    text-align: center;
+    font-family: Nunito-Bold;
+    width: 100%;
+    height: 100%;
+}
+
+.wave-container {
+    width: 100%;
+}
+
+.blue-wave {
+    width: 100%;
+    height: 100%;
+
+}
+
+
+
+.left-container span {
+    font-size: 40px;
+    color: #000000;
+}
+
+p {
+    color: #000000;
+    font-weight: normal;
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+
+}
+
+
+.form-content span {
+    font-family: Italianno-Regular;
+    color: #0066cc;
+    font-size: 62px;
+    font-weight: normal;
+}
+
+.left-container {
+    padding-left: 75px;
+    width: 40%;
+}
+
+.form-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 800px;
+    height: 480px;
+}
+
+.div-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.confeiteira {
+    width: 350px;
+    height: 350px;
+
+}
+
+.register-form {
+    max-width: 40%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"] {
+    width: 622px;
+    height: 43px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 500px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 500px;
+    width: 140px;
+    height: 43px;
+}
+
+button:hover {
+    background-color: #004c99;
+}
+
+input[type="file"] {
+    display: none;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 622px;
+    height: 43px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 500px;
+    border: 1px solid #ccc;
+    font-weight: normal;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+
