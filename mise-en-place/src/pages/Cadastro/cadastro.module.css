@@ -112,7 +112,7 @@ input[type="file"] {
     border: 1px solid #ccc;
 }
 
-button {
+.buttonCadastro-submit {
     background-color: #0066cc;
     color: white;
     padding: 10px 20px;
@@ -123,7 +123,7 @@ button {
     height: 43px;
 }
 
-button:hover {
+.buttonCadastro-submit:hover {
     background-color: #004c99;
 }
 
