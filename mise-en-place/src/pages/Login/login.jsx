@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import LoginStyles from './login.module.css';
 import ConfeiteiraImage from '../../utils/img/ConfeiteiraImage.svg';
 import api from '../../api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import Spinner from '../../components/Spinner/spinner';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -11,14 +14,21 @@ function Login() {
         event.preventDefault();
 
         api.post('/usuarios/login', { "email": email, "senha": password }).then((response) => {
-            console.log(response, "deu certo")
+            localStorage.setItem('token', response.data.token);
+            toast.success('Login efetuado com sucesso! Redirecionando...', { theme: "colored" })
         }).catch((error) => {
             console.log(error, "error")
+            toast.error('Email e/ou senha inválidos', { theme: "colored" })
         })
     };
 
+    var clicou = false;
     return (
         <div className={LoginStyles['App']}>
+
+            
+
+            <ToastContainer />
             <div className={LoginStyles['form-container']}>
                 <div className={LoginStyles['left-container']}>
                     <div className={LoginStyles['initial-container']}>
@@ -37,7 +47,7 @@ function Login() {
                         <label>Senha:</label>
                         <input type="password" name="password" placeholder="Insira sua senha" onChange={e => setPassword(e.target.value)} />
                     </div>
-                    <button type="submit">Entrar</button>
+                    <button className={LoginStyles['button-submit']} type="submit">Entrar</button>
                 </form>
             </div>
         </div>
