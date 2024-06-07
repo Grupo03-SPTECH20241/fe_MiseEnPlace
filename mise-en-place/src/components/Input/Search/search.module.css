@@ -3,24 +3,24 @@
   src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
 }
 
-.input-field-container {
+.search-input-field-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.input-label {
+.search-input-label {
   margin-bottom: 5px;
   font-size: 14px;
   color: #333;
 }
 
-.input-container {
+.search-input-container {
   position: relative;
   width: 235px; 
 }
 
-.input-field {
+.search-input-field {
   border-radius: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -32,7 +32,7 @@
   font-family: Nunito-Regular;
 }
 
-.input-field-error {
+.search-input-field-error {
   border-color: red;
 }
 
@@ -49,9 +49,9 @@
   font-family: Nunito-Regular;
 }
 
-.input-icon {
+.search-input-icon {
   position: absolute;
-  left: 250px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   width: 20px; 

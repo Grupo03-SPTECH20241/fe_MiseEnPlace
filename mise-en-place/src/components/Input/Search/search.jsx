@@ -24,9 +24,9 @@ const InputField = () => {
   };
 
   return (
-    <div className={styles['input-field-container']}>
+    <div className={styles['search-input-field-container']}>
       <span className={styles['label-content']}>Label:</span>
-      <div className={styles['input-container']}>
+      <div className={styles['search-input-container']}>
         <input
           type="text"
           id="input"
@@ -34,9 +34,9 @@ const InputField = () => {
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
-          className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
+          className={`${styles['search-input-field']} ${error ? styles['search-input-field-error'] : ''}`}
         />
-        <img src={Search} alt="Search" className={styles['input-icon']} />
+        <img src={Search} alt="Search" className={styles['search-input-icon']} />
       </div>
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
