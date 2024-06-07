@@ -1,8 +1,9 @@
+import Rotas from "./routes";
 function App() {
   return (
-  <div className="App">
-  <h1>Hello World</h1>
-  </div>
+    <>
+      <Rotas />
+    </>
   );
-  }
-  export default App;
+}
+export default App;
