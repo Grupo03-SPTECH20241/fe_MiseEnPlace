@@ -55,7 +55,7 @@ p {
 
 .form-content span {
     font-family: Italianno-Regular;
-    color: #0066cc;
+    color: #000000;
     font-size: 62px;
     font-weight: normal;
 }
@@ -112,8 +112,8 @@ input[type="file"] {
     border: 1px solid #ccc;
 }
 
-button {
-    background-color: #0066cc;
+.buttonCadastro-submit {
+    background-color: #E5246B;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -123,8 +123,8 @@ button {
     height: 43px;
 }
 
-button:hover {
-    background-color: #004c99;
+.buttonCadastro-submit:hover {
+    background-color: #DE0052;
 }
 
 input[type="file"] {
