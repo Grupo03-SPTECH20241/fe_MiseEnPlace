@@ -28,19 +28,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 <React.StrictMode>
-<Search />
-<Cancelar></Cancelar>
-<Cancelarv></Cancelarv>
-<Default></Default>
-<Defaultv></Defaultv>
-<Disabled></Disabled>
-<Filter></Filter>
-<Header></Header>
-<Sidebar></Sidebar>
-<Spinner></Spinner>
-<Avatar></Avatar>
-<Breadcrumbs></Breadcrumbs>
-<Contente></Contente>
-<Divisor></Divisor>
+<Dashboard></Dashboard>
 </React.StrictMode>
 );

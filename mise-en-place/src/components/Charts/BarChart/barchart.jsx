@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
+import Filter from '../../Filter/filter';
 import styles from './barchart.module.css';
 
 const BarChart = () => {
@@ -19,13 +20,27 @@ const BarChart = () => {
   };
 
   const options = {
-    // Defina suas opções aqui, se necessário
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
   };
 
   return (
     <div className={styles["barChartContainer"]}>
-      <h1>Gráfico de Barras</h1>
-      <Bar data={data} options={options} />
+      <div className={styles["barChartBox"]}>
+        <div className={styles["barChartHeader"]}>
+          <div className={styles["barChartText"]}>
+            <h2>Produtos X Preço</h2>
+            <p>Acompanhe o quanto os seus produtos estão faturando este mês.</p>
+          </div>
+          <div className={styles["barChartSelectOption"]}>
+              <Filter></Filter>
+            </div>
+        </div>
+        <Bar data={data} options={options} />
+      </div>
     </div>
   );
 };

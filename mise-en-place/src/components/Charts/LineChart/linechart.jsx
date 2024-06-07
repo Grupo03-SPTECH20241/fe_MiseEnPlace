@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
+import Filter from '../../Filter/filter';
 import { Line } from 'react-chartjs-2';
 import styles from './linechart.module.css';
 
@@ -19,13 +20,27 @@ const LineChart = () => {
   };
 
   const options = {
-    // Defina suas opções aqui, se necessário
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
   };
 
   return (
     <div className={styles["lineChartContainer"]}>
-      <h1>Gráfico de Barras</h1>
-      <Line data={data} options={options} />
+      <div className={styles["lineChartBox"]}>
+        <div className={styles["lineChartHeader"]}>
+          <div className={styles["lineChartText"]}>
+            <h2>Quantidade de produtos vendidos</h2>
+            <p>Acompanhe o quanto você já vendeu este mês</p>
+          </div>
+          <div className={styles["lineChartSelectOption"]}>
+              <Filter></Filter>
+            </div>
+        </div>
+        <Line data={data} options={options} />
+      </div>
     </div>
   );
 };

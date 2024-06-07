@@ -32,7 +32,7 @@
 
 .chartContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly !important;
     width: 90%;
     margin-left: 5vh;
 }

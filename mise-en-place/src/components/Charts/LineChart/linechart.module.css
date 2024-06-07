@@ -1,3 +1,36 @@
 .lineChartContainer {
     max-width: 48%;
+    margin-top: 4vh;
+}
+
+.lineChartBox {
+    border: 1px solid #BBBBBB;
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.lineChartHeader {
+    justify-content: space-around;
+    display: flex;
+}
+
+.lineChartText {
+    display: flex;
+    flex-direction: column;
+}
+
+.lineChartText h2 {
+    margin: 0;
+}
+
+.lineChartSelectOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
 }

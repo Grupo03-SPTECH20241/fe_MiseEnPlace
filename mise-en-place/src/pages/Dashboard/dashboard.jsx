@@ -5,7 +5,7 @@ import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import BarChart from '../../components/Charts/BarChart/barchart';
 import LineChart from '../../components/Charts/LineChart/linechart';
-import { Doughnut } from "react-chartjs-2";
+import DonutChart from '../../components/Charts/DonutChart/donutchart';
 
 const Header = () => {
     return (
@@ -22,7 +22,7 @@ const Header = () => {
                     <BarChart></BarChart>
                 </div>
                 <div className={styles["chartContainer"]}>
-                    {/* <Doughnut></Doughnut> */}
+                    <DonutChart></DonutChart>
                 </div>
             </div>
         </div>
