@@ -4,6 +4,7 @@ import ConfeiteiraImage from '../../utils/img/ConfeiteiraImage.svg';
 import api from '../../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Spinner from '../../components/Spinner/spinner';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -21,8 +22,12 @@ function Login() {
         })
     };
 
+    var clicou = false;
     return (
         <div className={LoginStyles['App']}>
+
+            
+
             <ToastContainer />
             <div className={LoginStyles['form-container']}>
                 <div className={LoginStyles['left-container']}>

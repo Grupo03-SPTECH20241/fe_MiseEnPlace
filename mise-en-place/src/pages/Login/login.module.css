@@ -40,7 +40,7 @@ p {
 
 .form-content span {
     font-family: Italianno-Regular;
-    color: #0066cc;
+    color: #000000;
     font-size: 62px;
     font-weight: normal;
 }
@@ -86,7 +86,7 @@ input[type="password"] {
 }
 
 .button-submit {
-    background-color: #0066cc;
+    background-color: #E5246B;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -97,7 +97,7 @@ input[type="password"] {
 }
 
 .button-submit:hover {
-    background-color: #004c99;
+    background-color: #DE0052;
 }
 
 @media screen and (max-width: 1024px){
