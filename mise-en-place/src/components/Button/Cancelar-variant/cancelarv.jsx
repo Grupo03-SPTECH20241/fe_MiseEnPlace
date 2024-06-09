@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './cancelarv.module.css';
 import PlusImage from '../../../utils/img/plus.png'
 
-const Button = () => {
+const Button = ({label}) => {
   return (
     <button className={styles['cancel-variant-button']}>
       <img src={PlusImage} alt="Button icon" />
-      Button
+      {label ? label : 'Label'}
       <img src={PlusImage} alt="Button icon" />
 
     </button>

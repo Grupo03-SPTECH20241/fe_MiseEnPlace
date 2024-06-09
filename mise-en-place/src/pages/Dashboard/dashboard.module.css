@@ -36,3 +36,14 @@
     width: 90%;
     margin-left: 5vh;
 }
+
+@media screen and (max-width: 1100px) {
+    .chartContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly !important;
+        align-items: center;
+        width: 90%;
+        margin-left: 5vh;
+    }
+}

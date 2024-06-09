@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 import Filter from '../../Filter/filter';
 import styles from './barchart.module.css';
+import api from '../../../api';
 
 const BarChart = () => {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/quantidade-vendida-valor-vendido');
+        const { data } = response;
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    const barChartInterval = setInterval(fetchData, 5000);
+    return () => clearInterval(barChartInterval);
+  }, []);
+
   const labels = ['Pirulito', 'Salgado', 'Torta', 'Docinho', 'Bolo'];
 
   const data = {
@@ -12,8 +29,8 @@ const BarChart = () => {
     datasets: [
       {
         data: labels.map(() => Math.floor(Math.random() * 100)),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        borderColor: 'red',
+        backgroundColor: ['#FFB347', '#E75F11', '#E71D34', '#0563B1', '#43CA00'],
+        borderColor: 'white',
         borderWidth: 1,
       }
     ],
@@ -36,10 +53,12 @@ const BarChart = () => {
             <p>Acompanhe o quanto os seus produtos estão faturando este mês.</p>
           </div>
           <div className={styles["barChartSelectOption"]}>
-              <Filter></Filter>
-            </div>
+            <Filter></Filter>
+          </div>
         </div>
-        <Bar data={data} options={options} />
+        <div className={styles["barChart"]}>
+          <Bar data={data} options={options} />
+        </div>
       </div>
     </div>
   );
