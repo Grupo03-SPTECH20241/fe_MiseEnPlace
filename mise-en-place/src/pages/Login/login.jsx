@@ -22,11 +22,8 @@ function Login() {
         })
     };
 
-    var clicou = false;
     return (
         <div className={LoginStyles['App']}>
-
-            
 
             <ToastContainer />
             <div className={LoginStyles['form-container']}>
