@@ -16,17 +16,17 @@ function Login() {
         api.post('/usuarios/login', { "email": email, "senha": password }).then((response) => {
             localStorage.setItem('token', response.data.token);
             toast.success('Login efetuado com sucesso! Redirecionando...', { theme: "colored" })
+            setTimeout(() => {
+                window.location.href = '/loading';
+            }, 2000)
         }).catch((error) => {
             console.log(error, "error")
             toast.error('Email e/ou senha inválidos', { theme: "colored" })
         })
     };
 
-    var clicou = false;
     return (
         <div className={LoginStyles['App']}>
-
-            
 
             <ToastContainer />
             <div className={LoginStyles['form-container']}>
