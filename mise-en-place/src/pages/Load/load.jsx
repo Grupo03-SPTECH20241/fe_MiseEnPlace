@@ -18,8 +18,10 @@ const Load = () => {
     return (
         <div className={LoadStyles.load}>
             <div className={LoadStyles.load_container}>
-                <div className={LoadStyles['loading-spinner']}></div>
-                <img src={ImagemLoad} alt="Imagem de Carregamento" />
+                <div className={LoadStyles['div-image']}>
+                    <div className={LoadStyles['loading-spinner']}></div>
+                    <img src={ImagemLoad} alt="Imagem de Carregamento" />
+                </div>
             </div>
         </div>
     );

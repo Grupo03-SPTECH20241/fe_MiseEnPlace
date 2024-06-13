@@ -45,7 +45,17 @@
     animation: spin 2s linear infinite; 
     z-index: 10;
     position: absolute;
-    bottom: 170px;
+    bottom: 40px;
+  }
+
+  .div-image {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
   
   @keyframes spin {
