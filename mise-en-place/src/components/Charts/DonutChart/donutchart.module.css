@@ -1,0 +1,50 @@
+.donutChartContainer {
+    max-width: 48%;
+    margin-top: 4vh;
+}
+
+.donutChartBox {
+    border: 1px solid #BBBBBB;
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.donutChartHeader {
+    justify-content: space-around;
+    display: flex;
+}
+
+.donutChartText {
+    display: flex;
+    flex-direction: column;
+}
+
+.donutChartText h2 {
+    margin: 0;
+}
+
+.donutChartSelectOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+}
+
+.donutChart {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1100px) {
+    .donutChartBox {
+        width: 100%;
+    }
+}

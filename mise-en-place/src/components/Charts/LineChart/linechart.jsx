@@ -1,17 +1,111 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import Filter from '../../Filter/filter';
 import { Line } from 'react-chartjs-2';
 import styles from './linechart.module.css';
+import api from '../../../api';
 
 const LineChart = () => {
-  const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+  // valor da filtragem
+  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal'); 
+
+  // valores apresentados no gráfico caso o filtro seja por mês
+  const [quantidadeVendidaMes, setQuantidadeVendidaMes] = useState([0,0,0,0,0,0,0,0,0,0,0,0]);
+  const labelMensal = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+  // valores apresentados no gráfico caso o filtro seja por semana
+  const [quantidadeVendidaSemana, setQuantidadeVendidaSemana] = useState([]); 
+  const [labelSemanal, setLabelSemanal] = useState([]); 
+
+  // valores apresentados no gráfico caso o filtro seja por dia
+  const [quantidadeVendidaDia, setQuantidadeVendidaDia] = useState([]); 
+  const [labelDiaria, setLabelDiaria] = useState([]); 
+  // variáveis que guardam a label e os dados que serão exibidos no gráfico
+  const [currentLabel, setCurrentLabel] = useState(labelMensal);
+  const [currentData, setCurrentData] = useState(quantidadeVendidaMes);
+  
+  const handleFilterChange = (value) => {
+    setFilterSelectedValue(value);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+
+      if(filterSelectedValue === 'Mensal') {
+        setCurrentLabel(labelMensal);
+        setCurrentData(quantidadeVendidaMes);
+        try {
+          const response = await api.get('/quantidade-vendidos-mes');
+          const { data } = response;
+          for(let i = 0; i < data.length; i++){
+            if([data[i].mes]){
+              quantidadeVendidaMes[data[i].mes-1] = data[i].quantidadeVendida;
+            }
+          }
+        } catch (error) {
+          console.error(error);
+        }
+
+      } else if (filterSelectedValue === 'Semanal'){
+        try {
+          const response = await api.get('/quantidade-vendidos-semana');
+          const { data } = response;
+          let newLabelSemanalValues = [];
+          let newQuantidadeVendidaValues = [];
+
+          for(let i = 0; i < data.length; i++){
+            if(data[i].dia){
+              newLabelSemanalValues.push(data[i].dia);
+              newQuantidadeVendidaValues.push(data[i].quantidadeVendida);
+            }
+          }
+          setLabelSemanal(newLabelSemanalValues);
+          setQuantidadeVendidaSemana(newQuantidadeVendidaValues);
+          setCurrentLabel(labelSemanal);
+          setCurrentData(quantidadeVendidaSemana);
+
+        } catch (error) {
+          console.error(error);
+        }
+
+      } else if (filterSelectedValue === 'Diário'){
+        try {
+          const response = await api.get('/quantidade-vendidos-dia');
+          const { data } = response;
+          let newLabelDiariaValues = [];
+          let newQuantidadeVendidaDiariaValues = [];
+
+          for(let i = 0; i < data.length; i++){
+            if(data[i].dia){
+              newLabelDiariaValues.push(data[i].dia);
+              newQuantidadeVendidaDiariaValues.push(data[i].quantidadeVendida);
+            }
+          }
+          setLabelDiaria(newLabelDiariaValues);
+          setQuantidadeVendidaDia(newQuantidadeVendidaDiariaValues);
+          setCurrentLabel(labelDiaria);
+          setCurrentData(quantidadeVendidaDia);
+
+
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    fetchData();
+    const fetchDataInterval = setInterval(fetchData, 5000);
+    return () => clearInterval(fetchDataInterval);
+  }, [filterSelectedValue]);
+
+  //Configurações do gráfico/labels/opções de filtragem:
+  const filterOptions = ['Mensal', 'Semanal', 'Diário'];
+  const labels = currentLabel;
 
   const data = {
     labels,
     datasets: [
       {
-        data: labels.map(() => Math.floor(Math.random() * 100)),
+        data: currentData,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         borderColor: 'red',
         borderWidth: 1,
@@ -36,10 +130,12 @@ const LineChart = () => {
             <p>Acompanhe o quanto você já vendeu este mês</p>
           </div>
           <div className={styles["lineChartSelectOption"]}>
-              <Filter></Filter>
-            </div>
+            <Filter options={filterOptions} onChange={handleFilterChange}></Filter>
+          </div>
         </div>
-        <Line data={data} options={options} />
+        <div className={styles["lineChart"]}>
+          <Line data={data} options={options} />
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './dashboard.module.css';
 import JessicaBolosLogo from '../../utils/img/logo_jessica_bolos.png';
 import Sidebar from '../../components/Sidebar/sidebar';
@@ -6,6 +6,7 @@ import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import BarChart from '../../components/Charts/BarChart/barchart';
 import LineChart from '../../components/Charts/LineChart/linechart';
 import DonutChart from '../../components/Charts/DonutChart/donutchart';
+import GoalChart from '../../components/Charts/GoalChart/goalchart';
 
 const Header = () => {
     return (
@@ -23,6 +24,7 @@ const Header = () => {
                 </div>
                 <div className={styles["chartContainer"]}>
                     <DonutChart></DonutChart>
+                    <GoalChart></GoalChart>
                 </div>
             </div>
         </div>
