@@ -17,6 +17,9 @@ const LineChart = () => {
   const [quantidadeVendidaSemana, setQuantidadeVendidaSemana] = useState([]); 
   const [labelSemanal, setLabelSemanal] = useState([]); 
 
+  // valores apresentados no gráfico caso o filtro seja por dia
+  const [quantidadeVendidaDia, setQuantidadeVendidaDia] = useState([]); 
+  const [labelDiaria, setLabelDiaria] = useState([]); 
   // variáveis que guardam a label e os dados que serão exibidos no gráfico
   const [currentLabel, setCurrentLabel] = useState(labelMensal);
   const [currentData, setCurrentData] = useState(quantidadeVendidaMes);
@@ -69,22 +72,20 @@ const LineChart = () => {
         try {
           const response = await api.get('/quantidade-vendidos-dia');
           const { data } = response;
-          console.log("Diário:")
-          console.log(data)
+          let newLabelDiariaValues = [];
+          let newQuantidadeVendidaDiariaValues = [];
 
-          // for(let i = 0; i < data.length; i++){
-          //   if(data[i].dia){
-          //     newLabelSemanalValues.push(data[i].dia);
-          //     newQuantidadeVendidaValues.push(data[i].quantidadeVendida);
-          //   }
-          // }
-          // labelAnual = newLabelSemanalValues;
-          // quantidadeVendidaSemana = newQuantidadeVendidaValues;
-          // console.log(labelSemanal)
-          // console.log(newQuantidadeVendidaValues);
-          // setCurrentLabel(labelSemanal);
-          // setCurrentData(quantidadeVendidaSemana);
-          // console.log('Semanal:')
+          for(let i = 0; i < data.length; i++){
+            if(data[i].dia){
+              newLabelDiariaValues.push(data[i].dia);
+              newQuantidadeVendidaDiariaValues.push(data[i].quantidadeVendida);
+            }
+          }
+          setLabelDiaria(newLabelDiariaValues);
+          setQuantidadeVendidaDia(newQuantidadeVendidaDiariaValues);
+          setCurrentLabel(labelDiaria);
+          setCurrentData(quantidadeVendidaDia);
+
 
         } catch (error) {
           console.error(error);

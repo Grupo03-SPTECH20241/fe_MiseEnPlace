@@ -9,6 +9,7 @@ function Rotas() {
         <>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/" element={<Login />} />
                     <Route path="/Login" element={<Login />} />
                     <Route path="/Cadastro" element={<Cadastro />} />
                     <Route path="/Dashboard" element={<Dashboard />} />

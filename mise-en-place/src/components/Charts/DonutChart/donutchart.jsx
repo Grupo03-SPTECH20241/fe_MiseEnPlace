@@ -6,9 +6,16 @@ import Filter from '../../Filter/filter';
 import api from '../../../api';
 
 const DonutChart = () => {
+  // valor da filtragem
+  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
 
+  // valores apresentados no gráfico caso o filtro seja por mês
   const [labelTipoProduto, setLabelTipoProduto] = useState([]);
   const [vendaTipoProduto, setVendaTipoProduto] = useState([]);
+
+  const handleFilterChange = (value) => {
+    setFilterSelectedValue(value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +28,7 @@ const DonutChart = () => {
         for(let i = 0; i < data.length; i++){
           let tipoExiste = false;
           for(let j = 0; j < data.length; j++){
-            if(data[j].tipoProduto == newTipoValues[j]){
+            if(data[j].tipoProduto == newTipoValues[i]){
               tipoExiste = true;
               break
             }
@@ -31,7 +38,7 @@ const DonutChart = () => {
             newVendaValues.push(0);
           }
         }
-
+        
         for(let i = 0; i < newTipoValues.length; i++){
           for(let j = 0; j < data.length; j++){
             if(newTipoValues[i] === data[j].tipoProduto){
@@ -68,7 +75,7 @@ const DonutChart = () => {
   const options = {
     plugins: {
       legend: {
-        display: true,
+        display: false,
       },
     },
   };
@@ -81,7 +88,7 @@ const DonutChart = () => {
             <p>Acompanhe qual produto vem sendo o favorito esse mês.</p>
           </div>
           <div className={styles["donutChartSelectOption"]}>
-            <Filter options={['Mensal']}></Filter>
+            <Filter options={['Mensal']} onChange={handleFilterChange}></Filter>
           </div>
         </div>
         <div className={styles["donutChart"]}>
