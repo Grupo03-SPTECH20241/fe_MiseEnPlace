@@ -112,6 +112,11 @@ input[type="file"] {
     border: 1px solid #ccc;
 }
 
+.buttonCadastro-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
 .buttonCadastro-submit {
     background-color: #E5246B;
     color: white;
@@ -123,8 +128,26 @@ input[type="file"] {
     height: 43px;
 }
 
+.buttonCadastro-cancel {
+    border: #E5246B solid 2px !important;
+    background-color: transparent;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 500px;
+    width: 140px;
+    height: 43px;
+}
+
 .buttonCadastro-submit:hover {
     background-color: #DE0052;
+}
+
+.buttonCadastro-cancel:hover {
+    background-color: #DE0052;
+    border-color: #DE0052;
+    color: white;
 }
 
 input[type="file"] {

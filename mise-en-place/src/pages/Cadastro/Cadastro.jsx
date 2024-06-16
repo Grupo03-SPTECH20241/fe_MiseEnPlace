@@ -23,6 +23,10 @@ function Cadastro() {
         }
     };
 
+    const cancelSubmit = () => {
+        window.location = "/login";
+    }
+
     const handleCadastro = async (event) => {
         event.preventDefault();
 
@@ -49,6 +53,10 @@ function Cadastro() {
             setCnpj('');
             setSenha('');
             setFilePath('');
+
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 6000)
         } catch (error) {
             console.log(error);
             toast.error('Erro ao cadastrar cliente', { theme: "colored" });
@@ -98,7 +106,10 @@ function Cadastro() {
                             </div>
                             <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: 'none' }} />
                         </div>
-                        <button className={cadastroStyles['buttonCadastro-submit']} type="submit">Cadastrar</button>
+                        <div className={cadastroStyles['buttonCadastro-container']}>
+                            <button className={cadastroStyles['buttonCadastro-cancel']} onClick={cancelSubmit}>Cancelar</button>
+                            <button className={cadastroStyles['buttonCadastro-submit']} type="submit">Cadastrar</button>
+                        </div>
                     </form>
                 </div>
             </div>
