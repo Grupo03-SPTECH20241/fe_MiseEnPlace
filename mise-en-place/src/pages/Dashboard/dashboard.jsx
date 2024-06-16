@@ -13,7 +13,9 @@ const Header = () => {
         <div className={styles["mainContainer"]}>
             <Sidebar />
             <div className={styles["innerContainer"]}>
-                <Breadcrumb className={styles["dashboardBreadcrumbs"]}></Breadcrumb>
+                <div className={styles["dashboardBreadcrumbsContainer"]}>
+                    <Breadcrumb></Breadcrumb>
+                </div>
                 <div className={styles["dashboardTittleCard"]}>
                     <h2>Bem-vinda!</h2>
                     <p>Acompanhe o desenvolvimento da sua confeitaria.</p>

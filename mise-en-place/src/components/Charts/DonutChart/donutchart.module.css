@@ -47,4 +47,7 @@
     .donutChartBox {
         width: 100%;
     }
+    .donutChartText p {
+        font-size: medium !important;
+    }
 }
