@@ -1,28 +1,31 @@
 /* Button.css */
 .cancel-variant-button {
-    width: 137px;
-    height: 40px;
-    border-radius: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #31cfff00;
-    color: #000000; 
-    font-size: 16px;
-    border: 2px solid #DD0543;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: "arial";
-  }
-  
-  .cancel-variant-button:hover {
-    background-color: #DD0543; 
-  }
-
-  .cancel-variant-button img {
-    margin-right: 10px; 
-    margin-left: 10px;
-    width: 16px;
-    height: 16px;
+  width: 137px;
+  height: 40px;
+  border-radius: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #31cfff00;
+  color: #000000;
+  font-size: 16px;
+  border: 2px solid #DD0543;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-family: "arial";
 }
-  
+
+.cancel-variant-button:hover {
+  background-color: #DD0543;
+}
+
+.cancel-variant-button img {
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+.cancel-variant-button span {
+  font-size: xx-small;
+}

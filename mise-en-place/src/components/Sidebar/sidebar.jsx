@@ -5,6 +5,7 @@ import agendaImage from '../../utils/img/calendar.png';
 import listImage from '../../utils/img/List.png';
 import setaImage from '../../utils/img/seta.png';
 import esquerda from '../../utils/img/esquerda.png';
+import logo from '../../utils/img/logo_v2.png';
 
 const Sidebar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -16,10 +17,10 @@ const Sidebar = () => {
     return (
         <div className={`${styles.sidebar} ${isSidebarOpen ? '' : styles['sidebar-closed']}`}>
             <div className={styles['sidebar-header']}>
-                <span>{isSidebarOpen ? 'Jessica Bolos' : 'J B'}</span>
-                <div className={styles['divisao-header']}></div>
+                <img className={styles['sidebar-logo']} src={logo} alt="" />
             </div>
             <div className={styles['sidebar-content']}>
+                <div className={styles['divisao-header']}></div>
                 <div className={styles['div-item']}>
                     <img className='home' src={homeImage} alt="Icon home" />
                     <a href="#">Início</a>

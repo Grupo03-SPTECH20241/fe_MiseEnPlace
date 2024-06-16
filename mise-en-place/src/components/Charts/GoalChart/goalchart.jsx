@@ -16,17 +16,16 @@ const GoalChart = () => {
         const response = await api.get('/metas');
         const { data } = response;
         let percentualTratado;
-        console.log(data);
 
         if(data.percentualRealizado-20 < 0){
           percentualTratado = "0%";
         } else {
-          percentualTratado = (data.percentualRealizado-25) + "%";
+          percentualTratado = (data.percentualRealizado-20) + "%";
         }
 
         const valorRealizadoTratado = "R$"+data.valorRealizado;
 
-        setPercentualAtualDaMeta("0%");
+        setPercentualAtualDaMeta(percentualTratado);
         setValorRealizadoDaMeta(valorRealizadoTratado);
         setValorTotalDaMeta(data.valor);
       } catch (error) {
@@ -47,7 +46,7 @@ const GoalChart = () => {
             <p>Defina a quantidade que você deseja faturar este mês.</p>
           </div>
           <div className={styles["goalChartSelectOption"]}>
-            <Cancelarv></Cancelarv>
+            <Cancelarv label={"Definir Meta"}></Cancelarv>
           </div>
         </div>
         <div className={styles["goalChart"]}>

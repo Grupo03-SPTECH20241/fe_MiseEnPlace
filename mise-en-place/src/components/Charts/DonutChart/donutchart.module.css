@@ -22,6 +22,7 @@
 .donutChartText {
     display: flex;
     flex-direction: column;
+    margin-bottom: 5vh;
 }
 
 .donutChartText h2 {
@@ -41,10 +42,14 @@
     height: 50%;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5vh;
 }
 
 @media screen and (max-width: 1100px) {
     .donutChartBox {
         width: 100%;
+    }
+    .donutChartText p {
+        font-size: medium !important;
     }
 }

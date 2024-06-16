@@ -6,7 +6,9 @@
 .mainContainer{
     display: flex;
 }
-
+.dashboardBreadcrumbsContainer{
+    margin-left: 5vh;
+}
 .dashboardTittleCard {
     background-image: linear-gradient(to left, #E5246B, #DE0052);
     display: flex;
@@ -18,7 +20,6 @@
     margin-left: 5vh;
     padding: 1vh;
     border-radius: 12px;
-    /* background-image: linear-gradient(to left, #E5246B, linear-gradient(#DE0052, #FFE9F9)); */
 }
 
 .dashboardTittleCard h2, .dashboardTittleCard p {

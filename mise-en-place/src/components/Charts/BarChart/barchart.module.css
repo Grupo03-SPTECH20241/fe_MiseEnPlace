@@ -47,4 +47,7 @@
     .barChartBox {
         width: 100%;
     }
+    .barChartText p {
+        font-size: medium !important;
+    }
 }

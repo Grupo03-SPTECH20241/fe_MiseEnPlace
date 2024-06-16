@@ -9,6 +9,9 @@ const BarChart = () => {
   // valor da filtragem
   const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
 
+  // valida se é a primeira vez que está carregando
+  const [firstTimeLoading, setFirstTimeLoading] = useState(true);
+
   // valores apresentados no gráfico caso o filtro seja por mês
   const [valoresVendidoMes, setValoresVendidoMes] = useState([]);
   const [labelMensal, setLabelMensal] = useState([]);
@@ -112,8 +115,6 @@ const BarChart = () => {
           let newLabelDiaria = [];
           let newValoresVendidosPorDia = [];
 
-          console.log("dia:");
-          console.log(data);
           for (let i = 0; i < data.length; i++) {
             let nomeExiste = false;
 
@@ -143,6 +144,22 @@ const BarChart = () => {
     };
     fetchData();
     const fetchDataInterval = setInterval(fetchData, 5000);
+
+    if(firstTimeLoading){
+      setTimeout(()=>{
+        setFilterSelectedValue('Semanal');
+      }, 1000);
+  
+      setTimeout(()=>{
+        setFilterSelectedValue('Diário');
+      }, 2000);
+  
+      setTimeout(()=>{
+        setFilterSelectedValue('Mensal');
+      }, 3000);
+      setFirstTimeLoading(false);
+    }
+
     return () => clearInterval(fetchDataInterval);
   }, [filterSelectedValue]);
 

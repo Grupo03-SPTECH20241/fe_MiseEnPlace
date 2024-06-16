@@ -14,27 +14,10 @@ export default function ActiveLastBreadcrumb() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
-      <Link underline="hover" color="text.primary" href="/">
-      <img className={style['breadcrumbs-arrow']} src={Home} alt="Seta"/>
-        </Link>
         <Link underline="hover" color="text.primary" href="/">
-        page
+          <img className={style['breadcrumbs-arrow']} src={Home} alt="Seta"/>
         </Link>
-        <Link
-          underline="hover"
-          color="text.primary"
-          href="/material-ui/getting-started/installation/"
-        >
-          page
-        </Link>
-        <Link
-          underline="hover"
-          color="text.primary"
-          href="/material-ui/react-breadcrumbs/"
-          aria-current="page"
-        >
-          page
-        </Link>
+        <Link underline="hover" color="text.primary" href="/Login">Home</Link>
       </Breadcrumbs>
     </div>
   );

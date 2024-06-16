@@ -6,9 +6,8 @@ const Button = ({label}) => {
   return (
     <button className={styles['cancel-variant-button']}>
       <img src={PlusImage} alt="Button icon" />
-      {label ? label : 'Label'}
+      <span>{label ? label : 'Label'}</span>
       <img src={PlusImage} alt="Button icon" />
-
     </button>
   );
 };

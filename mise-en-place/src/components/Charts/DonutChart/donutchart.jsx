@@ -7,7 +7,7 @@ import api from '../../../api';
 
 const DonutChart = () => {
   // valor da filtragem
-  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
+  const [filterSelectedValue, setFilterSelectedValue] = useState("Geral");
 
   // valores apresentados no gráfico caso o filtro seja por mês
   const [labelTipoProduto, setLabelTipoProduto] = useState([]);
@@ -88,7 +88,7 @@ const DonutChart = () => {
             <p>Acompanhe qual produto vem sendo o favorito esse mês.</p>
           </div>
           <div className={styles["donutChartSelectOption"]}>
-            <Filter options={['Mensal']} onChange={handleFilterChange}></Filter>
+            <Filter options={[]} onChange={handleFilterChange}></Filter>
           </div>
         </div>
         <div className={styles["donutChart"]}>
