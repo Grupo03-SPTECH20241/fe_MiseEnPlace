@@ -2,20 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 import styles from './donutchart.module.css';
-import Filter from '../../Filter/filter';
 import api from '../../../api';
 
 const DonutChart = () => {
-  // valor da filtragem
-  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
-
   // valores apresentados no gráfico caso o filtro seja por mês
   const [labelTipoProduto, setLabelTipoProduto] = useState([]);
   const [vendaTipoProduto, setVendaTipoProduto] = useState([]);
-
-  const handleFilterChange = (value) => {
-    setFilterSelectedValue(value);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +20,7 @@ const DonutChart = () => {
         for(let i = 0; i < data.length; i++){
           let tipoExiste = false;
           for(let j = 0; j < data.length; j++){
-            if(data[j].tipoProduto == newTipoValues[i]){
+            if(data[j].tipoProduto === newTipoValues[i]){
               tipoExiste = true;
               break
             }
@@ -86,9 +78,6 @@ const DonutChart = () => {
           <div className={styles["donutChartText"]}>
             <h2>Tipos de produtos mais vendidos</h2>
             <p>Acompanhe qual produto vem sendo o favorito esse mês.</p>
-          </div>
-          <div className={styles["donutChartSelectOption"]}>
-            <Filter options={['Mensal']} onChange={handleFilterChange}></Filter>
           </div>
         </div>
         <div className={styles["donutChart"]}>
