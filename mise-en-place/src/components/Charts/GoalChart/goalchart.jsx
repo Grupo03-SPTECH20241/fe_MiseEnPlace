@@ -19,6 +19,10 @@ const GoalChart = () => {
 
         if(data.percentualRealizado-20 < 0){
           percentualTratado = "0%";
+
+        } else if(data.percentualRealizado >= 80){
+          percentualTratado = "80%";
+
         } else {
           percentualTratado = (data.percentualRealizado-20) + "%";
         }
