@@ -7,25 +7,26 @@ import api from '../../../api';
 
 const LineChart = () => {
   // valor da filtragem
-  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
+  const [filterSelectedValue, setFilterSelectedValue] = useState('Anual');
 
   // valida se é a primeira vez que está carregando
   const [firstTimeLoading, setFirstTimeLoading] = useState(true);
 
   // valores apresentados no gráfico caso o filtro seja por mês
-  const [quantidadeVendidaMes, setQuantidadeVendidaMes] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const labelMensal = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+  const [quantidadeVendidaAno, setQuantidadeVendidaAno] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const labelAnual = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
   // valores apresentados no gráfico caso o filtro seja por semana
   const [quantidadeVendidaSemana, setQuantidadeVendidaSemana] = useState([]);
   const [labelSemanal, setLabelSemanal] = useState([]);
 
   // valores apresentados no gráfico caso o filtro seja por dia
-  const [quantidadeVendidaDia, setQuantidadeVendidaDia] = useState([]);
-  const [labelDiaria, setLabelDiaria] = useState([]);
+  const [quantidadeVendidaMes, setQuantidadeVendidaMes] = useState([]);
+  const [labelMensal, setLabelMensal] = useState([]);
+
   // variáveis que guardam a label e os dados que serão exibidos no gráfico
-  const [currentLabel, setCurrentLabel] = useState(labelMensal);
-  const [currentData, setCurrentData] = useState(quantidadeVendidaMes);
+  const [currentLabel, setCurrentLabel] = useState(labelAnual);
+  const [currentData, setCurrentData] = useState(quantidadeVendidaAno);
 
   const handleFilterChange = (value) => {
     setFilterSelectedValue(value);
@@ -47,15 +48,15 @@ const LineChart = () => {
   useEffect(() => {
     const fetchData = async () => {
 
-      if (filterSelectedValue === 'Mensal') {
-        setCurrentLabel(labelMensal);
-        setCurrentData(quantidadeVendidaMes);
+      if (filterSelectedValue === 'Anual') {
+        setCurrentLabel(labelAnual);
+        setCurrentData(quantidadeVendidaAno);
         try {
           const response = await api.get('/quantidade-vendidos-mes');
           const { data } = response;
           for (let i = 0; i < data.length; i++) {
             if ([data[i].mes]) {
-              quantidadeVendidaMes[data[i].mes - 1] = data[i].quantidadeVendida;
+              quantidadeVendidaAno[data[i].mes - 1] = data[i].quantidadeVendida;
             }
           }
         } catch (error) {
@@ -66,6 +67,9 @@ const LineChart = () => {
         try {
           const response = await api.get('/quantidade-vendidos-semana');
           const { data } = response;
+          console.log("SEMANA")
+          console.log(data)
+
           let newLabelSemanalValues = [];
           let newQuantidadeVendidaValues = [];
 
@@ -84,24 +88,26 @@ const LineChart = () => {
           console.error(error);
         }
 
-      } else if (filterSelectedValue === 'Diário') {
+      } else if (filterSelectedValue === 'Mensal') {
         try {
           const response = await api.get('/quantidade-vendidos-dia');
           const { data } = response;
+          console.log(data)
+
           const organizedData = bubbleSortByDay(data);
-          let newLabelDiariaValues = [];
-          let newQuantidadeVendidaDiariaValues = [];
+          let newLabelMensalValues = [];
+          let newQuantidadeVendidaMensalValues = [];
 
           for (let i = 0; i < organizedData.length; i++) {
             if (organizedData[i].dia) {
-              newLabelDiariaValues.push(organizedData[i].dia);
-              newQuantidadeVendidaDiariaValues.push(organizedData[i].quantidadeVendida);
+              newLabelMensalValues.push(organizedData[i].dia);
+              newQuantidadeVendidaMensalValues.push(organizedData[i].quantidadeVendida);
             }
           }
-          setLabelDiaria(newLabelDiariaValues);
-          setQuantidadeVendidaDia(newQuantidadeVendidaDiariaValues);
-          setCurrentLabel(labelDiaria);
-          setCurrentData(quantidadeVendidaDia);
+          setLabelMensal(newLabelMensalValues);
+          setQuantidadeVendidaMes(newQuantidadeVendidaMensalValues);
+          setCurrentLabel(labelMensal);
+          setCurrentData(quantidadeVendidaMes);
 
 
         } catch (error) {
@@ -118,11 +124,11 @@ const LineChart = () => {
       }, 1000);
 
       setTimeout(() => {
-        setFilterSelectedValue('Diário');
+        setFilterSelectedValue('Mensal');
       }, 2000);
 
       setTimeout(() => {
-        setFilterSelectedValue('Mensal');
+        setFilterSelectedValue('Anual');
       }, 3000);
       setFirstTimeLoading(false);
     }
@@ -131,7 +137,7 @@ const LineChart = () => {
   }, [filterSelectedValue]);
 
   //Configurações do gráfico/labels/opções de filtragem:
-  const filterOptions = ['Mensal', 'Semanal', 'Diário'];
+  const filterOptions = ['Anual', 'Semanal', 'Mensal'];
   const labels = currentLabel;
 
   const data = {

@@ -4,7 +4,7 @@ import Seta from '../../utils/img/setaBaixo.png';
 
 const Dropdown = ({options, onChange}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState('Mensal');
+  const [selected, setSelected] = useState(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -19,7 +19,7 @@ const Dropdown = ({options, onChange}) => {
   return (
     <div className={styles.dropdown}>
       <button onClick={toggleDropdown} className={`${styles['dropdown-btn']} ${isOpen ? styles.open : ''}`}>
-        {selected? selected : 'Filtros'} <img className={styles['dropdown-arrow']} src={Seta} alt="Seta" />
+        {selected ? selected : options[0] ? options[0] : 'Filtro'} <img className={styles['dropdown-arrow']} src={Seta} alt="Seta" />
       </button>
       {isOpen && (
         <div className={styles['dropdown-menu']}>
