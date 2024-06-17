@@ -48,7 +48,6 @@ function Login() {
                         <input type="password" name="password" placeholder="Insira sua senha" onChange={e => setPassword(e.target.value)} />
                     </div>
                     <button className={LoginStyles['button-submit']} type="submit">Entrar</button>
-                    <a href="/cadastro">Não possui uma conta? cadastre-se aqui.</a>
                 </form>
             </div>
         </div>

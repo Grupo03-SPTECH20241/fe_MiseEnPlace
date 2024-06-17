@@ -106,10 +106,7 @@ function Cadastro() {
                             </div>
                             <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: 'none' }} />
                         </div>
-                        <div className={cadastroStyles['buttonCadastro-container']}>
-                            <button className={cadastroStyles['buttonCadastro-cancel']} onClick={cancelSubmit}>Cancelar</button>
                             <button className={cadastroStyles['buttonCadastro-submit']} type="submit">Cadastrar</button>
-                        </div>
                     </form>
                 </div>
             </div>
