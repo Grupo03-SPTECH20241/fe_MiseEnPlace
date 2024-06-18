@@ -4,8 +4,6 @@ import Cancelarv from '../../Button/Cancelar-variant/cancelarv';
 import locationIcon from '../../../utils/img/location_icon.png';
 import api from '../../../api';
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
-
 const GoalChart = () => {
   // valores que serão apresentados no gráfico
   const [percentualAtualDaMeta, setPercentualAtualDaMeta] = useState([]);

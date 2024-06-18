@@ -1,3 +1,14 @@
+@font-face {
+    font-family: "Nunito-Bold";
+    src: url("../../../utils/fonts/Nunito-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+
 .barChartContainer {
     max-width: 48%;
     margin-top: 4vh;
@@ -25,13 +36,14 @@
 }
 
 .barChartText h2 {
-    font-family: 'Nunito';
+    font-family: 'Nunito-Bold';
     font-weight: 600;
+    font-size: 20px;
     margin: 0;
 }
 
 .barChartText p {
-    font-family: 'Nunito';
+    font-family: 'Nunito-Regular';
     font-weight: 400;
     margin: 0;
 }

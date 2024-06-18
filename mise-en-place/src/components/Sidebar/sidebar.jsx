@@ -8,7 +8,7 @@ import esquerda from '../../utils/img/esquerda.png';
 import logo from '../../utils/img/logo_v2.png';
 
 const Sidebar = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);

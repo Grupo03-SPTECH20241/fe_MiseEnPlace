@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
 .innerContainer {
     display: flex;
     flex-direction: column;
@@ -10,6 +15,7 @@
 
 .dashboardBreadcrumbsContainer{
     margin-left: 6.5vh;
+    padding-top: 5vh;
 }
 
 .dashboardTittleCard {
@@ -31,14 +37,14 @@
 }
 
 .dashboardTittleCard h2 {
-    font-family: 'Nunito';
+    font-family: 'Nunito-Regular';
     font-weight: 600;
     margin: 0;
     margin-bottom: 1.5vh;
 }
 
 .dashboardTittleCard p {
-    font-family: 'Nunito';
+    font-family: 'Nunito-Regular';
     font-weight: 400;
     margin: 0;
 }

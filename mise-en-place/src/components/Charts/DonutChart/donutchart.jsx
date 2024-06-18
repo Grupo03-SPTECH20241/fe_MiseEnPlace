@@ -5,8 +5,6 @@ import styles from './donutchart.module.css';
 import Filter from '../../Filter/filter';
 import api from '../../../api';
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
-
 const DonutChart = () => {
   // valor da filtragem
   const [filterSelectedValue, setFilterSelectedValue] = useState("Geral");

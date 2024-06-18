@@ -5,8 +5,6 @@ import Filter from '../../Filter/filter';
 import styles from './barchart.module.css';
 import api from '../../../api';
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
-
 const BarChart = () => {
   // valor da filtragem
   const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
