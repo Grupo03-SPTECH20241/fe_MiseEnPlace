@@ -128,10 +128,10 @@ body {
     transition: background-color 0.2s;
 }
 
-.div-item:hover {
+/* .div-item:hover {
     background-color: #17ACD9;
     border-radius: 12px;
-}
+} */
 
 .sidebar-closed .div-item a {
     display: none; 

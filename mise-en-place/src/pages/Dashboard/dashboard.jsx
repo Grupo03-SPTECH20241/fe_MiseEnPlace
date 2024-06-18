@@ -8,6 +8,8 @@ import LineChart from '../../components/Charts/LineChart/linechart';
 import DonutChart from '../../components/Charts/DonutChart/donutchart';
 import GoalChart from '../../components/Charts/GoalChart/goalchart';
 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
+
 const Header = () => {
     return (
         <div className={styles["mainContainer"]}>

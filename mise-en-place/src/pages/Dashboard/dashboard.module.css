@@ -3,22 +3,25 @@
     flex-direction: column;
     width: 100%;
 }
+
 .mainContainer{
     display: flex;
 }
+
 .dashboardBreadcrumbsContainer{
-    margin-left: 5vh;
+    margin-left: 6.5vh;
 }
+
 .dashboardTittleCard {
     background-image: linear-gradient(to left, #E5246B, #DE0052);
     display: flex;
-    width: 90%;
+    width: 85.25%;
     max-height: 20vh;
     margin-top: 3vh;
     flex-direction: column;
     justify-content: center;
-    margin-left: 5vh;
-    padding: 1vh;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
     border-radius: 12px;
 }
 
@@ -28,6 +31,15 @@
 }
 
 .dashboardTittleCard h2 {
+    font-family: 'Nunito';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.dashboardTittleCard p {
+    font-family: 'Nunito';
+    font-weight: 400;
     margin: 0;
 }
 
