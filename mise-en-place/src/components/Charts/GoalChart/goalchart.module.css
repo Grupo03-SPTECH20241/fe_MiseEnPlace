@@ -76,6 +76,8 @@
 .goalChartProgressBarContainer p {
     font-size: small !important;
     margin: 0 !important;
+    font-family: 'Nunito-Regular';
+    font-size: 400;
 }
 
 .progressBarCurrentLocation {
@@ -121,6 +123,8 @@
     font-size: smaller;
     border-radius: 50%;
     z-index: 1;
+    font-family: 'Nunito-Regular';
+    font-size: 400;
 }
 
 .goalChartCircleCinquenta {
@@ -134,6 +138,8 @@
     font-size: smaller;
     border-radius: 50%;
     z-index: 1;
+    font-family: 'Nunito-Regular';
+    font-size: 400;
 }
 
 .goalChartCircleCem {
@@ -147,6 +153,8 @@
     font-size: smaller;
     border-radius: 50%;
     z-index: 1;
+    font-family: 'Nunito-Regular';
+    font-size: 400;
 }
 
 @media screen and (max-width: 1100px) {
