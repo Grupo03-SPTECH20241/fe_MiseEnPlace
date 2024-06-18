@@ -4,6 +4,8 @@ import Cancelarv from '../../Button/Cancelar-variant/cancelarv';
 import locationIcon from '../../../utils/img/location_icon.png';
 import api from '../../../api';
 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
+
 const GoalChart = () => {
   // valores que serão apresentados no gráfico
   const [percentualAtualDaMeta, setPercentualAtualDaMeta] = useState([]);
@@ -17,14 +19,14 @@ const GoalChart = () => {
         const { data } = response;
         let percentualTratado;
 
-        if(data.percentualRealizado-20 < 0){
+        if(data.percentualRealizado < 0){
           percentualTratado = "0%";
 
-        } else if(data.percentualRealizado >= 80){
-          percentualTratado = "80%";
+        } else if(data.percentualRealizado > 100){
+          percentualTratado = "100%";
 
         } else {
-          percentualTratado = (data.percentualRealizado-20) + "%";
+          percentualTratado = data.percentualRealizado+"%";
         }
 
         const valorRealizadoTratado = "R$"+data.valorRealizado;

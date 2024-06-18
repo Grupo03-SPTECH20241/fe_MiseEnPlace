@@ -5,6 +5,8 @@ import styles from './donutchart.module.css';
 import Filter from '../../Filter/filter';
 import api from '../../../api';
 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
+
 const DonutChart = () => {
   // valor da filtragem
   const [filterSelectedValue, setFilterSelectedValue] = useState("Geral");
@@ -86,10 +88,10 @@ const DonutChart = () => {
         <div className={styles["donutChartHeader"]}>
           <div className={styles["donutChartText"]}>
             <h2>Tipos de produtos mais vendidos</h2>
-            <p>Acompanhe qual produto vem sendo o favorito esse mês.</p>
+            <p>Acompanhe qual produto vem sendo o favorito entre os seus clientes.</p>
           </div>
           <div className={styles["donutChartSelectOption"]}>
-            <Filter options={[]} onChange={handleFilterChange}></Filter>
+            <div style={{width: '109px', height: '38px'}}></div>
           </div>
         </div>
         <div className={styles["donutChart"]}>

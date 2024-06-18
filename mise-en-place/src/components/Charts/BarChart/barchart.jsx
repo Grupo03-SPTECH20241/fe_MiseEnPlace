@@ -5,6 +5,8 @@ import Filter from '../../Filter/filter';
 import styles from './barchart.module.css';
 import api from '../../../api';
 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
+
 const BarChart = () => {
   // valor da filtragem
   const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
@@ -106,7 +108,7 @@ const BarChart = () => {
           console.error(error);
         }
 
-      } else if (filterSelectedValue === 'Diário') {
+      } else if (filterSelectedValue === 'Hoje') {
 
         try {
           const response = await api.get('/quantidade-vendida-valor-vendido-dia');
@@ -151,7 +153,7 @@ const BarChart = () => {
       }, 1000);
   
       setTimeout(()=>{
-        setFilterSelectedValue('Diário');
+        setFilterSelectedValue('Hoje');
       }, 2000);
   
       setTimeout(()=>{
@@ -163,7 +165,7 @@ const BarChart = () => {
     return () => clearInterval(fetchDataInterval);
   }, [filterSelectedValue]);
 
-  const filterOptions = ['Mensal', 'Semanal', 'Diário'];
+  const filterOptions = ['Mensal', 'Semanal', 'Hoje'];
   const labels = currentLabel;
 
   const data = {
@@ -192,7 +194,7 @@ const BarChart = () => {
         <div className={styles["barChartHeader"]}>
           <div className={styles["barChartText"]}>
             <h2>Produtos X Preço</h2>
-            <p>Acompanhe o quanto os seus produtos estão faturando este mês.</p>
+            <p>Acompanhe o quanto os seus produtos estão faturando no período selecionado.</p>
           </div>
           <div className={styles["barChartSelectOption"]}>
             <Filter options={filterOptions} onChange={handleFilterChange}></Filter>

@@ -25,6 +25,14 @@
 }
 
 .lineChartText h2 {
+    font-family: 'Nunito';
+    font-weight: 600;
+    margin: 0;
+}
+
+.lineChartText p {
+    font-family: 'Nunito';
+    font-weight: 400;
     margin: 0;
 }
 

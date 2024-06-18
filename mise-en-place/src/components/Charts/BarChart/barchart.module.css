@@ -25,6 +25,14 @@
 }
 
 .barChartText h2 {
+    font-family: 'Nunito';
+    font-weight: 600;
+    margin: 0;
+}
+
+.barChartText p {
+    font-family: 'Nunito';
+    font-weight: 400;
     margin: 0;
 }
 
