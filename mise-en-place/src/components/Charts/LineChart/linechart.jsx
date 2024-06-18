@@ -5,8 +5,6 @@ import { Line } from 'react-chartjs-2';
 import styles from './linechart.module.css';
 import api from '../../../api';
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
-
 const LineChart = () => {
   // valor da filtragem
   const [filterSelectedValue, setFilterSelectedValue] = useState('Anual');
