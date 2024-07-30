@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.innerContainerSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 85.25%;
+}
+
+.mainContainer{
+    display: flex;
+}
+
+.produtoBreadcrumbsContainer{
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.produtoTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.produtoTittleCard h2, .produtoTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.produtoTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.produtoTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
+}
+
