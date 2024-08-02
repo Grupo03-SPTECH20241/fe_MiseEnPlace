@@ -6,21 +6,21 @@
 .innerContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .innerContainerSearch {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    width: 85.25%;
+    width: 91.5%;
+    margin-top: 3vh;
 }
 
-.mainContainer{
+.mainContainer {
     display: flex;
 }
 
-.produtoBreadcrumbsContainer{
+.produtoBreadcrumbsContainer {
     margin-left: 6.5vh;
     padding-top: 5vh;
 }
@@ -38,7 +38,8 @@
     border-radius: 12px;
 }
 
-.produtoTittleCard h2, .produtoTittleCard p {
+.produtoTittleCard h2,
+.produtoTittleCard p {
     margin-left: 3vh !important;
     color: white;
 }
@@ -56,3 +57,59 @@
     margin: 0;
 }
 
+.containerInputs {
+    display: flex;
+}
+
+
+/* Cards */
+
+.content-musicas {
+    height: calc(100vh - 8vh);
+    display: flex;
+    flex-wrap: wrap;
+    /* overflow-y: hidden; */
+    margin-left: 7vh;
+    margin-right: 7vh;
+    /* justify-content: ; */
+    align-content: flex-start;
+
+}
+
+.quadrado {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+    margin: 0.2rem 0 0 0.4rem;
+}
+
+.content-musicas::after {
+    content: '';
+    height: 2rem;
+    flex-basis: 100%;
+}
+
+.content-musicas::before {
+    content: '';
+    height: 1rem;
+    flex-basis: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .quadrado {
+        flex-basis: calc(99% - 20px);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .quadrado {
+        flex-basis: calc(45% - 20px);
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .quadrado {
+        flex-basis: calc(100% - 20px);
+    }
+}

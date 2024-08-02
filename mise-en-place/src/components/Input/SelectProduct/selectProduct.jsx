@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import styles from './searchProduct.module.css';
-import Search from '../../../utils/img/search.png';
+import styles from './selectProduct.module.css';
 
 const InputField = () => {
   const [value, setValue] = useState('');
@@ -24,20 +23,20 @@ const InputField = () => {
   };
 
   return (
-    <div className={styles['search-input-field-container']}>
+    <div className={styles['input-field-container']}>
       
-      <div className={styles['search-input-container']}>
-        <input
-          type="text"
-          id="input"
-          placeholder="Buscar Produto..."
-          value={value}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className={`${styles['search-input-field']} ${error ? styles['search-input-field-error'] : ''}`}
-        />
-        <img src={Search} alt="Search" className={styles['search-input-icon']} />
-      </div>
+      <select
+        id="input"
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
+      >
+        <option value="" disabled>Filtrar por</option>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
   );
