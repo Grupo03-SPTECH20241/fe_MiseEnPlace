@@ -52,6 +52,8 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    display: flex;
+    justify-content: space-between;
 }
 
 .textos h1,
@@ -93,6 +95,11 @@
     border-radius: 5px;
     align-self: flex-end;
     transition: background-color 0.3s ease;
+}
+
+.editarImg {
+    width: 24px;
+    height: 24px;
 }
 
 .botao:first-child {
