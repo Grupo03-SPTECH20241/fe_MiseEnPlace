@@ -6,21 +6,22 @@ import editarImg from "../../utils/img/editar.png";
 
 
 const CardMusica = ({
-    genero, artista, nomeMusica, anoLancamento, imagemSrc,
+    descricao, nomeBolo, imagemSrc,valor = 99.99
 }) => {
     return (
+
         <div className={styles["card-musica"]}>
             <div className={styles["imagem-container"]}>
                 <img src={imagemSrc ? imagemSrc : capaImg} alt="Imagem"
                     className={styles["imagem"]} />
             </div>
             <div className={styles["textos"]}>
-                <h1>{nomeMusica || "Bolo de coco"} <img src={editarImg} alt="" className={styles["editarImg"]}/></h1>
-                <p>{artista || "Bolo gelado de coco, com pedaços de coco"} </p>
+                <h1>{nomeBolo || "Bolo de coco"} <img src={editarImg} alt="" className={styles["editarImg"]}/></h1>
+                <p>{descricao || "Bolo gelado de coco, com pedaços de coco"} </p>
                 
             </div>
             <div className={styles["valor"]}>
-                <p>valor: R$99.99</p>
+                <p>valor: R${valor}</p>
                 
             </div>
             </div>
