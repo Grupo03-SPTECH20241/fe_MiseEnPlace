@@ -5,8 +5,8 @@ import editarImg from "../../utils/img/editar.png";
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
 
-const CardMusica = ({
-    descricao, nomeBolo, imagemSrc,valor = 99.99
+const CardProduto = ({
+    descricao, nomeBolo, imagemSrc,valor
 }) => {
     return (
 
@@ -21,11 +21,11 @@ const CardMusica = ({
                 
             </div>
             <div className={styles["valor"]}>
-                <p>valor: R${valor}</p>
+                <p>valor: R${valor.toFixed(2) || 99.99}</p>
                 
             </div>
             </div>
         
     );
 };
-export default CardMusica;
+export default CardProduto;
