@@ -59,7 +59,12 @@ const Produtos = () => {
                     imagemSrc={data.imagemSrc}
                     valor={data.preco}
                     ></CardProduct>
-                ))}
+                ))
+                
+            
+                
+                }
+                
 
                    
                 </div>
