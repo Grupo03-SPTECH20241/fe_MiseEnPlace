@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-bottom: 3vh;
-    border-bottom: 1px solid gray;
 }
 
 .component-stories-container .row {
     display: flex;
     flex-direction: row;
     width: 100%;
+    border-bottom: 1px solid gray;
+    padding-bottom: 3vh;
 }
 
 .component-stories-container .row-item {
