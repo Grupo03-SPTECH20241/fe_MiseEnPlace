@@ -1,0 +1,19 @@
+.component-stories-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 3vh;
+    border-bottom: 1px solid gray;
+}
+
+.component-stories-container .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.component-stories-container .row-item {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5vh;
+}

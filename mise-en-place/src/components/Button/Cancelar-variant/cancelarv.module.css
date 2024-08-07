@@ -27,5 +27,17 @@
 }
 
 .cancel-variant-button span {
-  font-size: small;
+  font-size: medium;
+}
+
+.cancel-variant-button span.font-size-small {
+  font-size: small !important;
+}
+
+.cancel-variant-button span.font-size-medium {
+  font-size: medium !important;
+}
+
+.cancel-variant-button span.font-size-large {
+  font-size: large !important;
 }
