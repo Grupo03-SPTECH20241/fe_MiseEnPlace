@@ -1,28 +1,40 @@
 /* Button.css */
 .cancel-button {
-    width: 137px;
-    height: 40px;
-    border-radius: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #E83A6C;
-    color: #000000; 
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: "arial";
-  }
-  
-  .cancel-button:hover {
-    background-color: #DD0543; 
-  }
-
-  .cancel-button img {
-    margin-right: 10px; 
-    margin-left: 10px;
-    width: 16px;
-    height: 16px;
+  max-width: 137px;
+  min-width: 137px;
+  height: 40px;
+  border-radius: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E83A6C;
+  color: #000000; 
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-family: "arial";
 }
   
+.cancel-button:hover {
+  background-color: #DD0543; 
+}
+
+.cancel-button img {
+  margin-right: 10px; 
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+.cancel-button.font-size-small{
+  font-size: small !important;
+}
+
+.cancel-button.font-size-medium{
+  font-size: small !important;
+}
+
+.cancel-button.font-size-large{
+  font-size: small !important;
+}
