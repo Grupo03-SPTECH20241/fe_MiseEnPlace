@@ -50,7 +50,7 @@ const GoalChart = () => {
             <p>Defina a quantidade que você deseja faturar este mês.</p>
           </div>
           <div className={styles["goalChartSelectOption"]}>
-            <Cancelarv label={"Definir Meta"}></Cancelarv>
+            <Cancelarv></Cancelarv>
           </div>
         </div>
         <div className={styles["goalChart"]}>
