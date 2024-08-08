@@ -3,6 +3,7 @@ import Login from "./pages/Login/login";
 import Cadastro from "./pages/Cadastro/Cadastro"
 import Dashboard from "./pages/Dashboard/dashboard"
 import Loading from "./pages/Load/load"
+import Produtos from "./pages/Produtos/produtos" 
 import Stories from "./components/ComponentStories/componentstories";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,6 +17,7 @@ function Rotas() {
                     <Route path="/cadastro" element={<Cadastro />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/loading" element={<Loading />} />
+                    <Route path="/produtos" element={<Produtos />} />
                     <Route path="/components" element={<Stories />} />
                 </Routes>
             </BrowserRouter>

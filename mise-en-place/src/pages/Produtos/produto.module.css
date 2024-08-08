@@ -1,0 +1,115 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+}
+
+.innerContainerSearch {
+    display: flex;
+    justify-content: space-between;
+    width: 91.5%;
+    margin-top: 3vh;
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.produtoBreadcrumbsContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.produtoTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.produtoTittleCard h2,
+.produtoTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.produtoTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.produtoTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
+}
+
+.containerInputs {
+    display: flex;
+}
+
+
+/* Cards */
+
+.content-musicas {
+    height: calc(100vh - 8vh);
+    display: flex;
+    flex-wrap: wrap;
+    /* overflow-y: hidden; */
+    margin-left: 7vh;
+    margin-right: 7vh;
+    /* justify-content: ; */
+    align-content: flex-start;
+
+}
+
+.quadrado {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+    margin: 0.2rem 0 0 0.4rem;
+}
+
+.content-musicas::after {
+    content: '';
+    height: 2rem;
+    flex-basis: 100%;
+}
+
+.content-musicas::before {
+    content: '';
+    height: 1rem;
+    flex-basis: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .quadrado {
+        flex-basis: calc(99% - 20px);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .quadrado {
+        flex-basis: calc(45% - 20px);
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .quadrado {
+        flex-basis: calc(100% - 20px);
+    }
+}
