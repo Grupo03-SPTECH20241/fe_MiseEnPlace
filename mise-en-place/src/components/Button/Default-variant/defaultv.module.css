@@ -1,28 +1,43 @@
 /* Button.css */
 .default-variant-button {
-    width: 137px;
-    height: 40px;
-    border-radius: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #31cfff00;
-    color: #000000; 
-    font-size: 16px;
-    border: 2px solid #31CFFF;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: "arial";
-  }
-  
-  .default-variant-button:hover {
-    background-color: #31CFFF; 
-  }
-
-  .default-variant-button img {
-    margin-right: 10px; 
-    margin-left: 10px;
-    width: 16px;
-    height: 16px;
+  width: 137px;
+  height: 40px;
+  border-radius: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #31cfff00;
+  color: #000000; 
+  font-size: 16px;
+  border: 2px solid #31CFFF;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-family: "arial";
 }
-  
+
+.default-variant-button:hover {
+  background-color: #31CFFF; 
+}
+
+.default-variant-button img {
+  margin-right: 10px; 
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+.default-variant-button span {
+  font-size: medium;
+}
+
+.default-variant-button span.font-size-small {
+  font-size: small !important;
+}
+
+.default-variant-button span.font-size-medium {
+  font-size: medium !important;
+}
+
+.default-variant-button span.font-size-large {
+  font-size: large !important;
+}
