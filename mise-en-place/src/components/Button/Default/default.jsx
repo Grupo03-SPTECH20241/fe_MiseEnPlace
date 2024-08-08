@@ -4,7 +4,7 @@ import styles from './default.module.css';
 import PlusImage from '../../../utils/img/plus.png'
 import SettingsImage from '../../../utils/img/settings_icon.png';
 
-const ButtonFilledDefault = ({ label = 'Label', showIcon = 'true', icon = 'plus', iconPosition = 'both', fontSize = 'medium' }) => {
+const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = 'true', icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px'  }) => {
   // Renderiza ícones com base na posição  
   const renderIcon = (iconId) => {  
     if (showIcon !== 'true') return null;  
@@ -19,7 +19,7 @@ const ButtonFilledDefault = ({ label = 'Label', showIcon = 'true', icon = 'plus'
   };  
 
   return (
-    <button className={styles['default-button']}>  
+    <button onClick={onClick} className={styles['default-button']} style={{width: `${width}`}}>  
       {renderIcon(0)}  
       <span className={styles[`font-size-${fontSize}`]}>{label}</span>  
       {renderIcon(1)}  
@@ -29,11 +29,13 @@ const ButtonFilledDefault = ({ label = 'Label', showIcon = 'true', icon = 'plus'
 
 // Definindo as PropTypes para o componente  
 ButtonFilledDefault.propTypes = {  
+  onClick: PropTypes.any,
   label: PropTypes.string,  
   showIcon: PropTypes.bool,  
   icon: PropTypes.oneOf(['plus','settings']),  
   iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
-  fontSize: PropTypes.oneOf(['small', 'medium', 'large'])
-};  
+  fontSize: PropTypes.oneOf(['small', 'medium', 'large']),
+  width: PropTypes.string
+};   
 
 export default ButtonFilledDefault;
