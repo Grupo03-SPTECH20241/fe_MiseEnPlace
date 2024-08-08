@@ -4,7 +4,7 @@ import styles from './disabled.module.css';
 import PlusImage from '../../../utils/img/plusDisable.png';
 import SettingsImage from '../../../utils/img/settings_icon.png';
 
-const ButtonFilledDisabled = ({ label = 'Label', showIcon = 'true', icon = 'plus', iconPosition = 'both', fontSize = 'medium' }) => {
+const ButtonFilledDisabled = ({ label = 'Label', showIcon = 'true', icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px'  }) => {
   // Renderiza ícones com base na posição  
   const renderIcon = (iconId) => {  
     if (showIcon !== 'true') return null;  
@@ -19,7 +19,7 @@ const ButtonFilledDisabled = ({ label = 'Label', showIcon = 'true', icon = 'plus
   };  
 
   return (
-    <button className={styles['disabled-button']}>  
+    <button className={styles['disabled-button']} style={{width: `${width}`}}>  
       {renderIcon(0)}  
       <span className={styles[`font-size-${fontSize}`]}>{label}</span>  
       {renderIcon(1)}  
@@ -29,11 +29,13 @@ const ButtonFilledDisabled = ({ label = 'Label', showIcon = 'true', icon = 'plus
 
 // Definindo as PropTypes para o componente  
 ButtonFilledDisabled.propTypes = {  
+  onClick: PropTypes.any,
   label: PropTypes.string,  
   showIcon: PropTypes.bool,  
   icon: PropTypes.oneOf(['plus','settings']),  
   iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
-  fontSize: PropTypes.oneOf(['small', 'medium', 'large'])
-};  
+  fontSize: PropTypes.oneOf(['small', 'medium', 'large']),
+  width: PropTypes.string
+};    
 
 export default ButtonFilledDisabled;

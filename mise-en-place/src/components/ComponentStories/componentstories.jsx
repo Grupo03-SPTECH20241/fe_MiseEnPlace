@@ -8,6 +8,9 @@ import ButtonFilledDefaultVariant from '../Button/Default-variant/defaultv';
 import ButtonFilledDisabled from '../Button/Disabled/disabled';
 
 const Stories = () => {
+    const teste = () => {  
+        alert('Botão clicado!');  
+    };
   return (
     <>
     <div className={styles['component-stories-container']}>
@@ -18,6 +21,7 @@ const Stories = () => {
                 <ButtonOutlinedNegative
                     showIcon='false'
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
@@ -25,6 +29,7 @@ const Stories = () => {
                 <h5>Botão com ícone</h5>
                 <ButtonOutlinedNegative
                     showIcon='true'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
@@ -33,6 +38,7 @@ const Stories = () => {
                 <ButtonOutlinedNegative
                     showIcon='true'
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
@@ -41,6 +47,7 @@ const Stories = () => {
                 <ButtonOutlinedNegative
                     showIcon='true'
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
@@ -49,6 +56,7 @@ const Stories = () => {
                 <ButtonOutlinedNegative
                     showIcon='true'
                     icon='settings'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
             <div className={styles['row-item']}>
@@ -56,6 +64,7 @@ const Stories = () => {
                 <ButtonOutlinedNegative
                     showIcon='true'
                     fontSize='small'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
         </div>
@@ -66,6 +75,8 @@ const Stories = () => {
                 <ButtonFilledNegative
                     showIcon='false'
                     fontSize='large'
+                    onClick={teste}
+                    width='800px'
                 ></ButtonFilledNegative>
             </div>
 
@@ -73,6 +84,7 @@ const Stories = () => {
                 <h5>Botão com ícone</h5>
                 <ButtonFilledNegative
                     showIcon='true'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
@@ -81,6 +93,7 @@ const Stories = () => {
                 <ButtonFilledNegative
                     showIcon='true'
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
@@ -89,6 +102,7 @@ const Stories = () => {
                 <ButtonFilledNegative
                     showIcon='true'
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
@@ -97,6 +111,7 @@ const Stories = () => {
                 <ButtonFilledNegative
                     showIcon='true'
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
@@ -105,6 +120,7 @@ const Stories = () => {
                 <ButtonFilledNegative
                     showIcon='true'
                     fontSize='small'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
         </div>
@@ -115,6 +131,7 @@ const Stories = () => {
                 <ButtonFilledDefault
                     showIcon='false'
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
@@ -122,6 +139,7 @@ const Stories = () => {
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDefault
                     showIcon='true'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
@@ -130,6 +148,7 @@ const Stories = () => {
                 <ButtonFilledDefault
                     showIcon='true'
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
@@ -138,6 +157,7 @@ const Stories = () => {
                 <ButtonFilledDefault
                     showIcon='true'
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
@@ -146,6 +166,7 @@ const Stories = () => {
                 <ButtonFilledDefault
                     showIcon='true'
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
             <div className={styles['row-item']}>
@@ -153,6 +174,7 @@ const Stories = () => {
                 <ButtonFilledDefault
                     showIcon='true'
                     fontSize='small'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
         </div>
@@ -163,6 +185,7 @@ const Stories = () => {
                 <ButtonFilledDefaultVariant
                     showIcon='false'
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
@@ -170,6 +193,7 @@ const Stories = () => {
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDefaultVariant
                     showIcon='true'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
@@ -178,6 +202,7 @@ const Stories = () => {
                 <ButtonFilledDefaultVariant
                     showIcon='true'
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
@@ -186,6 +211,7 @@ const Stories = () => {
                 <ButtonFilledDefaultVariant
                     showIcon='true'
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
@@ -194,6 +220,7 @@ const Stories = () => {
                 <ButtonFilledDefaultVariant
                     showIcon='true'
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
             <div className={styles['row-item']}>
@@ -201,6 +228,7 @@ const Stories = () => {
                 <ButtonFilledDefaultVariant
                     showIcon='true'
                     fontSize='small'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
         </div>
@@ -211,6 +239,7 @@ const Stories = () => {
                 <ButtonFilledDisabled
                     showIcon='false'
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
 
@@ -218,6 +247,7 @@ const Stories = () => {
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDisabled
                     showIcon='true'
+                    onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
 
@@ -226,6 +256,7 @@ const Stories = () => {
                 <ButtonFilledDisabled
                     showIcon='true'
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
 
@@ -234,6 +265,7 @@ const Stories = () => {
                 <ButtonFilledDisabled
                     showIcon='true'
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
 
@@ -242,6 +274,7 @@ const Stories = () => {
                 <ButtonFilledDisabled
                     showIcon='true'
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
             <div className={styles['row-item']}>
@@ -249,6 +282,7 @@ const Stories = () => {
                 <ButtonFilledDisabled
                     showIcon='true'
                     fontSize='small'
+                    onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
         </div>
