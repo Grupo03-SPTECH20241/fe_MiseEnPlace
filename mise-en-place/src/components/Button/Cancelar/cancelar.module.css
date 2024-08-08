@@ -27,6 +27,10 @@
   height: 16px;
 }
 
+.cancel-button span {
+  font-size: medium;
+}
+
 .cancel-button.font-size-small{
   font-size: small !important;
 }
