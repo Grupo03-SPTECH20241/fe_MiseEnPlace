@@ -10,9 +10,10 @@ const Stories = () => {
         <h2>ButtonOutlinedNegative</h2>
         <div className={styles['row']}>
             <div className={styles['row-item']}>
-                <h5>Botão sem ícone</h5>
+                <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonOutlinedNegative
                     showIcon='false'
+                    fontSize='large'
                 ></ButtonOutlinedNegative>
             </div>
 
@@ -44,15 +45,23 @@ const Stories = () => {
                 <ButtonOutlinedNegative
                     showIcon='true'
                     icon='settings'
+                ></ButtonOutlinedNegative>
+            </div>
+            <div className={styles['row-item']}>
+                <h5>Botão com fonte pequena</h5>
+                <ButtonOutlinedNegative
+                    showIcon='true'
+                    fontSize='small'
                 ></ButtonOutlinedNegative>
             </div>
         </div>
         <h2>ButtonFilledNegative</h2>
         <div className={styles['row']}>
             <div className={styles['row-item']}>
-                <h5>Botão sem ícone</h5>
+                <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledNegative
                     showIcon='false'
+                    fontSize='large'
                 ></ButtonFilledNegative>
             </div>
 
@@ -84,6 +93,14 @@ const Stories = () => {
                 <ButtonFilledNegative
                     showIcon='true'
                     icon='settings'
+                ></ButtonFilledNegative>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>Botão com fonte pequena</h5>
+                <ButtonFilledNegative
+                    showIcon='true'
+                    fontSize='small'
                 ></ButtonFilledNegative>
             </div>
         </div>
