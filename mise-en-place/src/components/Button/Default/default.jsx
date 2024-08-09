@@ -4,16 +4,16 @@ import styles from './default.module.css';
 import PlusImage from '../../../utils/img/plus.png'
 import SettingsImage from '../../../utils/img/settings_icon.png';
 
-const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = 'true', icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px'  }) => {
+const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px'  }) => {
   // Renderiza ícones com base na posição  
   const renderIcon = (iconId) => {  
-    if (showIcon !== 'true') return null;  
+    if (!showIcon) return null;  
 
-    if (showIcon === 'true' && iconId === 0 && iconPosition === 'left' || iconPosition === 'both') {  
-      return(<img key="left-icon" src={icon === 'settings'? SettingsImage : PlusImage}/>);  
+    if (showIcon && iconId === 0 && iconPosition === 'left' || iconPosition === 'both') {  
+      return(<img src={icon === 'settings'? SettingsImage : PlusImage}/>);  
     }  
-    if (showIcon === 'true' && iconId === 1 && iconPosition === 'right' || iconPosition === 'both') {  
-      return(<img key="right-icon" src={icon === 'settings'? SettingsImage : PlusImage}/>);  
+    if (showIcon && iconId === 1 && iconPosition === 'right' || iconPosition === 'both') {  
+      return(<img src={icon === 'settings'? SettingsImage : PlusImage}/>);  
     }  
     return null;  
   };  
