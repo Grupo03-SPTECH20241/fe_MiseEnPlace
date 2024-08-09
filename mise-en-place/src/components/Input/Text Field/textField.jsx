@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './textField.module.css';
 
-const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', required = 'false' }) => {
+const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', required = 'false', width = '235px', height = '100px' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -30,6 +30,7 @@ const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', requ
         id={id}
         placeholder={placeholder}
         value={value}
+        style={{width: `${width}`, height: `${height}`}}
         onChange={handleChange}
         onBlur={handleBlur}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
@@ -44,6 +45,7 @@ InputTextField.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
+  width: PropTypes.string,
   required: PropTypes.oneOf(['true', 'false']),
 };
 

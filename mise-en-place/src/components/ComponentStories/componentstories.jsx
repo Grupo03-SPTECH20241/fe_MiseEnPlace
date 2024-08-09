@@ -21,7 +21,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonOutlinedNegative
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
                     onClick={teste}
                 ></ButtonOutlinedNegative>
@@ -30,7 +30,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
@@ -38,7 +38,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
                     onClick={teste}
                 ></ButtonOutlinedNegative>
@@ -47,7 +47,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
                     onClick={teste}
                 ></ButtonOutlinedNegative>
@@ -56,7 +56,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
                     onClick={teste}
                 ></ButtonOutlinedNegative>
@@ -64,7 +64,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com fonte pequena</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     fontSize='small'
                     onClick={teste}
                 ></ButtonOutlinedNegative>
@@ -75,7 +75,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledNegative
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
                     onClick={teste}
                     width='800px'
@@ -85,7 +85,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     onClick={teste}
                 ></ButtonFilledNegative>
             </div>
@@ -93,7 +93,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
                     onClick={teste}
                 ></ButtonFilledNegative>
@@ -102,7 +102,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
                     onClick={teste}
                 ></ButtonFilledNegative>
@@ -111,7 +111,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
                     onClick={teste}
                 ></ButtonFilledNegative>
@@ -120,7 +120,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com fonte pequena</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     fontSize='small'
                     onClick={teste}
                 ></ButtonFilledNegative>
@@ -131,7 +131,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledDefault
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
                     onClick={teste}
                 ></ButtonFilledDefault>
@@ -140,7 +140,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     onClick={teste}
                 ></ButtonFilledDefault>
             </div>
@@ -148,7 +148,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
                     onClick={teste}
                 ></ButtonFilledDefault>
@@ -157,7 +157,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
                     onClick={teste}
                 ></ButtonFilledDefault>
@@ -166,7 +166,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
                     onClick={teste}
                 ></ButtonFilledDefault>
@@ -174,7 +174,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com fonte pequena</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     fontSize='small'
                     onClick={teste}
                 ></ButtonFilledDefault>
@@ -185,7 +185,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
@@ -194,7 +194,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
@@ -202,7 +202,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
@@ -211,7 +211,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
@@ -220,7 +220,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
@@ -228,7 +228,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com fonte pequena</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     fontSize='small'
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
@@ -239,7 +239,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledDisabled
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
                     onClick={teste}
                 ></ButtonFilledDisabled>
@@ -248,7 +248,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDisabled
-                    showIcon='true'
+                    showIcon={true}
                     onClick={teste}
                 ></ButtonFilledDisabled>
             </div>
@@ -256,7 +256,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledDisabled
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
                     onClick={teste}
                 ></ButtonFilledDisabled>
@@ -265,7 +265,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledDisabled
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
                     onClick={teste}
                 ></ButtonFilledDisabled>
@@ -274,7 +274,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledDisabled
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
                     onClick={teste}
                 ></ButtonFilledDisabled>
@@ -282,7 +282,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão com fonte pequena</h5>
                 <ButtonFilledDisabled
-                    showIcon='true'
+                    showIcon={true}
                     fontSize='small'
                     onClick={teste}
                 ></ButtonFilledDisabled>
@@ -298,9 +298,12 @@ const Stories = () => {
             </div>
 
             <div className={styles['row-item']}>
-                <h5>InputTextField com placeholder</h5>
+                <h5>InputTextField com tamanho diferente</h5>
                 <InputTextField
-                    placeholder='Placeholder customizado'
+                    label='width & height customizado'
+                    placeholder='Tamanho customizado'
+                    width='400px'
+                    height='50px'
                 ></InputTextField>
             </div>
 
@@ -318,21 +321,53 @@ const Stories = () => {
                 <h5>InputSelect com label</h5>
                 <InputSelect
                     label='Label Customizada'
+                    options={[
+                    {
+                        label:'opcao1',
+                        value:15
+                    },
+                    {
+                        label:'opcao2',
+                        value:64
+                    },
+                    ]}
                 ></InputSelect>
             </div>
 
             <div className={styles['row-item']}>
-                <h5>InputSelect com placeholder</h5>
+                <h5>InputSelect com tamanho diferente</h5>
                 <InputSelect
-                    placeholder='Placeholder customizado'
+                    placeholder='width & height customizado'
+                    width='475px'
+                    height='50px'
+                    options={[
+                        {
+                            label:'opcao1',
+                            value:15
+                        },
+                        {
+                            label:'opcao2',
+                            value:64
+                        },
+                        {
+                            label:'opcao3',
+                            value:7
+                        },
+                    ]}
                 ></InputSelect>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>InputSelect obrigatório</h5>
                 <InputSelect
-                    required='true'
+                    required={true}
                     placeholder='Campo obrigatório!'
+                    options={[
+                        {
+                            label:'opcao1',
+                            value:15
+                        }
+                    ]}
                 ></InputSelect>
             </div>
         </div>
