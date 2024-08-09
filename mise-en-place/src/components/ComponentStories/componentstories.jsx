@@ -6,6 +6,8 @@ import ButtonFilledNegative from '../Button/Cancelar/cancelar';
 import ButtonFilledDefault from '../Button/Default/default';
 import ButtonFilledDefaultVariant from '../Button/Default-variant/defaultv';
 import ButtonFilledDisabled from '../Button/Disabled/disabled';
+import InputTextField from '../Input/Text Field/textField';
+import InputSelect from '../Input/Select/select';
 
 const Stories = () => {
     const teste = () => {  
@@ -284,6 +286,54 @@ const Stories = () => {
                     fontSize='small'
                     onClick={teste}
                 ></ButtonFilledDisabled>
+            </div>
+        </div>
+        <h2>InputTextField</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>InputTextField com label</h5>
+                <InputTextField
+                    label='Label Customizada'
+                ></InputTextField>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>InputTextField com placeholder</h5>
+                <InputTextField
+                    placeholder='Placeholder customizado'
+                ></InputTextField>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>InputTextField obrigatório</h5>
+                <InputTextField
+                    required='true'
+                    placeholder='Campo obrigatório!'
+                ></InputTextField>
+            </div>
+        </div>
+        <h2>InputSelect</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>InputSelect com label</h5>
+                <InputSelect
+                    label='Label Customizada'
+                ></InputSelect>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>InputSelect com placeholder</h5>
+                <InputSelect
+                    placeholder='Placeholder customizado'
+                ></InputSelect>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>InputSelect obrigatório</h5>
+                <InputSelect
+                    required='true'
+                    placeholder='Campo obrigatório!'
+                ></InputSelect>
             </div>
         </div>
     </div>
