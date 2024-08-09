@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';  
 import styles from './textField.module.css';
 
-const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
+const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', required = 'false' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '') {
+    if (e.target.value.trim() === '' && required === 'true') {
       setError('This field is required.');
     } else {
       setError('');
@@ -15,7 +16,7 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
   };
 
   const handleBlur = () => {
-    if (value.trim() === '') {
+    if (value.trim() === '' && required === 'true') {
       setError('This field is required.');
     } else {
       setError('');
@@ -24,10 +25,10 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
 
   return (
     <div className={styles['input-field-container']}>
-      <span className={styles['label-content']}>{{label}}</span>
+      <span className={styles['label-content']}>{label}</span>
       <textarea
-        id={{id}}
-        placeholder={{placeholder}}
+        id={id}
+        placeholder={placeholder}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -38,4 +39,12 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
   );
 };
 
-export default InputField;
+// Definindo as PropTypes para o componente  
+InputTextField.propTypes = { 
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  required: PropTypes.oneOf(['true', 'false']),
+};
+
+export default InputTextField;
