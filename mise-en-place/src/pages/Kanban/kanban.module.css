@@ -1,0 +1,98 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dashboardBreadcrumbsContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.dashboardTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.dashboardTittleCard h2,
+.dashboardTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.dashboardTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.dashboardTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
+}
+
+.DivSpace {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.DivActions {
+    display: flex;
+    align-items: center;
+    width: 87.60%;
+    justify-content: space-between;
+    padding-top: 6.5vh;
+    padding-left: 6.5vh;
+}
+
+.DivButtonTrocarVisualizacao {
+    display: flex;
+    pad: 15px;
+    width: 8%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.IconAgenda {
+    width: 24px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.IconKanban {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.BackgroundColorIcon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #F8BBC2;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

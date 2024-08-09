@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './default.module.css';
 import PlusImage from '../../../utils/img/plus.png'
 import SettingsImage from '../../../utils/img/settings_icon.png';
+import { width } from '@mui/system';
 
 const ButtonFilledDefault = ({ label = 'Label', showIcon = 'true', icon = 'plus', iconPosition = 'both', fontSize = 'medium' }) => {
   // Renderiza ícones com base na posição  
@@ -15,7 +16,7 @@ const ButtonFilledDefault = ({ label = 'Label', showIcon = 'true', icon = 'plus'
     if (showIcon === 'true' && iconId === 1 && iconPosition === 'right' || iconPosition === 'both') {  
       return(<img key="right-icon" src={icon === 'settings'? SettingsImage : PlusImage}/>);  
     }  
-    return null;  
+    return null;
   };  
 
   return (
