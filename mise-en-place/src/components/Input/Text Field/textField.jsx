@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './textField.module.css';
 
-const InputField = () => {
+const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -24,10 +24,10 @@ const InputField = () => {
 
   return (
     <div className={styles['input-field-container']}>
-      <span className={styles['label-content']}>Label:</span>
+      <span className={styles['label-content']}>{{label}}</span>
       <textarea
-        id="input"
-        placeholder="Placeholder"
+        id={{id}}
+        placeholder={{placeholder}}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
