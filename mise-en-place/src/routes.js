@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard/dashboard"
 import Loading from "./pages/Load/load"
 import Produtos from "./pages/Produtos/produtos" 
 import Stories from "./components/ComponentStories/componentstories";
+import Carrinho from "./pages/Carrinho/carrinho"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function Rotas() {
@@ -19,8 +20,9 @@ function Rotas() {
                     <Route path="/loading" element={<Loading />} />
                     <Route path="/produtos" element={<Produtos />} />
                     <Route path="/components" element={<Stories />} />
+                    <Route path="/carrinho" element={<Carrinho />}/>
                 </Routes>
-            </BrowserRouter>
+            </BrowserRouter>    
         </>
     );
 }

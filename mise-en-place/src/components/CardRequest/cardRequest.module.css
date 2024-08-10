@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.card-pedido {
+    display: flex;
+}
