@@ -9,14 +9,26 @@
   background-color: #31cfff00;
   color: #000000; 
   font-size: 16px;
-  border: 2px solid #31CFFF;
+  border: 2px solid #E5246B;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   font-family: "arial";
 }
 
 .default-variant-button:hover {
-  background-color: #31CFFF; 
+  background-color: #E5246B; 
+  color: white !important;
+}
+
+.default-variant-button.isDisabled {
+  border-color: #FFD4E4 !important;
+  color: #9A9A9A !important;
+  cursor: default !important;
+}
+
+.default-variant-button.isDisabled:hover {
+  background-color: transparent !important;
+  color: #9A9A9A !important;
 }
 
 .default-variant-button img {

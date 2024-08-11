@@ -7,17 +7,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #E83A6C;
-  color: #000000; 
+  background-color: #4B24E5;
+  color: white; 
   font-size: 16px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   font-family: "arial";
 }
+
+.cancel-button.isDisabled {
+  background-color: #AC97FF !important;
+  cursor: default !important;
+}
   
 .cancel-button:hover {
-  background-color: #DD0543; 
+  background-color: #3618AE; 
 }
 
 .cancel-button img {
