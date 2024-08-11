@@ -40,7 +40,6 @@ const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', requ
   );
 };
 
-// Definindo as PropTypes para o componente  
 InputTextField.propTypes = { 
   label: PropTypes.string,
   placeholder: PropTypes.string,

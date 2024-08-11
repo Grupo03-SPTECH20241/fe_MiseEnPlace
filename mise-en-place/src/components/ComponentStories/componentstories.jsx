@@ -5,8 +5,13 @@ import ButtonOutlinedNegative from '../Button/Cancelar-variant/cancelarv'
 import ButtonFilledNegative from '../Button/Cancelar/cancelar';
 import ButtonFilledDefault from '../Button/Default/default';
 import ButtonFilledDefaultVariant from '../Button/Default-variant/defaultv';
-import InputTextField from '../Input/Text Field/textField';
+import InputPassword from '../Input/Password/password';
+import InputSearch from '../Input/Search/search';
+import InputSearchProduct from '../Input/SearchProduct/searchProduct';
 import InputSelect from '../Input/Select/select';
+import InputSelectProduct from '../Input/SelectProduct/selectProduct';
+import InputText from '../Input/Text/text';
+import InputTextField from '../Input/Text Field/textField';
 
 const Stories = () => {
     const teste = () => {  
@@ -314,6 +319,32 @@ const Stories = () => {
                         }
                     ]}
                 ></InputSelect>
+            </div>
+        </div>
+        <h2>InputPassword</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>Input de senha</h5>
+                <InputPassword
+                    label='Label customizada:'
+                    placeholder='Campo opcional'
+                    isRequired={false}
+                ></InputPassword>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>Input de senha</h5>
+                <InputPassword
+                    placeholder='Campo obrigatório!'
+                ></InputPassword>
+            </div>
+            <div className={styles['row-item']}>
+                <h5>Input de senha</h5>
+                <InputPassword
+                    label='Tamanho diferente:'
+                    placeholder='Width customizado'
+                    width='400px'
+                ></InputPassword>
             </div>
         </div>
     </div>

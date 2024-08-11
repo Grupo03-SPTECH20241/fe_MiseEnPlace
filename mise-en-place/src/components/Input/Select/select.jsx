@@ -51,7 +51,6 @@ const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', require
   );
 };
 
-// Definindo as PropTypes para o componente  
 InputSelect.propTypes = { 
   label: PropTypes.string,
   placeholder: PropTypes.string,

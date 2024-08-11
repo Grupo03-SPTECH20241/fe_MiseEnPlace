@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styles from './text.module.css';
 
-const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '') {
+    if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -32,6 +32,7 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        style={{width: `${width}`}}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
       />
       {error && <span className={styles['error-message']}>{error}</span>}
@@ -39,4 +40,4 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input' }) => {
   );
 };
 
-export default InputField;
+export default InputText;
