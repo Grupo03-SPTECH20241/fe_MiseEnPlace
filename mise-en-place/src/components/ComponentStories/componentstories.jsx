@@ -5,7 +5,6 @@ import ButtonOutlinedNegative from '../Button/Cancelar-variant/cancelarv'
 import ButtonFilledNegative from '../Button/Cancelar/cancelar';
 import ButtonFilledDefault from '../Button/Default/default';
 import ButtonFilledDefaultVariant from '../Button/Default-variant/defaultv';
-import ButtonFilledDisabled from '../Button/Disabled/disabled';
 import InputTextField from '../Input/Text Field/textField';
 import InputSelect from '../Input/Select/select';
 
@@ -62,10 +61,10 @@ const Stories = () => {
                 ></ButtonOutlinedNegative>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonOutlinedNegative
                     showIcon={true}
-                    fontSize='small'
+                    isDisabled={true}
                     onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
@@ -118,10 +117,10 @@ const Stories = () => {
             </div>
 
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonFilledNegative
                     showIcon={true}
-                    fontSize='small'
+                    isDisabled={true}
                     onClick={teste}
                 ></ButtonFilledNegative>
             </div>
@@ -172,10 +171,10 @@ const Stories = () => {
                 ></ButtonFilledDefault>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonFilledDefault
                     showIcon={true}
-                    fontSize='small'
+                    isDisabled={true}
                     onClick={teste}
                 ></ButtonFilledDefault>
             </div>
@@ -226,66 +225,12 @@ const Stories = () => {
                 ></ButtonFilledDefaultVariant>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonFilledDefaultVariant
                     showIcon={true}
-                    fontSize='small'
+                    isDisabled={true}
                     onClick={teste}
                 ></ButtonFilledDefaultVariant>
-            </div>
-        </div>
-        <h2>ButtonFilledDisabled</h2>
-        <div className={styles['row']}>
-            <div className={styles['row-item']}>
-                <h5>Botão sem ícone & fonte grande</h5>
-                <ButtonFilledDisabled
-                    showIcon={false}
-                    fontSize='large'
-                    onClick={teste}
-                ></ButtonFilledDisabled>
-            </div>
-
-            <div className={styles['row-item']}>
-                <h5>Botão com ícone</h5>
-                <ButtonFilledDisabled
-                    showIcon={true}
-                    onClick={teste}
-                ></ButtonFilledDisabled>
-            </div>
-
-            <div className={styles['row-item']}>
-                <h5>Botão com ícone esquerdo</h5>
-                <ButtonFilledDisabled
-                    showIcon={true}
-                    iconPosition='left'
-                    onClick={teste}
-                ></ButtonFilledDisabled>
-            </div>
-
-            <div className={styles['row-item']}>
-                <h5>Botão com ícone direito</h5>
-                <ButtonFilledDisabled
-                    showIcon={true}
-                    iconPosition='right'
-                    onClick={teste}
-                ></ButtonFilledDisabled>
-            </div>
-
-            <div className={styles['row-item']}>
-                <h5>Botão com ícone customizado</h5>
-                <ButtonFilledDisabled
-                    showIcon={true}
-                    icon='settings'
-                    onClick={teste}
-                ></ButtonFilledDisabled>
-            </div>
-            <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
-                <ButtonFilledDisabled
-                    showIcon={true}
-                    fontSize='small'
-                    onClick={teste}
-                ></ButtonFilledDisabled>
             </div>
         </div>
         <h2>InputTextField</h2>
