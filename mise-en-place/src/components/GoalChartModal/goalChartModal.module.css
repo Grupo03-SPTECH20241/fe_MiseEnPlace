@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.modalTitle {
+    font-size: 150%;
+    font-weight: bolder;
+}
+
+.goalChartModalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exitButton {
+    width: auto;
+    height: 30px;
+}
+
+.exitButton:hover {
+    cursor: pointer;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
