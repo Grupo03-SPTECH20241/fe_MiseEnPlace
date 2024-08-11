@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';  
 import styles from './text.module.css';
 
 const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px' }) => {
@@ -15,7 +16,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   };
 
   const handleBlur = () => {
-    if (value.trim() === '') {
+    if (value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -38,6 +39,14 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
   );
+};
+
+InputText.propTypes = { 
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  width: PropTypes.string,
+  isRequired: PropTypes.bool,
 };
 
 export default InputText;
