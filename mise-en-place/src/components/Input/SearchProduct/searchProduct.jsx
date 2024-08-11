@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';  
 import styles from './searchProduct.module.css';
 import Search from '../../../utils/img/search.png';
 
-const InputField = () => {
+const InputSearchProduct = ({ label = "Label:", placeholder = "", id = 'input', width= '235px', isRequired = true }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '') {
-      // setError('This field is required.');
+    if (e.target.value.trim() === '' && isRequired) {
+      setError('This field is required.');
     } else {
       setError('');
     }
   };
 
   const handleBlur = () => {
-    if (value.trim() === '') {
-      // setError('This field is required.');
+    if (value.trim() === '' && isRequired) {
+      setError('This field is required.');
     } else {
       setError('');
     }
@@ -25,15 +26,16 @@ const InputField = () => {
 
   return (
     <div className={styles['search-input-field-container']}>
-      
+      <span className={styles['label-content']}>{label}</span>
       <div className={styles['search-input-container']}>
         <input
           type="text"
-          id="input"
-          placeholder="Buscar Produto..."
+          id={id}
+          placeholder={placeholder}
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
+          style={{width: `${width}`}}
           className={`${styles['search-input-field']} ${error ? styles['search-input-field-error'] : ''}`}
         />
         <img src={Search} alt="Search" className={styles['search-input-icon']} />
@@ -43,4 +45,12 @@ const InputField = () => {
   );
 };
 
-export default InputField;
+InputSearchProduct.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  width: PropTypes.string,
+  isRequired: PropTypes.bool
+}; 
+
+export default InputSearchProduct;

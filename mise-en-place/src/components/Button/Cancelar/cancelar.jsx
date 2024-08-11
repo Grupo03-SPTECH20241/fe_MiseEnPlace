@@ -31,7 +31,6 @@ const ButtonFilledNegative = ({ onClick, label = 'Label', showIcon = true, icon 
   );  
 };
 
-// Definindo as PropTypes para o componente  
 ButtonFilledNegative.propTypes = {  
   onClick: PropTypes.any,
   label: PropTypes.string,  

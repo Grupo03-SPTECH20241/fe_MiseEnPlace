@@ -40,7 +40,6 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
   );
 };
 
-// Definindo as PropTypes para o componente  
 ButtonFilledDefault.propTypes = {  
   onClick: PropTypes.any,
   label: PropTypes.string,  
