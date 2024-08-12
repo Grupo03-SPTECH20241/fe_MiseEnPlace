@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
-import styles from './text.module.css';
+import styles from './calendar.module.css';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px' }) => {
+const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', type = 'date' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -24,29 +24,30 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   };
 
   return (
-    <div className={styles['input-field-container']}>
-      <span className={styles['label-content']}>{{label}}</span>
+    <div className={styles['input-calendar-container']}>
+      <span className={styles['label-content']}>{label}</span>
       <input
-        type="text"
+        type={type === 'date' ? 'date' : 'datetime-local'}
         id={id}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
         style={{width: `${width}`}}
-        className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
+        className={`${styles['input-calendar']} ${error ? styles['input-calendar-error'] : ''}`}
       />
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
   );
 };
 
-InputText.propTypes = { 
+InputCalendar.propTypes = { 
   label: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  type: PropTypes.oneOf(['date','datetime']),  
 };
 
-export default InputText;
+export default InputCalendar;
