@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './default.module.css';
-<<<<<<< HEAD
-import PlusImage from '../../../utils/img/plus.png'
-import SettingsImage from '../../../utils/img/settings_icon.png';
-import { width } from '@mui/system';
-=======
 import WhitePlusImage from '../../../utils/img/icons/enabled-white-plus-icon.png';  
 import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
 import DisabledBlackSettingsImage from '../../../utils/img/icons/disabled-black-settings-icon.png';
 import DisabledBlackPlusImage from '../../../utils/img/icons/disabled-black-plus-icon.png';
->>>>>>> 67964a30df9e969ee224cad2b1f0c1101fdcdc25
 
 const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled = false }) => {
   const renderIcon = (iconId) => {  

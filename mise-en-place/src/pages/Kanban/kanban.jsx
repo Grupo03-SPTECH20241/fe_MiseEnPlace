@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './kanban.module.css';
 import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
-// import ButtonCancelar from '../../components/Button/Cancelar/cancelar';
+import ButtonDefault from '../../components/Button/Default/default';
 import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import Card from '../../components/CardKanban/CardKanban';
@@ -75,13 +75,14 @@ const Kanban = () => {
                     <div className={styles["DivSpace"]}>
                         <div className={styles["DivActions"]}>
                             <div className={styles["DivButtonAddPedido"]}>
-                                {/* <ButtonCancelar
+                                <ButtonDefault
                                     label="Adicionar Pedido"
                                     showIcon="true"
                                     icon="plus"
                                     iconPosition="left"
                                     fontSize="small"
-                                ></ButtonCancelar> */}
+                                    width="170px"
+                                ></ButtonDefault>
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
                                 <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
