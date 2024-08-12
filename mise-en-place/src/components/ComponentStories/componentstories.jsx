@@ -5,9 +5,18 @@ import ButtonOutlinedNegative from '../Button/Cancelar-variant/cancelarv'
 import ButtonFilledNegative from '../Button/Cancelar/cancelar';
 import ButtonFilledDefault from '../Button/Default/default';
 import ButtonFilledDefaultVariant from '../Button/Default-variant/defaultv';
-import ButtonFilledDisabled from '../Button/Disabled/disabled';
+import InputPassword from '../Input/Password/password';
+import InputSearch from '../Input/Search/search';
+import InputSearchProduct from '../Input/SearchProduct/searchProduct';
+import InputSelect from '../Input/Select/select';
+import InputSelectProduct from '../Input/SelectProduct/selectProduct';
+import InputText from '../Input/Text/text';
+import InputTextField from '../Input/Text Field/textField';
 
 const Stories = () => {
+    const teste = () => {  
+        alert('Botão clicado!');  
+    };
   return (
     <>
     <div className={styles['component-stories-container']}>
@@ -16,46 +25,52 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonOutlinedNegative
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonOutlinedNegative
-                    showIcon='true'
-                    fontSize='small'
+                    showIcon={true}
+                    isDisabled={true}
+                    onClick={teste}
                 ></ButtonOutlinedNegative>
             </div>
         </div>
@@ -64,47 +79,54 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledNegative
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
+                    onClick={teste}
+                    width='800px'
                 ></ButtonFilledNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
 
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonFilledNegative
-                    showIcon='true'
-                    fontSize='small'
+                    showIcon={true}
+                    isDisabled={true}
+                    onClick={teste}
                 ></ButtonFilledNegative>
             </div>
         </div>
@@ -113,46 +135,52 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledDefault
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonFilledDefault
-                    showIcon='true'
-                    fontSize='small'
+                    showIcon={true}
+                    isDisabled={true}
+                    onClick={teste}
                 ></ButtonFilledDefault>
             </div>
         </div>
@@ -161,95 +189,162 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>Botão sem ícone & fonte grande</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='false'
+                    showIcon={false}
                     fontSize='large'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone esquerdo</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='left'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone direito</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     iconPosition='right'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
 
             <div className={styles['row-item']}>
                 <h5>Botão com ícone customizado</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
+                    showIcon={true}
                     icon='settings'
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
+                <h5>Botão desabilitado</h5>
                 <ButtonFilledDefaultVariant
-                    showIcon='true'
-                    fontSize='small'
+                    showIcon={true}
+                    isDisabled={true}
+                    onClick={teste}
                 ></ButtonFilledDefaultVariant>
             </div>
         </div>
-        <h2>ButtonFilledDisabled</h2>
+        <h2>InputTextField</h2>
         <div className={styles['row']}>
             <div className={styles['row-item']}>
-                <h5>Botão sem ícone & fonte grande</h5>
-                <ButtonFilledDisabled
-                    showIcon='false'
-                    fontSize='large'
-                ></ButtonFilledDisabled>
+                <h5>InputTextField com label</h5>
+                <InputTextField
+                    label='Label Customizada'
+                ></InputTextField>
             </div>
 
             <div className={styles['row-item']}>
-                <h5>Botão com ícone</h5>
-                <ButtonFilledDisabled
-                    showIcon='true'
-                ></ButtonFilledDisabled>
+                <h5>InputTextField com tamanho diferente</h5>
+                <InputTextField
+                    label='width & height customizado'
+                    placeholder='Tamanho customizado'
+                    width='400px'
+                    height='50px'
+                ></InputTextField>
             </div>
 
             <div className={styles['row-item']}>
-                <h5>Botão com ícone esquerdo</h5>
-                <ButtonFilledDisabled
-                    showIcon='true'
-                    iconPosition='left'
-                ></ButtonFilledDisabled>
+                <h5>InputTextField obrigatório</h5>
+                <InputTextField
+                    required='true'
+                    placeholder='Campo obrigatório!'
+                ></InputTextField>
+            </div>
+        </div>
+        <h2>InputSelect</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>InputSelect com label</h5>
+                <InputSelect
+                    label='Label Customizada'
+                    options={[
+                    {
+                        label:'opcao1',
+                        value:15
+                    },
+                    {
+                        label:'opcao2',
+                        value:64
+                    },
+                    ]}
+                ></InputSelect>
             </div>
 
             <div className={styles['row-item']}>
-                <h5>Botão com ícone direito</h5>
-                <ButtonFilledDisabled
-                    showIcon='true'
-                    iconPosition='right'
-                ></ButtonFilledDisabled>
+                <h5>InputSelect com tamanho diferente</h5>
+                <InputSelect
+                    placeholder='width & height customizado'
+                    width='475px'
+                    height='50px'
+                    options={[
+                        {
+                            label:'opcao1',
+                            value:15
+                        },
+                        {
+                            label:'opcao2',
+                            value:64
+                        },
+                        {
+                            label:'opcao3',
+                            value:7
+                        },
+                    ]}
+                ></InputSelect>
             </div>
 
             <div className={styles['row-item']}>
-                <h5>Botão com ícone customizado</h5>
-                <ButtonFilledDisabled
-                    showIcon='true'
-                    icon='settings'
-                ></ButtonFilledDisabled>
+                <h5>InputSelect obrigatório</h5>
+                <InputSelect
+                    required={true}
+                    placeholder='Campo obrigatório!'
+                    options={[
+                        {
+                            label:'opcao1',
+                            value:15
+                        }
+                    ]}
+                ></InputSelect>
+            </div>
+        </div>
+        <h2>InputPassword</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>Input de senha</h5>
+                <InputPassword
+                    label='Label customizada:'
+                    placeholder='Campo opcional'
+                    isRequired={false}
+                ></InputPassword>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>Input de senha</h5>
+                <InputPassword
+                    placeholder='Campo obrigatório!'
+                ></InputPassword>
             </div>
             <div className={styles['row-item']}>
-                <h5>Botão com fonte pequena</h5>
-                <ButtonFilledDisabled
-                    showIcon='true'
-                    fontSize='small'
-                ></ButtonFilledDisabled>
+                <h5>Input de senha</h5>
+                <InputPassword
+                    label='Tamanho diferente:'
+                    placeholder='Width customizado'
+                    width='400px'
+                ></InputPassword>
             </div>
         </div>
     </div>
