@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { DndProvider, useDrop, useDrag } from 'react-dnd';
+import React, { useState, useEffect } from 'react';
+import { DndProvider, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './kanban.module.css';
 import Sidebar from '../../components/Sidebar/sidebar';
@@ -8,7 +8,6 @@ import ButtonDefault from '../../components/Button/Default/default';
 import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import Card from '../../components/CardKanban/CardKanban';
-import { display } from '@mui/system';
 
 // Component to render columns and handle dropping
 const Column = ({ title, cards, setCards, moveCard }) => {
@@ -27,21 +26,98 @@ const Column = ({ title, cards, setCards, moveCard }) => {
 };
 
 const Kanban = () => {
-    const [novos, setNovos] = useState([
-        { id: 1, pedido: 'Bolo de Ninho', cliente: { id: '0946823', nome: 'Amanda Nunes' }, data: '12/05', hora: '10:30' },
-        { id: 2, pedido: 'Bolo de Morango', cliente: { id: '0946823', nome: 'Amanda Nunes' }, data: '12/05', hora: '10:30' },
-        { id: 3, pedido: 'Bolo de gozo', cliente: { id: '0946823', nome: 'Amanda Nunes' }, data: '12/05', hora: '10:30' },
-        { id: 4, pedido: 'torta de cacete', cliente: { id: '0946823', nome: 'Amanda Nunes' }, data: '12/05', hora: '10:30' },
-        { id: 5, pedido: 'torta de cacete', cliente: { id: '0946823', nome: 'Amanda Nunes' }, data: '12/05', hora: '10:30' }
-
-
-    ]);
+    const [novos, setNovos] = useState([]);
     const [preparando, setPreparando] = useState([]);
     const [prontos, setProntos] = useState([]);
     const [entregues, setEntregues] = useState([]);
 
+    useEffect(() => {
+        const fetchPedidos = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/produto-pedidos');
+                const data = await response.json();
+
+                const novosCards = [];
+                const preparandoCards = [];
+                const prontosCards = [];
+                const entreguesCards = [];
+
+                data.forEach(pedido => {
+                    const cardData = {
+                        id: pedido.idProdutoPedido,
+                        pedido: pedido.produtoDto.nome,
+                        cliente: {
+                            id: pedido.pedidoDto.clienteDto.idCliente,
+                            nome: pedido.pedidoDto.clienteDto.nome
+                        },
+                        data: pedido.pedidoDto.dtPedido.split('T')[0],
+                        hora: '10:30',
+                        status: pedido.pedidoDto.status
+                    };
+
+                    switch (pedido.pedidoDto.status) {
+                        case 'P':
+                            preparandoCards.push(cardData);
+                            break;
+                        case 'N':
+                            novosCards.push(cardData);
+                            break;
+                        case 'R':
+                            prontosCards.push(cardData);
+                            break;
+                        case 'E':
+                            entreguesCards.push(cardData);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+
+                setNovos(novosCards);
+                setPreparando(preparandoCards);
+                setProntos(prontosCards);
+                setEntregues(entreguesCards);
+            } catch (error) {
+                console.error('Erro ao buscar os pedidos:', error);
+            }
+        };
+
+        fetchPedidos();
+    }, []);
+
+    const updatePedidoStatus = async (cardId, newStatus) => {
+        try {
+            console.log(cardId)
+            const response = await fetch(`http://localhost:8080/pedidos/${cardId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    dtPedido: "2024-08-13",
+                    vlPedido: 0,
+                    status: newStatus,
+                    valorSinal: 0,
+                    formaEntregaId: 0,
+                    clienteId: 0,
+                    formaPagamentoId: 0
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro ao atualizar o status do pedido: ${response.statusText} (Status Code: ${response.status})`);
+            } else {
+                console.log(`Status do pedido ${cardId} atualizado para ${newStatus} com sucesso.`);
+            }
+        } catch (error) {
+            console.error('Erro na atualização do status:', error);
+            console.log('Payload enviado:', { status: newStatus });
+        }
+    };
+
+
+
     const moveCard = (cardId, setToColumn) => {
-        // Remove card from the current list and add it to the new list
         const moveFromColumn = (fromColumn, setFromColumn) => {
             const cardIndex = fromColumn.findIndex(card => card.id === cardId);
             const [card] = fromColumn.splice(cardIndex, 1);
@@ -49,15 +125,24 @@ const Kanban = () => {
             setToColumn((prev) => [...prev, card]);
         };
 
+        let newStatus = '';
+
         if (novos.find(card => card.id === cardId)) {
             moveFromColumn(novos, setNovos);
+            newStatus = 'N';
         } else if (preparando.find(card => card.id === cardId)) {
             moveFromColumn(preparando, setPreparando);
+            newStatus = 'P';
         } else if (prontos.find(card => card.id === cardId)) {
             moveFromColumn(prontos, setProntos);
+            newStatus = 'R';
         } else if (entregues.find(card => card.id === cardId)) {
             moveFromColumn(entregues, setEntregues);
+            newStatus = 'E';
         }
+
+        // Atualiza o status no backend
+        updatePedidoStatus(cardId, newStatus);
     };
 
     return (
@@ -66,7 +151,7 @@ const Kanban = () => {
                 <Sidebar />
                 <div className={styles["innerContainer"]}>
                     <div className={styles["dashboardBreadcrumbsContainer"]}>
-                        <Breadcrumb></Breadcrumb>
+                        <Breadcrumb />
                     </div>
                     <div className={styles["dashboardTittleCard"]}>
                         <h2>Quadro de Planejamento</h2>
@@ -82,16 +167,15 @@ const Kanban = () => {
                                     iconPosition="left"
                                     fontSize="small"
                                     width="170px"
-                                ></ButtonDefault>
+                                />
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
                                 <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
-                                <div className={styles["BackgroundColorIcon"]} >
+                                <div className={styles["BackgroundColorIcon"]}>
                                     <img className={styles["IconKanban"]} src={IconKanban} alt="" />
                                 </div>
                             </div>
                         </div>
-                        {/* Adicionando o Kanban dentro do layout */}
                     </div>
                     <div className={styles.kanban}>
                         <div className={styles["divKanban"]}>
