@@ -44,7 +44,7 @@ const ButtonOutlinedNegative = ({ onClick, label = 'Label', showIcon = true, ico
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)} 
       className={`${styles['cancel-variant-button']} ${isDisabled ? styles['isDisabled'] : ''}`}
-      style={{width: `${width}`, color: '#4B24E5'}}>  
+      style={{width: `${width}`, color: '##4B24E5;'}}>  
       {renderIcon(0)}  
       <span className={styles[`font-size-${fontSize}`]}>{label}</span>  
       {renderIcon(1)}  
