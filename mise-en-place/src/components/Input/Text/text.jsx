@@ -25,7 +25,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
 
   return (
     <div className={styles['input-field-container']}>
-      <span className={styles['label-content']}>{{label}}</span>
+      <span className={styles['label-content']}>{label}</span>
       <input
         type="text"
         id={id}

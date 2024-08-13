@@ -2,13 +2,13 @@ import React, {useState, useEffect}  from 'react';
 import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produto.module.css';
-import Button from '../../components/Button/Product/product';
-import InputSearch from '../../components/Input/SearchProduct/searchProduct';
-import InputSelect from '../../components/Input/SelectProduct/selectProduct';
+import ButtonFilledDefault from '../../components/Button/Default/default';
+import InputSearch from '../../components/Input/Search/search';
+import InputSelect from '../../components/Input/Select/select';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import api from '../../api';
 
-<link    href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
 const Produtos = () => {
     const [cardsData, setCardsData] = useState();
@@ -40,7 +40,11 @@ const Produtos = () => {
                     <p> Lista de todos os produtos cadastrados no sistema</p>
                 </div>
                 <div className={styles["innerContainerSearch"]}>
-                    <Button></Button>
+                    <ButtonFilledDefault
+                        label='Cadastrar novo produto'
+                        iconPosition='left'
+                        width='300px'
+                    ></ButtonFilledDefault>
                     <div className={styles["containerInputs"]}>
                         <InputSearch></InputSearch>    
                         <InputSelect></InputSelect>

@@ -28,7 +28,7 @@
   }
   
   .input-calendar-error {
-    border-color: red;
+    border-color: #4B24E5;;
   }
   
   .label-content {
@@ -38,7 +38,7 @@
   }
   
   .error-message {
-    color: red;
+    color: #4B24E5;;
     font-size: 12px;
     margin-top: 5px;
     font-family: Nunito-Regular;
