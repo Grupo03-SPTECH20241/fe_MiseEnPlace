@@ -7,18 +7,16 @@ import ButtonFilledDefault from '../Button/Default/default';
 import ButtonFilledDefaultVariant from '../Button/Default-variant/defaultv';
 import InputPassword from '../Input/Password/password';
 import InputSearch from '../Input/Search/search';
-import InputSearchProduct from '../Input/SearchProduct/searchProduct';
 import InputSelect from '../Input/Select/select';
-import InputSelectProduct from '../Input/SelectProduct/selectProduct';
 import InputText from '../Input/Text/text';
 import InputTextField from '../Input/Text Field/textField';
+import InputCalendar from '../Input/Calendar/calendar';
 
 const Stories = () => {
     const teste = () => {  
         alert('Botão clicado!');  
     };
   return (
-    <>
     <div className={styles['component-stories-container']}>
         <h2>ButtonOutlinedNegative</h2>
         <div className={styles['row']}>
@@ -238,6 +236,25 @@ const Stories = () => {
                 ></ButtonFilledDefaultVariant>
             </div>
         </div>
+        <h2>InputText</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>Input de texto obrigatório</h5>
+                <InputText
+                    label='Label Customizada:'
+                    placeholder='Placeholder customizado'
+                    isRequired={true}
+                ></InputText>
+            </div>
+            <div className={styles['row-item']}>
+                <h5>Input de texto com tamanho diferente</h5>
+                <InputText
+                    label='Tamanho Customizado:'
+                    placeholder='Width customizado'
+                    width='400px'
+                ></InputText>
+            </div>
+        </div>
         <h2>InputTextField</h2>
         <div className={styles['row']}>
             <div className={styles['row-item']}>
@@ -260,7 +277,7 @@ const Stories = () => {
             <div className={styles['row-item']}>
                 <h5>InputTextField obrigatório</h5>
                 <InputTextField
-                    required='true'
+                    isRequired={true}
                     placeholder='Campo obrigatório!'
                 ></InputTextField>
             </div>
@@ -347,8 +364,55 @@ const Stories = () => {
                 ></InputPassword>
             </div>
         </div>
+        <h2>InputCalendar</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>Input de calendário do tipo data</h5>
+                <InputCalendar
+                    label='Label:'
+                    placeholder='Campo opcional'
+                    isRequired={false}
+                ></InputCalendar>
+            </div>
+
+            <div className={styles['row-item']}>
+                <h5>Input de calendário obrigatório</h5>
+                <InputCalendar
+                    label='Label Customizada:'
+                    placeholder='Campo obrigatório!'
+                    isRequired={true}
+                ></InputCalendar>
+            </div>
+            <div className={styles['row-item']}>
+                <h5>Input de calendário do tipo datetime & tamanho diferente</h5>
+                <InputCalendar
+                    label='Data e Hora:'
+                    type='datetime'
+                    placeholder='Width customizado'
+                    width='400px'
+                ></InputCalendar>
+            </div>
+        </div>
+        <h2>InputSearch</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item']}>
+                <h5>Input de pesquisa obrigatório</h5>
+                <InputSearch
+                    label='Label Customizada:'
+                    placeholder='Placeholder customizado'
+                    isRequired={true}
+                ></InputSearch>
+            </div>
+            <div className={styles['row-item']}>
+                <h5>Input de pesquisa com tamanho diferente</h5>
+                <InputSearch
+                    label='Label:'
+                    placeholder='Width customizado'
+                    width='400px'
+                ></InputSearch>
+            </div>
+        </div>
     </div>
-    </>
   );
 };
 

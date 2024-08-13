@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './textField.module.css';
 
-const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = 'false', width = '235px', height = '100px' }) => {
+const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '100px' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '' && isRequired === 'true') {
+    if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -16,7 +16,7 @@ const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', isRe
   };
 
   const handleBlur = () => {
-    if (value.trim() === '' && isRequired === 'true') {
+    if (value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');

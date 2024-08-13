@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './search.module.css';
 import Search from '../../../utils/img/search.png';
 
-const InputSearch = ({ label = "Label:", placeholder = "", id = 'input', width= '235px', isRequired = true }) => {
+const InputSearch = ({ label = "Label:", placeholder = "", id = 'input', width= '235px', isRequired = false }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -27,7 +27,7 @@ const InputSearch = ({ label = "Label:", placeholder = "", id = 'input', width= 
   return (
     <div className={styles['search-input-field-container']}>
       <span className={styles['label-content']}>{label}</span>
-      <div className={styles['search-input-container']}>
+      <div className={styles['search-input-container']} style={{width: `${width}`}}>
         <input
           type="text"
           id={id}
