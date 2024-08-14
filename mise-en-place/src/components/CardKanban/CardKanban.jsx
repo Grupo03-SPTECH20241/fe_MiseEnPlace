@@ -2,10 +2,10 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 import styles from './CardKanban.module.css';
 
-const Card = ({ id, pedido, cliente, data, hora, status }) => {
+const Card = ({ id, pedido, cliente, data, hora, status}) => {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'CARD',
-        item: { id },
+        item: { id, status },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),

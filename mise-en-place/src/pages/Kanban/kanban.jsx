@@ -10,10 +10,10 @@ import IconAgenda from '../../utils/img/List.svg';
 import Card from '../../components/CardKanban/CardKanban';
 
 // Component to render columns and handle dropping
-const Column = ({ title, cards, setCards, moveCard }) => {
+const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
     const [, dropRef] = useDrop({
         accept: 'CARD',
-        drop: (item) => moveCard(item.id, setCards),
+        drop: (item) => moveCard(item.id, item.status, setCards, columnStatus),
     });
 
     return (
@@ -51,7 +51,7 @@ const Kanban = () => {
                             nome: pedido.pedidoDto.clienteDto.nome
                         },
                         data: pedido.pedidoDto.dtPedido.split('T')[0],
-                        hora: '10:30',
+                        hora: pedido.pedidoDto.dtPedido,
                         status: pedido.pedidoDto.status
                     };
 
@@ -87,21 +87,13 @@ const Kanban = () => {
 
     const updatePedidoStatus = async (cardId, newStatus) => {
         try {
-            console.log(cardId)
-            const response = await fetch(`http://localhost:8080/pedidos/${cardId}`, {
+            console.log(`Iniciando atualização do status do pedido ${cardId} para ${newStatus}`);
+
+            const response = await fetch(`http://localhost:8080/pedidos/${cardId}/status/${newStatus}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    dtPedido: "2024-08-13",
-                    vlPedido: 0,
-                    status: newStatus,
-                    valorSinal: 0,
-                    formaEntregaId: 0,
-                    clienteId: 0,
-                    formaPagamentoId: 0
-                }),
+                }
             });
 
             if (!response.ok) {
@@ -111,13 +103,10 @@ const Kanban = () => {
             }
         } catch (error) {
             console.error('Erro na atualização do status:', error);
-            console.log('Payload enviado:', { status: newStatus });
         }
     };
 
-
-
-    const moveCard = (cardId, setToColumn) => {
+    const moveCard = (cardId, oldStatus, setToColumn, status) => {
         const moveFromColumn = (fromColumn, setFromColumn) => {
             const cardIndex = fromColumn.findIndex(card => card.id === cardId);
             const [card] = fromColumn.splice(cardIndex, 1);
@@ -125,24 +114,21 @@ const Kanban = () => {
             setToColumn((prev) => [...prev, card]);
         };
 
-        let newStatus = '';
 
-        if (novos.find(card => card.id === cardId)) {
-            moveFromColumn(novos, setNovos);
-            newStatus = 'N';
-        } else if (preparando.find(card => card.id === cardId)) {
+        if (oldStatus === 'P') {
             moveFromColumn(preparando, setPreparando);
-            newStatus = 'P';
-        } else if (prontos.find(card => card.id === cardId)) {
+        } else if (oldStatus === 'N') {
+            moveFromColumn(novos, setNovos);
+        } else if (oldStatus === 'R') {
             moveFromColumn(prontos, setProntos);
-            newStatus = 'R';
-        } else if (entregues.find(card => card.id === cardId)) {
+        } else if (oldStatus === 'E') {
             moveFromColumn(entregues, setEntregues);
-            newStatus = 'E';
         }
 
+
+        // moveFromColumn(novos, setNovos);
         // Atualiza o status no backend
-        updatePedidoStatus(cardId, newStatus);
+        updatePedidoStatus(cardId, status);
     };
 
     return (
@@ -179,10 +165,10 @@ const Kanban = () => {
                     </div>
                     <div className={styles.kanban}>
                         <div className={styles["divKanban"]}>
-                            <Column title="Novos" cards={novos} setCards={setNovos} moveCard={moveCard} />
-                            <Column title="Preparando" cards={preparando} setCards={setPreparando} moveCard={moveCard} />
-                            <Column title="Prontos" cards={prontos} setCards={setProntos} moveCard={moveCard} />
-                            <Column title="Entregues" cards={entregues} setCards={setEntregues} moveCard={moveCard} />
+                            <Column title="Novos" cards={novos} setCards={setNovos} moveCard={moveCard} columnStatus ={"N"} />
+                            <Column title="Preparando" cards={preparando} setCards={setPreparando} moveCard={moveCard} columnStatus ={"P"} />
+                            <Column title="Prontos" cards={prontos} setCards={setProntos} moveCard={moveCard} columnStatus ={"R"} />
+                            <Column title="Entregues" cards={entregues} setCards={setEntregues} moveCard={moveCard} columnStatus ={"E"} />
                         </div>
                     </div>
                 </div>
