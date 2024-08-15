@@ -11,6 +11,7 @@ import InputSelect from '../Input/Select/select';
 import InputText from '../Input/Text/text';
 import InputTextField from '../Input/Text Field/textField';
 import InputCalendar from '../Input/Calendar/calendar';
+import Tag from '../Tag/tag';
 
 const Stories = () => {
     const teste = () => {  
@@ -410,6 +411,33 @@ const Stories = () => {
                     placeholder='Width customizado'
                     width='400px'
                 ></InputSearch>
+            </div>
+        </div>
+        <h2>Tag</h2>
+        <div className={styles['row']}>
+            <div className={styles['row-item-sm']}>
+                <h5>Tag em estado 'Planejado'</h5>
+                <Tag
+                    type='planned'
+                ></Tag>
+            </div>
+            <div className={styles['row-item-sm']}>
+                <h5>Tag em estado 'Fazendo'</h5>
+                <Tag
+                    type='preparing'
+                ></Tag>
+            </div>
+            <div className={styles['row-item-sm']}>
+                <h5>Tag em estado 'Pronto'</h5>
+                <Tag
+                    type='ready'
+                ></Tag>
+            </div>
+            <div className={styles['row-item-sm']}>
+                <h5>Tag em estado 'Entregue'</h5>
+                <Tag
+                type='done'
+                ></Tag>
             </div>
         </div>
     </div>
