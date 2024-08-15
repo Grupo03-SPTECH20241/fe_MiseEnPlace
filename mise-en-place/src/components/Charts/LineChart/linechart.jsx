@@ -146,7 +146,7 @@ const LineChart = () => {
       {
         data: currentData,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        borderColor: 'red',
+        borderColor: '#4B24E5;',
         borderWidth: 1,
       }
     ],

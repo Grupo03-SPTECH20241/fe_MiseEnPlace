@@ -1,25 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './default.module.css';
-import PlusImage from '../../../utils/img/plus.png'
-import SettingsImage from '../../../utils/img/settings_icon.png';
+import WhitePlusImage from '../../../utils/img/icons/enabled-white-plus-icon.png';  
+import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
+import DisabledBlackSettingsImage from '../../../utils/img/icons/disabled-black-settings-icon.png';
+import DisabledBlackPlusImage from '../../../utils/img/icons/disabled-black-plus-icon.png';
 
-const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px'  }) => {
-  // Renderiza ícones com base na posição  
+const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled = false }) => {
   const renderIcon = (iconId) => {  
     if (!showIcon) return null;  
+    let currentIcon;
 
-    if (showIcon && iconId === 0 && iconPosition === 'left' || iconPosition === 'both') {  
-      return(<img src={icon === 'settings'? SettingsImage : PlusImage}/>);  
+    if (icon === 'plus'){
+      currentIcon = isDisabled ? DisabledBlackPlusImage : WhitePlusImage;
+
+    } else if (icon === 'settings'){
+      currentIcon = isDisabled ? DisabledBlackSettingsImage : WhiteSettingsImage;
+    }
+
+    if (iconId === 0 && (iconPosition === 'left' || iconPosition === 'both')) {  
+      return(<img src={currentIcon} alt="Ícone" />);  
     }  
-    if (showIcon && iconId === 1 && iconPosition === 'right' || iconPosition === 'both') {  
-      return(<img src={icon === 'settings'? SettingsImage : PlusImage}/>);  
+    if (iconId === 1 && (iconPosition === 'right' || iconPosition === 'both')) {  
+      return(<img src={currentIcon} alt="Ícone" />);  
     }  
-    return null;  
+    return null;
   };  
 
   return (
-    <button onClick={onClick} className={styles['default-button']} style={{width: `${width}`}}>  
+    <button 
+      onClick={onClick} 
+      disabled={isDisabled}
+      className={`${styles['default-button']} ${isDisabled ? styles['isDisabled'] : ''}`}
+      style={{width: `${width}`, color: '#FFFEFE'}}>  
       {renderIcon(0)}  
       <span className={styles[`font-size-${fontSize}`]}>{label}</span>  
       {renderIcon(1)}  
@@ -27,7 +40,6 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
   );
 };
 
-// Definindo as PropTypes para o componente  
 ButtonFilledDefault.propTypes = {  
   onClick: PropTypes.any,
   label: PropTypes.string,  
@@ -35,7 +47,8 @@ ButtonFilledDefault.propTypes = {
   icon: PropTypes.oneOf(['plus','settings']),  
   iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
   fontSize: PropTypes.oneOf(['small', 'medium', 'large']),
-  width: PropTypes.string
+  width: PropTypes.string,
+  isDisabled: PropTypes.bool
 };   
 
 export default ButtonFilledDefault;
