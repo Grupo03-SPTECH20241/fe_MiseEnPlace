@@ -3,7 +3,7 @@
     src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
   }
   
-  .input-field-container {
+  .input-calendar-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -15,7 +15,7 @@
     color: #333;
   }
   
-  .input-field {
+  .input-calendar {
     border-radius: 25px;
     border: 1px solid #ccc;
     font-size: 14px;
@@ -24,14 +24,10 @@
     padding-left: 20px;
     outline: none;
     font-family: Nunito-Regular;
-    -webkit-appearance: none; /* Remove default arrow */
-    -moz-appearance: none; /* Remove default arrow */
-    appearance: none; /* Remove default arrow */
-    background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
-    background-color: white;
+    padding-right: 15px;
   }
   
-  .input-field-error {
+  .input-calendar-error {
     border-color: #4B24E5;;
   }
   

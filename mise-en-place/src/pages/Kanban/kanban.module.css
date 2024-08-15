@@ -1,0 +1,147 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dashboardBreadcrumbsContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.dashboardTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.dashboardTittleCard h2,
+.dashboardTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.dashboardTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.dashboardTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
+}
+
+.DivSpace {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.DivActions {
+    display: flex;
+    align-items: center;
+    width: 87.60%;
+    justify-content: space-between;
+    padding-top: 6.5vh;
+    padding-left: 6.5vh;
+}
+
+.DivButtonTrocarVisualizacao {
+    display: flex;
+    pad: 15px;
+    width: 8%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.IconAgenda {
+    width: 24px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.IconKanban {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.BackgroundColorIcon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #F8BBC2;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kanban {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 6.5vh;
+    padding-right: 6.5vh;
+    padding-top: 3vh;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.column {
+    width: 22%; /* Definindo uma largura fixa para as colunas */
+    min-height: 80vh; /* Tamanho mínimo da coluna */
+    padding: 1.5vh;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    
+}
+
+.column h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2vh;
+    font-size: 20px;
+}
+
+.divKanban {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 6.5vh;
+    padding-right: 6.5vh;
+    padding-top: 3vh;
+    box-sizing: border-box;
+}
+
+.separator {
+    height: 1px; 
+    width: 100%; 
+    background-color: #6e6e6e; 
+    margin-bottom: 8px;
+  }

@@ -43,8 +43,6 @@ const BarChart = () => {
           const { data } = response;
           let newLabelMes = [];
           let newValoresVendidosPorMes = [];
-          console.log("Mes:");
-          console.log(data);
           for (let i = 0; i < data.length; i++) {
             let nomeExiste = false;
 
@@ -195,7 +193,10 @@ const BarChart = () => {
             <p>Acompanhe o quanto os seus produtos estão faturando no período selecionado.</p>
           </div>
           <div className={styles["barChartSelectOption"]}>
-            <Filter options={filterOptions} onChange={handleFilterChange}></Filter>
+            <Filter 
+              options={filterOptions} 
+              onChange={handleFilterChange}>
+            </Filter>
           </div>
         </div>
         <div className={styles["barChart"]}>

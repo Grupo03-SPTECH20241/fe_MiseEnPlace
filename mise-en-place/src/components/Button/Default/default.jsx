@@ -1,16 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';  
 import styles from './default.module.css';
-import PlusImage from '../../../utils/img/plus.png'
+import WhitePlusImage from '../../../utils/img/icons/enabled-white-plus-icon.png';  
+import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
+import DisabledBlackSettingsImage from '../../../utils/img/icons/disabled-black-settings-icon.png';
+import DisabledBlackPlusImage from '../../../utils/img/icons/disabled-black-plus-icon.png';
 
-const Button = () => {
+const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled = false }) => {
+  const renderIcon = (iconId) => {  
+    if (!showIcon) return null;  
+    let currentIcon;
+
+    if (icon === 'plus'){
+      currentIcon = isDisabled ? DisabledBlackPlusImage : WhitePlusImage;
+
+    } else if (icon === 'settings'){
+      currentIcon = isDisabled ? DisabledBlackSettingsImage : WhiteSettingsImage;
+    }
+
+    if (iconId === 0 && (iconPosition === 'left' || iconPosition === 'both')) {  
+      return(<img src={currentIcon} alt="Ícone" />);  
+    }  
+    if (iconId === 1 && (iconPosition === 'right' || iconPosition === 'both')) {  
+      return(<img src={currentIcon} alt="Ícone" />);  
+    }  
+    return null;
+  };  
+
   return (
-    <button className={styles['default-button']}>
-      <img src={PlusImage} alt="Button icon" />
-      Button
-      <img src={PlusImage} alt="Button icon" />
-
-    </button>
+    <button 
+      onClick={onClick} 
+      disabled={isDisabled}
+      className={`${styles['default-button']} ${isDisabled ? styles['isDisabled'] : ''}`}
+      style={{width: `${width}`, color: '#FFFEFE'}}>  
+      {renderIcon(0)}  
+      <span className={styles[`font-size-${fontSize}`]}>{label}</span>  
+      {renderIcon(1)}  
+    </button>  
   );
 };
 
-export default Button;
+ButtonFilledDefault.propTypes = {  
+  onClick: PropTypes.any,
+  label: PropTypes.string,  
+  showIcon: PropTypes.bool,  
+  icon: PropTypes.oneOf(['plus','settings']),  
+  iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
+  fontSize: PropTypes.oneOf(['small', 'medium', 'large']),
+  width: PropTypes.string,
+  isDisabled: PropTypes.bool
+};   
+
+export default ButtonFilledDefault;

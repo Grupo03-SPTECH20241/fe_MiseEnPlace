@@ -17,3 +17,9 @@
     flex-direction: column;
     margin-right: 5vh;
 }
+
+.component-stories-container .row-item-sm {
+    display: flex;
+    flex-direction: column;
+    margin-right: 25vh;
+}

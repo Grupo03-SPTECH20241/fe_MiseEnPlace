@@ -1,28 +1,55 @@
 /* Button.css */
 .default-button {
-    width: 137px;
-    height: 40px;
-    border-radius: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #31CFFF;
-    color: #000000; 
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: "arial";
-  }
-  
-  .default-button:hover {
-    background-color: #17ACD9; 
-  }
-
-  .default-button img {
-    margin-right: 10px; 
-    margin-left: 10px;
-    width: 16px;
-    height: 16px;
+  width: 137px;
+  height: 40px;
+  border-radius: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E5246B;
+  color: #000000; 
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-family: "arial";
 }
-  
+
+.default-button:hover {
+  background-color: #DE0052; 
+}
+
+.default-button.isDisabled {
+  background-color: #FFD4E4 !important;
+  border-color: #FFD4E4 !important;
+  color: #9A9A9A !important;
+  cursor: default !important;
+}
+
+.default-button.isDisabled:hover {
+  background-color: #FFD4E4 !important;
+  color: #9A9A9A !important;
+}
+
+.default-button img {
+  margin-right: 10px; 
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+.default-button span {
+  font-size: medium;
+}
+
+.default-button span.font-size-small {
+  font-size: small !important;
+}
+
+.default-button span.font-size-medium {
+  font-size: medium !important;
+}
+
+.default-button span.font-size-large {
+  font-size: large !important;
+}
