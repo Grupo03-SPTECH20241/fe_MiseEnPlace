@@ -1,0 +1,32 @@
+/* Button.css */
+.default-button {
+    width: 240px;
+    height: 40px;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E5246B;
+    color: #ffffff; 
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "arial";
+    /* margin-top: 3vh; */
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+  }
+  
+  .default-button:hover {
+    background-color:  #DE0052;
+    ; 
+  }
+
+  .default-button img {
+    margin-right: 10px; 
+    margin-left: 10px;
+    width: 16px;
+    height: 16px;
+}
+  
