@@ -5,4 +5,61 @@
 
 .card-pedido {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 86vw;
+    padding: 16px;
+    font-family: Nunito-Regular;
+    border: 1px solid #C8C8C8;
+    border-radius: 16px;
+
 }
+
+.pedido-info {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.imagem-pedido img {
+    width: 8vw;
+    height: 16vh;
+    border-radius: 16px;
+}
+
+.textos {
+    max-width: 60vw;
+    overflow-wrap: break-word;
+}
+
+.textos h3 {
+    font-family: Nunito-Bold;
+    font-size: 20px;
+}
+
+.actions {
+    display: flex;
+    justify-content: right;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.actions img {
+    width: 24px;
+    height: 24px;
+}
+
+.quantidade {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.valor h3{
+    font-family: Nunito-Bold;
+    margin: 0;
+}
+
+
+
+
