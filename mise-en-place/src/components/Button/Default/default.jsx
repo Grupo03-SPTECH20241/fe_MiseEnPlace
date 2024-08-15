@@ -24,7 +24,7 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
     if (iconId === 1 && (iconPosition === 'right' || iconPosition === 'both')) {  
       return(<img src={currentIcon} alt="Ícone" />);  
     }  
-    return null;  
+    return null;
   };  
 
   return (
