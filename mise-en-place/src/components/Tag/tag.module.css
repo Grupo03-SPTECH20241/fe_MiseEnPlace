@@ -1,0 +1,40 @@
+.tag-container .tag-planned {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF7EAD;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 25px;
+}
+
+.tag-container .tag-preparing {
+    background-color: #9B93FF;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tag-container .tag-ready {
+    background-color: #8CEC25;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tag-container .tag-done {
+    background-color: #25ECE0;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
