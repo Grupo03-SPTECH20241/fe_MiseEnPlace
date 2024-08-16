@@ -47,6 +47,11 @@ const Produtos = () => {
     
     const teste = () => {
         const element = document.getElementById('input');
+        const newCardsData = cardsData.filter((data) => data.nome.includes(element.value));
+        setCardsData(newCardsData);
+        if(element.value === ''){
+            fetchData();
+        }
         console.log(element.value);
     }
 
