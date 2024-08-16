@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './carrinho.module.css';
 import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import Select from '../../components/Input/Select/select';
-import ButtonOutlined from '../../components/Button/Default-variant/defaultv';
 import ButtonFilled from '../../components/Button/Default/default';
 import CardPedido from '../../components/CardRequest/cardRequest';
 import FotoTeste from '../../utils/img/Bolo-coco-1.png';
+import InputCalendar from '../../components/Input/Calendar/calendar';
+import InputText from '../../components/Input/Text/text';
 
 const Carrinho = () => {
+    // Estado para armazenar a forma de entrega selecionada
+    const [formaEntrega, setFormaEntrega] = useState("");
+
+    // Função para lidar com a mudança na seleção
+    const handleFormaEntregaChange = (event) => {
+        setFormaEntrega(event.target.value);
+    };
+
     const imagem = FotoTeste;
     const nomeProduto = "Bolo de coco";
-    const descricao = "aaafjadkjghfdghfdgkjsdhgjsdfkgnfsdjgbfdsghfdsjkvnifjnvdfjshgidfnufnvjhmxcniughmgnvaiuhdvkjadnuihfakgniauhkjadnviuhfakjvnfiauhvjadfvoidafkvndofjvdnauihfjknavifahjvnafivbaifnvkjafnvkjfbvjfmvnzmncvmnbvjhbaaaa";
+    const descricao = "Bolo bem bom de ccocococococooc";
     const qtd = 1;
     const valor = 23.07;
 
@@ -28,41 +37,54 @@ const Carrinho = () => {
                 </div>
                 <div className={styles["inputsContainer"]}>
                     <div className={styles["clientInfo"]}>
-                        <div className={styles["clientName"]}>
-                            <label>Cliente</label>
-                            <input type="text" placeholder="Insira o nome" />
-                        </div>
-                        <div className={styles["clientNumber"]}>
-                            <label>Número de telefone</label>
-                            <input type="text" placeholder="Insira o número" />
-                        </div>                        
+                        <InputText
+                            label="Cliente:"
+                            placeholder="Insira o nome do cliente"
+                            width="44vw"
+                        ></InputText>
+                        <InputText
+                            label="Número de telefone:"
+                            placeholder="Insira o número"
+                            width="43vw"
+                        ></InputText>                 
                     </div>
                     <div className={styles["requestInfo"]}>
-                        <Select
-                            label="Forma de Pagamento:"
-                            placeholder="Selecione uma opção"
-                            width="29vw"
-                            options={[
-                                { label:'Cartão de Débito/Crédito', value:"card" },
-                                { label:'Dinheiro', value:"money" },
-                                { label:'Pix', value:"pix" }
-                            ]}
-                        />
-                        <div className={styles["deliveryDate"]}>
-                            <label>Data de entrega:</label>
-                            <input type="date" />
-                        </div>
-                        <Select
-                            label="Forma de entrega:"
-                            placeholder="Selecione uma opção"
-                            width="29vw"
-                            options={[
-                                { label:'Pronta entrega', value:"prontaEntrega" },
-                                { label:'Retirada', value:"retirada" },
-                                { label:'Serviço em festa', value:"festa" }
-                            ]}
-                        />
+                    <Select
+                        label="Forma de entrega:"
+                        placeholder="Selecione uma opção"
+                        width="29vw"
+                        value={formaEntrega}
+                        onChange={handleFormaEntregaChange}
+                        options={[
+                            { label: 'Pronta entrega', value: 'prontaEntrega' },
+                            { label: 'Retirada', value: 'retirada' },
+                            { label: 'Serviço em festa', value: 'festa' }
+                        ]}
+                    />
+                </div>
+
+                {formaEntrega === 'prontaEntrega' && (
+                    <div className={styles["deliveryDate"]}>
+                        <label>Data de entrega:</label>
+                        <input type="date" />
                     </div>
+                )}
+
+                {formaEntrega === 'retirada' && (
+                    <div className={styles["pickupInfo"]}>
+                        <label>Endereço de Retirada:</label>
+                        <input type="text" placeholder="Insira o endereço de retirada" />
+                    </div>
+                )}
+
+                {formaEntrega === 'festa' && (
+                    <div className={styles["partyInfo"]}>
+                        <label>Data do Evento:</label>
+                        <input type="date" />
+                        <label>Local do Evento:</label>
+                        <input type="text" placeholder="Insira o local do evento" />
+                    </div>
+                )}
                 </div>
                 <div className={styles["divisor"]}></div>
                 <div className={styles["productsList"]}>

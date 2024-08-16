@@ -4,6 +4,7 @@
 }
 
 .mainContainer {
+    font-family: Nunito-Regular;
     display: flex;
 }
 
@@ -27,7 +28,7 @@
 
 .carrinhoTittleCard h2,
 .carrinhoTittleCard p {
-    margin-left: 3vh !important;
+    margin-left: 3vh;
     color: white;
 }
 
@@ -39,7 +40,6 @@
 }
 
 .carrinhoTittleCard p {
-    font-family: 'Nunito-Regular';
     font-weight: 400;
     margin: 0;
 }
@@ -50,34 +50,16 @@
     margin-bottom: 3vh;
 }
 
+.clientInfo {
+    margin-bottom: 16px;
+}
+
 .clientInfo, .requestInfo {
-    font-family: "Nunito-Regular";
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1vw;
-}
-
-.clientName input, .clientNumber input{
-    width: 43vw;
-    margin-bottom: 24px;
-}
-
-.deliveryDate {
-    font-family: "Nunito-Regular";
-    color: #333;
-}
-
-.deliveryDate input {
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    width: 25vw;
-    height: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    outline: none;
 }
 
 .divisor {
@@ -105,7 +87,6 @@
     justify-content: right;
     align-items: center;
     gap: 32px;
-    font-family: "Nunito-Regular";
 }
 
 .values {
