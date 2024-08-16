@@ -4,6 +4,7 @@ import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produto.module.css';
 import Button from '../../components/Button/Product/product';
 import InputSearch from '../../components/Input/SearchProduct/searchProduct';
+// import InputSearch from '../../components/Input/Search/search';
 import InputSelect from '../../components/Input/SelectProduct/selectProduct'
 import Filter from '../../components/Filter/filter';
 import CardProduct from '../../components/CardProduct/CardProduct';
@@ -44,6 +45,11 @@ const Produtos = () => {
         console.log(value);
     }
     
+    const teste = () => {
+        const element = document.getElementById('input');
+        console.log(element.value);
+    }
+
     return (
         <div className={styles["mainContainer"]}>
             <Sidebar />
@@ -58,7 +64,10 @@ const Produtos = () => {
                 <div className={styles["innerContainerSearch"]}>
                     <Button></Button>
                     <div className={styles["containerInputs"]}>
-                        <InputSearch></InputSearch>    
+                        <InputSearch
+                            id='input'
+                            onKeyUp={teste}
+                        ></InputSearch>    
 
                         <Filter options= {value ? value : ['']}
                             onChange={handleChange}
