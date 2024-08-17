@@ -17,6 +17,7 @@ import api from '../../api';
 
 const Produtos = () => {
     const [cardsData, setCardsData] = useState();
+    const[filteredCardsData, setFilteredCardsData] = useState();
     const [value, setValue] = useState();
     useEffect(() => {
         fetchDataDrop();
@@ -36,6 +37,7 @@ const Produtos = () => {
     const fetchData = () => {
         api.get('/produtos').then((response) => {
             setCardsData(response.data);
+            setFilteredCardsData(response.data);
         }).catch((error) => {
             console.error(error);
         });
@@ -47,11 +49,9 @@ const Produtos = () => {
     
     const teste = () => {
         const element = document.getElementById('input');
-        const newCardsData = cardsData.filter((data) => data.nome.includes(element.value));
-        setCardsData(newCardsData);
-        if(element.value === ''){
-            fetchData();
-        }
+        const searchValue = element.value.toLowerCase();
+        const newCardsData = cardsData.filter((data) => data.nome.toLowerCase().includes(searchValue));
+        setFilteredCardsData(newCardsData);
         console.log(element.value);
     }
 
@@ -86,7 +86,7 @@ const Produtos = () => {
                 <div className= {styles["content-musicas"]}> 
 
                 {
-                cardsData && cardsData.map((data, index) => (
+                filteredCardsData && filteredCardsData.map((data, index) => (
                     <CardProduct
                     key={index}
                     descricao={data.descricao}
