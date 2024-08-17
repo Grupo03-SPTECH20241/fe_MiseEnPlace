@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produto.module.css';
@@ -10,14 +10,14 @@ import Filter from '../../components/Filter/filter';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import api from '../../api';
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
 
 
 
 const Produtos = () => {
     const [cardsData, setCardsData] = useState();
-    const[filteredCardsData, setFilteredCardsData] = useState();
+    const [filteredCardsData, setFilteredCardsData] = useState();
     const [value, setValue] = useState();
     useEffect(() => {
         fetchDataDrop();
@@ -28,6 +28,7 @@ const Produtos = () => {
 
     const fetchDataDrop = () => {
         api.get('/tipo-produtos').then((response) => {
+            response.data.unshift({ nome: 'Todos' });
             setValue(response.data.map((item) => item.nome));
         }).catch((error) => {
             console.error(error);
@@ -44,9 +45,19 @@ const Produtos = () => {
     }
 
     const handleChange = (value) => {
-        console.log(value);
+        if (value === 'Todos') {
+            setFilteredCardsData(cardsData);
+        } else {
+            api.get(`/produtos/filtrar-tipo/${value}`).then((response) => {
+                setValue(response.data.map((item) => item.nome));
+                setFilteredCardsData(response.data);
+                fetchDataDrop()
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
     }
-    
+
     const teste = () => {
         const element = document.getElementById('input');
         const searchValue = element.value.toLowerCase();
@@ -72,39 +83,40 @@ const Produtos = () => {
                         <InputSearch
                             id='input'
                             onKeyUp={teste}
-                        ></InputSearch>    
+                        ></InputSearch>
 
-                        <Filter options= {value ? value : ['']}
+                        <Filter options={value ? value : ['']}
+
                             onChange={handleChange}
-                        ></Filter> 
-                        
+                        ></Filter>
+
 
                     </div>
                 </div>
-                
-                
-                <div className= {styles["content-musicas"]}> 
 
-                {
-                filteredCardsData && filteredCardsData.map((data, index) => (
-                    <CardProduct
-                    key={index}
-                    descricao={data.descricao}
-                    nomeBolo={data.nome}
-                    imagemSrc={data.imagemSrc}
-                    valor={data.preco}
-                    ></CardProduct>
-                ))
-                
-            
-                
-                }
-                
 
-                   
+                <div className={styles["content-musicas"]}>
+
+                    {
+                        filteredCardsData && filteredCardsData.map((data, index) => (
+                            <CardProduct
+                                key={index}
+                                descricao={data.descricao}
+                                nomeBolo={data.nome}
+                                imagemSrc={data.imagemSrc}
+                                valor={data.preco}
+                            ></CardProduct>
+                        ))
+
+
+
+                    }
+
+
+
                 </div>
 
-                
+
 
             </div>
         </div>
