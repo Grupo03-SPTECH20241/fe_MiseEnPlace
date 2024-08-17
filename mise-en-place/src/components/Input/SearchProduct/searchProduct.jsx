@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styles from './searchProduct.module.css';
+import PropTypes from 'prop-types';  
 import Search from '../../../utils/img/search.png';
 
-const InputField = () => {
+const InputField = ({ onKeyUp , label = "Label:", placeholder = "", id = 'input', width= '235px', isRequired = false }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -34,6 +35,7 @@ const InputField = () => {
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
+          onKeyUp={onKeyUp}
           className={`${styles['search-input-field']} ${error ? styles['search-input-field-error'] : ''}`}
         />
         <img src={Search} alt="Search" className={styles['search-input-icon']} />
@@ -42,5 +44,14 @@ const InputField = () => {
     </div>
   );
 };
+
+InputField.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  width: PropTypes.string,
+  onKeyUp: PropTypes.func,
+  isRequired: PropTypes.bool
+};  
 
 export default InputField;
