@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './textField.module.css';
 
-const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', required = 'false', width = '235px', height = '100px' }) => {
+const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '100px' }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '' && required === 'true') {
+    if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -16,7 +16,7 @@ const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', requ
   };
 
   const handleBlur = () => {
-    if (value.trim() === '' && required === 'true') {
+    if (value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -40,13 +40,12 @@ const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', requ
   );
 };
 
-// Definindo as PropTypes para o componente  
 InputTextField.propTypes = { 
   label: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
   width: PropTypes.string,
-  required: PropTypes.oneOf(['true', 'false']),
+  isRequired: PropTypes.bool,
 };
 
 export default InputTextField;

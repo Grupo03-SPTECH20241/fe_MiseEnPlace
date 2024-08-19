@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';  
 import styles from './text.module.css';
-import { width } from '@mui/system';
 
-const InputField = ({ label = "Label:", placeholder = "", id = 'input', widthInput = '100%' }) => {
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '') {
+    if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -16,7 +16,7 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input', widthInp
   };
 
   const handleBlur = () => {
-    if (value.trim() === '') {
+    if (value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -24,21 +24,30 @@ const InputField = ({ label = "Label:", placeholder = "", id = 'input', widthInp
   };
 
   return (
-    <div className={styles['input-field-container']}>
+    <div className={styles['input-field-container']}
+      style={{width: `${fieldWidth}`}}>
       <span className={styles['label-content']}>{label}</span>
       <input
         type="text"
-        id={{id}}
+        id={id}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        style={{width: `${width}`}}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
-        style={{ width: widthInput }}
       />
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
   );
 };
 
-export default InputField;
+InputText.propTypes = { 
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  width: PropTypes.string,
+  isRequired: PropTypes.bool,
+};
+
+export default InputText;

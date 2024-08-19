@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './select.module.css';
 
-const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', required = false, width = '235px', height = '43px', options = []}) => {
+const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = []}) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '' && required) {
+    if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -16,7 +16,7 @@ const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', require
   };
 
   const handleBlur = () => {
-    if (value.trim() === '' && required) {
+    if (value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -51,14 +51,13 @@ const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', require
   );
 };
 
-// Definindo as PropTypes para o componente  
 InputSelect.propTypes = { 
   label: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  required: PropTypes.bool,
+  isRequired: PropTypes.bool,
   options: PropTypes.arrayOf(  
     PropTypes.shape({  
       value: PropTypes.any.isRequired,  

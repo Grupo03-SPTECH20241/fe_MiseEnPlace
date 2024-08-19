@@ -8,16 +8,27 @@
   align-items: center;
   justify-content: center;
   background-color: #31cfff00;
-  color: #000000;
   font-size: 16px;
-  border: 2px solid #DD0543;
+  border: 2px solid #4B24E5;;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   font-family: "arial";
 }
 
 .cancel-variant-button:hover {
-  background-color: #DD0543;
+  background-color: #3618AE;
+  color: white !important
+}
+
+.cancel-variant-button.isDisabled {
+  border-color: #AC97FF !important;
+  color: #AC97FF !important;
+  cursor: default !important;
+}
+
+.cancel-variant-button.isDisabled:hover {
+  background-color: transparent !important;
+  color: #AC97FF !important;
 }
 
 .cancel-variant-button img {

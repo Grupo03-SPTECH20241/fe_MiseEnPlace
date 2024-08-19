@@ -14,7 +14,7 @@ import Modal from "react-modal"
 const customStyles = {
     content: {
       width: '60%',
-      height: '33%',
+      height: '37%',
       margin: 'auto',
       borderRadius: '20px',
       borderColor: 'gray'

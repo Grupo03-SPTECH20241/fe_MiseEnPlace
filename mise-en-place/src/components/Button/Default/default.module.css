@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #31CFFF;
+  background-color: #E5246B;
   color: #000000; 
   font-size: 16px;
   border: none;
@@ -16,7 +16,19 @@
 }
 
 .default-button:hover {
-  background-color: #17ACD9; 
+  background-color: #DE0052; 
+}
+
+.default-button.isDisabled {
+  background-color: #FFD4E4 !important;
+  border-color: #FFD4E4 !important;
+  color: #9A9A9A !important;
+  cursor: default !important;
+}
+
+.default-button.isDisabled:hover {
+  background-color: #FFD4E4 !important;
+  color: #9A9A9A !important;
 }
 
 .default-button img {

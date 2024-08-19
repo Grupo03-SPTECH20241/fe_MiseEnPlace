@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
-import styles from './password.module.css';
+import styles from '../Text/text.module.css';
+import InputMask from 'react-input-mask';
 
-const InputPassword = ({ label = "Label:", placeholder = "", id = 'input', width= '235px', isRequired = true }) => {
+const InputText = ({
+    label = "Label:",
+    placeholder = "",
+    id = 'input',
+    isRequired = false,
+    width = '235px',
+    fieldWidth,
+    mask
+    }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -24,29 +33,36 @@ const InputPassword = ({ label = "Label:", placeholder = "", id = 'input', width
   };
 
   return (
-    <div className={styles['input-field-container']}>
+    <div className={styles['input-field-container']}
+      style={{width: `${fieldWidth}`}}>
       <span className={styles['label-content']}>{label}</span>
-      <input
-        type="password"
-        id={id}
-        placeholder={placeholder}
-        value={value}
+      <InputMask
+        mask={`${mask}`}
+        placeholder={`${placeholder}`}
+        maskChar={null}
         onChange={handleChange}
         onBlur={handleBlur}
+        type="text"
+        id={id}
+        value={value}
         style={{width: `${width}`}}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
-      />
+        >
+            {(inputProps) =>
+                <input {...inputProps}
+            />}
+      </InputMask>
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
   );
 };
 
-InputPassword.propTypes = {
+InputText.propTypes = { 
   label: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
   width: PropTypes.string,
-  isRequired: PropTypes.bool
-};  
+  isRequired: PropTypes.bool,
+};
 
-export default InputPassword;
+export default InputText;
