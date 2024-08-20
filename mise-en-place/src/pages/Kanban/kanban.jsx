@@ -124,8 +124,7 @@ const Kanban = () => {
         } else if (oldStatus === 'E') {
             moveFromColumn(entregues, setEntregues);
         }
-
-
+        
         // moveFromColumn(novos, setNovos);
         // Atualiza o status no backend
         updatePedidoStatus(cardId, status);
