@@ -1,0 +1,27 @@
+/* Button.css */
+.disabled-button {
+    width: 137px;
+    height: 40px;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b6eeff;
+    color: #818181; 
+    font-size: 16px;
+    border: none;
+    /* transition: background-color 0.3s, color 0.3s; */
+    font-family: "arial";
+  }
+  
+  /* .disabled-button:hover {
+    background-color: #17ACD9; 
+  } */
+
+  .disabled-button img {
+    margin-right: 10px; 
+    margin-left: 10px;
+    width: 16px;
+    height: 16px;
+}
+  
