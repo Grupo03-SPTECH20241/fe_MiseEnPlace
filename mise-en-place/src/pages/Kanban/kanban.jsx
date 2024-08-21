@@ -124,7 +124,7 @@ const Kanban = () => {
         } else if (oldStatus === 'E') {
             moveFromColumn(entregues, setEntregues);
         }
-        
+
         // moveFromColumn(novos, setNovos);
         // Atualiza o status no backend
         updatePedidoStatus(cardId, status);
@@ -138,9 +138,11 @@ const Kanban = () => {
                     <div className={styles["dashboardBreadcrumbsContainer"]}>
                         <Breadcrumb />
                     </div>
-                    <div className={styles["dashboardTittleCard"]}>
-                        <h2>Quadro de Planejamento</h2>
-                        <p>Organize os pedidos da semana conforme você os prepara.</p>
+                    <div className={styles["containerTittleCard"]}>
+                        <div className={styles["dashboardTittleCard"]}>
+                            <h2>Quadro de Planejamento</h2>
+                            <p>Organize os pedidos da semana conforme você os prepara.</p>
+                        </div>
                     </div>
                     <div className={styles["DivSpace"]}>
                         <div className={styles["DivActions"]}>
@@ -164,10 +166,10 @@ const Kanban = () => {
                     </div>
                     <div className={styles.kanban}>
                         <div className={styles["divKanban"]}>
-                            <Column title="Novos" cards={novos} setCards={setNovos} moveCard={moveCard} columnStatus ={"N"} />
-                            <Column title="Preparando" cards={preparando} setCards={setPreparando} moveCard={moveCard} columnStatus ={"P"} />
-                            <Column title="Prontos" cards={prontos} setCards={setProntos} moveCard={moveCard} columnStatus ={"R"} />
-                            <Column title="Entregues" cards={entregues} setCards={setEntregues} moveCard={moveCard} columnStatus ={"E"} />
+                            <Column title="Novos" cards={novos} setCards={setNovos} moveCard={moveCard} columnStatus={"N"} />
+                            <Column title="Preparando" cards={preparando} setCards={setPreparando} moveCard={moveCard} columnStatus={"P"} />
+                            <Column title="Prontos" cards={prontos} setCards={setProntos} moveCard={moveCard} columnStatus={"R"} />
+                            <Column title="Entregues" cards={entregues} setCards={setEntregues} moveCard={moveCard} columnStatus={"E"} />
                         </div>
                     </div>
                 </div>
