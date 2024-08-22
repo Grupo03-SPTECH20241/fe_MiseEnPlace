@@ -2,7 +2,7 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 import styles from './CardKanban.module.css';
 
-const Card = ({ id, pedido, cliente, data, hora, status}) => {
+const Card = ({ id, pedido, cliente, data, hora, status }) => {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: 'CARD',
         item: { id, status },
@@ -11,10 +11,17 @@ const Card = ({ id, pedido, cliente, data, hora, status}) => {
         }),
     }));
 
+    const cardClass = `${styles.divKanban} ${
+        status === 'N' ? styles.novos
+        : status === 'P' ? styles.preparando
+        : status === 'R' ? styles.prontos
+        : styles.entregues
+    }`;
+
     return (
         <div
             ref={drag}
-            className={styles.divKanban}
+            className={cardClass}
             style={{ opacity: isDragging ? 0.5 : 1 }}
         >
             <div className={styles.DivCardContent}>
@@ -28,5 +35,7 @@ const Card = ({ id, pedido, cliente, data, hora, status}) => {
         </div>
     );
 };
+
+
 
 export default Card;

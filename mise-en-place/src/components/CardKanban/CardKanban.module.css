@@ -9,7 +9,24 @@
     width: 200px;
     position: relative;
     font-family: Arial, sans-serif;
-    border-left: 4px solid #3498db; /* Linha colorida na lateral esquerda */
+    border-left: 4px solid; /* Remove a cor fixa */
+}
+
+/* Estilos para cada status */
+.novos {
+    border-color: #FF69B4; /* Rosa */
+}
+
+.preparando {
+    border-color: #800080; /* Roxo */
+}
+
+.prontos {
+    border-color: #32CD32; /* Verde */
+}
+
+.entregues {
+    border-color: #3498db; /* Azul */
 }
 
 .DivCardContent {
@@ -28,17 +45,4 @@
     margin: 4px 0;
     font-size: 14px;
     color: #666;
-}
-
-/* Responsividade para os Cards */
-@media (max-width: 1056px) {
-
-}
-
-@media (max-width: 768px) {
-
-}
-
-@media (max-width: 480px) {
-
 }
