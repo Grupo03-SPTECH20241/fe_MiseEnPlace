@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.modalTitle {
+    font-size: 150%;
+    font-weight: bolder;
+    font-family: 'Nunito';
+}
+
+.goalChartModalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Nunito';
+}
+
+.exitButton {
+    width: auto;
+    height: 30px;
+    font-family: 'Nunito';
+}
+
+.exitButton:hover {
+    cursor: pointer;
+    font-family: 'Nunito';
+}
+
+.dateInputs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+    font-family: 'Nunito';
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4%;
+    font-family: 'Nunito';
+}
+
+.inputIcon {
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+  }

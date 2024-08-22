@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
-import styles from './text.module.css';
+import styles from '../Text/text.module.css';
+import InputMask from 'react-input-mask';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth }) => {
+const InputText = ({
+    label = "Label:",
+    placeholder = "",
+    id = 'input',
+    isRequired = false,
+    width = '235px',
+    fieldWidth,
+    mask
+    }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
@@ -27,16 +36,22 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
     <div className={styles['input-field-container']}
       style={{width: `${fieldWidth}`}}>
       <span className={styles['label-content']}>{label}</span>
-      <input
-        type="text"
-        id={id}
-        placeholder={placeholder}
-        value={value}
+      <InputMask
+        mask={`${mask}`}
+        placeholder={`${placeholder}`}
+        maskChar={null}
         onChange={handleChange}
         onBlur={handleBlur}
+        type="text"
+        id={id}
+        value={value}
         style={{width: `${width}`}}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
-      />
+        >
+            {(inputProps) =>
+                <input {...inputProps}
+            />}
+      </InputMask>
       {error && <span className={styles['error-message']}>{error}</span>}
     </div>
   );
