@@ -34,7 +34,7 @@ const Sidebar = () => {
                     <img className='list' src={listImage} alt="Icon List" />
                     <a href="#">Produtos</a>
                 </div>
-                <div className={styles['accessibility-mobile']}>
+                <div id={styles['accessibility-mobile']} className={styles['div-item']}>
                     <img className='acessibilidade' src={acessibilidadeImage} alt="Icon Acesibilidade" />
                 </div>
             </div>
