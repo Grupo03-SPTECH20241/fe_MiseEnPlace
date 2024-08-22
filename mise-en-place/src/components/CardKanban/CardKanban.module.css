@@ -12,7 +12,6 @@
     border-left: 4px solid #3498db; /* Linha colorida na lateral esquerda */
 }
 
-
 .DivCardContent {
     margin-left: 16px;
     width: 100%;
@@ -31,30 +30,15 @@
     color: #666;
 }
 
-.DivCardContent p:first-of-type {
-    font-weight: bold;
-    color: #333;
+/* Responsividade para os Cards */
+@media (max-width: 1056px) {
+
 }
 
-.DivCardContent p:nth-of-type(3) {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: #333;
+@media (max-width: 768px) {
+
 }
 
-.DivCardContent p:nth-of-type(3)::before {
-    content: '⬤';
-    font-size: 16px;
-    margin-right: 8px;
-    color: #333;
-}
+@media (max-width: 480px) {
 
-.arrowIcon {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 18px;
-    color: #666;
-    font-weight: bold;
 }
