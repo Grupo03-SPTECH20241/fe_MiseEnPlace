@@ -148,6 +148,11 @@
 /* Responsividade */
 
 @media (max-width: 1056px) {
+
+    .dashboardBreadcrumbsContainer {
+        display: none;
+    }
+
     .column {
         flex: 0 0 48%; /* 2 colunas por linha */
     }
@@ -176,6 +181,11 @@
 }
 
 @media (max-width: 768px) {
+    
+    .dashboardBreadcrumbsContainer {
+        display: none;
+    }
+    
     .kanban {
         display: flex;
         justify-content: flex-start; /* Assegura que as colunas comecem à esquerda */
@@ -224,6 +234,9 @@
 
 @media (max-width: 576px) {
 
+    .dashboardBreadcrumbsContainer {
+        display: none;
+    }
 
     .kanban {
         display: flex;
@@ -266,5 +279,6 @@
         align-items: center;
         width: 25%;
     }
+    
 }
 

@@ -20,10 +20,21 @@ const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
         <div className={`${styles.column} ${styles[title.toLowerCase()]}`} ref={dropRef}>
             <h2>{title}</h2>
             <div className={styles.separator}></div>
-            {cards.map(card => <Card key={card.id} {...card} />)}
+            {cards.map(card => (
+                <Card
+                    key={card.id}
+                    id={card.id}
+                    pedido={card.pedido}
+                    cliente={card.cliente}
+                    data={card.data}
+                    hora={card.hora}
+                    status={card.status} // Status atualizado
+                />
+            ))}
         </div>
     );
 };
+
 
 const Kanban = () => {
     const [novos, setNovos] = useState([]);
@@ -106,15 +117,15 @@ const Kanban = () => {
         }
     };
 
-    const moveCard = (cardId, oldStatus, setToColumn, status) => {
+    const moveCard = (cardId, oldStatus, setToColumn, newStatus) => {
         const moveFromColumn = (fromColumn, setFromColumn) => {
             const cardIndex = fromColumn.findIndex(card => card.id === cardId);
             const [card] = fromColumn.splice(cardIndex, 1);
+            card.status = newStatus; // Atualiza o status do card localmente
             setFromColumn([...fromColumn]);
             setToColumn((prev) => [...prev, card]);
         };
-
-
+    
         if (oldStatus === 'P') {
             moveFromColumn(preparando, setPreparando);
         } else if (oldStatus === 'N') {
@@ -124,16 +135,16 @@ const Kanban = () => {
         } else if (oldStatus === 'E') {
             moveFromColumn(entregues, setEntregues);
         }
-
-        // moveFromColumn(novos, setNovos);
+    
         // Atualiza o status no backend
-        updatePedidoStatus(cardId, status);
+        updatePedidoStatus(cardId, newStatus);
     };
+    
 
     return (
         <DndProvider backend={HTML5Backend}>
             <div className={styles["mainContainer"]}>
-                <Sidebar />
+                    <Sidebar />
                 <div className={styles["innerContainer"]}>
                     <div className={styles["dashboardBreadcrumbsContainer"]}>
                         <Breadcrumb />
