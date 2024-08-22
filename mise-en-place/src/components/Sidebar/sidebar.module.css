@@ -164,5 +164,57 @@ body {
 .sidebar-content img, .div-bola img {
     width: 15px;
     height: 15px;
+}
 
+.accessibility-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {  
+    .sidebar {  
+        height: 10vh !important;  
+        width: 100vw !important;  
+        margin-top: 90vh !important;
+        flex-direction: row !important;  
+        bottom: 0 !important;  
+        position: fixed;
+        left: 0;
+    }  
+    .sidebar-closed .minimizar-div {  
+        height: 10vh;  
+        width: 100vw;
+    }  
+    .sidebar-content {  
+        display: flex;  
+        flex-direction: row;  
+        height: 100%;
+        justify-content: center;  
+        align-items: center;  
+        justify-content: center;  
+        margin-top: 0;
+    }  
+    .div-item {
+        justify-content: space-around;
+        margin: 0;
+        width: 10%;
+    }
+    .sidebar-content img, .div-bola img {
+        width: 25px;
+        height: 25px;
+    }
+    .sidebar-logo, .divisao-header,
+    .minimizar-div, .sidebar-closed .minimizar-div {
+        display: none;
+    }
+    .accessibility-mobile {
+        display: block;
+    }
+}  
+
+@media screen and (max-width: 400px) {
+    .div-item {
+        justify-content: space-around;
+        margin: 0;
+        width: 15%;
+    }
 }

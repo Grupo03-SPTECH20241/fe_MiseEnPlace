@@ -6,6 +6,7 @@ import listImage from '../../utils/img/List.png';
 import setaImage from '../../utils/img/seta.png';
 import esquerda from '../../utils/img/esquerda.png';
 import logo from '../../utils/img/logo_v2.png';
+import acessibilidadeImage from '../../utils/img/circle-question-regular.png'
 
 const Sidebar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -32,6 +33,9 @@ const Sidebar = () => {
                 <div className={styles['div-item']}>
                     <img className='list' src={listImage} alt="Icon List" />
                     <a href="#">Produtos</a>
+                </div>
+                <div className={styles['accessibility-mobile']}>
+                    <img className='acessibilidade' src={acessibilidadeImage} alt="Icon Acesibilidade" />
                 </div>
             </div>
             <div className={styles['minimizar-div']} >
