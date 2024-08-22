@@ -4,7 +4,7 @@ import Cancelarv from '../../Button/Cancelar-variant/cancelarv';
 import locationIcon from '../../../utils/img/location_icon.png';
 import api from '../../../api';
 
-const GoalChart = () => {
+const GoalChart = ({openModal}) => {
   // valores que serão apresentados no gráfico
   const [percentualAtualDaMeta, setPercentualAtualDaMeta] = useState([]);
   const [valorRealizadoDaMeta, setValorRealizadoDaMeta] = useState('');
@@ -50,7 +50,12 @@ const GoalChart = () => {
             <p>Defina a quantidade que você deseja faturar este mês.</p>
           </div>
           <div className={styles["goalChartSelectOption"]}>
-            <Cancelarv></Cancelarv>
+            <Cancelarv
+              showIcon={false}
+              label='Definir meta'
+              onClick={openModal}
+              >
+            </Cancelarv>
           </div>
         </div>
         <div className={styles["goalChart"]}>

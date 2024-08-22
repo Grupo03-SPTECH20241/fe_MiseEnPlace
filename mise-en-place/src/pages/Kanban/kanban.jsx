@@ -20,10 +20,21 @@ const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
         <div className={`${styles.column} ${styles[title.toLowerCase()]}`} ref={dropRef}>
             <h2>{title}</h2>
             <div className={styles.separator}></div>
-            {cards.map(card => <Card key={card.id} {...card} />)}
+            {cards.map(card => (
+                <Card
+                    key={card.id}
+                    id={card.id}
+                    pedido={card.pedido}
+                    cliente={card.cliente}
+                    data={card.data}
+                    hora={card.hora}
+                    status={card.status} // Status atualizado
+                />
+            ))}
         </div>
     );
 };
+
 
 const Kanban = () => {
     const [novos, setNovos] = useState([]);
@@ -106,15 +117,15 @@ const Kanban = () => {
         }
     };
 
-    const moveCard = (cardId, oldStatus, setToColumn, status) => {
+    const moveCard = (cardId, oldStatus, setToColumn, newStatus) => {
         const moveFromColumn = (fromColumn, setFromColumn) => {
             const cardIndex = fromColumn.findIndex(card => card.id === cardId);
             const [card] = fromColumn.splice(cardIndex, 1);
+            card.status = newStatus; // Atualiza o status do card localmente
             setFromColumn([...fromColumn]);
             setToColumn((prev) => [...prev, card]);
         };
-
-
+    
         if (oldStatus === 'P') {
             moveFromColumn(preparando, setPreparando);
         } else if (oldStatus === 'N') {
@@ -124,24 +135,25 @@ const Kanban = () => {
         } else if (oldStatus === 'E') {
             moveFromColumn(entregues, setEntregues);
         }
-
-
-        // moveFromColumn(novos, setNovos);
+    
         // Atualiza o status no backend
-        updatePedidoStatus(cardId, status);
+        updatePedidoStatus(cardId, newStatus);
     };
+    
 
     return (
         <DndProvider backend={HTML5Backend}>
             <div className={styles["mainContainer"]}>
-                <Sidebar />
+                    <Sidebar />
                 <div className={styles["innerContainer"]}>
                     <div className={styles["dashboardBreadcrumbsContainer"]}>
                         <Breadcrumb />
                     </div>
-                    <div className={styles["dashboardTittleCard"]}>
-                        <h2>Quadro de Planejamento</h2>
-                        <p>Organize os pedidos da semana conforme você os prepara.</p>
+                    <div className={styles["containerTittleCard"]}>
+                        <div className={styles["dashboardTittleCard"]}>
+                            <h2>Quadro de Planejamento</h2>
+                            <p>Organize os pedidos da semana conforme você os prepara.</p>
+                        </div>
                     </div>
                     <div className={styles["DivSpace"]}>
                         <div className={styles["DivActions"]}>
@@ -165,10 +177,10 @@ const Kanban = () => {
                     </div>
                     <div className={styles.kanban}>
                         <div className={styles["divKanban"]}>
-                            <Column title="Novos" cards={novos} setCards={setNovos} moveCard={moveCard} columnStatus ={"N"} />
-                            <Column title="Preparando" cards={preparando} setCards={setPreparando} moveCard={moveCard} columnStatus ={"P"} />
-                            <Column title="Prontos" cards={prontos} setCards={setProntos} moveCard={moveCard} columnStatus ={"R"} />
-                            <Column title="Entregues" cards={entregues} setCards={setEntregues} moveCard={moveCard} columnStatus ={"E"} />
+                            <Column title="Novos" cards={novos} setCards={setNovos} moveCard={moveCard} columnStatus={"N"} />
+                            <Column title="Preparando" cards={preparando} setCards={setPreparando} moveCard={moveCard} columnStatus={"P"} />
+                            <Column title="Prontos" cards={prontos} setCards={setProntos} moveCard={moveCard} columnStatus={"R"} />
+                            <Column title="Entregues" cards={entregues} setCards={setEntregues} moveCard={moveCard} columnStatus={"E"} />
                         </div>
                     </div>
                 </div>
