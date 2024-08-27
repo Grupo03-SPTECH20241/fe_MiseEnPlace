@@ -6,6 +6,7 @@ import Loading from "./pages/Load/load"
 import Produtos from "./pages/Produtos/produtos" 
 import Stories from "./components/ComponentStories/componentstories";
 import Kanban from "./pages/Kanban/kanban";
+import ProdutoCadastro from "./pages/ProdutoCadastro/produtoCadastro"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function Rotas() {
@@ -21,6 +22,7 @@ function Rotas() {
                     <Route path="/produtos" element={<Produtos />} />
                     <Route path="/components" element={<Stories />} />
                     <Route path="/kanban" element={<Kanban />} />
+                    <Route path="/produto-cadastro" element={<ProdutoCadastro />} />
                 </Routes>
             </BrowserRouter>
         </>
