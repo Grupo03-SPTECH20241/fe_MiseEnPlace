@@ -41,11 +41,11 @@ function Login() {
                     <span>Mise en Place</span>
                     <div className={LoginStyles['form-group']}>
                         <label>E-mail:</label>
-                        <input type="email" name="email" placeholder="Inserir e-mail" onChange={e => setEmail(e.target.value)} />
+                        <input className={LoginStyles['input-login']} type="email" name="email" placeholder="Inserir e-mail" onChange={e => setEmail(e.target.value)} />
                     </div>
                     <div className={LoginStyles['form-group']}>
                         <label>Senha:</label>
-                        <input type="password" name="password" placeholder="Insira sua senha" onChange={e => setPassword(e.target.value)} />
+                        <input className={LoginStyles['input-login']} type="password" name="password" placeholder="Insira sua senha" onChange={e => setPassword(e.target.value)} />
                     </div>
                     <button className={LoginStyles['button-submit']} type="submit">Entrar</button>
                 </form>
