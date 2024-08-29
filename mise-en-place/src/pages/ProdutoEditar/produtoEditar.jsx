@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar/sidebar';
-import BreadcrumbProdutoEditar from '../../components/Texts/Breadcrumbs/BreadCrumbsProdutosEditar';
+import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produtoEditar.module.css';
 import CameraIcon from "../../utils/img/icons/camera.png"
 import Input from "../../components/Input/Text/text"
@@ -15,7 +15,7 @@ const ProdutoEditar = () => {
             <Sidebar />
             <div className={styles["innerContainer"]}>
                 <div className={styles["produtoBreadcrumbsContainer"]}>
-                    <BreadcrumbProdutoEditar />
+                    <Breadcrumb />
                 </div>
                 <div className={styles["produtoEditarTittleCard"]}>
                     <h2>Editar produto</h2>
