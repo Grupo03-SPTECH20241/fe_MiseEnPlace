@@ -15,6 +15,10 @@ const Sidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const redirect = (url) => {
+        window.location = url;
+    }
+
     return (
         <div className={`${styles.sidebar} ${isSidebarOpen ? '' : styles['sidebar-closed']}`}>
             <div className={styles['sidebar-header']}>
@@ -23,16 +27,16 @@ const Sidebar = () => {
             <div className={styles['sidebar-content']}>
                 <div className={styles['divisao-header']}></div>
                 <div className={styles['div-item']}>
-                    <img className='home' src={homeImage} alt="Icon home" />
-                    <a href="#">Início</a>
+                    <img onClick={() => redirect('/dashboard')} className='home' src={homeImage} alt="Icon home"  />
+                    <a href="/dashboard">Início</a>
                 </div>
                 <div className={styles['div-item']}>
-                    <img className='agenda' src={agendaImage} alt="Icon Calendar" />
-                    <a href="#">Planejamento</a>
+                    <img onClick={() => redirect('/agenda')} className='agenda' src={agendaImage} alt="Icon Calendar" />
+                    <a href="/agenda">Planejamento</a>
                 </div>
                 <div className={styles['div-item']}>
-                    <img className='list' src={listImage} alt="Icon List" />
-                    <a href="#">Produtos</a>
+                    <img onClick={() => redirect('/produtos')} className='list' src={listImage} alt="Icon List" />
+                    <a href="/produtos">Produtos</a>
                 </div>
                 <div id={styles['accessibility-mobile']} className={styles['div-item']}>
                     <img className='acessibilidade' src={acessibilidadeImage} alt="Icon Acesibilidade" />

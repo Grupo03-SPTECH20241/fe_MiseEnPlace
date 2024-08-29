@@ -181,6 +181,11 @@ input[type="password"] {
         align-items: center;
     }
     
+    .input-login {
+        width: 729px !important;
+        height: 75px !important;
+    }
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -223,15 +228,11 @@ input[type="password"] {
         width: 90%;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        width: 100%;
-    }
-
-    input {
+    .input-login {
         font-size: 18px;
         border: 2px solid #ccc;
+        width: 315px !important;
+        height: 43px !important;
     }
 
     label {

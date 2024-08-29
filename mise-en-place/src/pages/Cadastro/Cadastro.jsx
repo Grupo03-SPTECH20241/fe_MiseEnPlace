@@ -12,7 +12,6 @@ function Cadastro() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [cnpj, setCnpj] = useState('');
-    const [senha, setSenha] = useState('');
 
     const handleFileUpload = (event) => {
         const uploadedFile = event.target.files[0];
@@ -30,7 +29,7 @@ function Cadastro() {
     const handleCadastro = async (event) => {
         event.preventDefault();
 
-        if (!filePath || !nome || !email || !cnpj || !senha) {
+        if (!filePath || !nome || !email || !cnpj ) {
             toast.error('Por favor, preencha todos os campos e selecione um arquivo.', { theme: "colored" });
             return;
         }
@@ -40,7 +39,6 @@ function Cadastro() {
             nome,
             email,
             cnpj,
-            senha, // Adiciona a senha ao payload
             logo: filePath // Enviando apenas o caminho do arquivo
         };
 
@@ -51,7 +49,6 @@ function Cadastro() {
             setNome('');
             setEmail('');
             setCnpj('');
-            setSenha('');
             setFilePath('');
 
             setTimeout(() => {
@@ -94,10 +91,6 @@ function Cadastro() {
                             >
                                 {(inputProps) => <input {...inputProps} type="text" placeholder="99.999.999/9999-99" />}
                             </InputMask>
-                        </div>
-                        <div className={cadastroStyles['form-group']}>
-                            <label>Senha:</label>
-                            <input type="password" name="senha" placeholder="Escreva sua senha" value={senha} onChange={e => setSenha(e.target.value)} />
                         </div>
                         <div className={cadastroStyles['form-group']}>
                             <label>Upload File</label>
