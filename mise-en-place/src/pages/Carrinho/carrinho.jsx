@@ -8,15 +8,35 @@ import CardPedido from '../../components/CardRequest/cardRequest';
 import FotoTeste from '../../utils/img/Bolo-coco-1.png';
 import InputCalendar from '../../components/Input/Calendar/calendar';
 import InputText from '../../components/Input/Text/text';
-
+// produto-pedido -> endpoint
 const Carrinho = () => {
-    // Estado para armazenar a forma de entrega selecionada
-    const [formaEntrega, setFormaEntrega] = useState("");
 
-    // Função para lidar com a mudança na seleção
+    const [formaEntrega, setFormaEntrega] = useState('festa');
+    const [formaPagamento, setFormaPagamento] = useState(null);
+    const [dataEntrega, setDataEntrega] = useState(null);
+    const [cep, setCep] = useState(null);
+    const [logradouro, setLogradouro] = useState(null);
+
+
+    const handleFormaPagamentoChange = (event) => {
+        setFormaPagamento(event.target.value);
+    };
+
     const handleFormaEntregaChange = (event) => {
         setFormaEntrega(event.target.value);
     };
+
+    const handleDataEntregaChange = (event) => {
+        setDataEntrega(event.target.value);
+    };
+
+    const handleCEPChange = (event) => {
+        setCep(event.target.value);
+    }
+
+    const handleLogradouroChange = (event) => {
+        setLogradouro(event.target.value);
+    }
 
     const imagem = FotoTeste;
     const nomeProduto = "Bolo de coco";
@@ -48,43 +68,93 @@ const Carrinho = () => {
                             width="43vw"
                         ></InputText>                 
                     </div>
-                    <div className={styles["requestInfo"]}>
-                    <Select
-                        label="Forma de entrega:"
-                        placeholder="Selecione uma opção"
-                        width="29vw"
-                        value={formaEntrega}
-                        onChange={handleFormaEntregaChange}
-                        options={[
-                            { label: 'Pronta entrega', value: 'prontaEntrega' },
-                            { label: 'Retirada', value: 'retirada' },
-                            { label: 'Serviço em festa', value: 'festa' }
-                        ]}
-                    />
-                </div>
+                    <div className={styles["basic-oreder-details"]}>
+                        <div className={styles["requestInfo"]}>
+                            <Select
+                                label="Forma de pagamento:"
+                                value={formaPagamento}
+                                options={[
+                                    { label: 'PIX', value: 'pix' },
+                                    { label: 'Catão de crédito', value: 'creditCard' },
+                                    { label: 'Cartão de débito', value: 'debitCard' },
+                                    { labe: 'Dinheiro vivo', value: 'money'}
+                                ]}
+                                onChange={handleFormaPagamentoChange}
+                                width="53vh"
+                            ></Select>
 
-                {formaEntrega === 'prontaEntrega' && (
-                    <div className={styles["deliveryDate"]}>
-                        <label>Data de entrega:</label>
-                        <input type="date" />
+                            <InputCalendar
+                                label="Data de entrega:"
+                                onChange={handleDataEntregaChange}
+                                value={dataEntrega}
+                                width="53vh"
+                            ></InputCalendar>
+                            <Select
+                                label="Forma de entrega:"
+                                placeholder="Selecione uma opção"
+                                width="53vh"
+                                value={formaEntrega}
+                                onChange={handleFormaEntregaChange}
+                                options={[
+                                    { label: 'Pronta entrega', value: 'prontaEntrega' },
+                                    { label: 'Retirada', value: 'retirada' },
+                                    { label: 'Serviço em festa', value: 'festa' }
+                                ]}>
+                            </Select>
+                        </div>
                     </div>
-                )}
+                    {formaEntrega === 'festa' && (<div className={styles["party-container"]}>
+                        <div className={styles["requestInfo"]}>
+                            <InputText
+                                label="CEP:"
+                                placeholder="00000-000"
+                                width="53vh"
+                                value={cep}
+                                onChange={handleCEPChange}
+                            ></InputText>
+                            <InputText
+                                label="Logradouro:"
+                                width="112vh"
+                                value={logradouro}
+                                onChange={handleLogradouroChange}
+                            ></InputText>
+                        </div>
+                    </div>)}
+                    {(formaEntrega === 'prontaEntrega' || formaEntrega === 'retirada') && (<div className={styles["ready-to-deliver-container"]}>
+                        <div className={styles["requestInfo"]}>
+                            <Select
+                                label="Forma de entrega:"
+                                placeholder="Selecione uma opção"
+                                width="53vh"
+                                value={formaEntrega}
+                                onChange={handleFormaEntregaChange}
+                                options={[
+                                    { label: 'Pronta entrega', value: 'prontaEntrega' },
+                                    { label: 'Retirada', value: 'retirada' },
+                                    { label: 'Serviço em festa', value: 'festa' }
+                                ]}
+                            ></Select>
 
-                {formaEntrega === 'retirada' && (
-                    <div className={styles["pickupInfo"]}>
-                        <label>Endereço de Retirada:</label>
-                        <input type="text" placeholder="Insira o endereço de retirada" />
-                    </div>
-                )}
+                            <InputCalendar 
+                                type="date" 
+                                label="data de entrega:"
+                                width="53vh"
+                            ></InputCalendar>
 
-                {formaEntrega === 'festa' && (
-                    <div className={styles["partyInfo"]}>
-                        <label>Data do Evento:</label>
-                        <input type="date" />
-                        <label>Local do Evento:</label>
-                        <input type="text" placeholder="Insira o local do evento" />
-                    </div>
-                )}
+                            <Select
+                                label="Forma de entrega:"
+                                placeholder="Selecione uma opção"
+                                width="53vh"
+                                value={formaEntrega}
+                                onChange={handleFormaEntregaChange}
+                                options={[
+                                    { label: 'Pronta entrega', value: 'prontaEntrega' },
+                                    { label: 'Retirada', value: 'retirada' },
+                                    { label: 'Serviço em festa', value: 'festa' }
+                                ]}>
+                            </Select>
+                        </div>
+                    </div>)}
                 </div>
                 <div className={styles["divisor"]}></div>
                 <div className={styles["productsList"]}>

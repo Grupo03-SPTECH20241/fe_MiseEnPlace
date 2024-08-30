@@ -54,6 +54,12 @@
     margin-bottom: 16px;
 }
 
+.requestInfo {
+    margin-bottom: 16px;
+    width: 100%;
+    background-color: pink;
+}
+
 .clientInfo, .requestInfo {
     display: flex;
     flex-direction: row;
