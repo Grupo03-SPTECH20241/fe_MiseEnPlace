@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./cardRequest.module.css";
-import fotoDefault from "../../utils/img/Bolo-coco-1.png";
+import fotoDefault from "../../utils/img/produtos/Bolo-coco-1.png";
 import editarIcon from "../../utils/img/editar.png";
 import excluirIcon from "../../utils/img/trash.svg";
 

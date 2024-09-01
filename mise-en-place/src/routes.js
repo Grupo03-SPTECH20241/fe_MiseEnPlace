@@ -23,7 +23,7 @@ function Rotas() {
                 <Route path="/loading" element={<Loading />} />
                 <Route path="/produtos" element={<Produtos />} />
                 <Route path="/components" element={<Stories />} />
-                    <Route path="/carrinho" element={<Carrinho />}/>
+                <Route path="/carrinho" element={<Carrinho />}/>
                 <Route path="/kanban" element={<Kanban />} />
                 <Route path="/produto-cadastro" element={<ProdutoCadastro />} />
                 <Route path="/produto-editar" element={<ProdutoEditar />} />
