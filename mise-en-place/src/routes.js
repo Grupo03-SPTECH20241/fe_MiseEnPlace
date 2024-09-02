@@ -9,11 +9,13 @@ import Produtos from "./pages/Produtos/produtos";
 import Stories from "./components/ComponentStories/componentstories";
 import Carrinho from "./pages/Carrinho/carrinho"
 import Kanban from "./pages/Kanban/kanban";
+import Agenda from "./pages/Agenda/Agenda"
 import ProdutoCadastro from "./pages/ProdutoCadastro/produtoCadastro";
 import ProdutoEditar from "./pages/ProdutoEditar/produtoEditar";
 
 function Rotas() {
     return (
+        <>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login />} />
@@ -23,12 +25,15 @@ function Rotas() {
                 <Route path="/loading" element={<Loading />} />
                 <Route path="/produtos" element={<Produtos />} />
                 <Route path="/components" element={<Stories />} />
-                    <Route path="/carrinho" element={<Carrinho />}/>
+                <Route path="/carrinho" element={<Carrinho />}/>
                 <Route path="/kanban" element={<Kanban />} />
                 <Route path="/produto-cadastro" element={<ProdutoCadastro />} />
                 <Route path="/produto-editar" element={<ProdutoEditar />} />
+                <Route path="/agenda" element={<Agenda />} />
             </Routes>
-        </BrowserRouter>    
+        </BrowserRouter>  
+        </>
+  
     );
 }
 
