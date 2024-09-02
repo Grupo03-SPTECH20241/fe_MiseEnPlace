@@ -9,73 +9,23 @@ import ButtonDefault from '../../components/Button/Default/default';
 
 const Agenda = () => {
   const [testeMap, setTesteMap] = useState([]);
-  // useEffect(() => {
-  //   const fetchAgenda = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:8080/produto-pedidos");
-  //       const data = await response.json();
-  //       data.forEach(pedido => {
-  //         const pedidoData = {
-  //           id: pedido.idProdutoPedido,
-  //           // pedido: nome,
-  //           cliente: {
-  //             // nome: pedido.clienteDto.nome,
-  //             // telefone: pedido.clienteDto.telefone
-  //           },
-  //           data: pedido.data,
-  //           hora: pedido.hora,
-  //           status: pedido.status
-  //         };
-  //         dataJson.push(pedidoData);
-  //       });
-
-  //       console.log(dataJson);
-  //       setData(dataJson);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar dados da agenda", error);
-  //     }
-  //   };
-
-  //   fetchAgenda();
-  // }, []);
-
-
   useEffect(() => {
-    // setTesteMap([{ nome: "braian" }, { nome: "braian" }, { nome: "braian" }])
-    setTesteMap(
-      [
-        {
-          title : "Segunda-feira",
-          pedidos : [
-            {
-              cliente: "Gustavo",
-              idPedido: 1234,
-              descricaoPedido: "Pedido de teste",
-              estadoAtual: "Preparando",
-              dataEntrega: "06/11/2004"
-            },
-            {
-              cliente: "Gustavo",
-              idPedido: 1234,
-              descricaoPedido: "Pedido de teste",
-              estadoAtual: "Preparando",
-              dataEntrega: "06/11/2004"
-            },
-            {
-              cliente: "Gustavo",
-              idPedido: 1234,
-              descricaoPedido: "Pedido de teste",
-              estadoAtual: "Preparando",
-              dataEntrega: "06/11/2004"
-            }  
-          ]
-        }
-      ]
-    
-      
-    );
+    const fetchAgenda = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/produto-pedidos/agenda?dataInicio=01%2F01%2F2000&dataFim=10%2F09%2F2024');
+        const data = await response.json();
+        console.log("Esse aqui é o data: ", data);
+        setTesteMap(data.itemsAgenda);
+      } catch (error) {
+        console.error("Erro ao buscar dados da agenda", error);
+      }
+    };
 
+    fetchAgenda();
   }, []);
+
+
+  
 
   return (
     <div className={styles["mainContainer"]}>
@@ -103,15 +53,19 @@ const Agenda = () => {
               />
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
-              <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
               <div className={styles["BackgroundColorIcon"]}>
+                <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
+              </div>
+              <div>
                 <img className={styles["IconKanban"]} src={IconKanban} alt="" />
               </div>
             </div>
           </div>
         </div>
         <div className={styles.kanban}>
-          <NestedList testeMap={testeMap} />
+          {testeMap.map((item) => (
+            <NestedList testeMap={item} title={item.title} />
+          ))}
         </div>
       </div>
     </div>
