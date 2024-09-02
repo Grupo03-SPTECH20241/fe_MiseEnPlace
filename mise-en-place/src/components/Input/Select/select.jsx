@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './select.module.css';
 
-const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = []}) => {
+const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = [], onChange = null}) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    if(onChange !== null) onChange(e);
+    
     if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
@@ -58,6 +60,7 @@ InputSelect.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   isRequired: PropTypes.bool,
+  onChange: PropTypes.func,
   options: PropTypes.arrayOf(  
     PropTypes.shape({  
       value: PropTypes.any.isRequired,  

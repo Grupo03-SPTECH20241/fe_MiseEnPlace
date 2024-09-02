@@ -1,0 +1,124 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.produtoBreadcrumbsContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.produtoCadastroTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    height: 7%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.produtoCadastroTittleCard h2,
+.produtoCadastroTittleCard p {
+    margin-left: 3vh !important;
+    font-family: 'Nunito-Regular';
+    color: white;
+    margin: 0.6vh;
+}
+
+.produtoCadastroMainContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.produtoCadastroImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35vh;
+    height: 35vh;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+.produtoCadastroImage:hover {
+    cursor: pointer;
+    img {
+        opacity: 50%;
+    }
+}
+
+.produtoCadastroImage img {
+    width: auto;
+    height: 25%;
+}
+
+.inputsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+.inputsContainerLine1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inputsContainerLine2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.inputsContainerLine3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.inputsContainerLine4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.inputsContainerLine5 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 5%;
+}
