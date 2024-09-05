@@ -5,6 +5,7 @@ import WhitePlusImage from '../../../utils/img/icons/enabled-white-plus-icon.png
 import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
 import DisabledBlackSettingsImage from '../../../utils/img/icons/disabled-black-settings-icon.png';
 import DisabledBlackPlusImage from '../../../utils/img/icons/disabled-black-plus-icon.png';
+import CheckIcon from '../../../utils/img/icons/check.png'
 
 const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled = false }) => {
   const renderIcon = (iconId) => {  
@@ -13,16 +14,17 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
 
     if (icon === 'plus'){
       currentIcon = isDisabled ? DisabledBlackPlusImage : WhitePlusImage;
-
     } else if (icon === 'settings'){
       currentIcon = isDisabled ? DisabledBlackSettingsImage : WhiteSettingsImage;
+    } else if (icon === 'check') {
+      currentIcon = CheckIcon;
     }
 
     if (iconId === 0 && (iconPosition === 'left' || iconPosition === 'both')) {  
       return(<img src={currentIcon} alt="Ícone" />);  
     }  
     if (iconId === 1 && (iconPosition === 'right' || iconPosition === 'both')) {  
-      return(<img src={currentIcon} alt="Ícone" />);  
+      return(<img src={currentIcon} alt="Ícone" />);
     }  
     return null;
   };  

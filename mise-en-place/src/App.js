@@ -1,3 +1,5 @@
+import Modal from "react-modal"
+
 import Rotas from "./routes";
 function App() {
   return (
@@ -6,4 +8,7 @@ function App() {
     </>
   );
 }
+
+Modal.setAppElement("#root")
+
 export default App;

@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px' }) => {
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, onChange = null }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    if(onChange !== null) onChange(e);
+    
     if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
@@ -24,7 +26,8 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   };
 
   return (
-    <div className={styles['input-field-container']}>
+    <div className={styles['input-field-container']}
+      style={{width: `${fieldWidth}`}}>
       <span className={styles['label-content']}>{label}</span>
       <input
         type="text"
@@ -47,6 +50,7 @@ InputText.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  onChange: PropTypes.func
 };
 
 export default InputText;

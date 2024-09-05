@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './calendar.module.css';
 
-const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', type = 'date' }) => {
+const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', type = 'date', onChange = null }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    if(onChange !== null) onChange(e);
+    
     if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
@@ -47,6 +49,7 @@ InputCalendar.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  onChange: PropTypes.func,
   type: PropTypes.oneOf(['date','datetime']),  
 };
 

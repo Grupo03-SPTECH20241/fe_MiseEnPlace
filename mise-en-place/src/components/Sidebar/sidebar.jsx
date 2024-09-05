@@ -6,6 +6,7 @@ import listImage from '../../utils/img/List.png';
 import setaImage from '../../utils/img/seta.png';
 import esquerda from '../../utils/img/esquerda.png';
 import logo from '../../utils/img/logo_v2.png';
+import acessibilidadeImage from '../../utils/img/circle-question-regular.png'
 
 const Sidebar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -13,6 +14,10 @@ const Sidebar = () => {
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    const redirect = (url) => {
+        window.location = url;
+    }
 
     return (
         <div className={`${styles.sidebar} ${isSidebarOpen ? '' : styles['sidebar-closed']}`}>
@@ -22,16 +27,19 @@ const Sidebar = () => {
             <div className={styles['sidebar-content']}>
                 <div className={styles['divisao-header']}></div>
                 <div className={styles['div-item']}>
-                    <img className='home' src={homeImage} alt="Icon home" />
-                    <a href="#">Início</a>
+                    <img onClick={() => redirect('/dashboard')} className='home' src={homeImage} alt="Icon home"  />
+                    <a href="/dashboard">Início</a>
                 </div>
                 <div className={styles['div-item']}>
-                    <img className='agenda' src={agendaImage} alt="Icon Calendar" />
-                    <a href="#">Planejamento</a>
+                    <img onClick={() => redirect('/agenda')} className='agenda' src={agendaImage} alt="Icon Calendar" />
+                    <a href="/agenda">Planejamento</a>
                 </div>
                 <div className={styles['div-item']}>
-                    <img className='list' src={listImage} alt="Icon List" />
-                    <a href="#">Produtos</a>
+                    <img onClick={() => redirect('/produtos')} className='list' src={listImage} alt="Icon List" />
+                    <a href="/produtos">Produtos</a>
+                </div>
+                <div id={styles['accessibility-mobile']} className={styles['div-item']}>
+                    <img className='acessibilidade' src={acessibilidadeImage} alt="Icon Acesibilidade" />
                 </div>
             </div>
             <div className={styles['minimizar-div']} >

@@ -9,9 +9,26 @@
     width: 200px;
     position: relative;
     font-family: Arial, sans-serif;
-    border-left: 4px solid #3498db; /* Linha colorida na lateral esquerda */
+    border-left: 4px solid; /* Remove a cor fixa */
+    cursor: pointer;
 }
 
+/* Estilos para cada status */
+.novos {
+    border-color: #FF69B4; /* Rosa */
+}
+
+.preparando {
+    border-color: #800080; /* Roxo */
+}
+
+.prontos {
+    border-color: #32CD32; /* Verde */
+}
+
+.entregues {
+    border-color: #3498db; /* Azul */
+}
 
 .DivCardContent {
     margin-left: 16px;
@@ -29,32 +46,4 @@
     margin: 4px 0;
     font-size: 14px;
     color: #666;
-}
-
-.DivCardContent p:first-of-type {
-    font-weight: bold;
-    color: #333;
-}
-
-.DivCardContent p:nth-of-type(3) {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: #333;
-}
-
-.DivCardContent p:nth-of-type(3)::before {
-    content: '⬤';
-    font-size: 16px;
-    margin-right: 8px;
-    color: #333;
-}
-
-.arrowIcon {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 18px;
-    color: #666;
-    font-weight: bold;
 }
