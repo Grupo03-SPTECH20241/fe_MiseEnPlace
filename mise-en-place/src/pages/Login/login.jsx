@@ -5,10 +5,12 @@ import api from '../../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Spinner from '../../components/Spinner/spinner';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -17,7 +19,7 @@ function Login() {
             localStorage.setItem('token', response.data.token);
             toast.success('Login efetuado com sucesso! Redirecionando...', { theme: "colored" })
             setTimeout(() => {
-                window.location.href = '/loading';
+                navigate('/loading');
             }, 6000)
         }).catch((error) => {
             console.log(error, "error")

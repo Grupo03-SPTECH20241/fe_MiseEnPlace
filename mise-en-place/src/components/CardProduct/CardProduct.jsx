@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CardProduct.module.css";
-import capaImg from "../../utils/img/Bolo-coco-1.png";
+import capaImg from "../../utils/img/produtos/Bolo-coco-1.png";
 import editarImg from "../../utils/img/editar.png";
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
