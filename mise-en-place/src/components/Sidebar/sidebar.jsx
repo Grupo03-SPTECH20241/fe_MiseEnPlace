@@ -7,8 +7,10 @@ import setaImage from '../../utils/img/seta.png';
 import esquerda from '../../utils/img/esquerda.png';
 import logo from '../../utils/img/logo_v2.png';
 import acessibilidadeImage from '../../utils/img/circle-question-regular.png'
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+    const navigate = useNavigate();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -16,7 +18,7 @@ const Sidebar = () => {
     };
 
     const redirect = (url) => {
-        window.location = url;
+        navigate(url);
     }
 
     return (

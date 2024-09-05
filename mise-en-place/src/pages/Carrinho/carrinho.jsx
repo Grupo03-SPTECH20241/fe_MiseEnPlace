@@ -10,8 +10,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import InputCalendar from '../../components/Input/Calendar/calendar';  
 import InputText from '../../components/Input/Text/text';  
 import api from "../../api";  
+import { useNavigate } from "react-router-dom";
 
-const Carrinho = () => {  
+const Carrinho = () => {
+    
+    const navigate = useNavigate();
+    
     // valores selecionados nos inputs
     const [produtosCarrinho, setProdutosCarrinho] = useState([]);
     const [nomeCliente, setNomeCliente] = useState(null);
@@ -64,10 +68,8 @@ const Carrinho = () => {
                 setDataEntrega(null);
                 setCep(null);
                 setLogradouro(null);
-    
-                // setTimeout(() => {
-                //     window.location.href = '/kanban';
-                // }, 6000)
+
+                navigate("/dashboard")
             } catch (error) {
                 console.log(error);
                 toast.error('Erro ao cadastrar pedido', { theme: "colored" });

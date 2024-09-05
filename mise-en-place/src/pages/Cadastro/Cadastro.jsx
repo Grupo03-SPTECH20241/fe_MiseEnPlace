@@ -6,12 +6,15 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import api from '../../api';
 import InputMask from 'react-input-mask'; // Importando a biblioteca para máscara de entrada
+import { useNavigate } from 'react-router-dom';
 
 function Cadastro() {
     const [filePath, setFilePath] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [cnpj, setCnpj] = useState('');
+    const navigate = useNavigate();
+
 
     const handleFileUpload = (event) => {
         const uploadedFile = event.target.files[0];
@@ -23,7 +26,7 @@ function Cadastro() {
     };
 
     const cancelSubmit = () => {
-        window.location = "/login";
+        navigate('/login');
     }
 
     const handleCadastro = async (event) => {
@@ -52,7 +55,7 @@ function Cadastro() {
             setFilePath('');
 
             setTimeout(() => {
-                window.location.href = '/login';
+                navigate('/login');
             }, 6000)
         } catch (error) {
             console.log(error);
