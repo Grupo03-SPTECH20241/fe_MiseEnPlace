@@ -12,12 +12,29 @@
 .innerContainerSearch {
     display: flex;
     justify-content: space-between;
-    width: 91.5%;
+    width: 87.2%;
     margin-top: 3vh;
+    margin-left: 30px;
+} 
+
+.containerInputs {
+    display: flex;
+    width: 360px;
+    justify-content: space-between;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.containerButton button {
+    margin-left: 25px;
 }
 
 .mainContainer {
     display: flex;
+    /* width: 100%; */
 }
 
 .produtoBreadcrumbsContainer {
@@ -25,6 +42,7 @@
     padding-top: 5vh;
 }
 
+/* ESSE CARA TA BUGADO */
 .produtoTittleCard {
     background-image: linear-gradient(to left, #E5246B, #DE0052);
     display: flex;
@@ -36,7 +54,7 @@
     margin-left: 6.5vh;
     padding: 2.5vh;
     border-radius: 12px;
-}
+} 
 
 .produtoTittleCard h2,
 .produtoTittleCard p {
@@ -65,7 +83,7 @@
 /* Cards */
 
 .content-musicas {
-    height: calc(100vh - 8vh);
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     /* overflow-y: hidden; */
@@ -96,20 +114,44 @@
     flex-basis: 100%;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1056px) {
     .quadrado {
         flex-basis: calc(99% - 20px);
     }
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
+
 }
 
 @media screen and (max-width: 900px) {
     .quadrado {
         flex-basis: calc(45% - 20px);
     }
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .produtoTittleCard {
+        width: 60%;
+    }
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 520px) {
     .quadrado {
-        flex-basis: calc(100% - 20px);
+        flex-basis: 100%;
+    }
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
+    .produtoTittleCard {
+        width: 89.9%;
+        margin: 0;
+        border-radius: 0;
     }
 }
