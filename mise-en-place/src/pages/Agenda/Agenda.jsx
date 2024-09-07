@@ -3,29 +3,80 @@ import NestedList from "../../components/NestedList/NestedList";
 import styles from "./agenda.module.css";
 import Sidebar from "../../components/Sidebar/sidebar";
 import Breadcrumb from "../../components/Texts/Breadcrumbs/breadcrumbs";
+import Filter from "../../components/Filter/filter";
 import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
+import api from "../../api";
 import ButtonDefault from '../../components/Button/Default/default';
 
 const Agenda = () => {
   const [testeMap, setTesteMap] = useState([]);
-  useEffect(() => {
-    const fetchAgenda = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/produto-pedidos/agenda?dataInicio=01%2F01%2F2000&dataFim=10%2F09%2F2024');
-        const data = await response.json();
-        console.log("Esse aqui é o data: ", data);
-        setTesteMap(data.itemsAgenda);
-      } catch (error) {
-        console.error("Erro ao buscar dados da agenda", error);
-      }
-    };
+  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
 
+  const handleFilterStatus = (value) => {
+    setFilterSelectedValue(value);
+    fetchAgenda(value);
+  }
+
+  const fetchAgenda = async (item) => {
+    setTesteMap([]);
+    try {
+      var stringUrl = "";
+      if (item === 'Semanal') {
+        function startOfWeek(date) {
+          var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+          return new Date(date.setDate(diff));
+        }
+
+        var dt = new Date();
+
+
+        stringUrl = 'produto-pedidos/agenda?dataInicio=';
+        stringUrl += startOfWeek(dt).getDate() < 10 ? "0" + startOfWeek(dt).getDate() : startOfWeek(dt).getDate()
+        stringUrl += "%2F"
+        stringUrl += (startOfWeek(dt).getMonth() + 1) < 10 ? "0" + (startOfWeek(dt).getMonth() + 1) : (startOfWeek(dt).getMonth() + 1)
+        stringUrl += "%2F"
+        stringUrl += startOfWeek(dt).getFullYear().toString()
+        stringUrl += "&dataFim="
+        stringUrl += (startOfWeek(dt).getDate() + 6) < 10 ? "0" + (startOfWeek(dt).getDate() + 6) : (startOfWeek(dt).getDate() + 6)
+        stringUrl += "%2F"
+        stringUrl += (startOfWeek(dt).getMonth() + 1) < 10 ? "0" + (startOfWeek(dt).getMonth() + 1) : (startOfWeek(dt).getMonth() + 1)
+        stringUrl += "%2F"
+        stringUrl += startOfWeek(dt).getFullYear();
+      } else {
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = new Date(y, m, 1);
+        var lastDay = new Date(y, m + 1, 0);
+
+        stringUrl = "produto-pedidos/agenda?dataInicio=";
+        stringUrl += firstDay.getDate() < 10 ? "0" + firstDay.getDate().toString() : firstDay.getDate();
+        stringUrl += "%2F";
+        stringUrl += (firstDay.getMonth() + 1) < 10 ? "0" + (firstDay.getMonth() + 1) : firstDay.getMonth() + 1;
+        stringUrl += "%2F";
+        stringUrl += firstDay.getFullYear();
+        stringUrl += "&dataFim=";
+        stringUrl += lastDay.getDate() < 10 ? "0" + lastDay.getDate() : lastDay.getDate();
+        stringUrl += "%2F";
+        stringUrl += (lastDay.getMonth() + 1) < 10 ? "0" + (lastDay.getMonth() + 1) : lastDay.getMonth() + 1;
+        stringUrl += "%2F";
+        stringUrl += lastDay.getFullYear();
+      }
+      api.get(stringUrl).then((response) => {
+        const data = response.data;
+        setTesteMap(data.itemsAgenda);
+      }).catch((error) => {
+        console.error("Erro ao buscar dados da agenda", error);
+      });
+    } catch (error) {
+      console.error("Erro ao buscar dados da agenda", error);
+    }
+  };
+  useEffect(() => {
     fetchAgenda();
   }, []);
 
 
-  
+
 
   return (
     <div className={styles["mainContainer"]}>
@@ -53,16 +104,21 @@ const Agenda = () => {
               />
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
-              <div className={styles["BackgroundColorIcon"]}>
-                <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
-              </div>
-              <div>
-                <img className={styles["IconKanban"]} src={IconKanban} alt="" />
+              <div className={styles["marginButtons"]}>
+                <div style={{ "margin-right": "2vw" }}>
+                  <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />
+                </div>
+                <div className={styles["BackgroundColorIcon"]} style={{ "margin-right": "0.5vw" }}>
+                  <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
+                </div>
+                <div style={{ "display": "flex", "align-items": "center" }}>
+                  <img className={styles["IconKanban"]} src={IconKanban} alt="" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className={styles.kanban}>
+        <div style={{"margin-top": "3vh"}}>
           {testeMap.map((item) => (
             <NestedList testeMap={item} title={item.title} />
           ))}

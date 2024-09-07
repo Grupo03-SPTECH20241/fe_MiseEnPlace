@@ -50,6 +50,11 @@
     margin: 0;
 }
 
+.marginButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
 .DivSpace {
     display: flex;
     width: 100%;
@@ -60,17 +65,18 @@
 .DivActions {
     display: flex;
     align-items: center;
-    width: 87.60%;
+    width: 87.50%;
     justify-content: space-between;
     padding-top: 6.5vh;
-    padding-left: 6.5vh;
+    padding-left: 0.5vh;
+    margin-left: 3vw;
 }
 
 .DivButtonTrocarVisualizacao {
     display: flex;
     pad: 15px;
-    width: 5%;
-    justify-content: space-between;
+    width: 17%;
+    justify-content: end;
     align-items: center;
 }
 

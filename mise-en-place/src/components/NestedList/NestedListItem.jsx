@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import setaDireita from "../../utils/img/setaDireita.png";
 import styles from "./nestedList.module.css";
 
 // Componente para renderizar cada item da lista
@@ -28,7 +29,6 @@ const NestedListItem = ({ testeMap }) => {
             testeMap.status === "N" ? styles["statusAgendaNovo"]
             : testeMap.status === "P" ? styles["statusAgendaPreparando"]
             : testeMap.status === "R" ? styles["statusAgendaPronto"]
-            : testeMap.status === "F" ? styles["statusAgendaFazendo"]
             : testeMap.status === "E" ? styles["statusAgendaEntregue"]
             : ""
           }`
@@ -36,7 +36,6 @@ const NestedListItem = ({ testeMap }) => {
           {testeMap.status === "N" ? "Novo" 
           : testeMap.status === "P" ? "Preparando" 
           : testeMap.status === "R" ? "Pronto" 
-          : testeMap.status === "F" ? "Fazendo" 
           : testeMap.status === "E" ? "Entregue" 
           : "N/A"}
         </p>
@@ -44,6 +43,9 @@ const NestedListItem = ({ testeMap }) => {
       <div>
         <p>Data de Entrega</p>
         <p>{testeMap.dataEntrega}</p>
+      </div>
+      <div style={{"display" : "flex", "alignItems": "center"}}>
+        <img src={setaDireita} />
       </div>
     </div>
   );

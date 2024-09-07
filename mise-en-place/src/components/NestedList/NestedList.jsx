@@ -17,7 +17,7 @@ function NestedList({ testeMap, title }) {
       setItensList(testeMap.items);
       var title2 = title.split(", ");
       var date = title2[1].split("-");
-      var dateFormatted = date[1] + '/' + date[2] + '/' + date[0];
+      var dateFormatted = date[2] + '/' + date[1] + '/' + date[0];
 
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
