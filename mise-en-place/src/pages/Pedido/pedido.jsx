@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";  
-import styles from './carrinho.module.css';  
+import styles from './pedido.module.css';  
 import Sidebar from '../../components/Sidebar/sidebar';  
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';  
 import Select from '../../components/Input/Select/select';  
 import ButtonFilled from '../../components/Button/Default/default';  
+import PropTypes from 'prop-types';  
+import ButtonOutlinedNegative from "../../components/Button/Cancelar-variant/cancelarv";
+import ButtonFilledNegative from "../../components/Button/Cancelar/cancelar";
 import BoloChocolate from '../../utils/img/produtos/bolo_chocolate.jpg';
 import CardPedido from '../../components/CardRequest/cardRequest';  
 import { toast, ToastContainer } from 'react-toastify';
@@ -12,9 +15,15 @@ import InputText from '../../components/Input/Text/text';
 import api from "../../api";  
 import { useNavigate } from "react-router-dom";
 
-const Carrinho = () => {
-    
+const Pedido = ( {idPedido = 1} ) => {
+    // navegação
     const navigate = useNavigate();
+
+    // dita se a tela está em modo de edição
+    const [isEditando, setIsEditando] = useState(false);
+
+    // dados do pedido selecionado
+    const [pedido, setPedido] = useState(null);
     
     // valores selecionados nos inputs
     const [produtosCarrinho, setProdutosCarrinho] = useState([]);
@@ -33,6 +42,7 @@ const Carrinho = () => {
     useEffect(() => {  
         const fetchData = async () => {  
             try {  
+                fetchPedido();
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
             } catch (error) {  
@@ -55,21 +65,11 @@ const Carrinho = () => {
                     clienteId: 1,
                     formaPagamentoId: formaPagamento
                 };
-
-                console.log('PAYLOAD');
-                console.log(payload);
-
                 await api.post('/pedidos', payload);
                 toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
-                setNomeCliente(null);
-                setNumeroTelefone(null);
-                setFormaEntrega('prontaEntrega');
-                setFormaPagamento(null);
-                setDataEntrega(null);
-                setCep(null);
-                setLogradouro(null);
-
-                navigate("/dashboard")
+                setTimeout(()=>{
+                    navigate("/dashboard")
+                }, 6000);
             } catch (error) {
                 console.log(error);
                 toast.error('Erro ao cadastrar pedido', { theme: "colored" });
@@ -81,7 +81,8 @@ const Carrinho = () => {
 
     const validateBody = () =>{
         if (nomeCliente && numeroTelefone && formaEntrega && formaPagamento && dataEntrega) {
-            if(formaEntrega === '3'){
+            alert(formaEntrega)
+            if(formaEntrega === 'Serviço Festa'){
                 if(cep && logradouro){
                     return true
                 } else {
@@ -108,8 +109,6 @@ const Carrinho = () => {
     const fetchFormaPagamentoOptions = async () => {
         const response = await api.get('/forma-pagamento');  
         const { data } = response;
-        console.log('formas de pagamento:')
-        console.log(data);
         setFormaPagamentoOptions(data.map((value) =>{
             return {
                 label: value?.formaPagamento,
@@ -118,14 +117,31 @@ const Carrinho = () => {
         }))
     }
 
+    // busca os dados do pedido
+    const fetchPedido = async () => {
+        const response = await api.get('/pedidos');
+        const { data } = response;
+        debugger
+        console.log("pedidos:");
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+            if (data[i]?.idPedido === idPedido) {
+                console.log("pedidoAtual:");
+                console.log(data[i]);
+                setPedido(data[i]);
+                break;
+            }
+        }
+
+    }
+
     // handlers  
     const handleFormaPagamentoChange = (event) => {  
         setFormaPagamento(event.target.value);  
     };  
 
     const handleFormaEntregaChange = (event) => {  
-        setFormaEntrega(event.target.value);  
-        console.log(formaEntrega);
+        setFormaEntrega(event.target.value);
     };  
 
     const handleDataEntregaChange = (event) => {  
@@ -160,8 +176,8 @@ const Carrinho = () => {
                     <Breadcrumb />  
                 </div>  
                 <div className={styles["carrinhoTittleCard"]}>  
-                    <h2>Carrinho</h2>  
-                    <p>Verifique os produtos e conclua o pedido</p>  
+                    <h2>Pedido #{pedido?.idPedido? pedido.idPedido : '-'}</h2>  
+                    <p>Estado atual: {pedido?.status? pedido.status : '-'}</p>  
                 </div>  
                 <div className={styles["inputsContainer"]}>  
                     <div className={styles["clientInfo"]}>  
@@ -239,21 +255,38 @@ const Carrinho = () => {
                     ))}
                     </div>  
                 </div>  
-                <div className={styles["actions"]}>  
-                    <div className={styles["values"]}>  
-                        <p>Valor: R$ 23.07</p>  
-                        <p>Sinal: R$ 23.07</p>  
-                    </div>  
-                    <ButtonFilled   
-                        label="Cadastrar pedido"  
-                        iconPosition="left"  
-                        width="215px"  
-                        onClick={adicionarPedido}
-                    />  
-                </div>  
+                <div className={styles["pedidos-footer"]}>
+                    <div className={styles["buttons-container"]}>
+                        <div className={styles["buttons"]}>
+                            <ButtonFilledNegative
+                                label="Deletar pedido"
+                                showIcon={false}
+                                width="150px"
+                            ></ButtonFilledNegative>
+                            <ButtonOutlinedNegative
+                                label="Editar pedido"
+                                iconPosition="left"
+                                icon="edit"
+                                width="150px"
+                            ></ButtonOutlinedNegative>
+                        </div>
+                    </div>
+                    <div className={styles["actions-container"]}>
+                        <div className={styles["actions"]}>  
+                            <div className={styles["values"]}>  
+                                <p>Valor: R${pedido?.vlPedido ? pedido.vlPedido:'-'}</p>  
+                                <p>Sinal: R${pedido?.valorSinal ? pedido.vlPedido:'-'}</p>  
+                            </div>
+                        </div>  
+                    </div>
+                </div>
             </div>  
         </div>  
     );  
 };  
 
-export default Carrinho;
+ButtonOutlinedNegative.propTypes = {  
+    idPedido: PropTypes.number,  
+  };  
+
+export default Pedido;

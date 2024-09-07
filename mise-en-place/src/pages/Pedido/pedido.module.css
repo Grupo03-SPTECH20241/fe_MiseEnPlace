@@ -1,0 +1,132 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.mainContainer {
+    font-family: Nunito-Regular;
+    display: flex;
+}
+
+.carrinhoBreadcrumbContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.carrinhoTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85vw;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.carrinhoTittleCard h2,
+.carrinhoTittleCard p {
+    margin-left: 3vh;
+    color: white;
+}
+
+.carrinhoTittleCard h2 {
+    font-family: 'Nunito-Bold';
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.carrinhoTittleCard p {
+    font-weight: 400;
+    margin: 0;
+}
+
+.inputsContainer {
+    margin-left: 6.5vh;
+    padding-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.clientInfo {
+    margin-bottom: 16px;
+}
+
+.requestInfo {
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.clientInfo, .requestInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
+
+.divisor {
+    display: flex;
+    height: 0.2vh;
+    width: 88vw;
+    margin-left: 3vw;
+    background-color: gray;
+}
+
+.productsList {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3vw;
+}
+
+.productsList h2 {
+    font-family: "Nunito-Bold";
+    font-weight: 400;
+}
+
+.buttons-container {
+    display: flex;
+    position: sticky;
+    left: 0;
+}
+
+.actions-container {
+    display: flex;
+    position: sticky;
+    left: 100%;
+}
+
+.actions-container .actions, .buttons-container .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 32px;
+}
+
+.values {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+} 
+
+.values p{
+    width: 12vw;
+    height: 40px;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: 2px solid #DD0543;
+    background-color: #31cfff00;
+}
+
+.pedidos-footer {
+    display: flex;
+    margin-left: 6.5vh;
+    margin-top: 15%;
+    bottom: 0px !important;
+}
