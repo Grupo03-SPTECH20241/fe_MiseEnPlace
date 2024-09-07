@@ -19,7 +19,7 @@ const customStyles = {
       borderRadius: '20px',
       borderColor: 'gray'
     },
-  };
+};
 
 const Header = () => {
     

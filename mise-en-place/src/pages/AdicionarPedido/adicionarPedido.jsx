@@ -6,18 +6,37 @@ import ButtonOutlinedNegative from '../../components/Button/Cancelar-variant/can
 import ButtonFilledDefault from '../../components/Button/Default/default';
 import InputSearch from '../../components/Input/SearchProduct/searchProduct';
 import { useNavigate, useLocation } from "react-router-dom";
-
-
+import Modal from "react-modal"
+import AdicionarPedidoModal from '../../components/AdicionarPedidoModal/adicionarPedidoModal';
 import Filter from '../../components/Filter/filter';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import api from '../../api';
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
-
-
+const customStyles = {
+    content: {
+      width: '60%',
+      height: '70%',
+      margin: 'auto',
+      borderRadius: '20px',
+      borderColor: 'gray'
+    },
+};
 
 const AdicionarPedido = () => {
+    // Modal de adição do produto
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalProduct, setModalProduct] = useState('');
+
+    const openModal = (data) => {
+        setModalProduct(data);
+        setModalIsOpen(true)
+    }
+    const closeModal = () => {
+        setModalIsOpen(false)
+    }
+
     // Navegação & recuperação de dados do carrinho
     const navigate = useNavigate();  
     const location = useLocation();  
@@ -65,6 +84,13 @@ const AdicionarPedido = () => {
     // Adiciona o id dos produtos para o array de id's
     const handleSelecionarProduto = (id) => {
         let vetorAuxiliar = idProdutos ? idProdutos : [];
+        /*
+            private int qtProduto;
+            private String observacoes;
+            private Integer produtoId;
+            private Integer personalizacaoId;
+            private Integer pedidoId;
+        */
         vetorAuxiliar.push(id);
         setIdProdutos(vetorAuxiliar);
     }
@@ -133,7 +159,7 @@ const AdicionarPedido = () => {
                             imagemSrc={data.imagemSrc}
                             valor={data.preco}
                             isSelectable={true}
-                            onSelect={()=>{handleSelecionarProduto(data.id)}}
+                            onSelect={()=>{openModal(data)}}
                         ></CardProduct>
                     ))}
                 </div>
@@ -141,10 +167,18 @@ const AdicionarPedido = () => {
                     <ButtonFilledDefault
                         label='Ver carrinho'
                         onClick={irParaTelaDestino}
-                        showIcon={false}
+                        iconPosition='left'
+                        icon='shopping-cart'
                     ></ButtonFilledDefault>
                 </div>
             </div>
+
+            <Modal style={customStyles} isOpen={modalIsOpen}>
+                <AdicionarPedidoModal
+                    produto={modalProduct}
+                    closeModal={closeModal}
+                ></AdicionarPedidoModal>
+            </Modal>
         </div>
     );
 };

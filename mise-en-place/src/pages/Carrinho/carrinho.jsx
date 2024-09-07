@@ -73,7 +73,7 @@ const Carrinho = () => {
                 console.log('PAYLOAD');
                 console.log(payload);
 
-                await api.post('/pedidos', payload);
+                await api.post('//produto-pedidos', payload);
                 toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
                 setTimeout(()=>{
                     navigate("/agenda");
