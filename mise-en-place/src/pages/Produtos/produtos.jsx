@@ -4,8 +4,8 @@ import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produto.module.css';
 import Button from '../../components/Button/Product/product';
 import InputSearch from '../../components/Input/SearchProduct/searchProduct';
-// import InputSearch from '../../components/Input/Search/search';
-import InputSelect from '../../components/Input/SelectProduct/selectProduct'
+
+
 import Filter from '../../components/Filter/filter';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import api from '../../api';
@@ -68,27 +68,31 @@ const Produtos = () => {
 
     return (
         <div className={styles["mainContainer"]}>
-            <Sidebar />
+            <Sidebar />    
             <div className={styles["innerContainer"]}>
                 <div className={styles["produtoBreadcrumbsContainer"]}>
                     <Breadcrumb></Breadcrumb>
                 </div>
-                <div className={styles["produtoTittleCard"]}>
-                    <h2>Produtos</h2>
-                    <p> Lista de todos os produtos, Dropdown cadastrados no sistema</p>
-                </div>
+                <div className={styles["containerTittleCard"]}>
+                        <div className={styles["dashboardTittleCard"]}>
+                            <h2>Quadro de Planejamento</h2>
+                            <p>Organize os pedidos da semana conforme você os prepara.</p>
+                        </div>
+                    </div>
                 <div className={styles["innerContainerSearch"]}>
+                    <div className={styles["containerButton"]}>
                     <Button></Button>
+                    </div>
                     <div className={styles["containerInputs"]}>
                         <InputSearch
                             id='input'
                             onKeyUp={teste}
                         ></InputSearch>
 
-                        <Filter options={value ? value : ['']}
-
+                        <Filter options={value ? value : ['']} 
                             onChange={handleChange}
                         ></Filter>
+
 
 
                     </div>
@@ -112,7 +116,7 @@ const Produtos = () => {
 
                     }
 
-
+                    
 
                 </div>
 
