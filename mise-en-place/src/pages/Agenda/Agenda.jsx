@@ -18,6 +18,10 @@ const Agenda = () => {
     fetchAgenda(value);
   }
 
+  const redirect = (url) => {
+    window.location = url;
+  }
+
   const fetchAgenda = async (item) => {
     setTesteMap([]);
     try {
@@ -61,9 +65,11 @@ const Agenda = () => {
         stringUrl += "%2F";
         stringUrl += lastDay.getFullYear();
       }
+      console.log(stringUrl);
       api.get(stringUrl).then((response) => {
         const data = response.data;
-        setTesteMap(data.itemsAgenda);
+        console.log(data);
+        setTesteMap(data.itemsAgenda.reverse());
       }).catch((error) => {
         console.error("Erro ao buscar dados da agenda", error);
       });
@@ -101,26 +107,27 @@ const Agenda = () => {
                 iconPosition="left"
                 fontSize="small"
                 width="170px"
-              />
+                onClick={() => redirect('/adicionar-pedido')}
+              /> {/* TODO: ALTERAR LINK PRA REDIRECT */}
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
               <div className={styles["marginButtons"]}>
-                <div style={{ "margin-right": "2vw" }}>
+                <div style={{ "marginRight": "2vw" }}>
                   <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />
                 </div>
-                <div className={styles["BackgroundColorIcon"]} style={{ "margin-right": "0.5vw" }}>
+                <div className={styles["BackgroundColorIcon"]} style={{ "marginRight": "0.5vw" }}>
                   <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
                 </div>
-                <div style={{ "display": "flex", "align-items": "center" }}>
+                <div style={{ "display": "flex", "alignItems": "center" }} onClick={() => redirect("/kanban")}>
                   <img className={styles["IconKanban"]} src={IconKanban} alt="" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div style={{"margin-top": "3vh"}}>
-          {testeMap.map((item) => (
-            <NestedList testeMap={item} title={item.title} />
+        <div style={{"marginTop": "3vh"}}>
+          {testeMap.map((item, index) => (
+            <NestedList key={index} testeMap={item} title={item.title} />
           ))}
         </div>
       </div>
