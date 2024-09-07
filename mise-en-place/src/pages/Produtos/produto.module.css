@@ -14,7 +14,7 @@
     justify-content: space-between;
     width: 87.2%;
     margin-top: 3vh;
-    margin-left: 30px;
+    margin-left: 4%;
 } 
 
 .containerInputs {
@@ -52,9 +52,51 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 6.5vh;
-    padding: 2.5vh;
+    /* padding: 2.5vh; */
     border-radius: 12px;
 } 
+.containerTittleCard {
+    display: flex;
+    width: 100%;
+    /* justify-content: center; */
+}
+
+.dashboardTittleCard {
+    margin-left: 0px;
+    width: 85%;
+}
+
+.dashboardTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: left;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.dashboardTittleCard h2,
+.dashboardTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.dashboardTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.dashboardTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
+}
 
 .produtoTittleCard h2,
 .produtoTittleCard p {
@@ -131,6 +173,9 @@
     .produtoBreadcrumbsContainer {
         display: none;
     }
+    .containerInputs{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -149,7 +194,7 @@
     .produtoBreadcrumbsContainer {
         display: none;
     }
-    .produtoTittleCard {
+    .dashboardTittleCard {
         width: 89.9%;
         margin: 0;
         border-radius: 0;

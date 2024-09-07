@@ -73,10 +73,12 @@ const Produtos = () => {
                 <div className={styles["produtoBreadcrumbsContainer"]}>
                     <Breadcrumb></Breadcrumb>
                 </div>
-                <div className={styles["produtoTittleCard"]}>
-                    <h2>Produtos</h2>
-                    <p> Lista de todos os produtos, Dropdown cadastrados no sistema</p>
-                </div>
+                <div className={styles["containerTittleCard"]}>
+                        <div className={styles["dashboardTittleCard"]}>
+                            <h2>Quadro de Planejamento</h2>
+                            <p>Organize os pedidos da semana conforme você os prepara.</p>
+                        </div>
+                    </div>
                 <div className={styles["innerContainerSearch"]}>
                     <div className={styles["containerButton"]}>
                     <Button></Button>
@@ -87,7 +89,7 @@ const Produtos = () => {
                             onKeyUp={teste}
                         ></InputSearch>
 
-                        <Filter options={value ? value : ['']}
+                        <Filter options={value ? value : ['']} 
                             onChange={handleChange}
                         ></Filter>
 
