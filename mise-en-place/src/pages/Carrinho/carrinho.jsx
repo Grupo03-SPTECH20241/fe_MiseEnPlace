@@ -14,6 +14,7 @@ import api from "../../api";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Carrinho = () => {
+    // navegação & recuperação de dados da tela anterior
     const location = useLocation();  
     const idProdutos = location.state?.idProdutos || [];  
     const navigate = useNavigate();  
@@ -22,8 +23,12 @@ const Carrinho = () => {
         navigate('/adicionar-pedido', { state: { idProdutos } });  
     };  
     
+    // valores a serem exibidos na tela referente ao valor do pedido
+    const [valorTotal, setValorTotal] = useState(0);
+    const [valorSinal, setValorSinal] = useState(0);
+
     // valores selecionados nos inputs
-    const [produtosCarrinho, setProdutosCarrinho] = useState([]);
+    const [produtosCarrinho, setProdutosCarrinho] = useState(null);
     const [nomeCliente, setNomeCliente] = useState(null);
     const [numeroTelefone, setNumeroTelefone] = useState(null);
     const [formaEntrega, setFormaEntrega] = useState(null);  
@@ -41,6 +46,7 @@ const Carrinho = () => {
             try {  
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
+                fetchProdutosSelecionados();
                 console.log("lista de produtos do carrinho:")
                 console.log(idProdutos)
             } catch (error) {  
@@ -124,6 +130,26 @@ const Carrinho = () => {
                 value: value?.idFormaPagamento
             }
         }))
+    }
+
+    const fetchProdutosSelecionados = async () => {
+        const response = await api.get('/produtos');  
+        const { data } = response;
+        console.log(data)
+        let produtosPreviamenteSelecionados = [];
+        let valorTotal = 0;
+        let valorSinal = 0;
+
+        for(let i = 0; i < idProdutos.length; i++){
+            for(let j = 0; j < data.length; j++){
+                if(idProdutos[i] === data[j].id){
+                    produtosPreviamenteSelecionados.push(data[j]);
+                    valorTotal += data[j].preco;
+                }
+            }
+        }
+        setProdutosCarrinho(produtosPreviamenteSelecionados);
+        setValorTotal(valorTotal);
     }
 
     // handlers  
@@ -235,7 +261,7 @@ const Carrinho = () => {
                 <div className={styles["productsList"]}>  
                     <h2>Lista de produtos</h2>  
                     <div className={styles["cardsContainer"]}>  
-                    { false && produtosCarrinho.map((data, index) => (
+                    { produtosCarrinho && produtosCarrinho.map((data, index) => (
                         <CardPedido   
                             key={`pedido-${index}`}
                             imagemSrc={imagem}  
@@ -258,7 +284,7 @@ const Carrinho = () => {
                     </div>
                     <div className={styles["actions"]}>  
                         <div className={styles["values"]}>  
-                            <p>Valor: R$ 23.07</p>  
+                            <p>Valor: R${valorTotal ? valorTotal : '0'}</p>  
                             <p>Sinal: R$ 23.07</p>  
                         </div>  
                         <ButtonFilledDefault   

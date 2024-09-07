@@ -15,7 +15,7 @@ import InputText from '../../components/Input/Text/text';
 import api from "../../api";  
 import { useNavigate } from "react-router-dom";
 
-const Pedido = ( {idPedido = 1} ) => {
+const VisualizarPedido = ( {idPedido = 1} ) => {
     // navegação
     const navigate = useNavigate();
 
@@ -259,9 +259,10 @@ const Pedido = ( {idPedido = 1} ) => {
                     <div className={styles["buttons-container"]}>
                         <div className={styles["buttons"]}>
                             <ButtonFilledNegative
-                                label="Deletar pedido"
-                                showIcon={false}
-                                width="150px"
+                                label="Excluir pedido"
+                                iconPosition="left"
+                                icon="delete"
+                                width="160px"
                             ></ButtonFilledNegative>
                             <ButtonOutlinedNegative
                                 label="Editar pedido"
@@ -289,4 +290,4 @@ ButtonOutlinedNegative.propTypes = {
     idPedido: PropTypes.number,  
   };  
 
-export default Pedido;
+export default VisualizarPedido;

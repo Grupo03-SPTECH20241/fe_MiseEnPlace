@@ -18,14 +18,21 @@ import api from '../../api';
 
 
 const AdicionarPedido = () => {
+    // Navegação & recuperação de dados do carrinho
     const navigate = useNavigate();  
     const location = useLocation();  
     const [idProdutos, setIdProdutos] = useState( location.state?.idProdutos || []);
-
+    
     const irParaTelaDestino = () => {  
         const novoArray = idProdutos;  
         navigate('/carrinho', { state: { idProdutos: novoArray } });  
     };  
+
+    const retornarParaAgenda = () => {
+        navigate(location.pathname, { state: null });
+        setIdProdutos([]);
+        // navigate('/agenda');
+    }
 
     const [cardsData, setCardsData] = useState();
     const [filteredCardsData, setFilteredCardsData] = useState();
@@ -34,8 +41,6 @@ const AdicionarPedido = () => {
     useEffect(() => {
         fetchDataDrop();
         fetchData();
-        console.log("lista de produtos no pedido:")
-        console.log(idProdutos)
     }, []);
 
     const fetchDataDrop = () => {
@@ -78,7 +83,7 @@ const AdicionarPedido = () => {
         }
     }
 
-    const teste = () => {
+    const filtragem = () => {
         const element = document.getElementById('input');
         const searchValue = element.value.toLowerCase();
         const newCardsData = cardsData.filter((data) => data.nome.toLowerCase().includes(searchValue));
@@ -102,14 +107,16 @@ const AdicionarPedido = () => {
                 <div className={styles["innerContainerSearch"]}>
                     <div className={styles["containerButton"]}>
                     <ButtonOutlinedNegative
-                        showIcon={false}
+                        icon='cancel'
+                        iconPosition='left'
                         label='Cancelar'
+                        onClick={retornarParaAgenda}
                     ></ButtonOutlinedNegative>
                     </div>
                     <div className={styles["containerInputs"]}>
                         <InputSearch
                             id='input'
-                            onKeyUp={teste}
+                            onKeyUp={filtragem}
                         ></InputSearch>
 
                         <Filter options={value ? value : ['']} 
@@ -130,7 +137,7 @@ const AdicionarPedido = () => {
                         ></CardProduct>
                     ))}
                 </div>
-                <div className={styles["teste"]}>
+                <div className={styles["carrinho-container"]}>
                     <ButtonFilledDefault
                         label='Ver carrinho'
                         onClick={irParaTelaDestino}
@@ -143,21 +150,3 @@ const AdicionarPedido = () => {
 };
 
 export default AdicionarPedido;
-
-/*
-const TelaOrigem = () => {  
-    const navigate = useNavigate();  
-    const meuArray = [1, 2, 3, 4, 5];  
-
-    const irParaTelaDestino = () => {  
-        navigate('/tela-destino', { state: { meuArray } });  
-    };  
-
-    return (  
-        <div>  
-            <h1>Tela de Origem</h1>  
-            <button onClick={irParaTelaDestino}>Ir para Tela Destino</button>  
-        </div>  
-    );  
-};  
-*/
