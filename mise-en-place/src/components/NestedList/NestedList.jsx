@@ -17,18 +17,19 @@ function NestedList({ testeMap, title }) {
       setItensList(testeMap.items);
       var title2 = title.split(", ");
       var date = title2[1].split("-");
-      var dateFormatted = date[1] + '/' + date[2] + '/' + date[0];
+      var dateFormatted = date[2] + '/' + date[1] + '/' + date[0];
 
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
       
-      today = mm + '/' + dd + '/' + yyyy;
+      today = dd + '/' + mm + '/' + yyyy;
       var isToday = dateFormatted === today ? true : false;
-      var isTomorrow = dateFormatted === (mm + '/' + (parseInt(dd) + 1) + '/' + yyyy) ? true : false;
+      var isTomorrow = dateFormatted === ("0" + (parseInt(dd) + 1) + '/' + mm + '/' + yyyy) ? true : false;
 
       setTitulo([title2[0] + ", "+ dateFormatted + (isToday ? " | Hoje" : isTomorrow? " | Amanhã" : "")]);
+      console.log();
     }, []),
     <>
       {
