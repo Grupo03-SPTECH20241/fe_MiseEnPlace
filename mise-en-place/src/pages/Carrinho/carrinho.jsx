@@ -62,7 +62,7 @@ const Carrinho = () => {
             try {
                 const payload = {
                     dtPedido: dataEntrega,
-                    vlPedido: 30.0,
+                    vlPedido: valorTotal,
                     status: 'N',
                     valorSinal: 30.0,
                     formaEntregaId: formaEntrega,
@@ -75,15 +75,9 @@ const Carrinho = () => {
 
                 await api.post('/pedidos', payload);
                 toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
-                setNomeCliente(null);
-                setNumeroTelefone(null);
-                setFormaEntrega('prontaEntrega');
-                setFormaPagamento(null);
-                setDataEntrega(null);
-                setCep(null);
-                setLogradouro(null);
-
-                navigate("/dashboard")
+                setTimeout(()=>{
+                    navigate("/agenda");
+                }, 6000);
             } catch (error) {
                 console.log(error);
                 toast.error('Erro ao cadastrar pedido', { theme: "colored" });
