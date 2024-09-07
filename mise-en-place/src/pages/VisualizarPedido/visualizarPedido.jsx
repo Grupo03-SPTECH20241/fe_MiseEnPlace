@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";  
-import styles from './pedido.module.css';  
+import styles from './visualizarPedido.module.css';  
 import Sidebar from '../../components/Sidebar/sidebar';  
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';  
 import Select from '../../components/Input/Select/select';  
@@ -121,7 +121,7 @@ const Pedido = ( {idPedido = 1} ) => {
     const fetchPedido = async () => {
         const response = await api.get('/pedidos');
         const { data } = response;
-        debugger
+        
         console.log("pedidos:");
         console.log(data);
         for (let i = 0; i < data.length; i++) {

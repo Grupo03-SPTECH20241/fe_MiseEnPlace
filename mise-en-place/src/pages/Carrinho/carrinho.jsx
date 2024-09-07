@@ -3,18 +3,24 @@ import styles from './carrinho.module.css';
 import Sidebar from '../../components/Sidebar/sidebar';  
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';  
 import Select from '../../components/Input/Select/select';  
-import ButtonFilled from '../../components/Button/Default/default';  
+import ButtonFilledDefault from '../../components/Button/Default/default';  
+import ButtonFilledDefaultVariant from "../../components/Button/Default-variant/defaultv";
 import BoloChocolate from '../../utils/img/produtos/bolo_chocolate.jpg';
 import CardPedido from '../../components/CardRequest/cardRequest';  
 import { toast, ToastContainer } from 'react-toastify';
 import InputCalendar from '../../components/Input/Calendar/calendar';  
 import InputText from '../../components/Input/Text/text';  
 import api from "../../api";  
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Carrinho = () => {
-    
-    const navigate = useNavigate();
+    const location = useLocation();  
+    const idProdutos = location.state?.idProdutos || [];  
+    const navigate = useNavigate();  
+
+    const voltarParaTelaOrigem = () => {  
+        navigate('/adicionar-pedido', { state: { idProdutos } });  
+    };  
     
     // valores selecionados nos inputs
     const [produtosCarrinho, setProdutosCarrinho] = useState([]);
@@ -35,6 +41,8 @@ const Carrinho = () => {
             try {  
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
+                console.log("lista de produtos do carrinho:")
+                console.log(idProdutos)
             } catch (error) {  
                 console.error(error);  
             }  
@@ -239,21 +247,32 @@ const Carrinho = () => {
                     ))}
                     </div>  
                 </div>  
-                <div className={styles["actions"]}>  
-                    <div className={styles["values"]}>  
-                        <p>Valor: R$ 23.07</p>  
-                        <p>Sinal: R$ 23.07</p>  
+
+                <div className={styles["carrinhoFooter"]}>
+                    <div className={styles["return"]}>
+                        <ButtonFilledDefaultVariant
+                            label="< Voltar"
+                            onClick={voltarParaTelaOrigem}
+                            showIcon={false}
+                        ></ButtonFilledDefaultVariant>
+                    </div>
+                    <div className={styles["actions"]}>  
+                        <div className={styles["values"]}>  
+                            <p>Valor: R$ 23.07</p>  
+                            <p>Sinal: R$ 23.07</p>  
+                        </div>  
+                        <ButtonFilledDefault   
+                            label="Cadastrar pedido"  
+                            iconPosition="left"  
+                            width="215px"  
+                            onClick={adicionarPedido}
+                        />  
                     </div>  
-                    <ButtonFilled   
-                        label="Cadastrar pedido"  
-                        iconPosition="left"  
-                        width="215px"  
-                        onClick={adicionarPedido}
-                    />  
-                </div>  
+                </div>
             </div>  
         </div>  
     );  
 };  
 
 export default Carrinho;
+
