@@ -7,6 +7,9 @@ import PurpleSettingsImage from '../../../utils/img/icons/enabled-purple-setting
 import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
 import DisabledPurplePlusImage from '../../../utils/img/icons/disabled-purple-plus-icon.png';  
 import DisabeldPurpleSettingsImage from '../../../utils/img/icons/disabled-purple-settings-icon.png';
+import EnableWhiteEditImage from '../../../utils/img/icons/enabled-white-edit-icon.png';
+import EnablePurpleEditImage from '../../../utils/img/icons/enabled-purple-edit-icon.png';
+import DisabledPurpleEditImage from '../../../utils/img/icons/disabled-purple-edit-icon.png';
 
 const ButtonOutlinedNegative = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled=false }) => {  
   const [isHovered, setIsHovered] = useState(false);  
@@ -26,6 +29,12 @@ const ButtonOutlinedNegative = ({ onClick, label = 'Label', showIcon = true, ico
         currentIcon = DisabeldPurpleSettingsImage;
       } else {
         currentIcon = isHovered ? WhiteSettingsImage : PurpleSettingsImage;
+      }
+    } else if (icon === 'edit') {
+      if (isDisabled){
+        currentIcon = DisabledPurpleEditImage;
+      } else {
+        currentIcon = isHovered ? EnableWhiteEditImage : EnablePurpleEditImage
       }
     }
     if (iconId === 0 && (iconPosition === 'left' || iconPosition === 'both')) {  
@@ -56,7 +65,7 @@ ButtonOutlinedNegative.propTypes = {
   onClick: PropTypes.any,  
   label: PropTypes.string,  
   showIcon: PropTypes.bool,  
-  icon: PropTypes.oneOf(['plus','settings']),  
+  icon: PropTypes.oneOf(['plus','settings', 'edit', 'delete']),  
   iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
   fontSize: PropTypes.oneOf(['small', 'medium', 'large']),  
   width: PropTypes.string,
