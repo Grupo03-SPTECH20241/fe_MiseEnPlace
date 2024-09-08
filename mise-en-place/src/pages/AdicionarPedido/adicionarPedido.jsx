@@ -52,7 +52,7 @@ const AdicionarPedido = () => {
     const retornarParaAgenda = () => {
         navigate(location.pathname, { state: null });
         setProdutos([]);
-        // navigate('/agenda');
+        navigate('/agenda');
     }
 
     const [cardsData, setCardsData] = useState();

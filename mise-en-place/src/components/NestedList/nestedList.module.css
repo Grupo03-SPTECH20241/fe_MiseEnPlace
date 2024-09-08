@@ -70,5 +70,8 @@
     cursor: pointer;
 }
 
+.cardInfoContainer {
+    cursor: pointer;
+}
 
 /* Novo, Preparando, Pronto, Fazendo, Entregue */

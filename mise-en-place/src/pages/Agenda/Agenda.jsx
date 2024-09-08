@@ -6,9 +6,13 @@ import Breadcrumb from "../../components/Texts/Breadcrumbs/breadcrumbs";
 import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import ButtonDefault from '../../components/Button/Default/default';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Agenda = () => {
   const [testeMap, setTesteMap] = useState([]);
+  const navigate = useNavigate();  
+  const location = useLocation();
+
   useEffect(() => {
     const fetchAgenda = async () => {
       try {
@@ -24,8 +28,15 @@ const Agenda = () => {
     fetchAgenda();
   }, []);
 
-
+  const navigateToAdicionarPedido = () => {
+    navigate('/adicionar-pedido');
+  }
   
+  const navigateToVisualizarPedido = ( pedidoSelecionado ) => {
+    console.log("pedido selecionado:");
+    console.log(pedidoSelecionado);
+    navigate('/visualizar-pedido', { state: { pedido: pedidoSelecionado } });
+  }
 
   return (
     <div className={styles["mainContainer"]}>
@@ -50,6 +61,7 @@ const Agenda = () => {
                 iconPosition="left"
                 fontSize="small"
                 width="170px"
+                onClick={navigateToAdicionarPedido}
               />
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
@@ -64,7 +76,7 @@ const Agenda = () => {
         </div>
         <div className={styles.kanban}>
           {testeMap.map((item) => (
-            <NestedList testeMap={item} title={item.title} />
+            <NestedList testeMap={item} title={item.title} onClick={()=>{navigateToVisualizarPedido(item)}} />
           ))}
         </div>
       </div>
