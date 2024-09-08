@@ -74,7 +74,7 @@ const Carrinho = () => {
             alert(idClienteSelecionado);
             try {
                 const pedidoCriacaoDTO = {
-                    dtPedido: dataAtual,
+                    dtPedido: dataEntrega,
                     vlPedido: valorTotal,
                     status: 'N',
                     valorSinal: valorTotal,
@@ -90,7 +90,7 @@ const Carrinho = () => {
                         qtProduto: produtoPedidoCriacaoDtos[i]?.qtProduto,
                         observacoes: produtoPedidoCriacaoDtos[i]?.observacoes,
                         produtoId: produtoPedidoCriacaoDtos[i]?.produtoId,
-                        personalizacaoId: 1,
+                        personalizacaoId: null,
                         pedidoId: responsePedidoCriacao?.data?.idPedido,
                     };
                     await api.post('/produto-pedidos', produtoPedidoCriacaoDto);

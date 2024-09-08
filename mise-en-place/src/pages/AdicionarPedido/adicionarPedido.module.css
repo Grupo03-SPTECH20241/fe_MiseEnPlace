@@ -157,9 +157,10 @@
 }
 
 .carrinho-container {
-    position: absolute;  
+    position: fixed;  
     top: 50%;  
-    right: 0;
+    left: 92%;  
+    transform: translate(-50%, -50%);  
 }
 
 @media screen and (max-width: 1056px) {
