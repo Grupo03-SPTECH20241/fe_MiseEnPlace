@@ -24,6 +24,11 @@ const Carrinho = () => {
         navigate('/adicionar-pedido', { state: { produtos, produtoPedidoCriacaoDtos } });  
     };  
     
+    // Informações auxiliares para a criação do pedido
+    const [clientes, setClientes] = useState([]);
+    const [idClienteSelecionado, setIdClienteSelecionado] = useState(null);
+    const [dataAtual, setDataAtual] = useState(new Date());
+
     // valores a serem exibidos na tela referente ao valor do pedido
     const [valorTotal, setValorTotal] = useState(0);
     const [valorSinal, setValorSinal] = useState(0);
@@ -48,10 +53,8 @@ const Carrinho = () => {
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
                 fetchProdutosSelecionados();
-                console.log("lista de produtos do carrinho:");
-                console.log(produtos);
-                console.log("lista de produtoPedidoCriacaoDtos do carrinho:");
-                console.log(produtoPedidoCriacaoDtos);
+                fetchClientes();
+                fetchDataAtual();
             } catch (error) {  
                 console.error(error);  
             }  
@@ -62,21 +65,36 @@ const Carrinho = () => {
     // criação do pedido & validação do corpo p/requisição
     const adicionarPedido = async () => {
         if(validateBody()){
+            alert(idClienteSelecionado);
             try {
-                const payload = {
-                    dtPedido: dataEntrega,
+                const pedidoCriacaoDTO = {
+                    dtPedido: dataAtual,
                     vlPedido: valorTotal,
                     status: 'N',
-                    valorSinal: 30.0,
+                    valorSinal: valorTotal,
                     formaEntregaId: formaEntrega,
-                    clienteId: 1,
-                    formaPagamentoId: formaPagamento
+                    clienteId: idClienteSelecionado,
+                    formaPagamentoId: formaPagamento,
+                    dtEntrega: dataEntrega,
                 };
 
-                console.log('PAYLOAD');
-                console.log(payload);
+                const responsePedidoCriacao = await api.post('/pedidos', pedidoCriacaoDTO);
 
-                await api.post('//produto-pedidos', payload);
+                for(let i = 0; i < produtoPedidoCriacaoDtos.length; i++){
+                    let produtoPedidoCriacaoDto = {
+                        qtProduto: produtoPedidoCriacaoDtos[i]?.qtProduto,
+                        observacoes: produtoPedidoCriacaoDtos[i]?.observacoes,
+                        produtoId: produtoPedidoCriacaoDtos[i]?.produtoId,
+                        personalizacaoId: null,
+                        pedidoId: responsePedidoCriacao?.data?.idPedido,
+                    };
+                    try {
+                        await this.api.post('/produto-pedidos', produtoPedidoCriacaoDto);
+                    } catch (e){
+                        console.log(e);
+                    }
+                }
+
                 toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
                 setTimeout(()=>{
                     navigate("/agenda");
@@ -85,23 +103,34 @@ const Carrinho = () => {
                 console.log(error);
                 toast.error('Erro ao cadastrar pedido', { theme: "colored" });
             }
-        } else {
-            toast.error('Por favor, preencha todos os campos.', { theme: "colored" });
         }
     };
 
     const validateBody = () =>{
+        if (!idClienteSelecionado){
+            toast.error('Nenhum cliente encontrado com esse nome.', { theme: "colored" });
+            return false;
+        }
         if (nomeCliente && numeroTelefone && formaEntrega && formaPagamento && dataEntrega) {
             if(formaEntrega === '3'){
                 if(cep && logradouro){
                     return true
                 } else {
+                    toast.error('Por favor, preencha todos os campos.', { theme: "colored" });
                     return false
                 }
             } 
             return true;
         }
+        toast.error('Por favor, preencha todos os campos.', { theme: "colored" });
         return false;
+    }
+
+    // busca dos valores auxiliares
+    const fetchClientes = async () => {
+        const response = await api.get('/clientes');  
+        const { data } = response;
+        setClientes(data);
     }
 
     // busca das opções para os inputs
@@ -116,11 +145,18 @@ const Carrinho = () => {
         }))
     }
 
+    const fetchDataAtual = () => {
+        const agora = new Date();  
+        const ano = agora.getFullYear();  
+        const mes = String(agora.getMonth() + 1).padStart(2, '0');
+        const dia = String(agora.getDate()).padStart(2, '0');  
+    
+        setDataAtual(`${ano}-${mes}-${dia}`); 
+    }
+
     const fetchFormaPagamentoOptions = async () => {
         const response = await api.get('/forma-pagamento');  
         const { data } = response;
-        console.log('formas de pagamento:')
-        console.log(data);
         setFormaPagamentoOptions(data.map((value) =>{
             return {
                 label: value?.formaPagamento,
@@ -132,10 +168,8 @@ const Carrinho = () => {
     const fetchProdutosSelecionados = async () => {
         const response = await api.get('/produtos');  
         const { data } = response;
-        console.log(data)
         let produtosPreviamenteSelecionados = [];
         let valorTotal = 0;
-        let valorSinal = 0;
 
         for(let i = 0; i < produtos.length; i++){
             for(let j = 0; j < data.length; j++){
@@ -156,7 +190,6 @@ const Carrinho = () => {
 
     const handleFormaEntregaChange = (event) => {  
         setFormaEntrega(event.target.value);  
-        console.log(formaEntrega);
     };  
 
     const handleDataEntregaChange = (event) => {  
@@ -172,6 +205,13 @@ const Carrinho = () => {
     };  
 
     const handleNomeClienteChange = (event) => {  
+        const nomeClienteInformado = normalizeString(event.target.value);
+        for(let i = 0; i < clientes.length; i++){
+            if(compareStrings(normalizeString(clientes[i]?.nome), nomeClienteInformado)){
+                setIdClienteSelecionado(clientes[i]?.idCliente);
+                break;
+            }
+        }
         setNomeCliente(event.target.value);  
     };  
 
@@ -181,6 +221,21 @@ const Carrinho = () => {
 
     const imagem = BoloChocolate;
     const qtd = 1;
+
+    // funções de validação
+    function normalizeString(str) {  
+        return str  
+            .normalize('NFD') // Normaliza a string para decompor caracteres acentuados  
+            .replace(/[\u0300-\u036f]/g, '') // Remove os acentos  
+            .toLowerCase(); // Converte para minúsculas  
+    }  
+    
+    function compareStrings(str1, str2) {  
+        const normalizedStr1 = normalizeString(str1);  
+        const normalizedStr2 = normalizeString(str2);  
+        
+        return normalizedStr1.localeCompare(normalizedStr2) === 0; // Retorna true se as strings forem iguais  
+    }  
 
     return (  
         <div className={styles["mainContainer"]}>  
@@ -263,8 +318,8 @@ const Carrinho = () => {
                             key={`pedido-${index}`}
                             imagemSrc={imagem}  
                             nomeProduto={data?.nome}  
-                            descricao={data?.descricao}  
-                            quantidade={qtd}  
+                            descricao={produtoPedidoCriacaoDtos[index]?.observacoes ? produtoPedidoCriacaoDtos[index]?.observacoes : data?.observacoes}  
+                            quantidade={produtoPedidoCriacaoDtos[index]?.qtProduto ? produtoPedidoCriacaoDtos[index]?.qtProduto : data?.qtProduto}  
                             valor={data?.preco}  
                         />  
                     ))}
@@ -282,7 +337,7 @@ const Carrinho = () => {
                     <div className={styles["actions"]}>  
                         <div className={styles["values"]}>  
                             <p>Valor: R${valorTotal ? valorTotal : '0'}</p>  
-                            <p>Sinal: R$ 23.07</p>  
+                            <p>Sinal: R${valorTotal ? valorTotal/2 : '0'}</p>  
                         </div>  
                         <ButtonFilledDefault   
                             label="Cadastrar pedido"  
