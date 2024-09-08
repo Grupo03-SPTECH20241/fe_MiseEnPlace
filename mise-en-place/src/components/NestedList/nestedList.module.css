@@ -9,7 +9,7 @@
     border: 1px solid #C8C8C8;
     border-radius: 10px;
     padding: 10px;
-    width: 86.25%;
+    width: 86.8%;
     margin-left: 6.5vh;
     margin-top: 0.7vh;
     justify-content: space-around;
@@ -20,30 +20,32 @@
     border: none;
     border-radius: 50px;
     padding: 5px;
+    display : flex; 
+    justify-content: center;
 }
 .statusAgendaPreparando{
     background-color: #ffd493;
     border: none;
     border-radius: 50px;
     padding: 5px;
+    display : flex; 
+    justify-content: center;
 }
 .statusAgendaPronto{
     background-color: #8CEC25;
     border: none;
     border-radius: 50px;
     padding: 5px;
-}
-.statusAgendaFazendo{
-    background-color: #9B93FF;
-    border: none;
-    border-radius: 50px;
-    padding: 5px;
+    display : flex; 
+    justify-content: center;
 }
 .statusAgendaEntregue{
     background-color: #25ECE0;
     border: none;
     border-radius: 50px;
     padding: 5px;
+    display : flex; 
+    justify-content: center;
 }
 
 .cardTitle{
@@ -52,7 +54,7 @@
     border-radius: 10px;
     padding: 0.1vh;
     padding-left: 1vw;
-    width: 86.25%;
+    width: 86.8%;
     margin-left: 6.5vh;
     margin-top: 0.7vh;
     cursor: pointer;
@@ -64,10 +66,37 @@
     border-radius: 10px;
     padding: 0.1vh;
     padding-left: 1vw;
-    width: 86.25%;
+    width: 86.8%;
     margin-left: 6.5vh;
     margin-top: 0.7vh;
     cursor: pointer;
+}
+
+.divValores1{
+    width: 10%;
+}
+.divValores2{
+    width: 16%;
+}
+.divValores3{
+    width: 6%;
+}
+.divValores4{
+    width: 8%;
+}
+
+
+.divValores1{
+    width: 10%;
+}
+.divValores2{
+    width: 16%;
+}
+.divValores3{
+    width: 6%;
+}
+.divValores4{
+    width: 8%;
 }
 
 .cardInfoContainer {
