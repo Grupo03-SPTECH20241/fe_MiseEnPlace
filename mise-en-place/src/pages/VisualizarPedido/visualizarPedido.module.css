@@ -11,6 +11,32 @@
 .carrinhoBreadcrumbContainer {
     margin-left: 6.5vh;
     padding-top: 5vh;
+    display: flex;
+}
+
+.carrinhoBreadcrumbContainer .returnArrowContainer {
+    margin-left: 2vw;
+    display: flex;
+    align-self: center;
+    width: 10vw;
+}
+.carrinhoBreadcrumbContainer .returnArrowContainer .returnArrow {
+    cursor: pointer;
+    color: #E5246B;
+    display: flex;
+    align-items: center;
+}
+.carrinhoBreadcrumbContainer .returnArrowContainer .imageContainer {
+    display: flex;
+    justify-content: end;
+    width: 40%;
+}
+.carrinhoBreadcrumbContainer .returnArrowContainer .imageContainer img {
+    width: 40%;
+    height: 100%;
+    margin-right: 0.5vw;
+    display: flex;
+    cursor: pointer;
 }
 
 .carrinhoTittleCard {
