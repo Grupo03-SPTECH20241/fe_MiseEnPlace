@@ -16,11 +16,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 const Carrinho = () => {
     // navegação & recuperação de dados da tela anterior
     const location = useLocation();  
-    const idProdutos = location.state?.idProdutos || [];  
+    const produtos = location.state?.produtos || [];  
+    const produtoPedidoCriacaoDtos = location.state?.produtoPedidoCriacaoDtos || [];
     const navigate = useNavigate();  
 
     const voltarParaTelaOrigem = () => {  
-        navigate('/adicionar-pedido', { state: { idProdutos } });  
+        navigate('/adicionar-pedido', { state: { produtos, produtoPedidoCriacaoDtos } });  
     };  
     
     // valores a serem exibidos na tela referente ao valor do pedido
@@ -47,8 +48,10 @@ const Carrinho = () => {
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
                 fetchProdutosSelecionados();
-                console.log("lista de produtos do carrinho:")
-                console.log(idProdutos)
+                console.log("lista de produtos do carrinho:");
+                console.log(produtos);
+                console.log("lista de produtoPedidoCriacaoDtos do carrinho:");
+                console.log(produtoPedidoCriacaoDtos);
             } catch (error) {  
                 console.error(error);  
             }  
@@ -134,9 +137,9 @@ const Carrinho = () => {
         let valorTotal = 0;
         let valorSinal = 0;
 
-        for(let i = 0; i < idProdutos.length; i++){
+        for(let i = 0; i < produtos.length; i++){
             for(let j = 0; j < data.length; j++){
-                if(idProdutos[i] === data[j].id){
+                if(produtos[i]?.id === data[j].id){
                     produtosPreviamenteSelecionados.push(data[j]);
                     valorTotal += data[j].preco;
                 }

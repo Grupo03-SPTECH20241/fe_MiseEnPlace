@@ -64,7 +64,6 @@
 .adicionarPedidoModal .adicionar-pedido-modal-footer {
     display: flex;
     align-items: center;
-    background-color: lightblue;
 }
 
 .adicionarPedidoModal .adicionar-pedido-modal-footer .outer-value-container {

@@ -13,17 +13,42 @@ import api from "../../api";
 
 const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
     const [recheioOptions, setRecheioOptions] = useState([{id: '', value: ''}]);
+    const [massa, setMassa] = useState(null);
+    const [recheio, setRecheio] = useState(null);
+    const [quantidade, setQuantidade] = useState(null);
 
     useEffect(() => {
         try {
             fetchRecheioOptions();
-            console.log(produto)
         } catch (e){
             console.log(e);
-
         }
-
     }, []);
+
+    const handleMassaChange = (event) => {
+        setMassa(event?.target?.value);
+    }
+
+    const handleRecheioChange = (event) => {
+        setRecheio(event?.target?.value);
+    }
+
+    const handleQuantidadeChange = (event) => {
+        setQuantidade(event?.target?.value);
+    }
+
+    const adicionarProduto = () => {
+        const inputObservacoes = document.getElementById('input-observacoes');
+        const produtoPedidoCriacaoDto = {  
+            qtProduto: quantidade,  
+            observacoes: inputObservacoes?.value,  
+            produtoId: produto?.id,  
+            personalizacaoId: null,  
+            pedidoId: null,  
+        };
+        onConfirm(produtoPedidoCriacaoDto, produto);
+        closeModal();
+    }
 
     const fetchRecheioOptions = async () => {
         const response = await api.get('/recheios');  
@@ -55,10 +80,12 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
                     width='20vw'
                     label='Recheio:'
                     options={recheioOptions}
+                    onChange={handleRecheioChange}
                 ></InputSelect>
                 <InputText
                     width='10vw'
                     label='Quantidade:'
+                    onChange={handleQuantidadeChange}
                 ></InputText>
             </div>
             <div className={styles["produto-observacoes-container"]}>
@@ -68,6 +95,7 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
                 </div>
                 <div className={styles["observacao-field-container"]}>
                     <InputTextField
+                        id='input-observacoes'
                         width='35vw'
                         height='20vh'
                         label='Observações:'
@@ -81,13 +109,13 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
                     </div>
                 </div>
                 <div className={styles["confirmation-button-container"]}>
-                    <ButtonFilledDefault
-                        label='Adicionar ao carrinho'
-                        iconPosition='left'
-                        icon='shopping-cart'
-                        width='18vw'
-                        onClick={onConfirm}
-                    ></ButtonFilledDefault>
+                <ButtonFilledDefault  
+                    label='Adicionar ao carrinho'  
+                    iconPosition='left'  
+                    icon='shopping-cart'  
+                    width='18vw'  
+                    onClick={adicionarProduto}
+                ></ButtonFilledDefault>  
                 </div>
             </div>
         </div>

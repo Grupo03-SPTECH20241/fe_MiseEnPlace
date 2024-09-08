@@ -27,7 +27,7 @@ const customStyles = {
 const AdicionarPedido = () => {
     // Modal de adição do produto
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalProduct, setModalProduct] = useState('');
+    const [modalProduct, setModalProduct] = useState(null);
 
     const openModal = (data) => {
         setModalProduct(data);
@@ -40,16 +40,18 @@ const AdicionarPedido = () => {
     // Navegação & recuperação de dados do carrinho
     const navigate = useNavigate();  
     const location = useLocation();  
-    const [idProdutos, setIdProdutos] = useState( location.state?.idProdutos || []);
+    const [produtos, setProdutos] = useState( location.state?.produtos || []);
+    const [produtoPedidoCriacaoDtos, setProdutoPedidoCriacaoDto] = useState( location.state?.produtoPedidoCriacaoDtos || [] );
     
     const irParaTelaDestino = () => {  
-        const novoArray = idProdutos;  
-        navigate('/carrinho', { state: { idProdutos: novoArray } });  
+        const arrayProdutos = produtos;  
+        const arrayProdutoPedidoCriacaoDtos = produtoPedidoCriacaoDtos;
+        navigate('/carrinho', { state: { produtos: arrayProdutos, produtoPedidoCriacaoDtos: arrayProdutoPedidoCriacaoDtos } });  
     };  
 
     const retornarParaAgenda = () => {
         navigate(location.pathname, { state: null });
-        setIdProdutos([]);
+        setProdutos([]);
         // navigate('/agenda');
     }
 
@@ -60,6 +62,11 @@ const AdicionarPedido = () => {
     useEffect(() => {
         fetchDataDrop();
         fetchData();
+
+        console.log("lista de produtos do pedido:");
+        console.log(produtos);
+        console.log("lista de produtoPedidoCriacaoDtos do pedido:");
+        console.log(produtoPedidoCriacaoDtos);
     }, []);
 
     const fetchDataDrop = () => {
@@ -74,26 +81,16 @@ const AdicionarPedido = () => {
     const fetchData = () => {
         api.get('/produtos').then((response) => {
             setCardsData(response.data);
-            setFilteredCardsData(response.data)
-            console.log(response.data);
+            setFilteredCardsData(response.data);
         }).catch((error) => {
             console.error(error);
         });
     }
 
-    // Adiciona o id dos produtos para o array de id's
-    const handleSelecionarProduto = (id) => {
-        let vetorAuxiliar = idProdutos ? idProdutos : [];
-        /*
-            private int qtProduto;
-            private String observacoes;
-            private Integer produtoId;
-            private Integer personalizacaoId;
-            private Integer pedidoId;
-        */
-        vetorAuxiliar.push(id);
-        setIdProdutos(vetorAuxiliar);
-    }
+    const handleSelecionarProduto = (produtoPedidoCriacaoDto, produto) => {  
+        setProdutoPedidoCriacaoDto(prev => [...prev, produtoPedidoCriacaoDto]);
+        setProdutos(prev => [...prev, produto]);
+    };
 
     const handleChange = (value) => {
         if (value === 'Todos') {
@@ -177,6 +174,7 @@ const AdicionarPedido = () => {
                 <AdicionarPedidoModal
                     produto={modalProduct}
                     closeModal={closeModal}
+                    onConfirm={handleSelecionarProduto}
                 ></AdicionarPedidoModal>
             </Modal>
         </div>
