@@ -208,7 +208,11 @@ const VisualizarPedido = () => {
 
     const deletarPedido = async () => {
         try {
-            await api.delete('/produto-pedidos/'+produtosCarrinho?.idProdutoPedido);
+            try {
+                await api.delete('/produto-pedidos/'+produtosCarrinho?.idProdutoPedido);
+            } catch (e) {
+                console.log(e);
+            }
             await api.delete('/pedidos/'+pedidoCompleto?.idPedido);
             toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
             closeModal();
@@ -229,7 +233,7 @@ const VisualizarPedido = () => {
                 <div className={styles["carrinhoBreadcrumbContainer"]}>  
                     <Breadcrumb />  
                     <div className={styles["returnArrowContainer"]}>
-                        <div className={styles["imageContainer"]}>
+                        <div className={styles["imageContainer"]} onClick={navigateToAgenda}>
                             <img src={BreadCrumbArrow} alt="seta breadcrumb" />
                         </div>
                         <div className={styles["returnArrow"]} onClick={navigateToAgenda}>Voltar</div>
@@ -237,7 +241,13 @@ const VisualizarPedido = () => {
                 </div>  
                 <div className={styles["carrinhoTittleCard"]}>  
                     <h2>Pedido #{pedidoCompleto?.idPedido? pedidoCompleto.idPedido : '-'}</h2>  
-                    <p>Estado atual: {pedidoCompleto?.status? pedidoCompleto.status : '-'}</p>  
+                    <p>Estado atual: {pedidoCompleto?.status === "N" ? "Novo" 
+                        : pedidoCompleto?.status === "P" ? "Preparando" 
+                        : pedidoCompleto?.status === "R" ? "Pronto" 
+                        : pedidoCompleto?.status === "F" ? "Fazendo" 
+                        : pedidoCompleto?.status === "E" ? "Entregue" 
+                        : "N/A"
+                    }</p> 
                 </div>  
                 <div className={styles["inputsContainer"]}>  
                     <div className={styles["clientInfo"]}>  

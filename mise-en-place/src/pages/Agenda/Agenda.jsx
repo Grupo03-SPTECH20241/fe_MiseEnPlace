@@ -71,8 +71,8 @@ const Agenda = () => {
               <div className={styles["BackgroundColorIcon"]}>
                 <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
               </div>
-              <div>
-                <img className={styles["IconKanban"]} src={IconKanban} alt="ícone kanban" onClick={navigateToKanban} />
+              <div onClick={navigateToKanban}>
+                  <img className={styles["IconKanban"]} src={IconKanban} alt="" />
               </div>
             </div>
           </div>

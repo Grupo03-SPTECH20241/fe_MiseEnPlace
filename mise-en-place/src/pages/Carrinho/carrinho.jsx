@@ -90,7 +90,7 @@ const Carrinho = () => {
                         qtProduto: produtoPedidoCriacaoDtos[i]?.qtProduto,
                         observacoes: produtoPedidoCriacaoDtos[i]?.observacoes,
                         produtoId: produtoPedidoCriacaoDtos[i]?.produtoId,
-                        personalizacaoId: null,
+                        personalizacaoId: 1,
                         pedidoId: responsePedidoCriacao?.data?.idPedido,
                     };
                     await api.post('/produto-pedidos', produtoPedidoCriacaoDto);
