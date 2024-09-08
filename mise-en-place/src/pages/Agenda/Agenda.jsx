@@ -34,9 +34,11 @@ const Agenda = () => {
   }
   
   const navigateToVisualizarPedido = ( pedidoSelecionado ) => {
-    console.log("pedido selecionado:");
-    console.log(pedidoSelecionado);
     navigate('/visualizar-pedido', { state: { pedido: pedidoSelecionado } });
+  }
+
+  const navigateToKanban = () => {
+    navigate('/kanban');
   }
 
   return (
@@ -70,7 +72,7 @@ const Agenda = () => {
                 <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
               </div>
               <div>
-                <img className={styles["IconKanban"]} src={IconKanban} alt="" />
+                <img className={styles["IconKanban"]} src={IconKanban} alt="ícone kanban" onClick={navigateToKanban} />
               </div>
             </div>
           </div>
