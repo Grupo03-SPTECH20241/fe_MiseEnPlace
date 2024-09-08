@@ -5,8 +5,9 @@ import WhitePlusImage from '../../../utils/img/icons/enabled-white-plus-icon.png
 import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
 import DisabledBlackSettingsImage from '../../../utils/img/icons/disabled-black-settings-icon.png';
 import DisabledBlackPlusImage from '../../../utils/img/icons/disabled-black-plus-icon.png';
-import enabledWhiteShoppingCartImage from '../../../utils/img/icons/enabled-white-shopping-cart-icon.png'
-import CheckIcon from '../../../utils/img/icons/check.png'
+import enabledWhiteShoppingCartImage from '../../../utils/img/icons/enabled-white-shopping-cart-icon.png';
+import EnabledWhiteDeleteImage from '../../../utils/img/icons/enabled-white-delete-icon.png'
+import CheckIcon from '../../../utils/img/icons/check.png';
 
 const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled = false }) => {
   const renderIcon = (iconId) => {  
@@ -21,6 +22,8 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
       currentIcon = CheckIcon;
     } else if (icon === 'shopping-cart'){
       currentIcon = enabledWhiteShoppingCartImage
+    } else if (icon === 'delete') {
+      currentIcon = EnabledWhiteDeleteImage
     }
 
     if (iconId === 0 && (iconPosition === 'left' || iconPosition === 'both')) {  
@@ -49,7 +52,7 @@ ButtonFilledDefault.propTypes = {
   onClick: PropTypes.any,
   label: PropTypes.string,  
   showIcon: PropTypes.bool,  
-  icon: PropTypes.oneOf(['plus','settings', 'check', 'shopping-cart']),  
+  icon: PropTypes.oneOf(['plus','settings', 'check', 'shopping-cart', 'delete']),  
   iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
   fontSize: PropTypes.oneOf(['small', 'medium', 'large']),
   width: PropTypes.string,

@@ -7,6 +7,7 @@ import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import ButtonDefault from '../../components/Button/Default/default';
 import { useNavigate, useLocation } from "react-router-dom";
+import api from "../../api";  
 
 const Agenda = () => {
   const [testeMap, setTesteMap] = useState([]);

@@ -20,7 +20,7 @@ import ExcluirPedidoModal from "../../components/ExcluirPedidoModal/excluirPedid
 const customStyles = {
     content: {
       width: '60%',
-      height: '70%',
+      height: '65%',
       margin: 'auto',
       borderRadius: '20px',
       borderColor: 'gray'
@@ -166,6 +166,7 @@ const VisualizarPedido = () => {
 
     // busca os produtos do pedido
     const fetchProdutosPedido = async () => {
+        debugger
         const response = await api.get('/produto-pedidos');
         const { data } = response;
         for (let i = 0; i < data.length; i++) {
@@ -206,17 +207,11 @@ const VisualizarPedido = () => {
     };  
 
     const deletarPedido = async () => {
-        console.log("pedido");
-        console.log(pedido);
-        console.log("pedidoCompleto");
-        console.log(pedidoCompleto);
-        console.log("produtosCarrinho");
-        console.log(produtosCarrinho);
-
         try {
             await api.delete('/produto-pedidos/'+produtosCarrinho?.idProdutoPedido);
             await api.delete('/pedidos/'+pedidoCompleto?.idPedido);
             toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
+            closeModal();
             setTimeout(()=>{
                 navigate('/agenda', {state: null});
             },6000);
@@ -354,7 +349,7 @@ const VisualizarPedido = () => {
             </div>  
             <Modal style={customStyles} isOpen={modalIsOpen}>
                 <ExcluirPedidoModal
-                    produto={modalProduct}
+                    pedido={pedidoCompleto}
                     closeModal={closeModal}
                     onConfirm={deletarPedido}
                 ></ExcluirPedidoModal>

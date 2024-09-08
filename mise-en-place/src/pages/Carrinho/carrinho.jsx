@@ -55,6 +55,12 @@ const Carrinho = () => {
                 fetchProdutosSelecionados();
                 fetchClientes();
                 fetchDataAtual();
+                console.log("produtoPedidoCriacaoDtos")
+                console.log(produtoPedidoCriacaoDtos)
+                console.log("produtos")
+                console.log(produtos)
+                console.log("produtosCarrinho");
+                console.log(produtosCarrinho);
             } catch (error) {  
                 console.error(error);  
             }  
@@ -79,7 +85,6 @@ const Carrinho = () => {
                 };
 
                 const responsePedidoCriacao = await api.post('/pedidos', pedidoCriacaoDTO);
-
                 for(let i = 0; i < produtoPedidoCriacaoDtos.length; i++){
                     let produtoPedidoCriacaoDto = {
                         qtProduto: produtoPedidoCriacaoDtos[i]?.qtProduto,
@@ -88,11 +93,7 @@ const Carrinho = () => {
                         personalizacaoId: null,
                         pedidoId: responsePedidoCriacao?.data?.idPedido,
                     };
-                    try {
-                        await this.api.post('/produto-pedidos', produtoPedidoCriacaoDto);
-                    } catch (e){
-                        console.log(e);
-                    }
+                    await api.post('/produto-pedidos', produtoPedidoCriacaoDto);
                 }
 
                 toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
