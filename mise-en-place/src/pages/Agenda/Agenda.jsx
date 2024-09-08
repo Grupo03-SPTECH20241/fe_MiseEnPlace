@@ -9,19 +9,16 @@ import IconAgenda from '../../utils/img/List.svg';
 import api from "../../api";
 import ButtonDefault from '../../components/Button/Default/default';
 import { useNavigate, useLocation } from "react-router-dom";
-import api from "../../api";  
 
 const Agenda = () => {
-  const [testeMap, setTesteMap] = useState([]);
   const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
+  const [testeMap, setTesteMap] = useState([]);
+  const navigate = useNavigate();  
+  const location = useLocation();
 
   const handleFilterStatus = (value) => {
     setFilterSelectedValue(value);
     fetchAgenda(value);
-  }
-
-  const redirect = (url) => {
-    window.location = url;
   }
 
   const fetchAgenda = async (item) => {
@@ -35,7 +32,6 @@ const Agenda = () => {
         }
 
         var dt = new Date();
-
 
         stringUrl = 'produto-pedidos/agenda?dataInicio=';
         stringUrl += startOfWeek(dt).getDate() < 10 ? "0" + startOfWeek(dt).getDate() : startOfWeek(dt).getDate()
@@ -133,7 +129,7 @@ const Agenda = () => {
         </div>
         <div style={{"marginTop": "3vh"}}>
           {testeMap.map((item, index) => (
-            <NestedList key={index} testeMap={item} title={item.title} />
+            <NestedList key={index} testeMap={item} title={item.title} onClick={()=>{navigateToVisualizarPedido(item)}}/>
           ))}
         </div>
       </div>

@@ -20,6 +20,7 @@
     border: none;
     border-radius: 50px;
     padding: 5px;
+    width: 10vw;
     display : flex; 
     justify-content: center;
 }
@@ -28,6 +29,7 @@
     border: none;
     border-radius: 50px;
     padding: 5px;
+    width: 10vw;
     display : flex; 
     justify-content: center;
 }
@@ -35,6 +37,7 @@
     background-color: #8CEC25;
     border: none;
     border-radius: 50px;
+    width: 10vw;
     padding: 5px;
     display : flex; 
     justify-content: center;
@@ -42,6 +45,7 @@
 .statusAgendaEntregue{
     background-color: #25ECE0;
     border: none;
+    width: 10vw;
     border-radius: 50px;
     padding: 5px;
     display : flex; 
@@ -79,21 +83,7 @@
     width: 16%;
 }
 .divValores3{
-    width: 6%;
-}
-.divValores4{
-    width: 8%;
-}
-
-
-.divValores1{
-    width: 10%;
-}
-.divValores2{
-    width: 16%;
-}
-.divValores3{
-    width: 6%;
+    width: 13% !important;
 }
 .divValores4{
     width: 8%;
