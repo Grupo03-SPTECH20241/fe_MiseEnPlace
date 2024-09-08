@@ -31,7 +31,7 @@ const InputField = ({ onKeyUp , label = "Label:", placeholder = "", id = 'input'
         <input
           type="text"
           id="input"
-          placeholder="Buscar Produto..."
+          placeholder="Buscar produto..."
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}

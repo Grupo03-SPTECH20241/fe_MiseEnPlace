@@ -21,7 +21,7 @@ const CardProduto = ({
                 
             </div>
             <div className={styles["valor"]}>
-                <p>valor: R${valor.toFixed(2) || 99.99}</p>
+                <p>R${valor.toFixed(2) || 99.99}</p>
                 
             </div>
             </div>
