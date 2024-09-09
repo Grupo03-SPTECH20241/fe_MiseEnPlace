@@ -2,7 +2,7 @@ import NestedListItem from "./NestedListItem";
 import styles from "./nestedList.module.css";
 import { useEffect, useState } from "react";
 
-function NestedList({ testeMap, title }) {
+function NestedList({ testeMap, title, onClick }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [itensList, setItensList] = useState([]);
@@ -39,7 +39,7 @@ function NestedList({ testeMap, title }) {
                 <p>{titulo}</p>
             </div>
             {isOpen && (
-              <div>
+              <div onClick={onClick}  className={styles["cardInfoContainer"]}>
                 {itensList.map((item, index) => (
                   <NestedListItem key={index} testeMap={item} />
                 ))}

@@ -42,6 +42,7 @@ const Kanban = () => {
     const [preparando, setPreparando] = useState([]);
     const [prontos, setProntos] = useState([]);
     const [entregues, setEntregues] = useState([]);
+    const navigate = useNavigate();
 
     const navigateToAdicionarPedido = () => {
         navigate('/adicionar-pedido');
@@ -172,7 +173,7 @@ const Kanban = () => {
                                 />
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
-                                <a onClick={() => window.location.href = '/Agenda'}>
+                                <a onClick={()=>{navigate('/agenda')}}>
                                     <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
                                 </a>
                                 <div className={styles["BackgroundColorIcon"]}>
