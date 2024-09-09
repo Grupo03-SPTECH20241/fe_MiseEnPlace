@@ -9,8 +9,8 @@ import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import Card from '../../components/CardKanban/CardKanban';
 import api from '../../api';
+import { useNavigate } from 'react-router-dom';
 
-// Component to render columns and handle dropping
 const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
     const [, dropRef] = useDrop({
         accept: 'CARD',
@@ -37,10 +37,15 @@ const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
 };
 
 const Kanban = () => {
+    const navigate = useNavigate();  // Movido para dentro do componente
     const [novos, setNovos] = useState([]);
     const [preparando, setPreparando] = useState([]);
     const [prontos, setProntos] = useState([]);
     const [entregues, setEntregues] = useState([]);
+
+    const navigateToAdicionarPedido = () => {
+        navigate('/adicionar-pedido');
+    }
 
     useEffect(() => {
         const fetchPedidos = async () => {
@@ -163,6 +168,7 @@ const Kanban = () => {
                                     iconPosition="left"
                                     fontSize="small"
                                     width="170px"
+                                    onClick={navigateToAdicionarPedido}
                                 />
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
