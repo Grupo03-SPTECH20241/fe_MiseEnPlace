@@ -6,20 +6,32 @@ import Breadcrumb from "../../components/Texts/Breadcrumbs/breadcrumbs";
 import Filter from "../../components/Filter/filter";
 import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
+import { useNavigate, useLocation } from "react-router-dom";
 import api from "../../api";
 import ButtonDefault from '../../components/Button/Default/default';
 
 const Agenda = () => {
   const [testeMap, setTesteMap] = useState([]);
   const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
+  const navigate = useNavigate();  
+  const location = useLocation();
+
 
   const handleFilterStatus = (value) => {
     setFilterSelectedValue(value);
     fetchAgenda(value);
   }
 
-  const redirect = (url) => {
-    window.location = url;
+ const navigateToAdicionarPedido = () => {
+    navigate('/adicionar-pedido');
+  }
+  
+  const navigateToVisualizarPedido = ( pedidoSelecionado ) => {
+    navigate('/visualizar-pedido', { state: { pedido: pedidoSelecionado } });
+  }
+
+  const navigateToKanban = () => {
+    navigate('/kanban');
   }
 
   const fetchAgenda = async (item) => {
@@ -118,7 +130,7 @@ const Agenda = () => {
                 <div className={styles["BackgroundColorIcon"]} style={{ "marginRight": "0.5vw" }}>
                   <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
                 </div>
-                <div style={{ "display": "flex", "alignItems": "center" }} onClick={() => redirect("/kanban")}>
+                <div style={{ "display": "flex", "alignItems": "center" }} onClick={navigateToKanban}>
                   <img className={styles["IconKanban"]} src={IconKanban} alt="" />
                 </div>
               </div>
@@ -127,7 +139,7 @@ const Agenda = () => {
         </div>
         <div style={{"marginTop": "3vh"}}>
           {testeMap.map((item, index) => (
-            <NestedList key={index} testeMap={item} title={item.title} />
+            <NestedList onClick={()=>{navigateToVisualizarPedido(item)}} key={index} testeMap={item} title={item.title} />
           ))}
         </div>
       </div>
