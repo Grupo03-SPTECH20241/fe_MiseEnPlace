@@ -118,11 +118,16 @@ const Agenda = () => {
               />
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
+              <div className={styles["marginButtons"]}>
+                <div style={ { "marginRight" : "2vw"}}>
+                  <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus}></Filter>
+                </div>
+              </div>
               <div className={styles["BackgroundColorIcon"]}>
                 <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
               </div>
               <div onClick={navigateToKanban}>
-                  <img className={styles["IconKanban"]} src={IconKanban} alt="" />
+                <img className={styles["IconKanban"]} src={IconKanban} alt="" />
               </div>
             </div>
           </div>

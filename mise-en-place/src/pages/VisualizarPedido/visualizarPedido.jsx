@@ -113,7 +113,6 @@ const VisualizarPedido = () => {
 
     const validateBody = () =>{
         if (nomeCliente && numeroTelefone && formaEntrega && formaPagamento && dataEntrega) {
-            alert(formaEntrega)
             if(formaEntrega === 'Serviço Festa'){
                 if(cep && logradouro){
                     return true

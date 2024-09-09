@@ -71,7 +71,6 @@ const Carrinho = () => {
     // criação do pedido & validação do corpo p/requisição
     const adicionarPedido = async () => {
         if(validateBody()){
-            alert(idClienteSelecionado);
             try {
                 const pedidoCriacaoDTO = {
                     dtPedido: dataEntrega,
