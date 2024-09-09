@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";  
-import styles from './visualizarPedido.module.css';  
+import styles from './pedido.module.css';  
 import Sidebar from '../../components/Sidebar/sidebar';  
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';  
 import Select from '../../components/Input/Select/select';  
-import BreadCrumbArrow from '../../utils/img/breadcrumb-return-arrow.png'
+import ButtonFilled from '../../components/Button/Default/default';  
 import PropTypes from 'prop-types';  
 import ButtonOutlinedNegative from "../../components/Button/Cancelar-variant/cancelarv";
 import ButtonFilledNegative from "../../components/Button/Cancelar/cancelar";
@@ -13,48 +13,17 @@ import { toast, ToastContainer } from 'react-toastify';
 import InputCalendar from '../../components/Input/Calendar/calendar';  
 import InputText from '../../components/Input/Text/text';  
 import api from "../../api";  
-import { useNavigate, useLocation } from "react-router-dom";
-import Modal from "react-modal"
-import ExcluirPedidoModal from "../../components/ExcluirPedidoModal/excluirPedidoModal";
+import { useNavigate } from "react-router-dom";
 
-const customStyles = {
-    content: {
-      width: '60%',
-      height: '65%',
-      margin: 'auto',
-      borderRadius: '20px',
-      borderColor: 'gray'
-    },
-};
-
-
-const VisualizarPedido = () => {
+const Pedido = ( {idPedido = 1} ) => {
     // navegação
     const navigate = useNavigate();
-    const location = useLocation();
-
-    const navigateToAgenda = () => {
-        navigate('/agenda', {state: null});
-    }
-
-    // Modal de exclusão do produto
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalProduct, setModalProduct] = useState(null);
-
-    const openModal = (data) => {
-        setModalProduct(data);
-        setModalIsOpen(true)
-    }
-    const closeModal = () => {
-        setModalIsOpen(false)
-    }
 
     // dita se a tela está em modo de edição
     const [isEditando, setIsEditando] = useState(false);
 
     // dados do pedido selecionado
-    const [pedido, setPedido] = useState( location.state?.pedido || []);
-    const [pedidoCompleto, setPedidoCompleto] = useState([]);
+    const [pedido, setPedido] = useState(null);
     
     // valores selecionados nos inputs
     const [produtosCarrinho, setProdutosCarrinho] = useState([]);
@@ -74,7 +43,6 @@ const VisualizarPedido = () => {
         const fetchData = async () => {  
             try {  
                 fetchPedido();
-                fetchProdutosPedido();
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
             } catch (error) {  
@@ -153,28 +121,18 @@ const VisualizarPedido = () => {
     const fetchPedido = async () => {
         const response = await api.get('/pedidos');
         const { data } = response;
-        let pedidoEncontrado;
-
-        for (let i = 0; i < data.length; i++) {
-            if (data[i]?.idPedido == pedido?.items[0]?.pedido) {
-                pedidoEncontrado = data[i];
-                break;
-            } 
-        }
-        if(pedidoEncontrado) setPedidoCompleto(pedidoEncontrado);
-    }
-
-    // busca os produtos do pedido
-    const fetchProdutosPedido = async () => {
         debugger
-        const response = await api.get('/produto-pedidos');
-        const { data } = response;
+        console.log("pedidos:");
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
-            if (data[i]?.idProdutoPedido == pedido?.items[0]?.pedido) {
-                setProdutosCarrinho(data[i])
+            if (data[i]?.idPedido === idPedido) {
+                console.log("pedidoAtual:");
+                console.log(data[i]);
+                setPedido(data[i]);
                 break;
-            } 
+            }
         }
+
     }
 
     // handlers  
@@ -206,24 +164,8 @@ const VisualizarPedido = () => {
         setNumeroTelefone(event.target.value);  
     };  
 
-    const deletarPedido = async () => {
-        try {
-            try {
-                await api.delete('/produto-pedidos/'+produtosCarrinho?.idProdutoPedido);
-            } catch (e) {
-                console.log(e);
-            }
-            await api.delete('/pedidos/'+pedidoCompleto?.idPedido);
-            toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
-            closeModal();
-            setTimeout(()=>{
-                navigate('/agenda', {state: null});
-            },6000);
-        } catch (e){
-            console.log(e);
-        }
-    }
-
+    const imagem = BoloChocolate;
+    const qtd = 1;
 
     return (  
         <div className={styles["mainContainer"]}>  
@@ -232,22 +174,10 @@ const VisualizarPedido = () => {
             <div className={styles["innerContainer"]}>  
                 <div className={styles["carrinhoBreadcrumbContainer"]}>  
                     <Breadcrumb />  
-                    <div className={styles["returnArrowContainer"]}>
-                        <div className={styles["imageContainer"]} onClick={navigateToAgenda}>
-                            <img src={BreadCrumbArrow} alt="seta breadcrumb" />
-                        </div>
-                        <div className={styles["returnArrow"]} onClick={navigateToAgenda}>Voltar</div>
-                    </div>
                 </div>  
                 <div className={styles["carrinhoTittleCard"]}>  
-                    <h2>Pedido #{pedidoCompleto?.idPedido? pedidoCompleto.idPedido : '-'}</h2>  
-                    <p>Estado atual: {pedidoCompleto?.status === "N" ? "Novo" 
-                        : pedidoCompleto?.status === "P" ? "Preparando" 
-                        : pedidoCompleto?.status === "R" ? "Pronto" 
-                        : pedidoCompleto?.status === "F" ? "Fazendo" 
-                        : pedidoCompleto?.status === "E" ? "Entregue" 
-                        : "N/A"
-                    }</p> 
+                    <h2>Pedido #{pedido?.idPedido? pedido.idPedido : '-'}</h2>  
+                    <p>Estado atual: {pedido?.status? pedido.status : '-'}</p>  
                 </div>  
                 <div className={styles["inputsContainer"]}>  
                     <div className={styles["clientInfo"]}>  
@@ -313,31 +243,25 @@ const VisualizarPedido = () => {
                 <div className={styles["productsList"]}>  
                     <h2>Lista de produtos</h2>  
                     <div className={styles["cardsContainer"]}>  
-                    { produtosCarrinho && (
+                    { false && produtosCarrinho.map((data, index) => (
                         <CardPedido   
-                            key={`pedido-${produtosCarrinho?.idProdutoPedido}`}
-                            imagemSrc={BoloChocolate}  
-                            nomeProduto={produtosCarrinho?.produtoDto?.nome}  
-                            descricao={produtosCarrinho?.produtoDto?.descricao}  
-                            quantidade={produtosCarrinho?.qtProduto}  
-                            valor={
-                                ((produtosCarrinho?.produtoDto?.preco + 
-                                produtosCarrinho?.produtoDto?.recheio?.preco)
-                                * produtosCarrinho?.qtProduto)
-                            }  
+                            key={`pedido-${index}`}
+                            imagemSrc={imagem}  
+                            nomeProduto={data?.nome}  
+                            descricao={data?.descricao}  
+                            quantidade={qtd}  
+                            valor={data?.preco}  
                         />  
-                    )}
+                    ))}
                     </div>  
                 </div>  
                 <div className={styles["pedidos-footer"]}>
                     <div className={styles["buttons-container"]}>
                         <div className={styles["buttons"]}>
                             <ButtonFilledNegative
-                                label="Excluir pedido"
-                                iconPosition="left"
-                                onClick={openModal}
-                                icon="delete"
-                                width="160px"
+                                label="Deletar pedido"
+                                showIcon={false}
+                                width="150px"
                             ></ButtonFilledNegative>
                             <ButtonOutlinedNegative
                                 label="Editar pedido"
@@ -350,20 +274,13 @@ const VisualizarPedido = () => {
                     <div className={styles["actions-container"]}>
                         <div className={styles["actions"]}>  
                             <div className={styles["values"]}>  
-                                <p>Valor: R${pedidoCompleto?.vlPedido ? pedidoCompleto.vlPedido:'-'}</p>  
-                                <p>Sinal: R${pedidoCompleto?.valorSinal ? pedidoCompleto.vlPedido:'-'}</p>  
+                                <p>Valor: R${pedido?.vlPedido ? pedido.vlPedido:'-'}</p>  
+                                <p>Sinal: R${pedido?.valorSinal ? pedido.vlPedido:'-'}</p>  
                             </div>
                         </div>  
                     </div>
                 </div>
             </div>  
-            <Modal style={customStyles} isOpen={modalIsOpen}>
-                <ExcluirPedidoModal
-                    pedido={pedidoCompleto}
-                    closeModal={closeModal}
-                    onConfirm={deletarPedido}
-                ></ExcluirPedidoModal>
-            </Modal>
         </div>  
     );  
 };  
@@ -372,4 +289,4 @@ ButtonOutlinedNegative.propTypes = {
     idPedido: PropTypes.number,  
   };  
 
-export default VisualizarPedido;
+export default Pedido;

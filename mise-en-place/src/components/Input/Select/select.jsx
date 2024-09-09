@@ -63,8 +63,8 @@ InputSelect.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(  
     PropTypes.shape({  
-      value: PropTypes.any,  
-      label: PropTypes.any,  
+      value: PropTypes.any.isRequired,  
+      label: PropTypes.any.isRequired,  
     })  
   )  
 };

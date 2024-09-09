@@ -8,17 +8,18 @@ import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import api from "../../api";
 import ButtonDefault from '../../components/Button/Default/default';
-import { useNavigate, useLocation } from "react-router-dom";
 
 const Agenda = () => {
-  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
   const [testeMap, setTesteMap] = useState([]);
-  const navigate = useNavigate();  
-  const location = useLocation();
+  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
 
   const handleFilterStatus = (value) => {
     setFilterSelectedValue(value);
     fetchAgenda(value);
+  }
+
+  const redirect = (url) => {
+    window.location = url;
   }
 
   const fetchAgenda = async (item) => {
@@ -32,6 +33,7 @@ const Agenda = () => {
         }
 
         var dt = new Date();
+
 
         stringUrl = 'produto-pedidos/agenda?dataInicio=';
         stringUrl += startOfWeek(dt).getDate() < 10 ? "0" + startOfWeek(dt).getDate() : startOfWeek(dt).getDate()
@@ -79,17 +81,8 @@ const Agenda = () => {
     fetchAgenda();
   }, []);
 
-  const navigateToAdicionarPedido = () => {
-    navigate('/adicionar-pedido');
-  }
-  
-  const navigateToVisualizarPedido = ( pedidoSelecionado ) => {
-    navigate('/visualizar-pedido', { state: { pedido: pedidoSelecionado } });
-  }
 
-  const navigateToKanban = () => {
-    navigate('/kanban');
-  }
+
 
   return (
     <div className={styles["mainContainer"]}>
@@ -114,22 +107,27 @@ const Agenda = () => {
                 iconPosition="left"
                 fontSize="small"
                 width="170px"
-                onClick={navigateToAdicionarPedido}
-              />
+                onClick={() => redirect('/adicionar-pedido')}
+              /> {/* TODO: ALTERAR LINK PRA REDIRECT */}
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
-              <div className={styles["BackgroundColorIcon"]}>
-                <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
-              </div>
-              <div onClick={navigateToKanban}>
+              <div className={styles["marginButtons"]}>
+                <div style={{ "marginRight": "2vw" }}>
+                  <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />
+                </div>
+                <div className={styles["BackgroundColorIcon"]} style={{ "marginRight": "0.5vw" }}>
+                  <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
+                </div>
+                <div style={{ "display": "flex", "alignItems": "center" }} onClick={() => redirect("/kanban")}>
                   <img className={styles["IconKanban"]} src={IconKanban} alt="" />
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div style={{"marginTop": "3vh"}}>
           {testeMap.map((item, index) => (
-            <NestedList key={index} testeMap={item} title={item.title} onClick={()=>{navigateToVisualizarPedido(item)}}/>
+            <NestedList key={index} testeMap={item} title={item.title} />
           ))}
         </div>
       </div>
