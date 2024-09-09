@@ -86,26 +86,21 @@
     font-weight: 400;
 }
 
-.carrinhoFooter {
-    display: flex;
-}
-
-.carrinhoFooter .actions {
+.actions {
     display: flex;
     flex-direction: row;
     justify-content: right;
     align-items: center;
     gap: 32px;
-    width: 90%;
 }
 
-.carrinhoFooter .values {
+.values {
     display: flex;
     flex-direction: row;
     gap: 1vw;
 } 
 
-.carrinhoFooter .values p{
+.values p{
     width: 12vw;
     height: 40px;
     border-radius: 500px;
@@ -115,12 +110,4 @@
     font-size: 16px;
     border: 2px solid #DD0543;
     background-color: #31cfff00;
-}
-
-.carrinhoFooter .return {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 6.5vh;
-    width: 10%;
 }
