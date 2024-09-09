@@ -14,10 +14,6 @@ const NestedListItem = ({ testeMap }) => {
     setIsOpen(!isOpen);
   };
 
-  const redirect = (url) => {
-    window.location = url;
-  }
-
   return (
 
     useEffect(() => {
