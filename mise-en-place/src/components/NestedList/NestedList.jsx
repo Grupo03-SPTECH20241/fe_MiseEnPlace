@@ -24,11 +24,12 @@ function NestedList({ testeMap, title }) {
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
       
-      today = mm + '/' + dd + '/' + yyyy;
+      today = dd + '/' + mm + '/' + yyyy;
       var isToday = dateFormatted === today ? true : false;
-      var isTomorrow = dateFormatted === (mm + '/' + (parseInt(dd) + 1) + '/' + yyyy) ? true : false;
+      var isTomorrow = dateFormatted === ("0" + (parseInt(dd) + 1) + '/' + mm + '/' + yyyy) ? true : false;
 
       setTitulo([title2[0] + ", "+ dateFormatted + (isToday ? " | Hoje" : isTomorrow? " | Amanhã" : "")]);
+      console.log();
     }, []),
     <>
       {
