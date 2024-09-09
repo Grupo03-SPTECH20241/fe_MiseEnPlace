@@ -8,10 +8,13 @@ import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import api from "../../api";
 import ButtonDefault from '../../components/Button/Default/default';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Agenda = () => {
   const [testeMap, setTesteMap] = useState([]);
   const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFilterStatus = (value) => {
     setFilterSelectedValue(value);
