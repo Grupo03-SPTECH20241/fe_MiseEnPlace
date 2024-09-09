@@ -7,9 +7,15 @@ import PurpleSettingsImage from '../../../utils/img/icons/enabled-purple-setting
 import WhiteSettingsImage from '../../../utils/img/icons/enabled-white-settings-icon.png';
 import DisabledPurplePlusImage from '../../../utils/img/icons/disabled-purple-plus-icon.png';  
 import DisabeldPurpleSettingsImage from '../../../utils/img/icons/disabled-purple-settings-icon.png';
-import EnableWhiteEditImage from '../../../utils/img/icons/enabled-white-edit-icon.png';
+import EnabledWhiteEditImage from '../../../utils/img/icons/enabled-white-edit-icon.png';
 import EnablePurpleEditImage from '../../../utils/img/icons/enabled-purple-edit-icon.png';
 import DisabledPurpleEditImage from '../../../utils/img/icons/disabled-purple-edit-icon.png';
+import EnabledPurpleDeleteImage from '../../../utils/img/icons/enabled-purple-delete-icon.png'
+import DisabledPurpleDeleteImage from '../../../utils/img/icons/disabled-purple-delete-icon.png'
+import EnabledWhiteDeleteImage from '../../../utils/img/icons/enabled-white-delete-icon.png'
+import EnabledPurpleCancelImage from '../../../utils/img/icons/enabled-purple-cancel-icon.png';
+import EnabledWhiteCancelImage from '../../../utils/img/icons/enabled-white-cancel-icon.png';
+import DisabledPurpleCancelImage from '../../../utils/img/icons/disabled-purple-cancel-icon.png';
 
 const ButtonOutlinedNegative = ({ onClick, label = 'Label', showIcon = true, icon = 'plus', iconPosition = 'both', fontSize = 'medium', width = '137px', isDisabled=false }) => {  
   const [isHovered, setIsHovered] = useState(false);  
@@ -34,7 +40,19 @@ const ButtonOutlinedNegative = ({ onClick, label = 'Label', showIcon = true, ico
       if (isDisabled){
         currentIcon = DisabledPurpleEditImage;
       } else {
-        currentIcon = isHovered ? EnableWhiteEditImage : EnablePurpleEditImage
+        currentIcon = isHovered ? EnabledWhiteEditImage : EnablePurpleEditImage
+      }
+    } else if (icon === 'delete') {
+      if(isDisabled) {
+        currentIcon = DisabledPurpleDeleteImage;
+      } else {
+        currentIcon = isHovered ? EnabledWhiteDeleteImage : EnabledPurpleDeleteImage;
+      }
+    } else if (icon === 'cancel') {
+      if(isDisabled) {
+        currentIcon = DisabledPurpleCancelImage;
+      } else {
+        currentIcon = isHovered ? EnabledWhiteCancelImage : EnabledPurpleCancelImage;
       }
     }
     if (iconId === 0 && (iconPosition === 'left' || iconPosition === 'both')) {  
@@ -65,7 +83,7 @@ ButtonOutlinedNegative.propTypes = {
   onClick: PropTypes.any,  
   label: PropTypes.string,  
   showIcon: PropTypes.bool,  
-  icon: PropTypes.oneOf(['plus','settings', 'edit', 'delete']),  
+  icon: PropTypes.oneOf(['plus','settings', 'edit', 'delete', 'cancel']),  
   iconPosition: PropTypes.oneOf(['left', 'right', 'both']),  
   fontSize: PropTypes.oneOf(['small', 'medium', 'large']),  
   width: PropTypes.string,

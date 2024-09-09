@@ -75,8 +75,8 @@
 .DivButtonTrocarVisualizacao {
     display: flex;
     pad: 15px;
-    width: 17%;
-    justify-content: end;
+    width: 8%;
+    justify-content: space-between;
     align-items: center;
 }
 
