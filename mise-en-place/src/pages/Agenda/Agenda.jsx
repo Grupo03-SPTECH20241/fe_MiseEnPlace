@@ -22,7 +22,7 @@ const Agenda = () => {
     fetchAgenda(value);
   }
 
-  const navigateToAdicionarPedido = () => {
+ const navigateToAdicionarPedido = () => {
     navigate('/adicionar-pedido');
   }
   
@@ -119,8 +119,8 @@ const Agenda = () => {
                 iconPosition="left"
                 fontSize="small"
                 width="170px"
-                onClick={navigateToAdicionarPedido}
-              />
+                onClick={() => redirect('/adicionar-pedido')}
+              /> {/* TODO: ALTERAR LINK PRA REDIRECT */}
             </div>
             <div className={styles["DivButtonTrocarVisualizacao"]}>
               <div className={styles["marginButtons"]}>

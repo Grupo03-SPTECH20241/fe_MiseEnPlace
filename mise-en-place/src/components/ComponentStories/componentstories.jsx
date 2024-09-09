@@ -81,6 +81,7 @@ const Stories = () => {
                     showIcon={false}
                     fontSize='large'
                     onClick={teste}
+                    width='800px'
                 ></ButtonFilledNegative>
             </div>
 

@@ -12,8 +12,7 @@ import Kanban from "./pages/Kanban/kanban";
 import Agenda from "./pages/Agenda/Agenda"
 import ProdutoCadastro from "./pages/ProdutoCadastro/produtoCadastro";
 import ProdutoEditar from "./pages/ProdutoEditar/produtoEditar";
-import VisualizarPedido from "./pages/VisualizarPedido/visualizarPedido";
-import AdicionarPedido from "./pages/AdicionarPedido/adicionarPedido";
+import Pedido from "./pages/Pedido/pedido";
 
 function Rotas() {
     return (
@@ -32,8 +31,7 @@ function Rotas() {
                 <Route path="/produto-cadastro" element={<ProdutoCadastro />} />
                 <Route path="/produto-editar" element={<ProdutoEditar />} />
                 <Route path="/agenda" element={<Agenda />} />
-                <Route path="/visualizar-pedido" element={<VisualizarPedido />} />
-                <Route path="/adicionar-pedido" element={<AdicionarPedido />} />
+                <Route path="/pedido" element={<Pedido />} />
             </Routes>
         </BrowserRouter>  
         </>
