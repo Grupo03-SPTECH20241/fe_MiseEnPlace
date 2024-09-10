@@ -75,13 +75,13 @@ const Produtos = () => {
                 </div>
                 <div className={styles["containerTittleCard"]}>
                         <div className={styles["dashboardTittleCard"]}>
-                            <h2>Quadro de Planejamento</h2>
-                            <p>Organize os pedidos da semana conforme você os prepara.</p>
+                            <h2>Produtos</h2>
+                            <p>Lista de todos os produtos cadastrados no sistema.</p>
                         </div>
                     </div>
                 <div className={styles["innerContainerSearch"]}>
                     <div className={styles["containerButton"]}>
-                    <Button></Button>
+                    <a onClick={()=> window.location.href = '/produto-cadastro'}><Button></Button></a>
                     </div>
                     <div className={styles["containerInputs"]}>
                         <InputSearch
