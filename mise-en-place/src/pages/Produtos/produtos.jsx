@@ -5,7 +5,6 @@ import styles from './produto.module.css';
 import Button from '../../components/Button/Product/product';
 import InputSearch from '../../components/Input/SearchProduct/searchProduct';
 
-
 import Filter from '../../components/Filter/filter';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import api from '../../api';
@@ -38,6 +37,7 @@ const Produtos = () => {
     const fetchData = () => {
         api.get('/produtos').then((response) => {
             setCardsData(response.data);
+            
             setFilteredCardsData(response.data);
         }).catch((error) => {
             console.error(error);
@@ -107,22 +107,13 @@ const Produtos = () => {
                                 key={index}
                                 descricao={data.descricao}
                                 nomeBolo={data.nome}
-                                imagemSrc={data.imagemSrc}
+                                imagemSrc={data.foto}
                                 valor={data.preco}
                                 produto={data}
                             ></CardProduct>
                         ))
-
-
-
                     }
-
-                    
-
                 </div>
-
-
-
             </div>
         </div>
     );

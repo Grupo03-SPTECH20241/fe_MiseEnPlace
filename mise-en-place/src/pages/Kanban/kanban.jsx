@@ -42,7 +42,7 @@ const Kanban = () => {
     const [preparando, setPreparando] = useState([]);
     const [prontos, setProntos] = useState([]);
     const [entregues, setEntregues] = useState([]);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const navigateToAdicionarPedido = () => {
         navigate('/adicionar-pedido');
