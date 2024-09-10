@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, onChange = null }) => {
-  const [value, setValue] = useState('');
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, onChange = null, defaultValue }) => {
+  const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -50,7 +50,8 @@ InputText.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
 };
 
 export default InputText;

@@ -10,9 +10,10 @@ const InputText = ({
     isRequired = false,
     width = '235px',
     fieldWidth,
-    mask
+    mask,
+    defaultValue
     }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -63,6 +64,7 @@ InputText.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };
 
 export default InputText;

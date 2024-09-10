@@ -77,6 +77,7 @@ const VisualizarPedido = () => {
                 fetchProdutosPedido();
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
+                console.log(pedido);
             } catch (error) {  
                 console.error(error);  
             }  

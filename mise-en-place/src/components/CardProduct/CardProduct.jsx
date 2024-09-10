@@ -4,13 +4,19 @@ import capaImg from "../../utils/img/produtos/Bolo-coco-1.png";
 import editarImg from "../../utils/img/editar.png";
 import PropTypes from 'prop-types';  
 import ButtonFilledDefault from "../Button/Default/default";
+import { useNavigate, useLocation } from "react-router-dom";
+
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
 
 const CardProduto = ({
-    descricao, nomeBolo, imagemSrc,valor, isSelectable = false, onSelect
+    descricao, nomeBolo, imagemSrc,valor,produto, isSelectable = false, onSelect
 }) => {
-
+    const navigate = useNavigate();  
+    const location = useLocation();
+    const navigateToEditProduct= () => {
+        navigate(`/produto-editar`, { state: { produto: produto } });
+    };
     return (
         <div className={styles["card-musica"]}>
             <div className={styles["imagem-container"]}>
@@ -18,25 +24,16 @@ const CardProduto = ({
                     className={styles["imagem"]} />
             </div>
             <div className={styles["textos"]}>
-                <h1>{nomeBolo || "Bolo de coco"} <img src={editarImg} alt="" className={styles["editarImg"]}/></h1>
+                <h1>{nomeBolo || "Bolo de coco"} <img src={editarImg} className={styles["editarImg"]} onClick={navigateToEditProduct}/></h1>
                 <p>{descricao || "Bolo gelado de coco, com pedaços de coco"} </p>
                 
             </div>
-            {!isSelectable && (
-                <div className={styles["valor"]}>
-                    <p>valor: R${valor.toFixed(2) || 99.99}</p>
-                </div>
-            )}
-            {isSelectable && (
-                <div className={styles["selecionarProduto"]}>
-                    <ButtonFilledDefault
-                        showIcon={false}
-                        label="Selecionar"
-                        onClick={onSelect}
-                    ></ButtonFilledDefault>
-                </div>
-            )}
-        </div>
+            <div className={styles["valor"]}>
+                <p>valor: R${valor.toFixed(2) || 99.99}</p>
+                
+            </div>
+            </div>
+        
     );
 };
 
@@ -46,6 +43,7 @@ CardProduto.propTypes = {
     imagemSrc: PropTypes.string,
     valor: PropTypes.any, 
     isSelectable: PropTypes.bool,
+    produto: PropTypes.object,
     onSelect: PropTypes.func
 };  
   
