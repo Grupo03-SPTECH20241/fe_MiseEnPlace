@@ -54,11 +54,10 @@ const VisualizarPedido = () => {
 
     // dados do pedido selecionado
     const [pedido, setPedido] = useState( location.state?.pedido || []);
+    const [produtos, setProdutos] = useState(null);
     const [idPedido, setIdPedido] = useState( location.state?.pedidoId || null);
-    const [pedidoCompleto, setPedidoCompleto] = useState([]);
     
     // valores selecionados nos inputs
-    const [produtosCarrinho, setProdutosCarrinho] = useState([]);
     const [nomeCliente, setNomeCliente] = useState(null);
     const [numeroTelefone, setNumeroTelefone] = useState(null);
     const [formaEntrega, setFormaEntrega] = useState(null);  
@@ -74,11 +73,12 @@ const VisualizarPedido = () => {
     useEffect(() => {  
         const fetchData = async () => {  
             try {  
-                fetchPedido();
-                fetchProdutosPedido();
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
-                console.log(pedido);
+                fetchPedido();
+                console.log("pedido")
+                console.log(pedido)
+                console.log(produtos)
             } catch (error) {  
                 console.error(error);  
             }  
@@ -152,29 +152,18 @@ const VisualizarPedido = () => {
 
     // busca os dados do pedido
     const fetchPedido = async () => {
-        const response = await api.get('/pedidos');
-        const { data } = response;
-        let pedidoEncontrado;
-
-        for (let i = 0; i < data.length; i++) {
-            if (data[i]?.idPedido == pedido?.items[0]?.pedido) {
-                pedidoEncontrado = data[i];
-                break;
-            } 
-        }
-        if(pedidoEncontrado) setPedidoCompleto(pedidoEncontrado);
-    }
-
-    // busca os produtos do pedido
-    const fetchProdutosPedido = async () => {
-        debugger
-        const response = await api.get('/produto-pedidos');
-        const { data } = response;
-        for (let i = 0; i < data.length; i++) {
-            if (data[i]?.idProdutoPedido == pedido?.items[0]?.pedido) {
-                setProdutosCarrinho(data[i])
-                break;
-            } 
+        if(idPedido) {
+            const response = await api.get(`/produto-pedidos/visualizar-pedido/${idPedido}`);  
+            const { data } = response;
+            console.log("dataaaaaaaaaaaaaa");
+            console.log(data);
+            setNomeCliente(data?.pedidoListagemDTO?.clienteDto?.nome);
+            setNumeroTelefone(data?.pedidoListagemDTO?.clienteDto?.numero);
+            setFormaEntrega(data?.pedidoListagemDTO?.formaEntregaDto?.formaEntrega);
+            setDataEntrega(data?.pedidoListagemDTO?.dtEntrega);
+            setFormaPagamento(data?.pedidoListagemDTO?.formaPagamentoDto?.formaPagamento);
+            setPedido(data?.pedidoListagemDTO);
+            setProdutos(data?.produtos);
         }
     }
 
@@ -210,11 +199,11 @@ const VisualizarPedido = () => {
     const deletarPedido = async () => {
         try {
             try {
-                await api.delete('/produto-pedidos/'+produtosCarrinho?.idProdutoPedido);
+                await api.delete('/produto-pedidos/'+produtos?.idProdutoPedido);
             } catch (e) {
                 console.log(e);
             }
-            await api.delete('/pedidos/'+pedidoCompleto?.idPedido);
+            await api.delete('/pedidos/'+pedido?.idPedido);
             toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
             closeModal();
             setTimeout(()=>{
@@ -241,12 +230,12 @@ const VisualizarPedido = () => {
                     </div>
                 </div>  
                 <div className={styles["carrinhoTittleCard"]}>  
-                    <h2>Pedido #{pedidoCompleto?.idPedido? pedidoCompleto.idPedido : '-'}</h2>  
-                    <p>Estado atual: {pedidoCompleto?.status === "N" ? "Novo" 
-                        : pedidoCompleto?.status === "P" ? "Preparando" 
-                        : pedidoCompleto?.status === "R" ? "Pronto" 
-                        : pedidoCompleto?.status === "F" ? "Fazendo" 
-                        : pedidoCompleto?.status === "E" ? "Entregue" 
+                    <h2>Pedido #{pedido?.idPedido? pedido.idPedido : '-'}</h2>  
+                    <p>Estado atual: {pedido?.status === "N" ? "Novo" 
+                        : pedido?.status === "P" ? "Preparando" 
+                        : pedido?.status === "R" ? "Pronto" 
+                        : pedido?.status === "F" ? "Fazendo" 
+                        : pedido?.status === "E" ? "Entregue" 
                         : "N/A"
                     }</p> 
                 </div>  
@@ -255,12 +244,14 @@ const VisualizarPedido = () => {
                         <InputText  
                             label="Cliente:"  
                             placeholder="Insira o nome do cliente"  
+                            defaultValue={nomeCliente}
                             width="44vw"  
                             onChange={handleNomeClienteChange}
                         />  
                         <InputText  
                             label="Número de telefone:"  
                             placeholder="Insira o número"  
+                            defaultValue={numeroTelefone}
                             width="43vw"  
                             onChange={handleNumeroTelefoneChange}
                         />                 
@@ -271,6 +262,7 @@ const VisualizarPedido = () => {
                                 label="Forma de pagamento:"  
                                 value={formaPagamento}  
                                 options={formaPagamentoOptions}  
+                                defaultValue={formaPagamento}
                                 onChange={handleFormaPagamentoChange}  
                                 width="53vh"  
                             />  
@@ -278,6 +270,7 @@ const VisualizarPedido = () => {
                                 label="Data de entrega:"  
                                 onChange={handleDataEntregaChange}  
                                 value={dataEntrega}  
+                                defaultValue={dataEntrega}
                                 width="53vh"  
                             />  
                             <Select  
@@ -286,7 +279,8 @@ const VisualizarPedido = () => {
                                 width="53vh"  
                                 value={formaEntrega}  
                                 onChange={handleFormaEntregaChange}  
-                                options={formaEntregaOptions}>  
+                                options={formaEntregaOptions}
+                                defaultValue={formaEntrega}>  
                             </Select>  
                         </div>  
                     </div>  
@@ -314,20 +308,16 @@ const VisualizarPedido = () => {
                 <div className={styles["productsList"]}>  
                     <h2>Lista de produtos</h2>  
                     <div className={styles["cardsContainer"]}>  
-                    { produtosCarrinho && (
+                    { produtos && produtos.map((data, index) => (
                         <CardPedido   
-                            key={`pedido-${produtosCarrinho?.idProdutoPedido}`}
-                            imagemSrc={BoloChocolate}  
-                            nomeProduto={produtosCarrinho?.produtoDto?.nome}  
-                            descricao={produtosCarrinho?.produtoDto?.descricao}  
-                            quantidade={produtosCarrinho?.qtProduto}  
-                            valor={
-                                ((produtosCarrinho?.produtoDto?.preco + 
-                                produtosCarrinho?.produtoDto?.recheio?.preco)
-                                * produtosCarrinho?.qtProduto)
-                            }  
+                            key={`pedido-${index}`}
+                            imagemSrc={data?.foto}  
+                            nomeProduto={data?.nome}  
+                            descricao={data?.descricao}  
+                            quantidade={1}  
+                            valor={data?.preco}  
                         />  
-                    )}
+                    ))}
                     </div>  
                 </div>  
                 <div className={styles["pedidos-footer"]}>
@@ -351,8 +341,8 @@ const VisualizarPedido = () => {
                     <div className={styles["actions-container"]}>
                         <div className={styles["actions"]}>  
                             <div className={styles["values"]}>  
-                                <p>Valor: R${pedidoCompleto?.vlPedido ? pedidoCompleto.vlPedido:'-'}</p>  
-                                <p>Sinal: R${pedidoCompleto?.valorSinal ? pedidoCompleto.vlPedido:'-'}</p>  
+                                <p>Valor: R${pedido?.vlPedido ? pedido.vlPedido:'-'}</p>  
+                                <p>Sinal: R${pedido?.valorSinal ? pedido.vlPedido:'-'}</p>  
                             </div>
                         </div>  
                     </div>
@@ -360,7 +350,7 @@ const VisualizarPedido = () => {
             </div>  
             <Modal style={customStyles} isOpen={modalIsOpen}>
                 <ExcluirPedidoModal
-                    pedido={pedidoCompleto}
+                    pedido={pedido}
                     closeModal={closeModal}
                     onConfirm={deletarPedido}
                 ></ExcluirPedidoModal>
