@@ -172,7 +172,7 @@ const Kanban = () => {
                                 />
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
-                                <a onClick={()=>{navigate('/agenda')}}>
+                                <a onClick={() => window.location.href = '/Agenda'}>
                                     <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
                                 </a>
                                 <div className={styles["BackgroundColorIcon"]}>
