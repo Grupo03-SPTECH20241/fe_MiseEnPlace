@@ -13,7 +13,7 @@ const InputText = ({
     mask,
     defaultValue
     }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -45,7 +45,7 @@ const InputText = ({
         onBlur={handleBlur}
         type="text"
         id={id}
-        value={defaultValue ? defaultValue : value}
+        value={value}
         style={{width: `${width}`}}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
         >

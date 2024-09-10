@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './text.module.css';
 
 const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, onChange = null, defaultValue }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
         type="text"
         id={id}
         placeholder={placeholder}
-        value={defaultValue ? defaultValue : value}
+        value={value}
         onChange={handleChange}
         onBlur={handleBlur}
         style={{width: `${width}`}}
