@@ -13,8 +13,8 @@ function Cadastro() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [cnpj, setCnpj] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o bloqueio do botão
     const navigate = useNavigate();
-
 
     const handleFileUpload = (event) => {
         const uploadedFile = event.target.files[0];
@@ -27,13 +27,18 @@ function Cadastro() {
 
     const cancelSubmit = () => {
         navigate('/login');
-    }
+    };
 
     const handleCadastro = async (event) => {
         event.preventDefault();
 
-        if (!filePath || !nome || !email || !cnpj ) {
-            toast.error('Por favor, preencha todos os campos e selecione um arquivo.', { theme: "colored" });
+        // Verificar se já está submetendo o formulário
+        if (isSubmitting) {
+            return; // Impedir múltiplos envios
+        }
+
+        if (!filePath || !nome || !email || !cnpj) {
+            toast.error('Por favor, preencha todos os campos e selecione um arquivo.', { theme: 'colored' });
             return;
         }
 
@@ -45,9 +50,13 @@ function Cadastro() {
             logo: filePath // Enviando apenas o caminho do arquivo
         };
 
+        // Bloquear o botão
+        setIsSubmitting(true);
+
         try {
             await api.post('/usuarios', payload);
-            toast.success('Cadastro efetuado com sucesso!', { theme: "colored" });
+            toast.success('Cadastro efetuado com sucesso!', { theme: 'colored' });
+
             // Limpar os campos após o sucesso
             setNome('');
             setEmail('');
@@ -56,10 +65,13 @@ function Cadastro() {
 
             setTimeout(() => {
                 navigate('/login');
-            }, 6000)
+            }, 6000);
         } catch (error) {
             console.log(error);
-            toast.error('Erro ao cadastrar cliente', { theme: "colored" });
+            toast.error('Erro ao cadastrar cliente', { theme: 'colored' });
+        } finally {
+            // Desbloquear o botão após a resposta do servidor
+            setIsSubmitting(false);
         }
     };
 
@@ -102,7 +114,13 @@ function Cadastro() {
                             </div>
                             <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: 'none' }} />
                         </div>
-                            <button className={cadastroStyles['buttonCadastro-submit']} type="submit">Cadastrar</button>
+                        <button 
+                            className={cadastroStyles['buttonCadastro-submit']} 
+                            type="submit" 
+                            disabled={isSubmitting} // Desabilitar o botão durante o envio
+                        >
+                            {isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
+                        </button>
                     </form>
                 </div>
             </div>
@@ -111,3 +129,4 @@ function Cadastro() {
 }
 
 export default Cadastro;
+    

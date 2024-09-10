@@ -10,16 +10,16 @@ import api from "../../api";
 import ButtonDefault from '../../components/Button/Default/default';
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Agenda = () => {
-  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');
-  const [testeMap, setTesteMap] = useState([]);
+const Agenda = () => {  
+  const [filterSelectedValue, setFilterSelectedValue] = useState('Mensal');  
+  const [testeMap, setTesteMap] = useState([]);  
   const navigate = useNavigate();  
-  const location = useLocation();
+  const location = useLocation();  
 
-  const handleFilterStatus = (value) => {
-    setFilterSelectedValue(value);
-    fetchAgenda(value);
-  }
+  const handleFilterStatus = (value) => {  
+    setFilterSelectedValue(value);  
+    fetchAgenda(value);  
+  }  
 
   const fetchAgenda = async (item) => {
     setTesteMap([]);
@@ -66,6 +66,7 @@ const Agenda = () => {
       console.log(stringUrl);
       api.get(stringUrl).then((response) => {
         const data = response.data;
+        console.log("DATAAAAA")
         console.log(data);
         setTesteMap(data.itemsAgenda.reverse());
       }).catch((error) => {
@@ -75,71 +76,76 @@ const Agenda = () => {
       console.error("Erro ao buscar dados da agenda", error);
     }
   };
-  useEffect(() => {
-    fetchAgenda();
-  }, []);
+  useEffect(() => {  
+    fetchAgenda();  
+  }, []);  
 
-  const navigateToAdicionarPedido = () => {
-    navigate('/adicionar-pedido');
-  }
+  const navigateToAdicionarPedido = () => {  
+    navigate('/adicionar-pedido');  
+  }  
   
-  const navigateToVisualizarPedido = ( pedidoSelecionado ) => {
-    navigate('/visualizar-pedido', { state: { pedido: pedidoSelecionado } });
-  }
+  const navigateToVisualizarPedido = (pedidoSelecionado) => {  
+    navigate('/visualizar-pedido', { state: { pedidoId: pedidoSelecionado } });  
+  }  
 
-  const navigateToKanban = () => {
-    navigate('/kanban');
-  }
+  const navigateToKanban = () => {  
+    navigate('/kanban');  
+  }  
 
-  return (
-    <div className={styles["mainContainer"]}>
-      <Sidebar />
-      <div className={styles["innerContainer"]}>
-        <div className={styles["dashboardBreadcrumbsContainer"]}>
-          <Breadcrumb />
-        </div>
-        <div className={styles["containerTittleCard"]}>
-          <div className={styles["dashboardTittleCard"]}>
-            <h2>Quadro de Planejamento</h2>
-            <p>Organize os pedidos da semana conforme você os prepara.</p>
-          </div>
-        </div>
-        <div className={styles["DivSpace"]}>
-          <div className={styles["DivActions"]}>
-            <div className={styles["DivButtonAddPedido"]}>
-              <ButtonDefault
-                label="Adicionar Pedido"
-                showIcon="true"
-                icon="plus"
-                iconPosition="left"
-                fontSize="small"
-                width="170px"
-                onClick={navigateToAdicionarPedido}
-              />
-            </div>
-            <div className={styles["DivButtonTrocarVisualizacao"]}>
-              <div className={styles["marginButtons"]}>
-                <div style={ { "marginRight" : "2vw"}}>
-                  <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus}></Filter>
-                </div>
-              </div>
-              <div className={styles["BackgroundColorIcon"]}>
-                <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
-              </div>
-              <div onClick={navigateToKanban}>
-                <img className={styles["IconKanban"]} src={IconKanban} alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style={{"marginTop": "3vh"}}>
-          {testeMap.map((item, index) => (
-            <NestedList key={index} testeMap={item} title={item.title} onClick={()=>{navigateToVisualizarPedido(item)}}/>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+  return (  
+    <div className={styles["mainContainer"]}>  
+      <Sidebar />  
+      <div className={styles["innerContainer"]}>  
+        <div className={styles["dashboardBreadcrumbsContainer"]}>  
+          <Breadcrumb />  
+        </div>  
+        <div className={styles["containerTittleCard"]}>  
+          <div className={styles["dashboardTittleCard"]}>  
+            <h2>Quadro de Planejamento</h2>  
+            <p>Organize os pedidos da semana conforme você os prepara.</p>  
+          </div>  
+        </div>  
+        <div className={styles["DivSpace"]}>  
+          <div className={styles["DivActions"]}>  
+            <div className={styles["DivButtonAddPedido"]}>  
+              <ButtonDefault  
+                label="Adicionar Pedido"  
+                showIcon="true"  
+                icon="plus"  
+                iconPosition="left"  
+                fontSize="small"  
+                width="170px"  
+                onClick={navigateToAdicionarPedido}  
+              />  
+            </div>  
+            <div className={styles["DivButtonTrocarVisualizacao"]}>  
+              <div className={styles["marginButtons"]}>  
+                <div style={{ marginRight: "2vw" }}>  
+                  <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />  
+                </div>  
+              </div>  
+              <div className={styles["BackgroundColorIcon"]}>  
+                <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />  
+              </div>  
+              <div onClick={navigateToKanban}>  
+                <img className={styles["IconKanban"]} src={IconKanban} alt="" />  
+              </div>  
+            </div>  
+          </div>  
+        </div>  
+        <div style={{ marginTop: "3vh" }}>  
+          {testeMap.map((item, index) => (  
+            <NestedList   
+              key={index}   
+              testeMap={item}   
+              title={item.title}   
+              onClick={navigateToVisualizarPedido}   
+            />  
+          ))}  
+        </div>  
+      </div>  
+    </div>  
+  );  
+}  
 
-export default Agenda;
+export default Agenda;  

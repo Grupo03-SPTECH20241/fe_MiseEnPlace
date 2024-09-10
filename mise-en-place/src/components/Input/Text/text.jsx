@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
+import { useEffect } from 'react';
 
 const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, onChange = null, defaultValue }) => {
   const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
+
+  useEffect(() => {  
+    setValue(defaultValue || '');  
+  }, [defaultValue]);  
 
   const handleChange = (e) => {
     setValue(e.target.value);
