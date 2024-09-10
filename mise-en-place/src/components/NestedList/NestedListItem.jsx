@@ -14,10 +14,6 @@ const NestedListItem = ({ testeMap }) => {
     setIsOpen(!isOpen);
   };
 
-  const redirect = (url) => {
-    window.location = url;
-  }
-
   return (
 
     useEffect(() => {
@@ -57,7 +53,7 @@ const NestedListItem = ({ testeMap }) => {
         <p>Data de Entrega</p>
         <p>{dataEntregaFormatted}</p>
       </div>
-      <div style={{ "display": "flex", "alignItems": "center", "cursor" : "pointer" }} onClick={() => redirect('/dashboard')}>  {/* TODO: ALTERAR REDIRECIONAMENTO PARA PEDIDO */}
+      <div style={{ "display": "flex", "alignItems": "center", "cursor" : "pointer" }}>  {/* TODO: ALTERAR REDIRECIONAMENTO PARA PEDIDO */}
         <img src={setaDireita} />
       </div>
     </div>
