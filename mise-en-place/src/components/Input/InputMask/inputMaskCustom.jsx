@@ -10,7 +10,8 @@ const InputText = ({
     isRequired = false,
     width = '235px',
     fieldWidth,
-    mask
+    mask,
+    defaultValue
     }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
@@ -44,7 +45,7 @@ const InputText = ({
         onBlur={handleBlur}
         type="text"
         id={id}
-        value={value}
+        value={defaultValue ? defaultValue : value}
         style={{width: `${width}`}}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
         >
@@ -63,6 +64,7 @@ InputText.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };
 
 export default InputText;

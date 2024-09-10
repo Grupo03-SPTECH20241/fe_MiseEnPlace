@@ -5,12 +5,24 @@ import styles from './produtoEditar.module.css';
 import CameraIcon from "../../utils/img/icons/camera.png"
 import Input from "../../components/Input/Text/text"
 import InputMaskCustom from "../../components/Input/InputMask/inputMaskCustom"
-import Button from "../../components/Button/Default/default"
+import Button from "../../components/Button/Default/default";
+import { useNavigate, useLocation } from "react-router-dom";
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
 const ProdutoEditar = () => {
+    // navegação
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const [produto, setProduto] = useState( location.state?.produto || []);
+
+    const mostrarProduto = () => {
+        console.log(produto);
+    }
+
     return (
+        mostrarProduto(),
         <div className={styles["mainContainer"]}>
             <Sidebar />
             <div className={styles["innerContainer"]}>
@@ -31,12 +43,15 @@ const ProdutoEditar = () => {
                     <div className={styles["inputsContainer"]}>
                         <div className={styles["inputsContainerLine1"]}>
                             <Input
-                                label='Nome do produto:'
+                                defaultValue={produto.nome}
+                                label="Nome do produto:"  
                                 placeholder='Insira o nome do produto'
                                 fieldWidth="65%"
                                 width='100%'>
+
                             </Input>
                             <InputMaskCustom
+                                defaultValue={produto.preco}
                                 label='Preço:'
                                 placeholder='R$'
                                 id='precoInput'
@@ -48,12 +63,14 @@ const ProdutoEditar = () => {
                         </div>
                         <div className={styles["inputsContainerLine2"]}>
                             <Input
+                                defaultValue={produto.massa.nome}  
                                 label='Massa:'
                                 placeholder='Insira o tipo de massa'
                                 fieldWidth="48%"
                                 width='100%'>
                             </Input>
                             <Input
+                                defaultValue={produto.cobertura.nome}
                                 label='Cobertura:'
                                 placeholder='Insira o tipo de cobertura'
                                 fieldWidth="48%"
@@ -62,12 +79,14 @@ const ProdutoEditar = () => {
                         </div>
                         <div className={styles["inputsContainerLine3"]}>
                             <Input
+                                defaultValue={produto.recheio.nome}
                                 label='Recheio:'
                                 placeholder='Selecione um recheio'
                                 fieldWidth="48%"
                                 width='100%'>
                             </Input>
                             <InputMaskCustom
+                                defaultValue={produto.recheio.preco}
                                 label='Preço do recheio:'
                                 placeholder='R$'
                                 id='precoCoberturaInput'
@@ -79,6 +98,7 @@ const ProdutoEditar = () => {
                         </div>
                         <div className={styles["inputsContainerLine4"]}>
                             <Input
+                                defaultValue={produto.descricao}
                                 label='Descrição:'
                                 placeholder='Insira a descrição do novo produto'
                                 fieldWidth="100%"

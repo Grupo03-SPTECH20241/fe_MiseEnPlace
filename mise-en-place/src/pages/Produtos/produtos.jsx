@@ -109,6 +109,7 @@ const Produtos = () => {
                                 nomeBolo={data.nome}
                                 imagemSrc={data.imagemSrc}
                                 valor={data.preco}
+                                produto={data}
                             ></CardProduct>
                         ))
 
