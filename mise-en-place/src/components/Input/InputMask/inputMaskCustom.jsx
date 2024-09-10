@@ -18,7 +18,7 @@ const InputText = ({
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value.trim() === '' && isRequired) {
+    if (e.target.value?.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -26,7 +26,7 @@ const InputText = ({
   };
 
   const handleBlur = () => {
-    if (value.trim() === '' && isRequired) {
+    if (value?.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');

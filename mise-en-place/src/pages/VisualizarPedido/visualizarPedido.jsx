@@ -54,6 +54,7 @@ const VisualizarPedido = () => {
 
     // dados do pedido selecionado
     const [pedido, setPedido] = useState( location.state?.pedido || []);
+    const [idPedido, setIdPedido] = useState( location.state?.pedidoId || null);
     const [pedidoCompleto, setPedidoCompleto] = useState([]);
     
     // valores selecionados nos inputs
