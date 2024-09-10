@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './goalchart.module.css';
-import Cancelarv from '../../Button/Cancelar-variant/cancelarv';
+import ButtonFilledDefaultVariant from '../../Button/Default-variant/defaultv';
 import locationIcon from '../../../utils/img/location_icon.png';
 import api from '../../../api';
 
@@ -50,12 +50,14 @@ const GoalChart = ({openModal}) => {
             <p>Defina a quantidade que você deseja faturar este mês.</p>
           </div>
           <div className={styles["goalChartSelectOption"]}>
-            <Cancelarv
-              showIcon={false}
+            <ButtonFilledDefaultVariant
+            fontSize='small'
               label='Definir meta'
               onClick={openModal}
+              icon='settings'
+              iconPosition='left'
               >
-            </Cancelarv>
+            </ButtonFilledDefaultVariant>
           </div>
         </div>
         <div className={styles["goalChart"]}>
