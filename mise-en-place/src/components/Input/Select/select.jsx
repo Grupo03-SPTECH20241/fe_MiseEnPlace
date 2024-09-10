@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './select.module.css';
+import { useEffect } from 'react';
 
-const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = [], onChange = null}) => {
-  const [value, setValue] = useState('');
+const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = [], onChange = null, defaultValue}) => {
+  const [value, setValue] = useState(defaultValue ? defaultValue : '');
   const [error, setError] = useState('');
+
+  useEffect(() => {  
+    setValue(defaultValue || '');  
+  }, [defaultValue]);  
 
   const handleChange = (e) => {
     setValue(e.target.value);

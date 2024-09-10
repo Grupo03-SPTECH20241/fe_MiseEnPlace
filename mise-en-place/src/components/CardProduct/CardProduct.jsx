@@ -28,10 +28,20 @@ const CardProduto = ({
                 <p>{descricao || "Bolo gelado de coco, com pedaços de coco"} </p>
                 
             </div>
-            <div className={styles["valor"]}>
-                <p>valor: R${valor.toFixed(2) || 99.99}</p>
-                
-            </div>
+            {!isSelectable && (
+                <div className={styles["valor"]}>
+                    <p>valor: R${valor.toFixed(2) || 99.99}</p>
+                </div>
+            )}
+            {isSelectable && (
+                <div className={styles["selecionarProduto"]}>
+                    <ButtonFilledDefault
+                        showIcon={false}
+                        label="Selecionar"
+                        onClick={onSelect}
+                    ></ButtonFilledDefault>
+                </div>
+            )}
             </div>
         
     );
