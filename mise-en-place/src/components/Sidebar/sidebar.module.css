@@ -16,6 +16,13 @@ body {
 
 }
 
+.sidebar-content img {
+    cursor: pointer;
+}
+
+.minimizar-div img {
+    cursor: pointer;
+}
 .sidebar-closed {
     width: 76.27px; 
     transition: width 0.5s;
