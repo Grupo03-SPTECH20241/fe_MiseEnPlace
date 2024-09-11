@@ -118,12 +118,12 @@ const Agenda = () => {
                 onClick={navigateToAdicionarPedido}  
               />  
             </div>  
-            <div className={styles["DivButtonTrocarVisualizacao"]}>  
-              <div className={styles["marginButtons"]}>  
-                <div style={{ marginRight: "2vw" }}>  
-                  <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />  
-                </div>  
+            <div className={styles["marginButtons"]}>  
+              <div style={{ marginRight: "2vw" }}>  
+                <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />  
               </div>  
+            </div>  
+            <div className={styles["DivButtonTrocarVisualizacao"]}>  
               <div className={styles["BackgroundColorIcon"]}>  
                 <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />  
               </div>  
