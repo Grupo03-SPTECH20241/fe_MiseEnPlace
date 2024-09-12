@@ -153,7 +153,7 @@ const AdicionarPedido = () => {
                             key={index}
                             descricao={data.descricao}
                             nomeBolo={data.nome}
-                            imagemSrc={data.imagemSrc}
+                            imagemSrc={data.foto}
                             valor={data.preco}
                             isSelectable={true}
                             onSelect={()=>{openModal(data)}}
