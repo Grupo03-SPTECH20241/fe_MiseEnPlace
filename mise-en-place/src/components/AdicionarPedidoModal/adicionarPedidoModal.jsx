@@ -91,7 +91,7 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
             <div className={styles["produto-observacoes-container"]}>
                 <div className={styles["imagem-container"]}>
                     <p>Foto de referência:</p>
-                    <img src={produto?.imgSrc? produto.imgSrc : FotoBolo} alt="imagem do produto" />
+                    <img src={produto?.foto? produto.foto : FotoBolo} alt="imagem do produto" />
                 </div>
                 <div className={styles["observacao-field-container"]}>
                     <InputTextField

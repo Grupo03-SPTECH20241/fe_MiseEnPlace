@@ -316,7 +316,7 @@ const Carrinho = () => {
                     { produtosCarrinho && produtosCarrinho.map((data, index) => (
                         <CardPedido   
                             key={`pedido-${index}`}
-                            imagemSrc={imagem}  
+                            imagemSrc={data?.foto}  
                             nomeProduto={data?.nome}  
                             descricao={produtoPedidoCriacaoDtos[index]?.observacoes ? produtoPedidoCriacaoDtos[index]?.observacoes : data?.observacoes}  
                             quantidade={produtoPedidoCriacaoDtos[index]?.qtProduto ? produtoPedidoCriacaoDtos[index]?.qtProduto : data?.qtProduto}  
