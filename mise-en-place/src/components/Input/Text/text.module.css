@@ -42,4 +42,25 @@
     margin-top: 5px;
     font-family: Nunito-Regular;
   }
+
+  .dropdown-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  
+  .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    background-color: white;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
   

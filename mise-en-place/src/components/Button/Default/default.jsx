@@ -27,7 +27,7 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
       return(<img src={currentIcon} alt="Ícone" />);
     }  
     return null;
-  };  
+  };
 
   return (
     <button 
@@ -42,7 +42,7 @@ const ButtonFilledDefault = ({ onClick, label = 'Label', showIcon = true, icon =
   );
 };
 
-ButtonFilledDefault.propTypes = {  
+ButtonFilledDefault.propTypes = {
   onClick: PropTypes.any,
   label: PropTypes.string,  
   showIcon: PropTypes.bool,  

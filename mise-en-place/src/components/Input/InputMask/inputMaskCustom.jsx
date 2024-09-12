@@ -10,7 +10,8 @@ const InputText = ({
     isRequired = false,
     width = '235px',
     fieldWidth,
-    mask
+    mask,
+    onChange
     }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
@@ -40,7 +41,9 @@ const InputText = ({
         mask={`${mask}`}
         placeholder={`${placeholder}`}
         maskChar={null}
-        onChange={handleChange}
+        onChange={e => {
+          onChange(e.target.value);
+        }}
         onBlur={handleBlur}
         type="text"
         id={id}
