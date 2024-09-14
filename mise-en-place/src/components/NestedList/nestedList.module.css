@@ -15,44 +15,43 @@
     justify-content: space-around;
 }
 
-.statusAgendaNovo{
+.statusAgendaNovo {
     background-color: #f4ff93;
     border: none;
     border-radius: 50px;
     padding: 5px;
-    width: 10vw;
-    display : flex; 
+    display: flex;
     justify-content: center;
 }
-.statusAgendaPreparando{
+
+.statusAgendaPreparando {
     background-color: #ffd493;
     border: none;
     border-radius: 50px;
     padding: 5px;
-    width: 10vw;
-    display : flex; 
-    justify-content: center;
-}
-.statusAgendaPronto{
-    background-color: #8CEC25;
-    border: none;
-    border-radius: 50px;
-    width: 10vw;
-    padding: 5px;
-    display : flex; 
-    justify-content: center;
-}
-.statusAgendaEntregue{
-    background-color: #25ECE0;
-    border: none;
-    width: 10vw;
-    border-radius: 50px;
-    padding: 5px;
-    display : flex; 
+    display: flex;
     justify-content: center;
 }
 
-.cardTitle{
+.statusAgendaPronto {
+    background-color: #8CEC25;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.statusAgendaEntregue {
+    background-color: #25ECE0;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.cardTitle {
     font-family: "Nunito-Regular";
     background-color: #FFEAF1;
     border-radius: 10px;
@@ -64,7 +63,7 @@
     cursor: pointer;
 }
 
-.cardTitleSelect{
+.cardTitleSelect {
     font-family: "Nunito-Regular";
     background-color: #FF94BB;
     border-radius: 10px;
@@ -76,21 +75,167 @@
     cursor: pointer;
 }
 
-.divValores1{
+.divValores1 {
     width: 10%;
 }
-.divValores2{
+
+.divValores2 {
     width: 16%;
 }
-.divValores3{
-    width: 13% !important;
+
+.divValores3 {
+    width: 6%;
 }
-.divValores4{
+
+.divValores4 {
     width: 8%;
 }
 
-.cardInfoContainer {
+.seta {
+    display: flex;
+    align-items: center;
     cursor: pointer;
 }
 
+
 /* Novo, Preparando, Pronto, Fazendo, Entregue */
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .cardTitle {
+        margin-left: 2.5vh;
+    }
+
+    .cardTitleSelect {
+        margin-left: 2.5vh;
+    }
+
+    .cardItens {
+        margin-left: 2.5vh;
+        flex-direction: column;
+        width: 82%;
+    }
+
+    .divValores1 {
+        width: 100%;
+    }
+
+    .divValores2 {
+        width: 100%;
+    }
+
+    .divValores3 {
+        width: 100%;
+    }
+
+    .divValores4 {
+        width: 100%;
+        margin-left: 2%;
+    }
+    .seta {
+        justify-content: center;
+        background-color: #eeb8ca;
+        padding: 2%;
+        border-radius: 10px;
+    }	
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    .cardTitle {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardTitleSelect {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardItens {
+        margin-left: 2vh;
+        flex-direction: column;
+        width: 89%;
+    }
+
+    .divValores1 {
+        width: 100%;
+    }
+
+    .divValores2 {
+        width: 100%;
+    }
+
+    .divValores3 {
+        width: 100%;
+    }
+
+    .divValores4 {
+        width: 100%;
+        margin-left: 2%;
+    }
+    .seta {
+        justify-content: center;
+        background-color: #eeb8ca;
+        padding: 2%;
+        border-radius: 10px;
+    }	
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .cardTitle {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardTitleSelect {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardItens {
+        margin-left: 2vh;
+        flex-direction: column;
+        width: 89%;
+    }
+
+    .divValores1 {
+        width: 100%;
+    }
+
+    .divValores2 {
+        width: 100%;
+    }
+
+    .divValores3 {
+        width: 100%;
+    }
+
+    .divValores4 {
+        width: 100%;
+        margin-left: 2%;
+    }
+    .seta {
+        justify-content: center;
+        background-color: #eeb8ca;
+        padding: 2%;
+        border-radius: 10px;
+    }	
+}
+
+@media screen and (min-device-width: 1025px) and (max-device-width: 1200px) {
+    .cardTitle {
+        margin-left: 7vh;
+    }
+
+    .cardTitleSelect {
+        margin-left: 7vh;
+    }
+
+    .cardItens {
+        margin-left: 7vh;
+
+    }
+    .seta {
+        padding: 2%;
+    }	
+}
+
+@media screen and (min-device-width: 1201px) {}

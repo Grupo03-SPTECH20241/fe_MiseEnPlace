@@ -114,7 +114,7 @@ const Agenda = () => {
                 icon="plus"  
                 iconPosition="left"  
                 fontSize="small"  
-                width="170px"  
+                className={styles['ButtonAddPedido']}
                 onClick={navigateToAdicionarPedido}  
               />  
             </div>  
@@ -143,6 +143,7 @@ const Agenda = () => {
             />  
           ))}  
         </div>  
+        <div className={styles['gambiSpace']}>&nbsp;</div>
       </div>  
     </div>  
   );  

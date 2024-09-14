@@ -33,7 +33,7 @@ const NestedListItem = ({ testeMap }) => {
         <p>{testeMap.descricao}</p>
       </div>
       <div className={styles["divValores3"]}>
-        <p>Estado Atual</p>
+        <p>Estado Atual: </p>
         <p className={
           `${styles["statusAgenda"]} ${testeMap.status === "N" ? styles["statusAgendaNovo"]
             : testeMap.status === "P" ? styles["statusAgendaPreparando"]
@@ -50,10 +50,10 @@ const NestedListItem = ({ testeMap }) => {
         </p>
       </div>
       <div className={styles["divValores4"]}>
-        <p>Data de Entrega</p>
+        <p>Data de Entrega: </p>
         <p>{dataEntregaFormatted}</p>
       </div>
-      <div style={{ "display": "flex", "alignItems": "center", "cursor" : "pointer" }}>  {/* TODO: ALTERAR REDIRECIONAMENTO PARA PEDIDO */}
+      <div className={styles['seta']}>  {/* TODO: ALTERAR REDIRECIONAMENTO PARA PEDIDO */}
         <img src={setaDireita} />
       </div>
     </div>
