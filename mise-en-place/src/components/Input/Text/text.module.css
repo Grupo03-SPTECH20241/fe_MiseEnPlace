@@ -2,11 +2,16 @@
     font-family: "Nunito-Regular";
     src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
   }
+
+  body {
+    font-family: Nunito-Regular;
+  }
   
   .input-field-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
   }
   
   .input-label {
@@ -37,13 +42,17 @@
   }
   
   .error-message {
-    color: #4B24E5;;
+    color: #4B24E5;
     font-size: 12px;
     margin-top: 5px;
     font-family: Nunito-Regular;
   }
 
   .dropdown-list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -52,12 +61,16 @@
     overflow-y: auto;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    background-color: white;
+    z-index: 10;
+    font-family: Nunito-Regular;
   }
   
   .dropdown-item {
     padding: 8px;
     cursor: pointer;
     background-color: white;
+    font-family: Nunito-Regular;
   }
   
   .dropdown-item:hover {

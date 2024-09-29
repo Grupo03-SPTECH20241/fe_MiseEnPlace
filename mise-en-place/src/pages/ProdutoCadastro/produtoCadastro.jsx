@@ -23,89 +23,111 @@ const ProdutoCadastro = () => {
     const [unidadeMedidaId, setUnidadeMedida] = useState('');
     const [tipoProdutoId, setTipoProduto] = useState('');
 
-    let massaResponse = {};
-    let coberturaResponse = {};
-    let recheioResponse = {};
+    const [unidadeMedidaOptions, setUnidadeMedidaOptions] = useState([]);
+    const [massaOptions, setMassaOptions] = useState([]);
+    const [coberturaOptions, setCoberturaOptions] = useState([]);
+    const [recheioOptions, setRecheioOptions] = useState([]);
+    const [tipoProdutoOptions, setTipoProdutoOptions] = useState([]);
 
-    const getMassa = async (event) => {
-        api.get('/massas', { }).then((response) => {
-            massaResponse = response.data;
-        }).catch((error) => {
-            console.log(error, "error")
-        })
-    }
+    useEffect(() => {
+        getUnidadeMedida();
+        getMassa();
+        getCobertura();
+        getRecheio();
+        getTipoProduto();
+    }, []);
 
-    const getCobertura = async (event) => {
-        api.get('/coberturas', { }).then((response) => {
-            coberturaResponse = response.data;    
-        }).catch((error) => {
-            console.log(error, "error")
-        })
-    }
+    const getUnidadeMedida = async () => {
+        try {
+            const response = await api.get('/unidades-medida');
+            const options = response.data.map(element => ({
+                label: element.unidadeMedida,
+                value: element.idUnidadeMedida,
+            }));
+            setUnidadeMedidaOptions(options);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const getRecheio = async (event) => {
-        api.get('/recheios', { }).then((response) => {
-            recheioResponse = response.data;
-        }).catch((error) => {
-            console.log(error, "error")
-        })
-    }
+    const getMassa = async () => {
+        try {
+            const response = await api.get('/massas');
+            const options = response.data.map(element => ({
+                label: element.nome,
+                value: element.idMassa,
+            }));
+            setMassaOptions(options);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const cadastrarMassa = async (event) => {
-        api.post('/massas', { }).then((response) => {
-        }).catch((error) => {
-            console.log(error, "error")
-        })
-    }
+    const getCobertura = async () => {
+        try {
+            const response = await api.get('/coberturas');
+            const options = response.data.map(element => ({
+                label: element.nome,
+                value: element.idCobertura,
+            }));
+            setCoberturaOptions(options);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const cadastrarCobertura = async (event) => {
-        api.post('/coberturas', { }).then((response) => {
-        }).catch((error) => {
-            console.log(error, "error")
-        })
-    }
+    const getRecheio = async () => {
+        try {
+            const response = await api.get('/recheios');
+            const options = response.data.map(element => ({
+                label: element.nome,
+                value: element.idRecheio,
+            }));
+            setRecheioOptions(options);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const cadastrarRecheio = async (event) => {
-        api.post('/recheios', { }).then((response) => {
-        }).catch((error) => {
-            console.log(error, "error")
-        })
-    }
+    const getTipoProduto = async () => {
+        try {
+            const response = await api.get('/tipo-produtos');
+            const options = response.data.map(element => ({
+                label: element.nome,
+                value: element.id,
+            }));
+            setTipoProdutoOptions(options);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const cadastramento = async (event) => {
         event.preventDefault();
+        console.log(recheio)
+        console.log(nome)
 
-        api.post('/produtos', { 
-            "nome": nome,
-            "preco": preco,
-            "descricao": descricao,
-            "foto": foto,
-            "qtdDisponivel": 1,
-            "recheioId": recheio,
-            "massaId": massa,
-            "coberturaId": cobertura,
-            "unidadeMedidaId": unidadeMedidaId,
-            "tipoProdutoId": tipoProdutoId
+        try {
+            await api.post('/produtos', { 
+                "nome": nome,
+                "preco": preco,
+                "descricao": descricao,
+                "foto": foto,
+                "qtdDisponivel": 1,
+                "recheioId": recheio,
+                "massaId": massa,
+                "coberturaId": cobertura,
+                "unidadeMedidaId": unidadeMedidaId,
+                "tipoProdutoId": tipoProdutoId
+            });
 
-        }).then((response) => {
-            toast.success('Produto cadastrado com sucesso!', { theme: "colored" })
-        }).catch((error) => {
-            console.log(error, "error")
-        })
+            toast.success('Produto cadastrado com sucesso!', { theme: "colored" });
+        } catch (error) {
+            console.log(error);
+            toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
+        }
+    };
 
-        api.post("/")
-    }
-
-    getMassa();
-    getCobertura();
-    getRecheio();
-
-    const mySelectOptions = [
-        { label: "Opcao1", value: 1 },
-        { label: "Opcao2", value: 2 },
-        { label: "Opcao3", value: 3 }
-    ];
-    
     return (
         <div className={styles["mainContainer"]}>
             <ToastContainer />
@@ -132,15 +154,14 @@ const ProdutoCadastro = () => {
                                 placeholder='Insira o nome do produto'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={e => setNome(e.target.value)}>
+                                onChange={setNome}>
                             </Input>
                             <InputMaskCustom
                                 label='Preço:'
-                                placeholder='R$'
                                 id='precoInput'
                                 width='100%'
                                 fieldWidth="23%"
-                                mask="R$ 999999999"
+                                mask="999999999"
                                 maskChar={null}
                                 onChange={setPreco}>
                             </InputMaskCustom>
@@ -149,10 +170,9 @@ const ProdutoCadastro = () => {
                                 placeholder='Selecione a medida'
                                 fieldWidth="23%"
                                 width='100%'
-                                onChange={e => setUnidadeMedida(e.target.value)}
+                                onChange={e => setUnidadeMedida(e.target.key)}
                                 availableSelect={true}
-                                selectOptions={mySelectOptions}
-                                >
+                                selectOptions={unidadeMedidaOptions}>
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine2"]}>
@@ -161,14 +181,18 @@ const ProdutoCadastro = () => {
                                 placeholder='Insira o tipo de massa'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={e => setMassa(e.target.value)}>
+                                onChange={e => setMassa(e.target.key)}
+                                availableSelect={true}
+                                selectOptions={massaOptions}>
                             </Input>
                             <Input
                                 label='Cobertura:'
                                 placeholder='Insira o tipo de cobertura'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={e => setCobertura(e.target.value)}>
+                                onChange={e => setCobertura(e.target.key)}
+                                availableSelect={true}
+                                selectOptions={coberturaOptions}>
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine3"]}>
@@ -177,15 +201,16 @@ const ProdutoCadastro = () => {
                                 placeholder='Selecione um recheio'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={e => setRecheio(e.target.value)}>
+                                onChange={setRecheio}
+                                availableSelect={true}
+                                selectOptions={recheioOptions}>
                             </Input>
                             <InputMaskCustom
                                 label='Preço do recheio:'
-                                placeholder='R$'
                                 id='precoCoberturaInput'
                                 width='100%'
                                 fieldWidth="48%"
-                                mask="R$ 999999999"
+                                mask="999999999"
                                 maskChar={null}
                                 onChange={setPrecoRecheio}>
                             </InputMaskCustom>
@@ -203,17 +228,18 @@ const ProdutoCadastro = () => {
                                 placeholder='Selecione o tipo'
                                 fieldWidth="31%"
                                 width='100%'
-                                onChange={e => setTipoProduto(e.target.value)}>
+                                onChange={e => setTipoProduto(e.target.key)}
+                                availableSelect={true}
+                                selectOptions={tipoProdutoOptions}>
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine5"]}>
                             <Button
                                 onClick={cadastramento}
-                                label='Cadstrar produto'
+                                label='Cadastrar produto'
                                 icon='plus'
                                 iconPosition='left'
-                                width='25%'
-                                >
+                                width='25%'>
                             </Button>
                         </div>
                     </div>
