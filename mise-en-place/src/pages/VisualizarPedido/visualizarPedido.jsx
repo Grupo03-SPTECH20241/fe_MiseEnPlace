@@ -76,9 +76,6 @@ const VisualizarPedido = () => {
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
                 fetchPedido();
-                console.log("pedido")
-                console.log(pedido)
-                console.log(produtos)
             } catch (error) {  
                 console.error(error);  
             }  
@@ -311,11 +308,11 @@ const VisualizarPedido = () => {
                     { produtos && produtos.map((data, index) => (
                         <CardPedido   
                             key={`pedido-${index}`}
-                            imagemSrc={data?.foto}  
-                            nomeProduto={data?.nome}  
-                            descricao={data?.descricao}  
+                            imagemSrc={data?.produtoDto?.foto}  
+                            nomeProduto={data?.produtoDto?.nome}  
+                            descricao={data?.produtoDto?.descricao}  
                             quantidade={1}  
-                            valor={data?.preco}  
+                            valor={data?.produtoDto?.preco}  
                         />  
                     ))}
                     </div>  
