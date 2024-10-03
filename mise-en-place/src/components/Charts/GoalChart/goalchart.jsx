@@ -89,8 +89,12 @@ const GoalChart = ({openModal}) => {
               >
                 <p>{valorRealizadoDaMeta}</p>
               </div>
+              <div className={styles["totalGoalContainer"]}>
+                <p>R${valorTotalDaMeta}</p>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
