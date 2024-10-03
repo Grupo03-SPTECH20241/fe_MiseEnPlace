@@ -9,7 +9,7 @@ import InputMask from 'react-input-mask'; // Importando a biblioteca para másca
 import { useNavigate } from 'react-router-dom';
 
 function Cadastro() {
-    const [filePath, setFilePath] = useState('');
+    const [fileData, setFileData] = useState(null);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [cnpj, setCnpj] = useState('');
@@ -19,9 +19,11 @@ function Cadastro() {
     const handleFileUpload = (event) => {
         const uploadedFile = event.target.files[0];
         if (uploadedFile) {
-            const path = URL.createObjectURL(uploadedFile);
-            let stringLogo = path.split('blob:');
-            setFilePath(stringLogo[1]); // Armazenar apenas o caminho do arquivo
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFileData(reader.result);
+            };
+            reader.readAsArrayBuffer(uploadedFile);
         }
     };
 
@@ -37,17 +39,17 @@ function Cadastro() {
             return; // Impedir múltiplos envios
         }
 
-        if (!filePath || !nome || !email || !cnpj) {
+        if (!fileData || !nome || !email || !cnpj) {
             toast.error('Por favor, preencha todos os campos e selecione um arquivo.', { theme: 'colored' });
             return;
         }
 
-        // Construindo o payload para enviar apenas o caminho do arquivo e os dados do formulário
+        // Construindo o payload para enviar os dados do formulário e o arquivo como byte array
         const payload = {
             nome,
             email,
             cnpj,
-            logo: filePath // Enviando apenas o caminho do arquivo
+            logo: Array.from(new Uint8Array(fileData)) // Convertendo ArrayBuffer para byte array
         };
 
         // Bloquear o botão
@@ -61,7 +63,7 @@ function Cadastro() {
             setNome('');
             setEmail('');
             setCnpj('');
-            setFilePath('');
+            setFileData(null);
 
             setTimeout(() => {
                 navigate('/login');
@@ -110,7 +112,7 @@ function Cadastro() {
                         <div className={cadastroStyles['form-group']}>
                             <label>Upload File</label>
                             <div className={cadastroStyles['custom-file-upload']} onClick={() => document.getElementById('file-upload').click()}>
-                                {filePath || 'Selecione um arquivo'}
+                                {fileData ? 'Arquivo selecionado' : 'Selecione um arquivo'}
                             </div>
                             <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: 'none' }} />
                         </div>
@@ -129,4 +131,3 @@ function Cadastro() {
 }
 
 export default Cadastro;
-    
