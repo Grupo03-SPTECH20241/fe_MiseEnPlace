@@ -24,23 +24,6 @@ const customStyles = {
 };
 
 const Dashboard = () => {
-    const salvarMeta = async (event) => {
-        event.preventDefault();
-        
-        //validações
-        try {
-
-            //realizar cadastro
-            await api.post('/metas');
-            toast.success('Cadastro efetuado com sucesso!', { theme: 'colored' });
-
-            //fechar modal
-        } catch (error) {
-            console.log(error);
-            toast.error('Erro ao cadastrar meta', { theme: 'colored' });
-        } 
-    };
-    
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
     const openModal = () => {

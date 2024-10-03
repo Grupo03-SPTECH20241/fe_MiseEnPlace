@@ -13,7 +13,7 @@ const InputText = ({
     mask,
     defaultValue,
     onChange = null,
-    isDisabled = false
+    isDisabled = false,
     }) => {
   const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');

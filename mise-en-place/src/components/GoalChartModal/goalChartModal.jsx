@@ -11,9 +11,11 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const GoalChartModal = ({closeModal}) => {
     const [metaValue, setMetaValue] = useState(null);
+    const [dataFimDefault, setDataFimDefault] = useState(null);
     const [dataFim, setDataFim] = useState(null);
     const [dataInicio, setDataInicio] = useState(null);
     const [atualizarDataInicio, setAtualizarDataInicio] = useState(false);
+    const [isSaving, setIsSaving] = useState(false)
 
     useEffect(() => {  
         getDataInicial();
@@ -42,21 +44,24 @@ const GoalChartModal = ({closeModal}) => {
             setDataInicio(formatarData(atual));
             setAtualizarDataInicio(true);
         }
-        setDataFim(formatarData(fim));
+        setDataFimDefault(formatarData(fim));
     }
 
     const cadastrarMeta = async () => {
 
-        if(!metaValue || !dataFim) {
+        if(isSaving) return;
+        if(!metaValue || !dataFim && !dataFimDefault) {
             toast.error('Por favor, informe o valor da meta e data de término.', { theme: 'colored' });
             return;
         }
         const payload = {
-            valor: metaValue,
-            dtTermino: dataFim,
+            valor: convertCurrencyStringToNumber(metaValue),
+            dtTermino: formatarDataPayload(dataFim ? dataFim : dataFimDefault),
         }
+        
         try {
-            await api.put(`/metas/1/in-range/${atualizarDataInicio}`, payload);
+            setIsSaving(true);
+            await api.put(`/metas/${1}/in-range/${atualizarDataInicio}`, payload);
 
             if (atualizarDataInicio){
                 toast.success('Meta atualizada com sucesso', { theme: 'colored' });
@@ -65,6 +70,11 @@ const GoalChartModal = ({closeModal}) => {
             }
         } catch (e){
             console.log(e);
+        } finally {
+            setTimeout(()=>{
+                setIsSaving(false);
+                closeModal();
+            },7000);
         }
     }
 
@@ -75,6 +85,24 @@ const GoalChartModal = ({closeModal}) => {
         return `${dia}/${mes}/${ano}`;  
     }; 
 
+    const formatarDataPayload = (data) => {  
+        const partes = data.split("/");  
+        return `${partes[2]}-${partes[1]}-${partes[0]}`;  
+      };  
+
+    const convertCurrencyStringToNumber = (currencyString) => {  
+        let cleanedString = currencyString.replace(/R\$|\s/g, '');  
+        cleanedString = cleanedString.replace(/\./g, '');  
+        cleanedString = cleanedString.replace(',', '.');  
+        const numericValue = parseFloat(cleanedString);  
+        
+        return numericValue;  
+    }  
+
+    const exit = () => {
+        if (!isSaving) closeModal();
+    }
+
     return (
         <div>
             <ToastContainer />
@@ -82,7 +110,7 @@ const GoalChartModal = ({closeModal}) => {
                 <span className={styles["modalTitle"]}>Configurar meta</span>
                 <img
                     src={exitIcon}
-                    onClick={closeModal}
+                    onClick={exit}
                     className={styles["exitButton"]}
                     />
             </div>
@@ -93,7 +121,7 @@ const GoalChartModal = ({closeModal}) => {
                 placeholder='R$'
                 id='metaInput'
                 width='100%'
-                mask="R$ 99999999999"
+                mask="R$ 999.999,99"
                 maskChar={null}
                 onChange={handleMetaChange}
                 >
@@ -120,7 +148,7 @@ const GoalChartModal = ({closeModal}) => {
                     mask="99/99/9999"
                     placeholder="DD/MM/YYYY"
                     maskChar={null}
-                    defaultValue={dataFim}
+                    defaultValue={dataFimDefault}
                     onChange={handleDataFimChange}
                     >
                 </InputMaskCustom>
@@ -128,7 +156,7 @@ const GoalChartModal = ({closeModal}) => {
 
             <div className={styles["modalButtons"]}>
                 <ButtonFilledNegative
-                    onClick={closeModal}
+                    onClick={exit}
                     label='Cancelar'
                     showIcon={false}
                     >

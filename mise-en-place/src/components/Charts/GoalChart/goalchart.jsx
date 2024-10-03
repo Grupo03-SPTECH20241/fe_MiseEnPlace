@@ -90,7 +90,7 @@ const GoalChart = ({openModal}) => {
                 <p>{valorRealizadoDaMeta}</p>
               </div>
               <div className={styles["totalGoalContainer"]}>
-                <p>R${valorTotalDaMeta}</p>
+                <b>Meta final de: R${valorTotalDaMeta} {percentualAtualDaMeta === '100%' ? "foi concluída!":""}</b>
               </div>
             </div>
           </div>
