@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import api from "../../api";  
 import styles from './dashboard.module.css';
 import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
@@ -14,15 +16,14 @@ import Modal from "react-modal"
 const customStyles = {
     content: {
       width: '60%',
-      height: '37%',
+      height: '50%',
       margin: 'auto',
       borderRadius: '20px',
       borderColor: 'gray'
     },
 };
 
-const Header = () => {
-    
+const Dashboard = () => {
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
     const openModal = () => {
@@ -34,6 +35,7 @@ const Header = () => {
 
         return (
             <div className={styles["mainContainer"]}>
+                <ToastContainer></ToastContainer>
                 <Sidebar />
                 <div className={styles["innerContainer"]}>
                     <div className={styles["dashboardBreadcrumbsContainer"]}>
@@ -63,4 +65,4 @@ const Header = () => {
         );
 };
 
-export default Header;
+export default Dashboard;
