@@ -2,11 +2,16 @@
     font-family: "Nunito-Regular";
     src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
   }
+
+  body {
+    font-family: Nunito-Regular;
+  }
   
   .input-field-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
   }
   
   .input-label {
@@ -29,6 +34,11 @@
   .input-field-error {
     border-color: #4B24E5;;
   }
+
+  .input-field-error-leandro {
+    background-color: #ffcccc;
+    border-color: red;
+  }
   
   .label-content {
     font-size: 16px;
@@ -37,9 +47,38 @@
   }
   
   .error-message {
-    color: #4B24E5;;
+    color: #4B24E5;
     font-size: 12px;
     margin-top: 5px;
     font-family: Nunito-Regular;
+  }
+
+  .dropdown-list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: white;
+    z-index: 10;
+    font-family: Nunito-Regular;
+  }
+  
+  .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    background-color: white;
+    font-family: Nunito-Regular;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
   }
   
