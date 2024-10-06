@@ -4,7 +4,7 @@ import BreadcrumbProdutoCadastro from '../../components/Texts/Breadcrumbs/BreadC
 import styles from './produtoCadastro.module.css';
 import CameraIcon from "../../utils/img/icons/camera.png"
 import Input from "../../components/Input/Text/text"
-import InputMaskCustom from "../../components/Input/InputMask/inputMaskCustom"
+import InputMaskCustomProdutoCadastro from "../../components/Input/InputMask/inputMaskCustomProdutoCadastro"
 import Button from "../../components/Button/Default/default"
 import api from "../../api"
 import { toast, ToastContainer } from 'react-toastify';
@@ -15,19 +15,27 @@ const ProdutoCadastro = () => {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [descricao, setDescricao] = useState('');
-    const [foto, setFoto] = useState('')
+    const [fotoId, setFoto] = useState('')
     const [massa, setMassa] = useState('');
     const [cobertura, setCobertura] = useState('');
     const [recheio, setRecheio] = useState('');
     const [precoRecheio, setPrecoRecheio] = useState('');
-    const [unidadeMedidaId, setUnidadeMedida] = useState('');
-    const [tipoProdutoId, setTipoProduto] = useState('');
+    const [unidadeMedida, setUnidadeMedida] = useState('');
+    const [tipoProduto, setTipoProduto] = useState('');
 
     const [unidadeMedidaOptions, setUnidadeMedidaOptions] = useState([]);
     const [massaOptions, setMassaOptions] = useState([]);
     const [coberturaOptions, setCoberturaOptions] = useState([]);
     const [recheioOptions, setRecheioOptions] = useState([]);
     const [tipoProdutoOptions, setTipoProdutoOptions] = useState([]);
+
+    const [unidadeMedidaData, setUnidadeMedidaData] = useState([]);
+    const [massaData, setMassaData] = useState([]);
+    const [coberturaData, setCoberturaData] = useState([]);
+    const [recheioData, setRecheioData] = useState([]);
+    const [tipoProdutoData, setTipoProdutoData] = useState([]);
+
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         getUnidadeMedida();
@@ -45,6 +53,12 @@ const ProdutoCadastro = () => {
                 value: element.idUnidadeMedida,
             }));
             setUnidadeMedidaOptions(options);
+            setUnidadeMedidaData(response.data);
+
+            console.log("Unidade de Medida data:")
+            console.log(response.data)
+
+            return response.data
         } catch (error) {
             console.log(error);
         }
@@ -58,6 +72,12 @@ const ProdutoCadastro = () => {
                 value: element.idMassa,
             }));
             setMassaOptions(options);
+            setMassaData(response.data);
+
+            console.log("Massa data:")
+            console.log(response.data)
+
+            return response.data
         } catch (error) {
             console.log(error);
         }
@@ -71,6 +91,12 @@ const ProdutoCadastro = () => {
                 value: element.idCobertura,
             }));
             setCoberturaOptions(options);
+            setCoberturaData(response.data);
+
+            console.log("Cobertura data:")
+            console.log(response.data)
+
+            return response.data
         } catch (error) {
             console.log(error);
         }
@@ -84,6 +110,12 @@ const ProdutoCadastro = () => {
                 value: element.idRecheio,
             }));
             setRecheioOptions(options);
+            setRecheioData(response.data);
+
+            console.log("Recheio data:")
+            console.log(response.data)
+
+            return response.data
         } catch (error) {
             console.log(error);
         }
@@ -97,26 +129,167 @@ const ProdutoCadastro = () => {
                 value: element.id,
             }));
             setTipoProdutoOptions(options);
+            setTipoProdutoData(response.data);
+
+            console.log("Tipo produto data:")
+            console.log(response.data)
+
+            return response.data
         } catch (error) {
             console.log(error);
         }
     };
 
+    const cadastroUnidadeMedida = async () => {
+        try {
+            if (!unidadeMedidaData.some(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())) {
+                await api.post('/unidades-medida', {
+                    "unidadeMedida": unidadeMedida
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const cadastroMassa = async () => {
+        try {
+            if (!massaData.some(e => e.nome.toLowerCase() === massa.toLowerCase())) {
+                await api.post('/massas', {
+                    "nome": massa
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const cadastroCobertura = async () => {
+        try {
+            if (!coberturaData.some(e => e.nome.toLowerCase() === cobertura.toLowerCase())) {
+                await api.post('/coberturas', {
+                    "nome": cobertura
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const cadastroRecheio = async () => {
+        try {
+            if (!recheioData.some(e => e.nome.toLowerCase() === recheio.toLowerCase())) {
+                await api.post('/recheios', {
+                    "nome": recheio,
+                    "preco": precoRecheio
+                });
+            } else {
+                const recheioEncontrado = recheioData.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
+
+                if (recheioEncontrado.preco !== parseFloat(precoRecheio)) {
+                    await api.put(`/recheios/${recheioEncontrado.idRecheio}`, {
+                        "nome": recheioEncontrado.nome,
+                        "preco": parseFloat(precoRecheio)
+                    });
+                }
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Preencha corretamente o valor do Recheio / Preço do Recheio', { theme: "colored" });
+            return;
+        }
+    };
+
+    const cadastroTipoProduto = async () => {
+        try {
+            if (!tipoProdutoData.some(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())) {
+                await api.post('/tipo-produtos', {
+                    "tipo": tipoProduto
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleRecheioChange = (value) => {
+        setRecheio(value);
+        handlePrecoRecheio(value);
+      };
+      
+
+    const handlePrecoRecheio = async(selectedRecheio) => {
+        const recheioEncontrado = recheioData.find(e => e.nome.toLowerCase() === selectedRecheio.toLowerCase());
+        if (recheioEncontrado) {
+            setPrecoRecheio(recheioEncontrado.preco.toString());
+            console.log(precoRecheio)
+        } else {
+            setPrecoRecheio('');
+        }
+        console.log(recheio)
+    }
+
+    const validateForm = () => {
+        const newErrors = {};
+        if (!nome.trim()) newErrors.nome = true;
+        if (!preco.trim() || preco[0] === ".") newErrors.preco = true;
+        if (!descricao.trim()) newErrors.descricao = true;
+        if (!massa.trim()) newErrors.massa = true;
+        if (!cobertura.trim()) newErrors.cobertura = true;
+        if (!recheio.trim()) newErrors.recheio = true;
+        if (!precoRecheio.trim() || precoRecheio[0] === ".") newErrors.precoRecheio = true;
+        if (!unidadeMedida.trim()) newErrors.unidadeMedida = true;
+        if (!tipoProduto.trim()) newErrors.tipoProduto = true;
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const cadastramento = async (event) => {
         event.preventDefault();
-        console.log(recheio)
-        console.log(nome)
+
+        if (!validateForm()) {
+            toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
+            return;
+        }
+
+        await cadastroRecheio();
+        await cadastroMassa();
+        await cadastroCobertura();
+        await cadastroUnidadeMedida();
+        await cadastroTipoProduto();
+
+        const unidadeMedidaDataNow = await getUnidadeMedida();
+        const massaDataNow = await getMassa();
+        const coberturaDataNow = await getCobertura();
+        const recheioDataNow = await getRecheio();
+        const tipoProdutoDataNow = await getTipoProduto();
+
+        const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
+        const recheioId = recheioEncontrado.idRecheio
+
+        const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
+        const massaId = massaEncontrado.idMassa
+
+        const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
+        const coberturaId = coberturaEncontrado.idCobertura
+
+        const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
+        const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
+
+        const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
+        const tipoProdutoId = tipoProdutoEncontrado.id
 
         try {
             await api.post('/produtos', { 
                 "nome": nome,
                 "preco": preco,
                 "descricao": descricao,
-                "foto": foto,
+                "foto": fotoId,
                 "qtdDisponivel": 1,
-                "recheioId": recheio,
-                "massaId": massa,
-                "coberturaId": cobertura,
+                "recheioId": recheioId,
+                "massaId": massaId,
+                "coberturaId": coberturaId,
                 "unidadeMedidaId": unidadeMedidaId,
                 "tipoProdutoId": tipoProdutoId
             });
@@ -154,25 +327,27 @@ const ProdutoCadastro = () => {
                                 placeholder='Insira o nome do produto'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={setNome}>
+                                onChange={setNome}
+                                hasError={errors.nome}>
                             </Input>
-                            <InputMaskCustom
+                            <InputMaskCustomProdutoCadastro
                                 label='Preço:'
                                 id='precoInput'
                                 width='100%'
                                 fieldWidth="23%"
-                                mask="999999999"
-                                maskChar={null}
-                                onChange={setPreco}>
-                            </InputMaskCustom>
+                                value={preco}
+                                onChange={setPreco}
+                                hasError={errors.preco}>
+                            </InputMaskCustomProdutoCadastro>
                             <Input
                                 label='Unidade de medida:'
                                 placeholder='Selecione a medida'
                                 fieldWidth="23%"
                                 width='100%'
-                                onChange={e => setUnidadeMedida(e.target.key)}
+                                onChange={setUnidadeMedida}
                                 availableSelect={true}
-                                selectOptions={unidadeMedidaOptions}>
+                                selectOptions={unidadeMedidaOptions}
+                                hasError={errors.unidadeMedida}>
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine2"]}>
@@ -181,18 +356,20 @@ const ProdutoCadastro = () => {
                                 placeholder='Insira o tipo de massa'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={e => setMassa(e.target.key)}
+                                onChange={setMassa}
                                 availableSelect={true}
-                                selectOptions={massaOptions}>
+                                selectOptions={massaOptions}
+                                hasError={errors.massa}>
                             </Input>
                             <Input
                                 label='Cobertura:'
                                 placeholder='Insira o tipo de cobertura'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={e => setCobertura(e.target.key)}
+                                onChange={setCobertura}
                                 availableSelect={true}
-                                selectOptions={coberturaOptions}>
+                                selectOptions={coberturaOptions}
+                                hasError={errors.cobertura}>
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine3"]}>
@@ -201,19 +378,21 @@ const ProdutoCadastro = () => {
                                 placeholder='Selecione um recheio'
                                 fieldWidth="48%"
                                 width='100%'
-                                onChange={setRecheio}
+                                onChange={handleRecheioChange}
                                 availableSelect={true}
-                                selectOptions={recheioOptions}>
+                                selectOptions={recheioOptions}
+                                hasError={errors.recheio}>
                             </Input>
-                            <InputMaskCustom
+                            <InputMaskCustomProdutoCadastro
                                 label='Preço do recheio:'
                                 id='precoCoberturaInput'
                                 width='100%'
                                 fieldWidth="48%"
-                                mask="999999999"
-                                maskChar={null}
-                                onChange={setPrecoRecheio}>
-                            </InputMaskCustom>
+                                value={precoRecheio}
+                                onChange={setPrecoRecheio}
+                                hasError={errors.precoRecheio}
+                            >
+                            </InputMaskCustomProdutoCadastro>
                         </div>
                         <div className={styles["inputsContainerLine4"]}>
                             <Input
@@ -221,16 +400,18 @@ const ProdutoCadastro = () => {
                                 placeholder='Insira a descrição do novo produto'
                                 fieldWidth="65%"
                                 width='100%'
-                                onChange={e => setDescricao(e.target.value)}>
+                                onChange={setDescricao}
+                                hasError={errors.descricao}>
                             </Input>
                             <Input
                                 label='Tipo de produto:'
                                 placeholder='Selecione o tipo'
                                 fieldWidth="31%"
                                 width='100%'
-                                onChange={e => setTipoProduto(e.target.key)}
+                                onChange={setTipoProduto}
                                 availableSelect={true}
-                                selectOptions={tipoProdutoOptions}>
+                                selectOptions={tipoProdutoOptions}
+                                hasError={errors.tipoProduto}>
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine5"]}>

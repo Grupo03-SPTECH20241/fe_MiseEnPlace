@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null }) => {
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null, hasError = false}) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
@@ -82,7 +82,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
         onChange={handleChange}
         onBlur={handleBlur}
         style={{ width: `${width}` }}
-        className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}
+        className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''} ${hasError ? styles['input-field-error-leandro'] : ''}`}
         onFocus={() => {
           if (availableSelect) toggleSelect();
         }}

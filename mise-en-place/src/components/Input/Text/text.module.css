@@ -34,6 +34,11 @@
   .input-field-error {
     border-color: #4B24E5;;
   }
+
+  .input-field-error-leandro {
+    background-color: #ffcccc;
+    border-color: red;
+  }
   
   .label-content {
     font-size: 16px;
