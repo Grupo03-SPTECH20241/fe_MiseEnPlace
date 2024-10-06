@@ -10,6 +10,7 @@
     position: relative;
     font-family: Arial, sans-serif;
     border-left: 4px solid; /* Remove a cor fixa */
+    cursor: pointer;
 }
 
 /* Estilos para cada status */

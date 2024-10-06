@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './calendar.module.css';
+import { useEffect } from 'react';
 
-const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', type = 'date' }) => {
-  const [value, setValue] = useState('');
+const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', type = 'date', onChange = null, defaultValue }) => {
+  const [value, setValue] = useState(defaultValue ? defaultValue : '');
   const [error, setError] = useState('');
+
+  useEffect(() => {  
+    setValue(defaultValue || '');  
+  }, [defaultValue]);  
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    if(onChange !== null) onChange(e);
+    
     if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
@@ -47,6 +54,7 @@ InputCalendar.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  onChange: PropTypes.func,
   type: PropTypes.oneOf(['date','datetime']),  
 };
 

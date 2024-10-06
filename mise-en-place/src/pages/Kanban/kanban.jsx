@@ -8,8 +8,9 @@ import ButtonDefault from '../../components/Button/Default/default';
 import IconKanban from '../../utils/img/Kanban.svg';
 import IconAgenda from '../../utils/img/List.svg';
 import Card from '../../components/CardKanban/CardKanban';
+import api from '../../api';
+import { useNavigate } from 'react-router-dom';
 
-// Component to render columns and handle dropping
 const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
     const [, dropRef] = useDrop({
         accept: 'CARD',
@@ -35,18 +36,22 @@ const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
     );
 };
 
-
 const Kanban = () => {
+    const navigate = useNavigate();  // Movido para dentro do componente
     const [novos, setNovos] = useState([]);
     const [preparando, setPreparando] = useState([]);
     const [prontos, setProntos] = useState([]);
     const [entregues, setEntregues] = useState([]);
 
+    const navigateToAdicionarPedido = () => {
+        navigate('/adicionar-pedido');
+    }
+
     useEffect(() => {
         const fetchPedidos = async () => {
             try {
-                const response = await fetch('http://localhost:8080/produto-pedidos');
-                const data = await response.json();
+                const response = await api.get('/produto-pedidos');
+                const data = response.data;
 
                 const novosCards = [];
                 const preparandoCards = [];
@@ -100,14 +105,13 @@ const Kanban = () => {
         try {
             console.log(`Iniciando atualização do status do pedido ${cardId} para ${newStatus}`);
 
-            const response = await fetch(`http://localhost:8080/pedidos/${cardId}/status/${newStatus}`, {
-                method: 'PUT',
+            const response = await api.put(`/pedidos/${cardId}/status/${newStatus}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
 
-            if (!response.ok) {
+            if (response.status !== 200) {
                 throw new Error(`Erro ao atualizar o status do pedido: ${response.statusText} (Status Code: ${response.status})`);
             } else {
                 console.log(`Status do pedido ${cardId} atualizado para ${newStatus} com sucesso.`);
@@ -121,11 +125,11 @@ const Kanban = () => {
         const moveFromColumn = (fromColumn, setFromColumn) => {
             const cardIndex = fromColumn.findIndex(card => card.id === cardId);
             const [card] = fromColumn.splice(cardIndex, 1);
-            card.status = newStatus; // Atualiza o status do card localmente
+            card.status = newStatus;
             setFromColumn([...fromColumn]);
             setToColumn((prev) => [...prev, card]);
         };
-    
+
         if (oldStatus === 'P') {
             moveFromColumn(preparando, setPreparando);
         } else if (oldStatus === 'N') {
@@ -135,16 +139,15 @@ const Kanban = () => {
         } else if (oldStatus === 'E') {
             moveFromColumn(entregues, setEntregues);
         }
-    
+
         // Atualiza o status no backend
         updatePedidoStatus(cardId, newStatus);
     };
-    
 
     return (
         <DndProvider backend={HTML5Backend}>
             <div className={styles["mainContainer"]}>
-                    <Sidebar />
+                <Sidebar />
                 <div className={styles["innerContainer"]}>
                     <div className={styles["dashboardBreadcrumbsContainer"]}>
                         <Breadcrumb />
@@ -165,10 +168,13 @@ const Kanban = () => {
                                     iconPosition="left"
                                     fontSize="small"
                                     width="170px"
+                                    onClick={navigateToAdicionarPedido}
                                 />
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
-                                <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
+                                <a onClick={() => window.location.href = '/Agenda'}>
+                                    <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
+                                </a>
                                 <div className={styles["BackgroundColorIcon"]}>
                                     <img className={styles["IconKanban"]} src={IconKanban} alt="" />
                                 </div>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
+import { useEffect } from 'react';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null, hasError = false}) => {
-  const [value, setValue] = useState('');
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, onChange = null, availableSelect = false, selectOptions = [], onChange = null, hasError = false, defaultValue }) => {
+  const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -38,9 +39,13 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
     );
   };
 
+  useEffect(() => {  
+    setValue(defaultValue || '');  
+  }, [defaultValue]);  
+
   const handleChange = (e) => {
     setValue(e.target.value);
-    if(onChange !== null) onChange(e.target.value);
+    if(onChange !== null) onChange(e);
     if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
@@ -99,6 +104,8 @@ InputText.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
 };
 
 export default InputText;

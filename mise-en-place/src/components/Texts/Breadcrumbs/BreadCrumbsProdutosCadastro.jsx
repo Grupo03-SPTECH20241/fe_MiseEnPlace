@@ -18,6 +18,7 @@ export default function ActiveLastBreadcrumb() {
         </Link>
         <Link underline="hover" color="text.primary" href="/Login">Home</Link>
         <Link underline="hover" color="text.primary" href="/produtos">Produtos</Link>
+        <Link underline="hover" color="text.primary" href="/produtos">Cadastrar novo produto</Link>
       </Breadcrumbs>
     </div>
   );

@@ -1,6 +1,5 @@
 /* Button.css */
 .cancel-variant-button {
-  max-width: 137px;
   min-width: 137px;
   height: 40px;
   border-radius: 500px;
@@ -9,7 +8,7 @@
   justify-content: center;
   background-color: #31cfff00;
   font-size: 16px;
-  border: 2px solid #4B24E5;;
+  border: 2px solid #4B24E5;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   font-family: "arial";

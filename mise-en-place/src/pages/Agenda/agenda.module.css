@@ -1,0 +1,231 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dashboardBreadcrumbsContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
+
+.dashboardTittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.dashboardTittleCard h2,
+.dashboardTittleCard p {
+    margin-left: 3vh !important;
+    color: white;
+}
+
+.dashboardTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.dashboardTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
+}
+
+.marginButtons{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    align-items: end;
+}
+
+.DivSpace {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.DivActions {
+    display: flex;
+    align-items: center;
+    width: 87.50%;
+    justify-content: space-between;
+    padding-top: 6.5vh;
+    padding-left: 0.5vh;
+    margin-left: 3vw;
+}
+
+.DivButtonTrocarVisualizacao {
+    display: flex;
+    pad: 15px;
+    width: 8%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ButtonAddPedido{
+    width: 10%!important;
+}
+
+.IconAgenda {
+    width: 24px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.IconKanban {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.BackgroundColorIcon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #F8BBC2;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .dashboardTittleCard {
+        background-image: linear-gradient(to left, #E5246B, #DE0052);
+        display: flex;
+        width: 85.25%;
+        max-height: 20vh;
+        margin-top: 3vh;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 0.6vw!important;
+        padding: 2.5vh;
+        border-radius: 12px;
+    }
+
+    .DivActions{
+        width: 90%;
+        margin-left: 0!important;
+    }
+    .DivButtonTrocarVisualizacao{
+        width: 20%;
+    }
+    .BackgroundColorIcon{
+        margin-right: 4px;
+    }
+    .gambiSpace{
+        height: 100px;
+    }
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    .dashboardTittleCard {
+        background-image: linear-gradient(to left, #E5246B, #DE0052);
+        display: flex;
+        width: 85.25%;
+        max-height: 20vh;
+        margin-top: 3vh;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 3vw!important;
+        padding: 2.5vh;
+        border-radius: 12px;
+    }
+
+    .DivActions{
+        width: 90%;
+        margin-left: 4vw!important;
+    }
+    .DivButtonTrocarVisualizacao{
+        width: 20%;
+    }
+    .BackgroundColorIcon{
+        margin-right: 4px;
+    }
+    .gambiSpace{
+        height: 100px;
+    }
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .dashboardTittleCard {
+        background-image: linear-gradient(to left, #E5246B, #DE0052);
+        display: flex;
+        width: 85.25%;
+        max-height: 20vh;
+        margin-top: 3vh;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 3vw!important;
+        padding: 2.5vh;
+        border-radius: 12px;
+    }
+
+    .DivActions{
+        width: 90%;
+        margin-left: 4vw!important;
+    }
+    .DivButtonTrocarVisualizacao{
+        width: 20%;
+    }
+    .BackgroundColorIcon{
+        margin-right: 4px;
+    }
+    .gambiSpace{
+        height: 100px;
+    }
+}
+
+@media screen and (min-device-width: 1025px) and (max-device-width: 1200px) {
+    .dashboardTittleCard {
+        background-image: linear-gradient(to left, #E5246B, #DE0052);
+        display: flex;
+        width: 85.25%;
+        max-height: 20vh;
+        margin-top: 3vh;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 5vw!important;
+        padding: 2.5vh;
+        border-radius: 12px;
+    }
+
+    .DivActions{
+        width: 90%;
+        margin-left: 5vw!important;
+    }
+    .DivButtonTrocarVisualizacao{
+        width: 11%;
+    }
+    .BackgroundColorIcon{
+        margin-right: 4px;
+    }
+    .gambiSpace{
+        height: 100px;
+    }
+}
+
+@media screen and (min-device-width: 1201px) {
+    
+}
+

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar/sidebar';
-import BreadcrumbProdutoCadastro from '../../components/Texts/Breadcrumbs/BreadCrumbsProdutosCadastro';
+import Breadcrumbs from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produtoCadastro.module.css';
 import CameraIcon from "../../utils/img/icons/camera.png"
 import Input from "../../components/Input/Text/text"
@@ -307,7 +307,7 @@ const ProdutoCadastro = () => {
             <Sidebar />
             <div className={styles["innerContainer"]}>
                 <div className={styles["produtoBreadcrumbsContainer"]}>
-                    <BreadcrumbProdutoCadastro />
+                    <Breadcrumbs/>
                 </div>
                 <div className={styles["produtoCadastroTittleCard"]}>
                     <h2>Cadastrar produto</h2>

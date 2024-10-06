@@ -6,60 +6,74 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import api from '../../api';
 import InputMask from 'react-input-mask'; // Importando a biblioteca para máscara de entrada
+import { useNavigate } from 'react-router-dom';
 
 function Cadastro() {
-    const [filePath, setFilePath] = useState('');
+    const [fileData, setFileData] = useState(null);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [cnpj, setCnpj] = useState('');
-    const [senha, setSenha] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o bloqueio do botão
+    const navigate = useNavigate();
 
     const handleFileUpload = (event) => {
         const uploadedFile = event.target.files[0];
         if (uploadedFile) {
-            const path = URL.createObjectURL(uploadedFile);
-            let stringLogo = path.split('blob:');
-            setFilePath(stringLogo[1]); // Armazenar apenas o caminho do arquivo
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFileData(reader.result);
+            };
+            reader.readAsArrayBuffer(uploadedFile);
         }
     };
 
     const cancelSubmit = () => {
-        window.location = "/login";
-    }
+        navigate('/login');
+    };
 
     const handleCadastro = async (event) => {
         event.preventDefault();
 
-        if (!filePath || !nome || !email || !cnpj || !senha) {
-            toast.error('Por favor, preencha todos os campos e selecione um arquivo.', { theme: "colored" });
+        // Verificar se já está submetendo o formulário
+        if (isSubmitting) {
+            return; // Impedir múltiplos envios
+        }
+
+        if (!fileData || !nome || !email || !cnpj) {
+            toast.error('Por favor, preencha todos os campos e selecione um arquivo.', { theme: 'colored' });
             return;
         }
 
-        // Construindo o payload para enviar apenas o caminho do arquivo e os dados do formulário
+        // Construindo o payload para enviar os dados do formulário e o arquivo como byte array
         const payload = {
             nome,
             email,
             cnpj,
-            senha, // Adiciona a senha ao payload
-            logo: filePath // Enviando apenas o caminho do arquivo
+            logo: Array.from(new Uint8Array(fileData)) // Convertendo ArrayBuffer para byte array
         };
+
+        // Bloquear o botão
+        setIsSubmitting(true);
 
         try {
             await api.post('/usuarios', payload);
-            toast.success('Cadastro efetuado com sucesso!', { theme: "colored" });
+            toast.success('Cadastro efetuado com sucesso!', { theme: 'colored' });
+
             // Limpar os campos após o sucesso
             setNome('');
             setEmail('');
             setCnpj('');
-            setSenha('');
-            setFilePath('');
+            setFileData(null);
 
             setTimeout(() => {
-                window.location.href = '/login';
-            }, 6000)
+                navigate('/login');
+            }, 6000);
         } catch (error) {
             console.log(error);
-            toast.error('Erro ao cadastrar cliente', { theme: "colored" });
+            toast.error('Erro ao cadastrar cliente', { theme: 'colored' });
+        } finally {
+            // Desbloquear o botão após a resposta do servidor
+            setIsSubmitting(false);
         }
     };
 
@@ -96,17 +110,19 @@ function Cadastro() {
                             </InputMask>
                         </div>
                         <div className={cadastroStyles['form-group']}>
-                            <label>Senha:</label>
-                            <input type="password" name="senha" placeholder="Escreva sua senha" value={senha} onChange={e => setSenha(e.target.value)} />
-                        </div>
-                        <div className={cadastroStyles['form-group']}>
                             <label>Upload File</label>
                             <div className={cadastroStyles['custom-file-upload']} onClick={() => document.getElementById('file-upload').click()}>
-                                {filePath || 'Selecione um arquivo'}
+                                {fileData ? 'Arquivo selecionado' : 'Selecione um arquivo'}
                             </div>
                             <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: 'none' }} />
                         </div>
-                            <button className={cadastroStyles['buttonCadastro-submit']} type="submit">Cadastrar</button>
+                        <button 
+                            className={cadastroStyles['buttonCadastro-submit']} 
+                            type="submit" 
+                            disabled={isSubmitting} // Desabilitar o botão durante o envio
+                        >
+                            {isSubmitting ? 'Cadastrando...' : 'Cadastrar'}
+                        </button>
                     </form>
                 </div>
             </div>

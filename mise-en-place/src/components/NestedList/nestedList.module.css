@@ -1,0 +1,241 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.cardItens {
+    font-family: "Nunito-Regular";
+    display: flex;
+    border: 1px solid #C8C8C8;
+    border-radius: 10px;
+    padding: 10px;
+    width: 86.8%;
+    margin-left: 6.5vh;
+    margin-top: 0.7vh;
+    justify-content: space-around;
+}
+
+.statusAgendaNovo {
+    background-color: #f4ff93;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.statusAgendaPreparando {
+    background-color: #ffd493;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.statusAgendaPronto {
+    background-color: #8CEC25;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.statusAgendaEntregue {
+    background-color: #25ECE0;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.cardTitle {
+    font-family: "Nunito-Regular";
+    background-color: #FFEAF1;
+    border-radius: 10px;
+    padding: 0.1vh;
+    padding-left: 1vw;
+    width: 86.8%;
+    margin-left: 6.5vh;
+    margin-top: 0.7vh;
+    cursor: pointer;
+}
+
+.cardTitleSelect {
+    font-family: "Nunito-Regular";
+    background-color: #FF94BB;
+    border-radius: 10px;
+    padding: 0.1vh;
+    padding-left: 1vw;
+    width: 86.8%;
+    margin-left: 6.5vh;
+    margin-top: 0.7vh;
+    cursor: pointer;
+}
+
+.divValores1 {
+    width: 10%;
+}
+
+.divValores2 {
+    width: 16%;
+}
+
+.divValores3 {
+    width: 6%;
+}
+
+.divValores4 {
+    width: 8%;
+}
+
+.seta {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/* Novo, Preparando, Pronto, Fazendo, Entregue */
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .cardTitle {
+        margin-left: 2.5vh;
+    }
+
+    .cardTitleSelect {
+        margin-left: 2.5vh;
+    }
+
+    .cardItens {
+        margin-left: 2.5vh;
+        flex-direction: column;
+        width: 82%;
+    }
+
+    .divValores1 {
+        width: 100%;
+    }
+
+    .divValores2 {
+        width: 100%;
+    }
+
+    .divValores3 {
+        width: 100%;
+    }
+
+    .divValores4 {
+        width: 100%;
+        margin-left: 2%;
+    }
+    .seta {
+        justify-content: center;
+        background-color: #eeb8ca;
+        padding: 2%;
+        border-radius: 10px;
+    }	
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+    .cardTitle {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardTitleSelect {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardItens {
+        margin-left: 2vh;
+        flex-direction: column;
+        width: 89%;
+    }
+
+    .divValores1 {
+        width: 100%;
+    }
+
+    .divValores2 {
+        width: 100%;
+    }
+
+    .divValores3 {
+        width: 100%;
+    }
+
+    .divValores4 {
+        width: 100%;
+        margin-left: 2%;
+    }
+    .seta {
+        justify-content: center;
+        background-color: #eeb8ca;
+        padding: 2%;
+        border-radius: 10px;
+    }	
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .cardTitle {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardTitleSelect {
+        margin-left: 2vh;
+        width: 92%;
+    }
+
+    .cardItens {
+        margin-left: 2vh;
+        flex-direction: column;
+        width: 89%;
+    }
+
+    .divValores1 {
+        width: 100%;
+    }
+
+    .divValores2 {
+        width: 100%;
+    }
+
+    .divValores3 {
+        width: 100%;
+    }
+
+    .divValores4 {
+        width: 100%;
+        margin-left: 2%;
+    }
+    .seta {
+        justify-content: center;
+        background-color: #eeb8ca;
+        padding: 2%;
+        border-radius: 10px;
+    }	
+}
+
+@media screen and (min-device-width: 1025px) and (max-device-width: 1200px) {
+    .cardTitle {
+        margin-left: 7vh;
+    }
+
+    .cardTitleSelect {
+        margin-left: 7vh;
+    }
+
+    .cardItens {
+        margin-left: 7vh;
+
+    }
+    .seta {
+        padding: 2%;
+    }	
+}
+
+@media screen and (min-device-width: 1201px) {}
