@@ -44,7 +44,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if(onChange !== null) onChange(e);
+    if(onChange !== null) onChange(e.target.value);
     if (e.target.value.trim() === '' && isRequired) {
       setError('This field is required.');
     } else {
