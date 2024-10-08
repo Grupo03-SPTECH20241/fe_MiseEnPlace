@@ -223,14 +223,16 @@ const ProdutoCadastro = () => {
         if (recheioEncontrado) {
             setPrecoRecheio(recheioEncontrado.preco.toString());
             console.log(precoRecheio)
-        } else {
-            setPrecoRecheio('');
         }
+        console.log(precoRecheio)
         console.log(recheio)
     }
 
     const validateForm = () => {
         const newErrors = {};
+        console.log({
+            "preco": preco
+        })
         if (!nome.trim()) newErrors.nome = true;
         if (!preco.trim() || preco[0] === ".") newErrors.preco = true;
         if (!descricao.trim()) newErrors.descricao = true;

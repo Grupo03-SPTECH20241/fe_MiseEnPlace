@@ -5,7 +5,6 @@ import editarImg from "../../utils/img/editar.png";
 import PropTypes from 'prop-types';  
 import ButtonFilledDefault from "../Button/Default/default";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from 'react';
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
 
@@ -27,7 +26,7 @@ const CardProduto = ({
             </div>
             <div className={styles["textos"]}>
                 <h1>{nomeBolo || "Bolo de coco"} <img src={editarImg} className={styles["editarImg"]} onClick={navigateToEditProduct}/></h1>
-                <p>{descricao || "Bolo gelado de coco, com pedaços de coco"} {imagemSrc}</p>
+                <p>{descricao || "Bolo gelado de coco, com pedaços de coco"}</p>
                 
             </div>
             {!isSelectable && (

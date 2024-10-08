@@ -9,9 +9,10 @@ const InputMaskCustomProdutoCadastro = ({
     isRequired = false,
     width = '235px',
     fieldWidth,
-    value,
+    value = defaultValue,
     onChange,
-    hasError = false
+    hasError = false,
+    defaultValue = "",
 }) => {
     const [error, setError] = React.useState('');
 
