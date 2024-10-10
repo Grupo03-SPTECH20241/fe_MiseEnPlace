@@ -31,6 +31,7 @@
 
 .textos {
     width: 85%;
+    height: 90px;
     padding: 10px;
     /* background-color: #FFFFFF; */
 }
@@ -168,5 +169,5 @@
     border: solid 1.5px #FF2876;
     border-radius: 500px;
     padding: 5px 32px;
-    
+    margin-top: 0;
 }

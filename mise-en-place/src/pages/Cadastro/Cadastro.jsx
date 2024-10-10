@@ -110,7 +110,7 @@ function Cadastro() {
                             </InputMask>
                         </div>
                         <div className={cadastroStyles['form-group']}>
-                            <label>Upload File</label>
+                            <label>Logo</label>
                             <div className={cadastroStyles['custom-file-upload']} onClick={() => document.getElementById('file-upload').click()}>
                                 {fileData ? 'Arquivo selecionado' : 'Selecione um arquivo'}
                             </div>

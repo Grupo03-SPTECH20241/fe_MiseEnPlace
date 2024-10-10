@@ -61,6 +61,29 @@
     margin-left: 6.5vh;
     margin-top: 0.7vh;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.titleContent {
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-between; /* Mantém o título e a quantidade de pedidos na mesma linha */
+    width: 95%;
+    align-items: center;  /* Alinha a seta e o texto na mesma linha */
+}
+
+.titleContent2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.setaLista {
+    margin-right: 10px;  /* Espaço entre a seta e o título */
+    width: 16px;         /* Ajuste o tamanho da seta conforme necessário */
+    height: 16px;
 }
 
 .cardTitleSelect {
@@ -73,6 +96,7 @@
     margin-left: 6.5vh;
     margin-top: 0.7vh;
     cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transição de cor */
 }
 
 .divValores1 {
@@ -96,6 +120,44 @@
     align-items: center;
     cursor: pointer;
 }
+
+.listContainer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+  
+  .open {
+    max-height: 100vh;  /* Large enough to accommodate the content */
+  }
+
+.cardItens {
+    font-family: "Nunito-Regular";
+    display: flex;
+    border: 1px solid #C8C8C8;
+    border-radius: 10px;
+    padding: 10px;
+    width: 86.8%;
+    margin-left: 6.5vh;
+    margin-top: 0.7vh;
+    justify-content: space-around;
+}
+
+.setaLista {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease-in-out; /* Adiciona a transição suave */
+}
+
+.up {
+    transform: rotate(180deg); /* Gira a seta 180 graus quando a lista está aberta */
+}
+
+.down {
+    transform: rotate(0deg); /* Seta na posição original quando a lista está fechada */
+}
+
 
 
 /* Novo, Preparando, Pronto, Fazendo, Entregue */
@@ -130,12 +192,13 @@
         width: 100%;
         margin-left: 2%;
     }
+
     .seta {
         justify-content: center;
         background-color: #eeb8ca;
         padding: 2%;
         border-radius: 10px;
-    }	
+    }
 }
 
 @media screen and (min-device-width: 481px) and (max-device-width: 768px) {
@@ -171,12 +234,13 @@
         width: 100%;
         margin-left: 2%;
     }
+
     .seta {
         justify-content: center;
         background-color: #eeb8ca;
         padding: 2%;
         border-radius: 10px;
-    }	
+    }
 }
 
 @media screen and (min-device-width: 769px) and (max-device-width: 1024px) {
@@ -212,12 +276,13 @@
         width: 100%;
         margin-left: 2%;
     }
+
     .seta {
         justify-content: center;
         background-color: #eeb8ca;
         padding: 2%;
         border-radius: 10px;
-    }	
+    }
 }
 
 @media screen and (min-device-width: 1025px) and (max-device-width: 1200px) {
@@ -233,9 +298,10 @@
         margin-left: 7vh;
 
     }
+
     .seta {
         padding: 2%;
-    }	
+    }
 }
 
 @media screen and (min-device-width: 1201px) {}
