@@ -121,7 +121,7 @@ const GoalChartModal = ({closeModal}) => {
                 placeholder='R$'
                 id='metaInput'
                 width='100%'
-                mask="R$ 999.999,99"
+                mask="R$ 999999"
                 maskChar={null}
                 onChange={handleMetaChange}
                 >
