@@ -20,6 +20,7 @@
 .containerInputs {
     display: flex;
     width: 360px;
+    justify-content: center;
     justify-content: space-between;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .containerButton button {
-    margin-left: 25px;
+    margin-left: 0px;
 }
 
 .mainContainer {
