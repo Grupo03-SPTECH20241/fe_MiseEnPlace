@@ -70,6 +70,16 @@ const Carrinho = () => {
 
     // criação do pedido & validação do corpo p/requisição
     const adicionarPedido = async () => {
+        let idNovoCliente = null;
+        if(!idClienteSelecionado && nomeCliente && numeroTelefone){
+            const ClienteCriacaoDto = {
+                nome: nomeCliente,
+                numero: numeroTelefone,
+            }
+            const response = await api.post('/clientes', ClienteCriacaoDto);
+            const { data } = response;
+            idNovoCliente = data?.idCliente;
+        }
         if(validateBody()){
             try {
                 const pedidoCriacaoDTO = {
@@ -78,7 +88,7 @@ const Carrinho = () => {
                     status: 'N',
                     valorSinal: valorTotal,
                     formaEntregaId: formaEntrega,
-                    clienteId: idClienteSelecionado,
+                    clienteId: idClienteSelecionado ? idClienteSelecionado: idNovoCliente,
                     formaPagamentoId: formaPagamento,
                     dtEntrega: dataEntrega,
                 };
@@ -107,10 +117,6 @@ const Carrinho = () => {
     };
 
     const validateBody = () =>{
-        if (!idClienteSelecionado){
-            toast.error('Nenhum cliente encontrado com esse nome.', { theme: "colored" });
-            return false;
-        }
         if (nomeCliente && numeroTelefone && formaEntrega && formaPagamento && dataEntrega) {
             if(formaEntrega === '3'){
                 if(cep && logradouro){
@@ -204,14 +210,16 @@ const Carrinho = () => {
         setLogradouro(event?.target?.value ? event?.target?.value : event);  
     };  
 
-    const handleNomeClienteChange = (event) => {  
+    const handleNomeClienteChange = async (event) => {  
         const nomeClienteInformado = normalizeString(event?.target?.value ? event?.target?.value : event);
+        let clienteEncontrado = false;
         for(let i = 0; i < clientes.length; i++){
             if(compareStrings(normalizeString(clientes[i]?.nome), nomeClienteInformado)){
                 setIdClienteSelecionado(clientes[i]?.idCliente);
+                clienteEncontrado = true;
                 break;
             }
-        }
+        }        
         setNomeCliente(event?.target?.value ? event?.target?.value : event);  
     };  
 
@@ -223,7 +231,8 @@ const Carrinho = () => {
     const qtd = 1;
 
     // funções de validação
-    function normalizeString(str) {  
+    function normalizeString(str) { 
+        if(!str.length) return '';
         return str  
             .normalize('NFD') // Normaliza a string para decompor caracteres acentuados  
             .replace(/[\u0300-\u036f]/g, '') // Remove os acentos  

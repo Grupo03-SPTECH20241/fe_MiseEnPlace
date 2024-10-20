@@ -56,13 +56,14 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
       setValue(event);
       if(onChange !== null) onChange(event);
     }
-    if(event){
+    
+    if(event?.length){
       if (event?.trim() === '' && isRequired) {
         setError('This field is required.');
       } else {
         setError('');
       }
-    } else if(!event && isRequired){
+    } else if(isRequired){
       setError('This field is required.');
     } else {
       setError('');
@@ -70,13 +71,13 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   };
 
   const handleBlur = () => {
-    if(value){
+    if(value?.length){
       if (value.trim() === '' && isRequired) {
         setError('This field is required.');
       } else {
         setError('');
       }
-    } else if (value && isRequired){
+    } else if (isRequired){
       setError('This field is required.');
     } else {
       setError('');
