@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null, hasError = false, defaultValue }) => {
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null, hasError = false, defaultValue, numericOnly = false, postiveValuesOnly = false }) => {
   const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
@@ -43,9 +43,26 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   }, [defaultValue]);  
 
   const handleChange = (e) => {
-    setValue(e.target.value);
-    if(onChange !== null) onChange(e.target.value);
-    if (e.target.value.trim() === '' && isRequired) {
+    const event = e.target?.value ? e.target.value : e;
+    if(postiveValuesOnly && numericOnly){
+      if(event <= 0){
+        setValue(0);
+        if(onChange !== null) onChange(0);
+      } else {
+        setValue(event);
+        if(onChange !== null) onChange(event);
+      }
+    } else {
+      setValue(event);
+      if(onChange !== null) onChange(event);
+    }
+    if(event){
+      if (event?.trim() === '' && isRequired) {
+        setError('This field is required.');
+      } else {
+        setError('');
+      }
+    } else if(!event && isRequired){
       setError('This field is required.');
     } else {
       setError('');
@@ -53,7 +70,13 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   };
 
   const handleBlur = () => {
-    if (value.trim() === '' && isRequired) {
+    if(value){
+      if (value.trim() === '' && isRequired) {
+        setError('This field is required.');
+      } else {
+        setError('');
+      }
+    } else if (value && isRequired){
       setError('This field is required.');
     } else {
       setError('');
@@ -78,7 +101,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
       style={{ width: `${fieldWidth}` }}>
       <span className={styles['label-content']}>{label}</span>
       <input
-        type="text"
+        type={numericOnly ? "number": "text"}
         id={id}
         placeholder={placeholder}
         value={value}
@@ -104,7 +127,9 @@ InputText.propTypes = {
   width: PropTypes.string,
   isRequired: PropTypes.bool,
   onChange: PropTypes.func,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.any,
+  numericOnly: PropTypes.bool,
+  postiveValuesOnly: PropTypes.bool,
 };
 
 export default InputText;

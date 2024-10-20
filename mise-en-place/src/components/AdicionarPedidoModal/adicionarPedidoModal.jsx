@@ -11,15 +11,19 @@ import api from "../../api";
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
-const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
+const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal, onConfirm, isEditing = false }) => {
     const [recheioOptions, setRecheioOptions] = useState([{id: '', value: ''}]);
+    const [massaOptions, setMassaOptions] = useState([{id: '', value: ''}]);
     const [massa, setMassa] = useState(null);
     const [recheio, setRecheio] = useState(null);
-    const [quantidade, setQuantidade] = useState(null);
+    const [quantidade, setQuantidade] = useState(qtdProduto);
 
     useEffect(() => {
         try {
             fetchRecheioOptions();
+            fetchMassaOptions();
+            console.log("produto")
+            console.log(produto)
         } catch (e){
             console.log(e);
         }
@@ -34,10 +38,23 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
     }
 
     const handleQuantidadeChange = (event) => {
-        setQuantidade(event?.target?.value);
+        setQuantidade(event?.target?.value ? event.target.value : event);
     }
 
     const adicionarProduto = () => {
+        const inputObservacoes = document.getElementById('input-observacoes');
+        const produtoPedidoCriacaoDto = {  
+            qtProduto: quantidade,  
+            observacoes: inputObservacoes?.value,  
+            produtoId: produto?.id,  
+            personalizacaoId: null,  
+            pedidoId: null,  
+        };
+        onConfirm(produtoPedidoCriacaoDto, produto);
+        closeModal();
+    }
+
+    const editarProduto = () => {
         const inputObservacoes = document.getElementById('input-observacoes');
         const produtoPedidoCriacaoDto = {  
             qtProduto: quantidade,  
@@ -60,6 +77,20 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
             }
         }))
     }
+
+    const fetchMassaOptions = async () => {
+        const response = await api.get('/massas');  
+        const { data } = response;
+        console.log("MASSAS");
+        console.log(data);
+        setMassaOptions(data.map((value) =>{
+            return {
+                label: value?.nome,
+                value: value?.idMassa
+            }
+        }))
+    }
+
     return (
         <div className={styles["adicionarPedidoModal"]}>
             <div className={styles["adicionarPedidoModalHeader"]}>
@@ -72,19 +103,28 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
             </div>
             {produto?.nome && (<hr />)}
             <div className={styles["produto-info-container"]}>
-                <InputText
+                <InputSelect
                     width='25vw'
                     label='Massa:'
-                ></InputText>
+                    options={massaOptions}
+                    defaultValue={produto?.massa}
+                    onChange={handleMassaChange}
+                    isDisabled={true}
+                ></InputSelect>
                 <InputSelect
                     width='20vw'
                     label='Recheio:'
                     options={recheioOptions}
+                    isDisabled={true}
+                    defaultValue={produto?.recheio}
                     onChange={handleRecheioChange}
                 ></InputSelect>
                 <InputText
                     width='10vw'
                     label='Quantidade:'
+                    numericOnly={true}
+                    postiveValuesOnly={true}
+                    defaultValue={qtdProduto}
                     onChange={handleQuantidadeChange}
                 ></InputText>
             </div>
@@ -105,17 +145,25 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
             <div className={styles["adicionar-pedido-modal-footer"]}>
                 <div className={styles["outer-value-container"]}>
                     <div className={styles["value-container"]}>
-                        <p>R${produto?.preco? produto.preco : '-'}</p>
+                        <p>R${produto?.preco ? (produto.preco * (quantidade ? quantidade : 0))  : '-'}</p>
                     </div>
                 </div>
                 <div className={styles["confirmation-button-container"]}>
-                <ButtonFilledDefault  
-                    label='Adicionar ao carrinho'  
-                    iconPosition='left'  
-                    icon='shopping-cart'  
-                    width='18vw'  
-                    onClick={adicionarProduto}
-                ></ButtonFilledDefault>  
+                    {!isEditing && (<ButtonFilledDefault  
+                        label='Adicionar ao carrinho'  
+                        iconPosition='left'  
+                        icon='shopping-cart'  
+                        width='18vw'  
+                        onClick={adicionarProduto}
+                    ></ButtonFilledDefault>)}  
+
+                    {isEditing && (<ButtonFilledDefault  
+                        label='Salvar alterações'  
+                        iconPosition='left'  
+                        icon='check'  
+                        width='18vw'  
+                        onClick={editarProduto}
+                    ></ButtonFilledDefault>)}  
                 </div>
             </div>
         </div>
@@ -125,7 +173,10 @@ const AdicionarPedidoModal = ({ produto, closeModal, onConfirm }) => {
 AdicionarPedidoModal.propTypes = {  
     closeModal: PropTypes.any,
     produto: PropTypes.object,
-    onConfirm: PropTypes.func
+    qtdProduto: PropTypes.number,
+    idProdutoPedido: PropTypes.number,
+    onConfirm: PropTypes.func,
+    isEditing: PropTypes.bool,
 };  
 
 export default AdicionarPedidoModal;

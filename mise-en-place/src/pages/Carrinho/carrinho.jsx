@@ -185,38 +185,38 @@ const Carrinho = () => {
 
     // handlers  
     const handleFormaPagamentoChange = (event) => {  
-        setFormaPagamento(event.target.value);  
+        setFormaPagamento(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleFormaEntregaChange = (event) => {  
-        setFormaEntrega(event.target.value);  
+        setFormaEntrega(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleDataEntregaChange = (event) => {  
-        setDataEntrega(event.target.value);  
+        setDataEntrega(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleCEPChange = (event) => {  
-        setCep(event.target.value);  
+        setCep(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleLogradouroChange = (event) => {  
-        setLogradouro(event.target.value);  
+        setLogradouro(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleNomeClienteChange = (event) => {  
-        const nomeClienteInformado = normalizeString(event.target.value);
+        const nomeClienteInformado = normalizeString(event?.target?.value ? event?.target?.value : event);
         for(let i = 0; i < clientes.length; i++){
             if(compareStrings(normalizeString(clientes[i]?.nome), nomeClienteInformado)){
                 setIdClienteSelecionado(clientes[i]?.idCliente);
                 break;
             }
         }
-        setNomeCliente(event.target.value);  
+        setNomeCliente(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleNumeroTelefoneChange = (event) => {  
-        setNumeroTelefone(event.target.value);  
+        setNumeroTelefone(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const imagem = BoloChocolate;

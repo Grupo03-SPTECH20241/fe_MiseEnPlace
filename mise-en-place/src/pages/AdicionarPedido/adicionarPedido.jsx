@@ -157,6 +157,7 @@ const AdicionarPedido = () => {
                             valor={data.preco}
                             isSelectable={true}
                             onSelect={()=>{openModal(data)}}
+                            produto={data}
                         ></CardProduct>
                     ))}
                 </div>

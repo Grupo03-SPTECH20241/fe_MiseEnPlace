@@ -16,6 +16,7 @@ import api from "../../api";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "react-modal"
 import ExcluirPedidoModal from "../../components/ExcluirPedidoModal/excluirPedidoModal";
+import AdicionarPedidoModal from "../../components/AdicionarPedidoModal/adicionarPedidoModal";
 
 const customStyles = {
     content: {
@@ -37,16 +38,33 @@ const VisualizarPedido = () => {
         navigate('/agenda', {state: null});
     }
 
-    // Modal de exclusão do produto
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalProduct, setModalProduct] = useState(null);
+    // Modal de exclusão do pedido
+    const [excluirPedidoModalIsOpen, setExcluirPedidoModalIsOpen] = useState(false);
 
-    const openModal = (data) => {
-        setModalProduct(data);
-        setModalIsOpen(true)
+    const openExcluirPedidoModal = (data) => {
+        setExcluirPedidoModalIsOpen(true);
     }
-    const closeModal = () => {
-        setModalIsOpen(false)
+    const closeExcluirPedidoModal = () => {
+        setExcluirPedidoModalIsOpen(false)
+    }
+
+    // Modal de edição do produto
+
+    const [editarProdutoModalIsOpen, setEditarProdutoModalIsOpen] = useState(false);
+    const [produtoSendoEditado, setProdutoSendoEditado] = useState(null);
+    const [idProdutoPedidoAtual, setidProdutoPedidoAtual] = useState(null);
+
+    const handleEditarProduto = (idProdutoPedido, data) => {
+        setProdutoSendoEditado(data);
+        setidProdutoPedidoAtual(idProdutoPedido);
+    }
+
+    const openEditarProdutoModal = () => {
+        setEditarProdutoModalIsOpen(true);
+    }
+
+    const closeEditarProdutoModal = () => {
+        setEditarProdutoModalIsOpen(false);
     }
 
     // dita se a tela está em modo de edição
@@ -152,8 +170,6 @@ const VisualizarPedido = () => {
         if(idPedido) {
             const response = await api.get(`/produto-pedidos/visualizar-pedido/${idPedido}`);  
             const { data } = response;
-            console.log("dataaaaaaaaaaaaaa");
-            console.log(data);
             setNomeCliente(data?.pedidoListagemDTO?.clienteDto?.nome);
             setNumeroTelefone(data?.pedidoListagemDTO?.clienteDto?.numero);
             setFormaEntrega(data?.pedidoListagemDTO?.formaEntregaDto?.formaEntrega);
@@ -163,6 +179,21 @@ const VisualizarPedido = () => {
             setProdutos(data?.produtos);
         }
     }
+
+    // Edita o produto do pedido
+    const handleAtualizarProdutoPedido = async (produtoPedidoCriacaoDto) => {
+        produtoPedidoCriacaoDto.pedidoId = pedido.idPedido;
+        produtoPedidoCriacaoDto.qtProduto = Number(produtoPedidoCriacaoDto.qtProduto);
+
+        try {
+            await api.put(`/produto-pedidos/${idProdutoPedidoAtual}`, produtoPedidoCriacaoDto);  
+            toast.success('Produto atualizado!', { theme: "colored" });
+
+        } catch (e) {
+            console.log(e);
+        }
+
+    };
 
     // handlers  
     const handleFormaPagamentoChange = (event) => {  
@@ -202,7 +233,7 @@ const VisualizarPedido = () => {
             }
             await api.delete('/pedidos/'+pedido?.idPedido);
             toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
-            closeModal();
+            closeExcluirPedidoModal();
             setTimeout(()=>{
                 navigate('/agenda', {state: null});
             },6000);
@@ -311,8 +342,9 @@ const VisualizarPedido = () => {
                             imagemSrc={data?.produtoDto?.foto}  
                             nomeProduto={data?.produtoDto?.nome}  
                             descricao={data?.produtoDto?.descricao}  
-                            quantidade={1}  
+                            quantidade={data?.qtdProduto}  
                             valor={data?.produtoDto?.preco}  
+                            onEdit={()=>{handleEditarProduto(data?.idProdutoPedido, data); openEditarProdutoModal()}}
                         />  
                     ))}
                     </div>  
@@ -323,7 +355,7 @@ const VisualizarPedido = () => {
                             <ButtonFilledNegative
                                 label="Excluir pedido"
                                 iconPosition="left"
-                                onClick={openModal}
+                                onClick={openExcluirPedidoModal}
                                 icon="delete"
                                 width="160px"
                             ></ButtonFilledNegative>
@@ -345,12 +377,22 @@ const VisualizarPedido = () => {
                     </div>
                 </div>
             </div>  
-            <Modal style={customStyles} isOpen={modalIsOpen}>
+            <Modal style={customStyles} isOpen={excluirPedidoModalIsOpen}>
                 <ExcluirPedidoModal
                     pedido={pedido}
-                    closeModal={closeModal}
+                    closeModal={closeExcluirPedidoModal}
                     onConfirm={deletarPedido}
                 ></ExcluirPedidoModal>
+            </Modal>
+            <Modal style={customStyles} isOpen={editarProdutoModalIsOpen}>
+                <AdicionarPedidoModal
+                    produto={produtoSendoEditado?.produtoDto}
+                    isEditing={true}
+                    qtdProduto={produtoSendoEditado?.qtdProduto}
+                    idProdutoPedido={produtoSendoEditado?.idProdutoPedido}
+                    closeModal={closeEditarProdutoModal}
+                    onConfirm={handleAtualizarProdutoPedido}
+                ></AdicionarPedidoModal>
             </Modal>
         </div>  
     );  
