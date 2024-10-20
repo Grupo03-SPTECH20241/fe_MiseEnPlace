@@ -63,11 +63,8 @@ const Agenda = () => {
         stringUrl += "%2F";
         stringUrl += lastDay.getFullYear();
       }
-      console.log(stringUrl);
       api.get(stringUrl).then((response) => {
         const data = response.data;
-        console.log("DATAAAAA")
-        console.log(data);
         setTesteMap(data.itemsAgenda.reverse());
       }).catch((error) => {
         console.error("Erro ao buscar dados da agenda", error);
@@ -110,10 +107,11 @@ const Agenda = () => {
             <div className={styles["DivButtonAddPedido"]}>  
               <ButtonDefault  
                 label="Adicionar Pedido"  
-                showIcon="true"  
+                showIcon={true}  
                 icon="plus"  
                 iconPosition="left"  
                 fontSize="small"  
+                width="150px"
                 className={styles['ButtonAddPedido']}
                 onClick={navigateToAdicionarPedido}  
               />  
