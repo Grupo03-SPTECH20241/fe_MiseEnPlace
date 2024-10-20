@@ -125,7 +125,6 @@ const VisualizarPedido = () => {
 
         if(validateBody()){
             try {
-                debugger;
                 const payload = {
                     dtPedido: dataEntrega,
                     vlPedido: pedido?.vlPedido,
