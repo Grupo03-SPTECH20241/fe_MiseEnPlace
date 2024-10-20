@@ -62,11 +62,6 @@ const AdicionarPedido = () => {
     useEffect(() => {
         fetchDataDrop();
         fetchData();
-
-        console.log("lista de produtos do pedido:");
-        console.log(produtos);
-        console.log("lista de produtoPedidoCriacaoDtos do pedido:");
-        console.log(produtoPedidoCriacaoDtos);
     }, []);
 
     const fetchDataDrop = () => {
@@ -111,7 +106,6 @@ const AdicionarPedido = () => {
         const searchValue = element.value.toLowerCase();
         const newCardsData = cardsData.filter((data) => data.nome.toLowerCase().includes(searchValue));
         setFilteredCardsData(newCardsData);
-        console.log(element.value);
     }
 
     return (

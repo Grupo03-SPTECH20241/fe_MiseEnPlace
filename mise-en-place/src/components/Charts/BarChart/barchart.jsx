@@ -76,8 +76,6 @@ const BarChart = () => {
           const { data } = response;
           let newLabelSemana = [];
           let newValoresVendidosPorSemana = [];
-          console.log("semana:");
-          console.log(data);
           for (let i = 0; i < data.length; i++) {
             let nomeExiste = false;
 
@@ -109,7 +107,6 @@ const BarChart = () => {
         try {
           const response = await api.get('/quantidade-vendida-valor-vendido-dia');
           const { data } = response;
-          console.log(response)
           let newLabelDiaria = [];
           let newValoresVendidosPorDia = [];
 

@@ -54,10 +54,6 @@ const ProdutoCadastro = () => {
             }));
             setUnidadeMedidaOptions(options);
             setUnidadeMedidaData(response.data);
-
-            console.log("Unidade de Medida data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -73,10 +69,6 @@ const ProdutoCadastro = () => {
             }));
             setMassaOptions(options);
             setMassaData(response.data);
-
-            console.log("Massa data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -92,10 +84,6 @@ const ProdutoCadastro = () => {
             }));
             setCoberturaOptions(options);
             setCoberturaData(response.data);
-
-            console.log("Cobertura data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -111,10 +99,6 @@ const ProdutoCadastro = () => {
             }));
             setRecheioOptions(options);
             setRecheioData(response.data);
-
-            console.log("Recheio data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -130,10 +114,6 @@ const ProdutoCadastro = () => {
             }));
             setTipoProdutoOptions(options);
             setTipoProdutoData(response.data);
-
-            console.log("Tipo produto data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -222,17 +202,11 @@ const ProdutoCadastro = () => {
         const recheioEncontrado = recheioData.find(e => e.nome.toLowerCase() === selectedRecheio.toLowerCase());
         if (recheioEncontrado) {
             setPrecoRecheio(recheioEncontrado.preco.toString());
-            console.log(precoRecheio)
         }
-        console.log(precoRecheio)
-        console.log(recheio)
     }
 
     const validateForm = () => {
         const newErrors = {};
-        console.log({
-            "preco": preco
-        })
         if (!nome.trim()) newErrors.nome = true;
         if (!preco.trim() || preco[0] === ".") newErrors.preco = true;
         if (!descricao.trim()) newErrors.descricao = true;

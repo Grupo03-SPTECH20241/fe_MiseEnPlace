@@ -55,12 +55,6 @@ const Carrinho = () => {
                 fetchProdutosSelecionados();
                 fetchClientes();
                 fetchDataAtual();
-                console.log("produtoPedidoCriacaoDtos")
-                console.log(produtoPedidoCriacaoDtos)
-                console.log("produtos")
-                console.log(produtos)
-                console.log("produtosCarrinho");
-                console.log(produtosCarrinho);
             } catch (error) {  
                 console.error(error);  
             }  

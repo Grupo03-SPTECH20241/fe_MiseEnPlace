@@ -92,8 +92,6 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
     const fetchMassaOptions = async () => {
         const response = await api.get('/massas');  
         const { data } = response;
-        console.log("MASSAS");
-        console.log(data);
         setMassaOptions(data.map((value) =>{
             return {
                 label: value?.nome,

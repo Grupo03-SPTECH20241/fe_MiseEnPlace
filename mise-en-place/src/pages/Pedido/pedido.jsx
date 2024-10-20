@@ -120,13 +120,8 @@ const Pedido = ( {idPedido = 1} ) => {
     const fetchPedido = async () => {
         const response = await api.get('/pedidos');
         const { data } = response;
-        debugger
-        console.log("pedidos:");
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             if (data[i]?.idPedido === idPedido) {
-                console.log("pedidoAtual:");
-                console.log(data[i]);
                 setPedido(data[i]);
                 break;
             }

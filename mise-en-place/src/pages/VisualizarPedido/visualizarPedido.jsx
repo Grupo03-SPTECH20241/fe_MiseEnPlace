@@ -105,8 +105,6 @@ const VisualizarPedido = () => {
     const fetchClientes = async () => {
         const response = await api.get('/clientes');  
         const { data } = response;
-        console.log("CLIENTEEES");
-        console.log(data);
         setClientes(data);
     }
 
@@ -137,8 +135,6 @@ const VisualizarPedido = () => {
                     clienteId: idClienteSelecionado ? idClienteSelecionado : idNovoCliente,
                     formaPagamentoId: formaPagamento
                 };
-                console.log("PAYLOAD");
-                console.log(payload);
                 await api.put(`/pedidos/${pedido?.idPedido}`, payload);
                 toast.success('Pedido atualizado com sucesso!', { theme: "colored" });
                 setTimeout(()=>{
@@ -195,8 +191,6 @@ const VisualizarPedido = () => {
         if(idPedido) {
             const response = await api.get(`/produto-pedidos/visualizar-pedido/${idPedido}`);  
             const { data } = response;
-            console.log("dataaaaaaaaaaaaaaa");
-            console.log(data);
             setNomeCliente(data?.pedidoListagemDTO?.clienteDto?.nome);
             setNumeroTelefone(data?.pedidoListagemDTO?.clienteDto?.numero);
             setFormaEntrega(data?.pedidoListagemDTO?.formaEntregaDto?.idFormaEntrega);
