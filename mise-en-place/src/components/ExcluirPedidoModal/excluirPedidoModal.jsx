@@ -1,5 +1,5 @@
 import styles from './excluirPedidoModal.module.css'
-import React, { useEffect } from 'react';
+import React from 'react';
 import exitIcon from '../../utils/img/exit_icon.png';
 import ButtonFilledDefault from '../Button/Default/default';
 import ButtonFilledNegative from '../Button/Cancelar/cancelar';
@@ -9,14 +9,6 @@ import WarningImage from '../../utils/img/circle-exclamation-solid.png'
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
 const ExcluirPedidoModal = ({ pedido, closeModal, onConfirm }) => {
-    useEffect(() => {
-        try {
-            console.log(pedido);
-        } catch (e){
-            console.log(e);
-        }
-    }, []);
-
     return (
         <div className={styles["excluirPedidoModal"]}>
             <div className={styles["excluirPedidoModalHeader"]}>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './select.module.css';
 import { useEffect } from 'react';
 
-const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = [], onChange = null, defaultValue}) => {
+const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '43px', options = [], onChange = null, defaultValue, isDisabled = false}) => {
   const [value, setValue] = useState(defaultValue ? defaultValue : '');
   const [error, setError] = useState('');
 
@@ -23,7 +23,7 @@ const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequi
   };
 
   const handleBlur = () => {
-    if (value.trim() === '' && isRequired) {
+    if (!value === '' && isRequired) {
       setError('This field is required.');
     } else {
       setError('');
@@ -44,6 +44,7 @@ const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequi
       <select
         id={id}
         placeholder={placeholder}
+        disabled={isDisabled}
         value={value}
         style={{width: `${width}`, height: `${height}`}}
         onChange={handleChange}
@@ -66,6 +67,7 @@ InputSelect.propTypes = {
   height: PropTypes.string,
   isRequired: PropTypes.bool,
   onChange: PropTypes.func,
+  isDisabled: PropTypes.bool,
   options: PropTypes.arrayOf(  
     PropTypes.shape({  
       value: PropTypes.any,  

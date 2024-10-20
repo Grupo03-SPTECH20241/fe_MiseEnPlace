@@ -7,7 +7,6 @@ import BreadCrumbArrow from '../../utils/img/breadcrumb-return-arrow.png'
 import PropTypes from 'prop-types';  
 import ButtonOutlinedNegative from "../../components/Button/Cancelar-variant/cancelarv";
 import ButtonFilledNegative from "../../components/Button/Cancelar/cancelar";
-import BoloChocolate from '../../utils/img/produtos/bolo_chocolate.jpg';
 import CardPedido from '../../components/CardRequest/cardRequest';  
 import { toast, ToastContainer } from 'react-toastify';
 import InputCalendar from '../../components/Input/Calendar/calendar';  
@@ -16,6 +15,7 @@ import api from "../../api";
 import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "react-modal"
 import ExcluirPedidoModal from "../../components/ExcluirPedidoModal/excluirPedidoModal";
+import AdicionarPedidoModal from "../../components/AdicionarPedidoModal/adicionarPedidoModal";
 
 const customStyles = {
     content: {
@@ -37,26 +37,41 @@ const VisualizarPedido = () => {
         navigate('/agenda', {state: null});
     }
 
-    // Modal de exclusão do produto
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalProduct, setModalProduct] = useState(null);
+    // Modal de exclusão do pedido
+    const [excluirPedidoModalIsOpen, setExcluirPedidoModalIsOpen] = useState(false);
 
-    const openModal = (data) => {
-        setModalProduct(data);
-        setModalIsOpen(true)
+    const openExcluirPedidoModal = (data) => {
+        setExcluirPedidoModalIsOpen(true);
     }
-    const closeModal = () => {
-        setModalIsOpen(false)
+    const closeExcluirPedidoModal = () => {
+        setExcluirPedidoModalIsOpen(false)
     }
 
-    // dita se a tela está em modo de edição
-    const [isEditando, setIsEditando] = useState(false);
+    // Modal de edição do produto
+
+    const [editarProdutoModalIsOpen, setEditarProdutoModalIsOpen] = useState(false);
+    const [produtoSendoEditado, setProdutoSendoEditado] = useState(null);
+    const [idProdutoPedidoAtual, setidProdutoPedidoAtual] = useState(null);
+    const [idClienteSelecionado, setIdClienteSelecionado] = useState(null);
+
+    const handleEditarProduto = (idProdutoPedido, data) => {
+        setProdutoSendoEditado(data);
+        setidProdutoPedidoAtual(idProdutoPedido);
+    }
+
+    const openEditarProdutoModal = () => {
+        setEditarProdutoModalIsOpen(true);
+    }
+
+    const closeEditarProdutoModal = () => {
+        setEditarProdutoModalIsOpen(false);
+    }
 
     // dados do pedido selecionado
     const [pedido, setPedido] = useState( location.state?.pedido || []);
     const [produtos, setProdutos] = useState(null);
     const [idPedido, setIdPedido] = useState( location.state?.pedidoId || null);
-    
+
     // valores selecionados nos inputs
     const [nomeCliente, setNomeCliente] = useState(null);
     const [numeroTelefone, setNumeroTelefone] = useState(null);
@@ -70,12 +85,16 @@ const VisualizarPedido = () => {
     const [formaPagamentoOptions, setFormaPagamentoOptions] = useState([{id: '', value: ''}]);
     const [formaEntregaOptions, setFormaEntregaOptions] = useState([{id: '', value: ''}]);
 
+    // clientes cadastrados no banco
+    const [clientes, setClientes] = useState([]);
+
     useEffect(() => {  
         const fetchData = async () => {  
             try {  
                 fetchFormaEntregaOptions();
                 fetchFormaPagamentoOptions();
                 fetchPedido();
+                fetchClientes();
             } catch (error) {  
                 console.error(error);  
             }  
@@ -83,27 +102,46 @@ const VisualizarPedido = () => {
         fetchData();  
     }, []);
 
-    // criação do pedido & validação do corpo p/requisição
-    const adicionarPedido = async () => {
+    const fetchClientes = async () => {
+        const response = await api.get('/clientes');  
+        const { data } = response;
+        setClientes(data);
+    }
+
+    // edição do pedido & validação do corpo p/requisição
+    const editarPedido = async () => {
+        let idNovoCliente = null;
+        if(!idClienteSelecionado) {
+            if(nomeCliente && numeroTelefone){
+                const ClienteCriacaoDto = {
+                    nome: nomeCliente,
+                    numero: numeroTelefone,
+                }
+                const response = await api.post('/clientes', ClienteCriacaoDto);
+                const { data } = response;
+                idNovoCliente = data?.idCliente;
+            }
+        }
+
         if(validateBody()){
             try {
                 const payload = {
                     dtPedido: dataEntrega,
-                    vlPedido: 30.0,
-                    status: 'N',
-                    valorSinal: 30.0,
+                    vlPedido: pedido?.vlPedido,
+                    status: pedido?.status ? pedido?.status : 'N',
+                    valorSinal: pedido?.vlPedido ? pedido?.vlPedido/2 : 0,
                     formaEntregaId: formaEntrega,
-                    clienteId: 1,
+                    clienteId: idClienteSelecionado ? idClienteSelecionado : idNovoCliente,
                     formaPagamentoId: formaPagamento
                 };
-                await api.post('/pedidos', payload);
-                toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
+                await api.put(`/pedidos/${pedido?.idPedido}`, payload);
+                toast.success('Pedido atualizado com sucesso!', { theme: "colored" });
                 setTimeout(()=>{
                     navigate("/dashboard")
                 }, 6000);
             } catch (error) {
                 console.log(error);
-                toast.error('Erro ao cadastrar pedido', { theme: "colored" });
+                toast.error('Erro ao editar pedido', { theme: "colored" });
             }
         } else {
             toast.error('Por favor, preencha todos os campos.', { theme: "colored" });
@@ -152,45 +190,68 @@ const VisualizarPedido = () => {
         if(idPedido) {
             const response = await api.get(`/produto-pedidos/visualizar-pedido/${idPedido}`);  
             const { data } = response;
-            console.log("dataaaaaaaaaaaaaa");
-            console.log(data);
             setNomeCliente(data?.pedidoListagemDTO?.clienteDto?.nome);
             setNumeroTelefone(data?.pedidoListagemDTO?.clienteDto?.numero);
-            setFormaEntrega(data?.pedidoListagemDTO?.formaEntregaDto?.formaEntrega);
+            setFormaEntrega(data?.pedidoListagemDTO?.formaEntregaDto?.idFormaEntrega);
             setDataEntrega(data?.pedidoListagemDTO?.dtEntrega);
-            setFormaPagamento(data?.pedidoListagemDTO?.formaPagamentoDto?.formaPagamento);
+            setFormaPagamento(data?.pedidoListagemDTO?.formaPagamentoDto?.idFormaPagamento);
             setPedido(data?.pedidoListagemDTO);
             setProdutos(data?.produtos);
         }
     }
 
+    // Edita o produto do pedido
+    const handleAtualizarProdutoPedido = async (produtoPedidoCriacaoDto) => {
+        produtoPedidoCriacaoDto.pedidoId = pedido.idPedido;
+        produtoPedidoCriacaoDto.qtProduto = Number(produtoPedidoCriacaoDto.qtProduto);
+
+        try {
+            await api.put(`/produto-pedidos/${idProdutoPedidoAtual}`, produtoPedidoCriacaoDto);  
+            toast.success('Produto atualizado!', { theme: "colored" });
+
+        } catch (e) {
+            console.log(e);
+        }
+
+    };
+
     // handlers  
     const handleFormaPagamentoChange = (event) => {  
-        setFormaPagamento(event.target.value);  
+        setFormaPagamento(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleFormaEntregaChange = (event) => {  
-        setFormaEntrega(event.target.value);
+        setFormaEntrega(event?.target?.value ? event?.target?.value : event);
     };  
 
     const handleDataEntregaChange = (event) => {  
-        setDataEntrega(event.target.value);  
+        setDataEntrega(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleCEPChange = (event) => {  
-        setCep(event.target.value);  
+        setCep(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleLogradouroChange = (event) => {  
-        setLogradouro(event.target.value);  
+        setLogradouro(event?.target?.value ? event?.target?.value : event);  
     };  
 
-    const handleNomeClienteChange = (event) => {  
-        setNomeCliente(event.target.value);  
+    const handleNomeClienteChange = async (event) => {  
+        const nomeClienteInformado = normalizeString(event?.target?.value ? event?.target?.value : event);
+        let clienteEncontrado = false;
+        for(let i = 0; i < clientes.length; i++){
+            if(compareStrings(normalizeString(clientes[i]?.nome), nomeClienteInformado)){
+                setIdClienteSelecionado(clientes[i]?.idCliente);
+                clienteEncontrado = true;
+                break;
+            }
+        }
+        if (!clienteEncontrado) setIdClienteSelecionado(null);
+        setNomeCliente(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const handleNumeroTelefoneChange = (event) => {  
-        setNumeroTelefone(event.target.value);  
+        setNumeroTelefone(event?.target?.value ? event?.target?.value : event);  
     };  
 
     const deletarPedido = async () => {
@@ -202,7 +263,7 @@ const VisualizarPedido = () => {
             }
             await api.delete('/pedidos/'+pedido?.idPedido);
             toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
-            closeModal();
+            closeExcluirPedidoModal();
             setTimeout(()=>{
                 navigate('/agenda', {state: null});
             },6000);
@@ -211,6 +272,21 @@ const VisualizarPedido = () => {
         }
     }
 
+    // funções auxiliares
+    function normalizeString(str) { 
+        if(!str.length) return '';
+        return str  
+            .normalize('NFD') // Normaliza a string para decompor caracteres acentuados  
+            .replace(/[\u0300-\u036f]/g, '') // Remove os acentos  
+            .toLowerCase(); // Converte para minúsculas  
+    }  
+
+    function compareStrings(str1, str2) {  
+        const normalizedStr1 = normalizeString(str1);  
+        const normalizedStr2 = normalizeString(str2);  
+        
+        return normalizedStr1.localeCompare(normalizedStr2) === 0; // Retorna true se as strings forem iguais  
+    }  
 
     return (  
         <div className={styles["mainContainer"]}>  
@@ -311,8 +387,9 @@ const VisualizarPedido = () => {
                             imagemSrc={data?.produtoDto?.foto}  
                             nomeProduto={data?.produtoDto?.nome}  
                             descricao={data?.produtoDto?.descricao}  
-                            quantidade={1}  
+                            quantidade={data?.qtdProduto}  
                             valor={data?.produtoDto?.preco}  
+                            onEdit={()=>{handleEditarProduto(data?.idProdutoPedido, data); openEditarProdutoModal()}}
                         />  
                     ))}
                     </div>  
@@ -323,12 +400,13 @@ const VisualizarPedido = () => {
                             <ButtonFilledNegative
                                 label="Excluir pedido"
                                 iconPosition="left"
-                                onClick={openModal}
+                                onClick={openExcluirPedidoModal}
                                 icon="delete"
                                 width="160px"
                             ></ButtonFilledNegative>
                             <ButtonOutlinedNegative
                                 label="Editar pedido"
+                                onClick={editarPedido}
                                 iconPosition="left"
                                 icon="edit"
                                 width="150px"
@@ -339,18 +417,28 @@ const VisualizarPedido = () => {
                         <div className={styles["actions"]}>  
                             <div className={styles["values"]}>  
                                 <p>Valor: R${pedido?.vlPedido ? pedido.vlPedido:'-'}</p>  
-                                <p>Sinal: R${pedido?.valorSinal ? pedido.vlPedido:'-'}</p>  
+                                <p>Sinal: R${pedido?.valorSinal ? pedido.vlPedido/2:'-'}</p>  
                             </div>
                         </div>  
                     </div>
                 </div>
             </div>  
-            <Modal style={customStyles} isOpen={modalIsOpen}>
+            <Modal style={customStyles} isOpen={excluirPedidoModalIsOpen}>
                 <ExcluirPedidoModal
                     pedido={pedido}
-                    closeModal={closeModal}
+                    closeModal={closeExcluirPedidoModal}
                     onConfirm={deletarPedido}
                 ></ExcluirPedidoModal>
+            </Modal>
+            <Modal style={customStyles} isOpen={editarProdutoModalIsOpen}>
+                <AdicionarPedidoModal
+                    produto={produtoSendoEditado?.produtoDto}
+                    isEditing={true}
+                    qtdProduto={produtoSendoEditado?.qtdProduto}
+                    idProdutoPedido={produtoSendoEditado?.idProdutoPedido}
+                    closeModal={closeEditarProdutoModal}
+                    onConfirm={handleAtualizarProdutoPedido}
+                ></AdicionarPedidoModal>
             </Modal>
         </div>  
     );  

@@ -4,13 +4,11 @@ import styles from "./nestedList.module.css";
 
 // Componente para renderizar cada item da lista
 const NestedListItem = ({ testeMap }) => {
-  console.log("esse aqui eo data2", testeMap)
   const [isOpen, setIsOpen] = useState(false);
 
   const [dataEntregaFormatted, setDataEntregaFormatted] = useState("");
 
   const handleToggle = () => {
-    console.log("Chamou o handleToggle");
     setIsOpen(!isOpen);
   };
 

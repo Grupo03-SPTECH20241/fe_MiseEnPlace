@@ -6,13 +6,15 @@ import CameraIcon from "../../utils/img/icons/camera.png"
 import Input from "../../components/Input/Text/text"
 import InputMaskCustomProdutoCadastro from "../../components/Input/InputMask/inputMaskCustomProdutoCadastro"
 import Button from "../../components/Button/Default/default";
+import ButtonDelete from "../../components/Button/Cancelar/cancelar"
 import api from "../../api"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
 const ProdutoEditar = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     
     const [produto, setProduto] = useState( location.state?.produto || []);
@@ -41,6 +43,8 @@ const ProdutoEditar = () => {
     const [tipoProdutoData, setTipoProdutoData] = useState([]);
 
     const [errors, setErrors] = useState({});
+
+    const [canClick, setCanClick] = useState(true);
 
     useEffect(() => {
         mostrarProduto();
@@ -256,61 +260,87 @@ const ProdutoEditar = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const cadastramento = async (event) => {
-        event.preventDefault();
+    if (canClick) {
+        const cadastramento = async (event) => {
+            setCanClick(false)
+            event.preventDefault();
+    
+            if (!validateForm()) {
+                toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
+                setCanClick(true)
+                return;
+            }
+    
+            await cadastroRecheio();
+            await cadastroMassa();
+            await cadastroCobertura();
+            await cadastroUnidadeMedida();
+            await cadastroTipoProduto();
+    
+            const unidadeMedidaDataNow = await getUnidadeMedida();
+            const massaDataNow = await getMassa();
+            const coberturaDataNow = await getCobertura();
+            const recheioDataNow = await getRecheio();
+            const tipoProdutoDataNow = await getTipoProduto();
+    
+            const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
+            const recheioId = recheioEncontrado.idRecheio
+    
+            const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
+            const massaId = massaEncontrado.idMassa
+    
+            const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
+            const coberturaId = coberturaEncontrado.idCobertura
+    
+            const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
+            const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
+    
+            const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
+            const tipoProdutoId = tipoProdutoEncontrado.id
+    
+            try {
+                await api.put(`/produtos/${produto.id}`, { 
+                    "nome": nome,
+                    "preco": preco,
+                    "descricao": descricao,
+                    "foto": fotoId,
+                    "qtdDisponivel": 1,
+                    "recheioId": recheioId,
+                    "massaId": massaId,
+                    "coberturaId": coberturaId,
+                    "unidadeMedidaId": unidadeMedidaId,
+                    "tipoProdutoId": tipoProdutoId
+                });
+    
+                toast.success('Produto atualizado com sucesso!', { theme: "colored", autoClose: 2000 });
+                setTimeout(() => {
+                    navigate(`/produtos`)
+                }, 2000)
+            } catch (error) {
+                console.log(error);
+                toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
+                setCanClick(true)
+            }
+        };
+    }
 
-        if (!validateForm()) {
-            toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
-            return;
-        }
-
-        await cadastroRecheio();
-        await cadastroMassa();
-        await cadastroCobertura();
-        await cadastroUnidadeMedida();
-        await cadastroTipoProduto();
-
-        const unidadeMedidaDataNow = await getUnidadeMedida();
-        const massaDataNow = await getMassa();
-        const coberturaDataNow = await getCobertura();
-        const recheioDataNow = await getRecheio();
-        const tipoProdutoDataNow = await getTipoProduto();
-
-        const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
-        const recheioId = recheioEncontrado.idRecheio
-
-        const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
-        const massaId = massaEncontrado.idMassa
-
-        const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
-        const coberturaId = coberturaEncontrado.idCobertura
-
-        const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
-        const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
-
-        const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
-        const tipoProdutoId = tipoProdutoEncontrado.id
-
+    const removeProduto = async () => {
         try {
-            await api.put(`/produtos/${produto.id}`, { 
-                "nome": nome,
-                "preco": preco,
-                "descricao": descricao,
-                "foto": fotoId,
-                "qtdDisponivel": 1,
-                "recheioId": recheioId,
-                "massaId": massaId,
-                "coberturaId": coberturaId,
-                "unidadeMedidaId": unidadeMedidaId,
-                "tipoProdutoId": tipoProdutoId
-            });
-
-            toast.success('Produto atualizado com sucesso!', { theme: "colored" });
+            const response = await api.delete(`/produtos/deletar-produto-por-id/${produto.id}`);
+            if (response.status === 202) {
+                toast.error('Não é possível remover este produto. Há pedidos vinculados à ele', {theme: "colored"})
+            } else if (response.status === 204) {
+                toast.success('Produto deletado com sucesso!', {autoClose: 2000, theme:"colored"})
+                setTimeout(() => {
+                    navigate(`/produtos`);
+                }, 2000);
+            } else {
+                toast.error('Ocorreu um erro inesperado na tentativa de excluir o produto', {theme: "colored"})
+            }
         } catch (error) {
             console.log(error);
-            toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
         }
-    };
+    }
 
     return (
         <div className={styles["mainContainer"]}>
@@ -435,10 +465,17 @@ const ProdutoEditar = () => {
                             </Input>
                         </div>
                         <div className={styles["inputsContainerLine5"]}>
+                            <ButtonDelete
+                                onClick={removeProduto}
+                                label='Excluir produto'
+                                icon='delete'
+                                iconPosition='left'
+                                width='25%'>
+                            </ButtonDelete>
                             <Button
                                 onClick={cadastramento}
                                 label='Cadastrar produto'
-                                icon='plus'
+                                icon='check'
                                 iconPosition='left'
                                 width='25%'>
                             </Button>

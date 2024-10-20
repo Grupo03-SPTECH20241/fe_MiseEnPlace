@@ -67,8 +67,6 @@ const LineChart = () => {
         try {
           const response = await api.get('/quantidade-vendidos-semana');
           const { data } = response;
-          console.log("SEMANA")
-          console.log(data)
 
           let newLabelSemanalValues = [];
           let newQuantidadeVendidaValues = [];
@@ -92,7 +90,6 @@ const LineChart = () => {
         try {
           const response = await api.get('/quantidade-vendidos-dia');
           const { data } = response;
-          console.log(data)
 
           const organizedData = bubbleSortByDay(data);
           let newLabelMensalValues = [];

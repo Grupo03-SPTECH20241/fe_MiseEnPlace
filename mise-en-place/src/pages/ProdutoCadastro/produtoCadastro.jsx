@@ -8,10 +8,13 @@ import InputMaskCustomProdutoCadastro from "../../components/Input/InputMask/inp
 import Button from "../../components/Button/Default/default"
 import api from "../../api"
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
 const ProdutoCadastro = () => {
+    const navigate = useNavigate();
+
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [descricao, setDescricao] = useState('');
@@ -37,6 +40,8 @@ const ProdutoCadastro = () => {
 
     const [errors, setErrors] = useState({});
 
+    const [canClick, setCanClick] = useState({});
+
     useEffect(() => {
         getUnidadeMedida();
         getMassa();
@@ -54,10 +59,6 @@ const ProdutoCadastro = () => {
             }));
             setUnidadeMedidaOptions(options);
             setUnidadeMedidaData(response.data);
-
-            console.log("Unidade de Medida data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -73,10 +74,6 @@ const ProdutoCadastro = () => {
             }));
             setMassaOptions(options);
             setMassaData(response.data);
-
-            console.log("Massa data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -92,10 +89,6 @@ const ProdutoCadastro = () => {
             }));
             setCoberturaOptions(options);
             setCoberturaData(response.data);
-
-            console.log("Cobertura data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -111,10 +104,6 @@ const ProdutoCadastro = () => {
             }));
             setRecheioOptions(options);
             setRecheioData(response.data);
-
-            console.log("Recheio data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -130,10 +119,6 @@ const ProdutoCadastro = () => {
             }));
             setTipoProdutoOptions(options);
             setTipoProdutoData(response.data);
-
-            console.log("Tipo produto data:")
-            console.log(response.data)
-
             return response.data
         } catch (error) {
             console.log(error);
@@ -222,17 +207,11 @@ const ProdutoCadastro = () => {
         const recheioEncontrado = recheioData.find(e => e.nome.toLowerCase() === selectedRecheio.toLowerCase());
         if (recheioEncontrado) {
             setPrecoRecheio(recheioEncontrado.preco.toString());
-            console.log(precoRecheio)
         }
-        console.log(precoRecheio)
-        console.log(recheio)
     }
 
     const validateForm = () => {
         const newErrors = {};
-        console.log({
-            "preco": preco
-        })
         if (!nome.trim()) newErrors.nome = true;
         if (!preco.trim() || preco[0] === ".") newErrors.preco = true;
         if (!descricao.trim()) newErrors.descricao = true;
@@ -247,61 +226,69 @@ const ProdutoCadastro = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const cadastramento = async (event) => {
-        event.preventDefault();
-
-        if (!validateForm()) {
-            toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
-            return;
-        }
-
-        await cadastroRecheio();
-        await cadastroMassa();
-        await cadastroCobertura();
-        await cadastroUnidadeMedida();
-        await cadastroTipoProduto();
-
-        const unidadeMedidaDataNow = await getUnidadeMedida();
-        const massaDataNow = await getMassa();
-        const coberturaDataNow = await getCobertura();
-        const recheioDataNow = await getRecheio();
-        const tipoProdutoDataNow = await getTipoProduto();
-
-        const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
-        const recheioId = recheioEncontrado.idRecheio
-
-        const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
-        const massaId = massaEncontrado.idMassa
-
-        const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
-        const coberturaId = coberturaEncontrado.idCobertura
-
-        const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
-        const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
-
-        const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
-        const tipoProdutoId = tipoProdutoEncontrado.id
-
-        try {
-            await api.post('/produtos', { 
-                "nome": nome,
-                "preco": preco,
-                "descricao": descricao,
-                "foto": fotoId,
-                "qtdDisponivel": 1,
-                "recheioId": recheioId,
-                "massaId": massaId,
-                "coberturaId": coberturaId,
-                "unidadeMedidaId": unidadeMedidaId,
-                "tipoProdutoId": tipoProdutoId
-            });
-
-            toast.success('Produto cadastrado com sucesso!', { theme: "colored" });
-        } catch (error) {
-            console.log(error);
-            toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
-        }
-    };
+    if (canClick) {
+        const cadastramento = async (event) => {
+            setCanClick(false)
+            event.preventDefault();
+    
+            if (!validateForm()) {
+                toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
+                setCanClick(true)
+                return;
+            }
+    
+            await cadastroRecheio();
+            await cadastroMassa();
+            await cadastroCobertura();
+            await cadastroUnidadeMedida();
+            await cadastroTipoProduto();
+    
+            const unidadeMedidaDataNow = await getUnidadeMedida();
+            const massaDataNow = await getMassa();
+            const coberturaDataNow = await getCobertura();
+            const recheioDataNow = await getRecheio();
+            const tipoProdutoDataNow = await getTipoProduto();
+    
+            const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
+            const recheioId = recheioEncontrado.idRecheio
+    
+            const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
+            const massaId = massaEncontrado.idMassa
+    
+            const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
+            const coberturaId = coberturaEncontrado.idCobertura
+    
+            const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
+            const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
+    
+            const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
+            const tipoProdutoId = tipoProdutoEncontrado.id
+    
+            try {
+                await api.post('/produtos', { 
+                    "nome": nome,
+                    "preco": preco,
+                    "descricao": descricao,
+                    "foto": fotoId,
+                    "qtdDisponivel": 1,
+                    "recheioId": recheioId,
+                    "massaId": massaId,
+                    "coberturaId": coberturaId,
+                    "unidadeMedidaId": unidadeMedidaId,
+                    "tipoProdutoId": tipoProdutoId
+                });
+    
+                toast.success('Produto cadastrado com sucesso!', { theme: "colored", autoClose: 2000 });
+                setTimeout(() => {
+                    navigate(`/produtos`)
+                }, 2000)
+            } catch (error) {
+                console.log(error);
+                toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
+                setCanClick(true)
+            }
+        };
+    }
 
     return (
         <div className={styles["mainContainer"]}>

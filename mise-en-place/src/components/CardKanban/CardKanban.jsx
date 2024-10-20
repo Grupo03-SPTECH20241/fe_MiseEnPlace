@@ -16,7 +16,6 @@ const Card = ({ id, pedido, cliente, data, status }) => {
     const navigate = useNavigate();
 
     const navigateToVisualizarPedido = (id) => {
-        console.log('COCO:', id);
         navigate('/visualizar-pedido', { state: { pedidoId: id } });
     }
 

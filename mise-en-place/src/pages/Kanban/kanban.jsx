@@ -163,7 +163,7 @@ const Kanban = () => {
                             <div className={styles["DivButtonAddPedido"]}>
                                 <ButtonDefault
                                     label="Adicionar Pedido"
-                                    showIcon="true"
+                                    showIcon={true}
                                     icon="plus"
                                     iconPosition="left"
                                     fontSize="small"
