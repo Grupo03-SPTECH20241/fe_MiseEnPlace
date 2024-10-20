@@ -12,22 +12,33 @@ import api from "../../api";
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link> 
 
 const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal, onConfirm, isEditing = false }) => {
+    // opções dos inputs
     const [recheioOptions, setRecheioOptions] = useState([{id: '', value: ''}]);
     const [massaOptions, setMassaOptions] = useState([{id: '', value: ''}]);
     const [massa, setMassa] = useState(null);
     const [recheio, setRecheio] = useState(null);
     const [quantidade, setQuantidade] = useState(qtdProduto);
 
+    // dados dos produto-pedido selecionado
+    const [produtoPedido, setProdutoPedido] = useState([]);
+    
     useEffect(() => {
         try {
+            if(isEditing)fetchProdutoPedido();
             fetchRecheioOptions();
             fetchMassaOptions();
-            console.log("produto")
-            console.log(produto)
+            
         } catch (e){
             console.log(e);
         }
     }, []);
+
+    // busca produtos-pedidos
+    const fetchProdutoPedido = async () => {
+        const response = await api.get(`/produto-pedidos`);
+        const data = response?.data;
+        setProdutoPedido(data.find((currentData) => currentData?.idProdutoPedido === idProdutoPedido));
+    }
 
     const handleMassaChange = (event) => {
         setMassa(event?.target?.value);
@@ -137,6 +148,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                     <InputTextField
                         id='input-observacoes'
                         width='35vw'
+                        defaultValue={produtoPedido?.observacoes}
                         height='20vh'
                         label='Observações:'
                     ></InputTextField>

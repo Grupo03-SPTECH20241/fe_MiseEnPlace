@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './textField.module.css';
+import { useEffect } from 'react';
 
-const InputTextField = ({ label = 'Label:', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '100px' }) => {
-  const [value, setValue] = useState('');
+const InputTextField = ({ label = '', placeholder = '', id = 'input', isRequired = false, width = '235px', height = '100px', defaultValue = null }) => {
+  const [value, setValue] = useState(defaultValue ? defaultValue : '');
   const [error, setError] = useState('');
+
+  useEffect(() => {  
+    setValue(defaultValue || '');  
+  }, [defaultValue]);  
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -46,6 +51,7 @@ InputTextField.propTypes = {
   id: PropTypes.string,
   width: PropTypes.string,
   isRequired: PropTypes.bool,
+  defaultValue: PropTypes.string,
 };
 
 export default InputTextField;

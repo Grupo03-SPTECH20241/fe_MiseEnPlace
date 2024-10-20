@@ -74,7 +74,7 @@ const VisualizarPedido = () => {
     const [pedido, setPedido] = useState( location.state?.pedido || []);
     const [produtos, setProdutos] = useState(null);
     const [idPedido, setIdPedido] = useState( location.state?.pedidoId || null);
-    
+
     // valores selecionados nos inputs
     const [nomeCliente, setNomeCliente] = useState(null);
     const [numeroTelefone, setNumeroTelefone] = useState(null);
