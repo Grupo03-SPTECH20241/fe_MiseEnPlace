@@ -16,6 +16,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "react-modal"
 import ExcluirPedidoModal from "../../components/ExcluirPedidoModal/excluirPedidoModal";
 import AdicionarPedidoModal from "../../components/AdicionarPedidoModal/adicionarPedidoModal";
+import ExcluirProdutoModal from "../../components/ModalExclusaoProdutoPedido/modalExclusaoProdutoPedido";
 
 const customStyles = {
     content: {
@@ -50,6 +51,7 @@ const VisualizarPedido = () => {
     // Modal de edição do produto
 
     const [editarProdutoModalIsOpen, setEditarProdutoModalIsOpen] = useState(false);
+    const [excluirProdutoModalIsOpen, setExcluirProdutoModalIsOpen] = useState(false);
     const [produtoSendoEditado, setProdutoSendoEditado] = useState(null);
     const [idProdutoPedidoAtual, setidProdutoPedidoAtual] = useState(null);
     const [idClienteSelecionado, setIdClienteSelecionado] = useState(null);
@@ -65,6 +67,30 @@ const VisualizarPedido = () => {
 
     const closeEditarProdutoModal = () => {
         setEditarProdutoModalIsOpen(false);
+    }
+
+    // Modal de exclusão de produto
+
+    const [proutoQueVaiSerExcluido, setProutoQueVaiSerExcluido] = useState(null);
+
+    const handleExcluirProduto = async () => {
+        try {
+            await api.delete(`/produto-pedidos/${proutoQueVaiSerExcluido?.idProdutoPedido}`);
+            toast.success('Produto excluído com sucesso', { theme: 'colored' });
+            closeExcluirProdutoModal();
+            fetchPedido();
+        } catch (error) {
+            toast.error('Não foi possível excluir esse produto.', { theme: 'colored' });
+            console.log(error);
+        }
+    }
+
+    const openExcluirProdutoModal = () => {
+        setExcluirProdutoModalIsOpen(true);
+    }
+
+    const closeExcluirProdutoModal = () => {
+        setExcluirProdutoModalIsOpen(false);
     }
 
     // dados do pedido selecionado
@@ -390,6 +416,7 @@ const VisualizarPedido = () => {
                             quantidade={data?.qtdProduto}  
                             valor={data?.produtoDto?.preco}  
                             onEdit={()=>{handleEditarProduto(data?.idProdutoPedido, data); openEditarProdutoModal()}}
+                            onDelete={()=>{setProutoQueVaiSerExcluido(data); openExcluirProdutoModal()}}
                         />  
                     ))}
                     </div>  
@@ -439,6 +466,13 @@ const VisualizarPedido = () => {
                     closeModal={closeEditarProdutoModal}
                     onConfirm={handleAtualizarProdutoPedido}
                 ></AdicionarPedidoModal>
+            </Modal>
+            <Modal style={customStyles} isOpen={excluirProdutoModalIsOpen}>
+                <ExcluirProdutoModal
+                    closeModal={closeExcluirProdutoModal}
+                    onConfirm={handleExcluirProduto}
+                    produto={proutoQueVaiSerExcluido}
+                ></ExcluirProdutoModal>
             </Modal>
         </div>  
     );  

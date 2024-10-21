@@ -175,12 +175,17 @@ const Carrinho = () => {
             for(let j = 0; j < data.length; j++){
                 if(produtos[i]?.id === data[j].id){
                     produtosPreviamenteSelecionados.push(data[j]);
-                    valorTotal += data[j].preco;
                 }
             }
         }
+
+        for(let i = 0; i < produtosPreviamenteSelecionados.length; i++){
+            valorTotal += produtoPedidoCriacaoDtos[i]?.qtProduto ? produtoPedidoCriacaoDtos[i]?.qtProduto * produtosPreviamenteSelecionados[i]?.preco : produtosPreviamenteSelecionados[i]?.qtProduto * produtosPreviamenteSelecionados[i]?.preco;
+        }
+
         setProdutosCarrinho(produtosPreviamenteSelecionados);
         setValorTotal(valorTotal);
+        setValorSinal(valorTotal/2);
     }
 
     // handlers  
@@ -220,9 +225,6 @@ const Carrinho = () => {
     const handleNumeroTelefoneChange = (event) => {  
         setNumeroTelefone(event?.target?.value ? event?.target?.value : event);  
     };  
-
-    const imagem = BoloChocolate;
-    const qtd = 1;
 
     // funções de validação
     function normalizeString(str) { 
@@ -323,7 +325,7 @@ const Carrinho = () => {
                             nomeProduto={data?.nome}  
                             descricao={produtoPedidoCriacaoDtos[index]?.observacoes ? produtoPedidoCriacaoDtos[index]?.observacoes : data?.observacoes}  
                             quantidade={produtoPedidoCriacaoDtos[index]?.qtProduto ? produtoPedidoCriacaoDtos[index]?.qtProduto : data?.qtProduto}  
-                            valor={data?.preco}  
+                            valor={produtoPedidoCriacaoDtos[index]?.qtProduto ? produtoPedidoCriacaoDtos[index]?.qtProduto * data?.preco : data?.qtProduto * data?.preco}  
                         />  
                     ))}
                     </div>  
@@ -340,7 +342,7 @@ const Carrinho = () => {
                     <div className={styles["actions"]}>  
                         <div className={styles["values"]}>  
                             <p>Valor: R${valorTotal ? valorTotal : '0'}</p>  
-                            <p>Sinal: R${valorTotal ? valorTotal/2 : '0'}</p>  
+                            <p>Sinal: R${valorSinal ? valorSinal : '0'}</p>  
                         </div>  
                         <ButtonFilledDefault   
                             label="Cadastrar pedido"  
