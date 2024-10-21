@@ -226,69 +226,68 @@ const ProdutoCadastro = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    if (canClick) {
-        const cadastramento = async (event) => {
-            setCanClick(false)
-            event.preventDefault();
-    
-            if (!validateForm()) {
-                toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
-                setCanClick(true)
-                return;
-            }
-    
-            await cadastroRecheio();
-            await cadastroMassa();
-            await cadastroCobertura();
-            await cadastroUnidadeMedida();
-            await cadastroTipoProduto();
-    
-            const unidadeMedidaDataNow = await getUnidadeMedida();
-            const massaDataNow = await getMassa();
-            const coberturaDataNow = await getCobertura();
-            const recheioDataNow = await getRecheio();
-            const tipoProdutoDataNow = await getTipoProduto();
-    
-            const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
-            const recheioId = recheioEncontrado.idRecheio
-    
-            const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
-            const massaId = massaEncontrado.idMassa
-    
-            const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
-            const coberturaId = coberturaEncontrado.idCobertura
-    
-            const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
-            const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
-    
-            const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
-            const tipoProdutoId = tipoProdutoEncontrado.id
-    
-            try {
-                await api.post('/produtos', { 
-                    "nome": nome,
-                    "preco": preco,
-                    "descricao": descricao,
-                    "foto": fotoId,
-                    "qtdDisponivel": 1,
-                    "recheioId": recheioId,
-                    "massaId": massaId,
-                    "coberturaId": coberturaId,
-                    "unidadeMedidaId": unidadeMedidaId,
-                    "tipoProdutoId": tipoProdutoId
-                });
-    
-                toast.success('Produto cadastrado com sucesso!', { theme: "colored", autoClose: 2000 });
-                setTimeout(() => {
-                    navigate(`/produtos`)
-                }, 2000)
-            } catch (error) {
-                console.log(error);
-                toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
-                setCanClick(true)
-            }
-        };
-    }
+    const cadastramento = async (event) => {
+        if(!canClick) return;
+        setCanClick(false)
+        event?.preventDefault();
+
+        if (!validateForm()) {
+            toast.error('Preencha todos os campos obrigatórios!', { theme: "colored" });
+            setCanClick(true)
+            return;
+        }
+
+        await cadastroRecheio();
+        await cadastroMassa();
+        await cadastroCobertura();
+        await cadastroUnidadeMedida();
+        await cadastroTipoProduto();
+
+        const unidadeMedidaDataNow = await getUnidadeMedida();
+        const massaDataNow = await getMassa();
+        const coberturaDataNow = await getCobertura();
+        const recheioDataNow = await getRecheio();
+        const tipoProdutoDataNow = await getTipoProduto();
+
+        const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
+        const recheioId = recheioEncontrado.idRecheio
+
+        const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
+        const massaId = massaEncontrado.idMassa
+
+        const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
+        const coberturaId = coberturaEncontrado.idCobertura
+
+        const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
+        const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
+
+        const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
+        const tipoProdutoId = tipoProdutoEncontrado.id
+
+        try {
+            await api.post('/produtos', { 
+                "nome": nome,
+                "preco": preco,
+                "descricao": descricao,
+                "foto": fotoId,
+                "qtdDisponivel": 1,
+                "recheioId": recheioId,
+                "massaId": massaId,
+                "coberturaId": coberturaId,
+                "unidadeMedidaId": unidadeMedidaId,
+                "tipoProdutoId": tipoProdutoId
+            });
+
+            toast.success('Produto cadastrado com sucesso!', { theme: "colored", autoClose: 2000 });
+            setTimeout(() => {
+                navigate(`/produtos`)
+            }, 2000)
+        } catch (error) {
+            console.log(error);
+            toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
+            setCanClick(true)
+        }
+    };
 
     return (
         <div className={styles["mainContainer"]}>
