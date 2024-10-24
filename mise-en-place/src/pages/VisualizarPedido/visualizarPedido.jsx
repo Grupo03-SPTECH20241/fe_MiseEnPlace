@@ -78,7 +78,7 @@ const VisualizarPedido = () => {
             await api.delete(`/produto-pedidos/${proutoQueVaiSerExcluido?.idProdutoPedido}`);
             toast.success('Produto excluído com sucesso', { theme: 'colored' });
             closeExcluirProdutoModal();
-            fetchPedido();
+            atualizarValores();
         } catch (error) {
             toast.error('Não foi possível excluir esse produto.', { theme: 'colored' });
             console.log(error);
@@ -135,7 +135,8 @@ const VisualizarPedido = () => {
     }
 
     // edição do pedido & validação do corpo p/requisição
-    const editarPedido = async () => {
+    const editarPedido = async (vlrAtualizado = null) => {
+        debugger
         let idNovoCliente = null;
         if(!idClienteSelecionado) {
             if(nomeCliente && numeroTelefone){
@@ -146,6 +147,7 @@ const VisualizarPedido = () => {
                 const response = await api.post('/clientes', ClienteCriacaoDto);
                 const { data } = response;
                 idNovoCliente = data?.idCliente;
+                setIdClienteSelecionado(idNovoCliente);
             }
         }
 
@@ -153,18 +155,25 @@ const VisualizarPedido = () => {
             try {
                 const payload = {
                     dtPedido: dataEntrega,
-                    vlPedido: pedido?.vlPedido,
+                    vlPedido: vlrAtualizado ? vlrAtualizado : pedido?.vlPedido,
                     status: pedido?.status ? pedido?.status : 'N',
-                    valorSinal: pedido?.vlPedido ? pedido?.vlPedido/2 : 0,
+                    valorSinal: vlrAtualizado ? vlrAtualizado/2 : pedido?.vlPedido ? pedido.vlPedido/2 : 0,
                     formaEntregaId: formaEntrega,
                     clienteId: idClienteSelecionado ? idClienteSelecionado : idNovoCliente,
                     formaPagamentoId: formaPagamento
                 };
                 await api.put(`/pedidos/${pedido?.idPedido}`, payload);
-                toast.success('Pedido atualizado com sucesso!', { theme: "colored" });
-                setTimeout(()=>{
-                    navigate("/dashboard")
-                }, 6000);
+                
+                //Caso seja apenas alterações nas informações (exceto produtos) então navegará de volta para a dashboard
+                if(!vlrAtualizado){
+                    toast.success('Pedido atualizado com sucesso!', { theme: "colored" });
+                    setTimeout(()=>{
+                        navigate("/dashboard")
+                    }, 6000);
+                //Caso contrário buscará novamente o pedido para trazer os valores atualizados do pedido
+                } else {
+                    fetchPedido();
+                }
             } catch (error) {
                 console.log(error);
                 toast.error('Erro ao editar pedido', { theme: "colored" });
@@ -234,12 +243,28 @@ const VisualizarPedido = () => {
         try {
             await api.put(`/produto-pedidos/${idProdutoPedidoAtual}`, produtoPedidoCriacaoDto);  
             toast.success('Produto atualizado!', { theme: "colored" });
+            fetchPedido();
+            atualizarValores();
 
         } catch (e) {
             console.log(e);
         }
 
     };
+
+    const atualizarValores = async () => {
+        const response = await api.get(`/produto-pedidos`);  
+        const {data} = response;
+        let produtosDoPedido = data.filter((element) => element?.pedidoDto?.idPedido === pedido?.idPedido);
+        let valorAtualizadoDoPedido = 0;
+        
+        for(let i = 0; i < produtosDoPedido.length;i++){
+            valorAtualizadoDoPedido += produtosDoPedido[i].produtoDto?.preco * produtosDoPedido[i]?.qtProduto;  
+        }
+
+        editarPedido(valorAtualizadoDoPedido);
+        fetchPedido();
+    }
 
     // handlers  
     const handleFormaPagamentoChange = (event) => {  
@@ -414,7 +439,7 @@ const VisualizarPedido = () => {
                             nomeProduto={data?.produtoDto?.nome}  
                             descricao={data?.produtoDto?.descricao}  
                             quantidade={data?.qtdProduto}  
-                            valor={data?.produtoDto?.preco}  
+                            valor={data?.produtoDto?.preco * data?.qtdProduto}  
                             onEdit={()=>{handleEditarProduto(data?.idProdutoPedido, data); openEditarProdutoModal()}}
                             onDelete={()=>{setProutoQueVaiSerExcluido(data); openExcluirProdutoModal()}}
                         />  
