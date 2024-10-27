@@ -5,7 +5,6 @@ import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import Select from '../../components/Input/Select/select';  
 import ButtonFilledDefault from '../../components/Button/Default/default';  
 import ButtonFilledDefaultVariant from "../../components/Button/Default-variant/defaultv";
-import BoloChocolate from '../../utils/img/produtos/bolo_chocolate.jpg';
 import CardPedido from '../../components/CardRequest/cardRequest';  
 import { toast, ToastContainer } from 'react-toastify';
 import InputCalendar from '../../components/Input/Calendar/calendar';  
@@ -17,7 +16,7 @@ const Carrinho = () => {
     // navegação & recuperação de dados da tela anterior
     const location = useLocation();  
     const produtos = location.state?.produtos || [];  
-    const produtoPedidoCriacaoDtos = location.state?.produtoPedidoCriacaoDtos || [];
+    const [produtoPedidoCriacaoDtos, setProdutoPedidoCriacaoDtos] = useState(location.state?.produtoPedidoCriacaoDtos || []);
     const navigate = useNavigate();  
 
     const voltarParaTelaOrigem = () => {  
@@ -34,7 +33,7 @@ const Carrinho = () => {
     const [valorSinal, setValorSinal] = useState(0);
 
     // valores selecionados nos inputs
-    const [produtosCarrinho, setProdutosCarrinho] = useState(null);
+    const [produtosCarrinho, setProdutosCarrinho] = useState([]);
     const [nomeCliente, setNomeCliente] = useState(null);
     const [numeroTelefone, setNumeroTelefone] = useState(null);
     const [formaEntrega, setFormaEntrega] = useState(null);  
@@ -126,11 +125,33 @@ const Carrinho = () => {
         return false;
     }
 
+    const removerDoCarrinho = (indexRemovido) => {
+        const produtoPedidoFiltrados = produtoPedidoCriacaoDtos.filter((produto, index) => index !== indexRemovido);
+        const produtosCarrinhoFiltrados = produtosCarrinho.filter((produto, index) => index !== indexRemovido);
+        setProdutoPedidoCriacaoDtos(produtoPedidoFiltrados ? produtoPedidoFiltrados : []);
+        setProdutosCarrinho(produtosCarrinhoFiltrados ? produtosCarrinhoFiltrados : []);
+        atualizarValores(produtoPedidoFiltrados, produtosCarrinhoFiltrados);
+    }
+
+    //atualiza os valores
+    const atualizarValores = (produtoPedidoFiltrados, produtosCarrinhoFiltrados) => {
+        let valorTotal =0;  
+
+        for (let i =0; i < produtosCarrinhoFiltrados.length; i++) {  
+        valorTotal += (produtoPedidoFiltrados[i]?.qtProduto ||0) * (produtosCarrinhoFiltrados[i]?.preco ||0);  
+        }  
+       
+        setValorTotal(valorTotal);  
+        setValorSinal(valorTotal /2);   
+    }
+
     // busca dos valores auxiliares
     const fetchClientes = async () => {
         const response = await api.get('/clientes');  
         const { data } = response;
         setClientes(data);
+        console.log("dataOOOOOOOOOOOOOOO");
+        console.log(data);
     }
 
     // busca das opções para os inputs
@@ -170,7 +191,7 @@ const Carrinho = () => {
         const { data } = response;
         let produtosPreviamenteSelecionados = [];
         let valorTotal = 0;
-
+        
         for(let i = 0; i < produtos.length; i++){
             for(let j = 0; j < data.length; j++){
                 if(produtos[i]?.id === data[j].id){
@@ -178,10 +199,12 @@ const Carrinho = () => {
                 }
             }
         }
+        produtosPreviamenteSelecionados = produtosPreviamenteSelecionados.filter((produto, index) => produtoPedidoCriacaoDtos[index]);
 
         for(let i = 0; i < produtosPreviamenteSelecionados.length; i++){
             valorTotal += produtoPedidoCriacaoDtos[i]?.qtProduto ? produtoPedidoCriacaoDtos[i]?.qtProduto * produtosPreviamenteSelecionados[i]?.preco : produtosPreviamenteSelecionados[i]?.qtProduto * produtosPreviamenteSelecionados[i]?.preco;
         }
+
 
         setProdutosCarrinho(produtosPreviamenteSelecionados);
         setValorTotal(valorTotal);
@@ -215,10 +238,12 @@ const Carrinho = () => {
         for(let i = 0; i < clientes.length; i++){
             if(compareStrings(normalizeString(clientes[i]?.nome), nomeClienteInformado)){
                 setIdClienteSelecionado(clientes[i]?.idCliente);
+                setNumeroTelefone(clientes[i].numero);
                 clienteEncontrado = true;
                 break;
             }
-        }        
+        }
+        if(!clienteEncontrado) setNumeroTelefone(null);
         setNomeCliente(event?.target?.value ? event?.target?.value : event);  
     };  
 
@@ -230,16 +255,16 @@ const Carrinho = () => {
     function normalizeString(str) { 
         if(!str.length) return '';
         return str  
-            .normalize('NFD') // Normaliza a string para decompor caracteres acentuados  
-            .replace(/[\u0300-\u036f]/g, '') // Remove os acentos  
-            .toLowerCase(); // Converte para minúsculas  
+            .normalize('NFD') 
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase();
     }  
     
     function compareStrings(str1, str2) {  
         const normalizedStr1 = normalizeString(str1);  
         const normalizedStr2 = normalizeString(str2);  
         
-        return normalizedStr1.localeCompare(normalizedStr2) === 0; // Retorna true se as strings forem iguais  
+        return normalizedStr1.localeCompare(normalizedStr2) === 0;
     }  
 
     return (  
@@ -266,6 +291,7 @@ const Carrinho = () => {
                             label="Número de telefone:"  
                             placeholder="Insira o número"  
                             width="43vw"  
+                            defaultValue={numeroTelefone}
                             onChange={handleNumeroTelefoneChange}
                         />                 
                     </div>  
@@ -326,6 +352,8 @@ const Carrinho = () => {
                             descricao={produtoPedidoCriacaoDtos[index]?.observacoes ? produtoPedidoCriacaoDtos[index]?.observacoes : data?.observacoes}  
                             quantidade={produtoPedidoCriacaoDtos[index]?.qtProduto ? produtoPedidoCriacaoDtos[index]?.qtProduto : data?.qtProduto}  
                             valor={produtoPedidoCriacaoDtos[index]?.qtProduto ? produtoPedidoCriacaoDtos[index]?.qtProduto * data?.preco : data?.qtProduto * data?.preco}  
+                            onDelete={()=>{removerDoCarrinho(index)}}
+                            showEdit={false}
                         />  
                     ))}
                     </div>  

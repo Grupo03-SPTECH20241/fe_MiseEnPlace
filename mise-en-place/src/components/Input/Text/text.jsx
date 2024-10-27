@@ -43,7 +43,10 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   }, [defaultValue]);  
 
   const handleChange = (e) => {
-    const event = e.target?.value ? e.target.value : e;
+    let event = e.target?.value ? e.target.value : e;
+    if(typeof event === 'object' && event !== null) {
+      event = "";
+    }
     if(postiveValuesOnly && numericOnly){
       if(event <= 0){
         setValue(0);
