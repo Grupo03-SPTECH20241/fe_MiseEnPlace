@@ -136,7 +136,6 @@ const VisualizarPedido = () => {
 
     // edição do pedido & validação do corpo p/requisição
     const editarPedido = async (vlrAtualizado = null) => {
-        debugger
         let idNovoCliente = null;
         if(!idClienteSelecionado) {
             if(nomeCliente && numeroTelefone){
@@ -408,7 +407,7 @@ const VisualizarPedido = () => {
                             </Select>  
                         </div>  
                     </div>  
-                    {formaEntrega === '3' && (  
+                    {(formaEntrega === 3 || formaEntrega === '3') && (  
                         <div className={styles["party-container"]}>  
                             <div className={styles["requestInfo"]}>  
                                 <InputText  
