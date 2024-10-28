@@ -71,3 +71,17 @@
         font-size: medium !important;
     }
 }
+
+@media screen and (max-width: 560px) {
+    .barChartContainer {
+        max-width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+    .barChartBox {
+        width: 90%;
+    }
+    .barChartText p {
+        font-size: medium !important;
+    }
+}

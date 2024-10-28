@@ -170,3 +170,22 @@
         font-size: medium !important;
     }
 }
+
+
+@media screen and (max-width: 560px) {
+    .goalChartContainer {
+        max-width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+    .goalChartBox {
+        width: 90%;
+    }
+    .goalChartText p {
+        font-size: medium !important;
+    }
+    .progressBarCurrentLocation {
+        min-width: 51%;
+        max-width: 52%;
+    }
+}
