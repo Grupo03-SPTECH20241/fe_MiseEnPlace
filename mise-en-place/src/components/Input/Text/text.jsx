@@ -43,7 +43,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
   }, [defaultValue]);  
 
   const handleChange = (e) => {
-    const event = e.target?.value ? e.target.value : e;
+    const event = e.target?.value ? e.target.value : e.target.value;
     if(postiveValuesOnly && numericOnly){
       if(event <= 0){
         setValue(0);
@@ -54,7 +54,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
       }
     } else {
       setValue(event);
-      if(onChange !== null) onChange(event);
+      if(onChange !== null || onChange === "") onChange(event);
     }
     
     if(event?.length){
