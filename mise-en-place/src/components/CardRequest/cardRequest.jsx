@@ -13,6 +13,7 @@ const CardPedido = ({
     produto = null,
     onEdit = ()=>{},
     onDelete = ()=>{},
+    showEdit = true,
 }) => {
     return (
         <div className={styles["card-pedido"]}>
@@ -27,7 +28,7 @@ const CardPedido = ({
             </div>
             <div className={styles["importantes"]}>
                 <div className={styles["actions"]}>
-                    <img onClick={onEdit} src={editarIcon} alt="Botão de editar detalhes do produto" />
+                    {showEdit && (<img onClick={onEdit} src={editarIcon} alt="Botão de editar detalhes do produto" />)}
                     <img onClick={onDelete} src={excluirIcon} alt="Botão de excluir produto da lista" />
                 </div>
                 <div className={styles["quantidade"]}>
