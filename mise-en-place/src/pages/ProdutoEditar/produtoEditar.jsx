@@ -301,7 +301,7 @@ const ProdutoEditar = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const cadastramento = async (event) => {
+    const editar = async (event) => {
         if(!canClick) return;
         setCanClick(false)
         event?.preventDefault();
@@ -342,7 +342,7 @@ const ProdutoEditar = () => {
         let foto = Array.from(new Uint8Array(fileData));
 
         try {
-            await api.post('/produtos', { 
+            await api.put(`/produtos/${produto.id}`, { 
                 "nome": nome,
                 "preco": preco,
                 "descricao": descricao,
@@ -355,13 +355,13 @@ const ProdutoEditar = () => {
                 "tipoProdutoId": tipoProdutoId
             });
 
-            toast.success('Produto cadastrado com sucesso!', { theme: "colored", autoClose: 2000 });
+            toast.success('Produto editado com sucesso!', { theme: "colored", autoClose: 2000 });
             setTimeout(() => {
                 navigate(`/produtos`)
             }, 2000)
         } catch (error) {
             console.log(error);
-            toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
+            toast.error('Erro ao editar o produto!', { theme: "colored" });
             setCanClick(true)
         }
     };
@@ -521,8 +521,8 @@ const ProdutoEditar = () => {
                                 width='25%'>
                             </ButtonDelete>
                             <Button
-                                onClick={cadastramento}
-                                label='Cadastrar produto'
+                                onClick={editar}
+                                label='Editar produto'
                                 icon='check'
                                 iconPosition='left'
                                 width='25%'>
