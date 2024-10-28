@@ -22,7 +22,6 @@ const ProdutoEditar = () => {
     const [nome, setNome] = useState(location.state?.produto.nome || '');
     const [preco, setPreco] = useState(parseFloat(location.state?.produto.preco) || '');
     const [descricao, setDescricao] = useState(location.state?.produto.descricao || '');
-    const [fotoId, setFoto] = useState(location.state?.produto.foto || '')
     const [massa, setMassa] = useState(location.state?.produto.massa.nome || '');
     const [cobertura, setCobertura] = useState(location.state?.produto.cobertura.nome || '');
     const [recheio, setRecheio] = useState(location.state?.produto.recheio.nome || '');
@@ -46,6 +45,8 @@ const ProdutoEditar = () => {
 
     const [canClick, setCanClick] = useState(true);
 
+    const [fileData, setFileData] = useState();
+
     useEffect(() => {
         mostrarProduto();
         getUnidadeMedida();
@@ -53,11 +54,51 @@ const ProdutoEditar = () => {
         getCobertura();
         getRecheio();
         getTipoProduto();
+        setProdutoImagem();
     }, []);
+
+    const handleFileUpload = (event) => {
+        const uploadedFile = event.target.files[0];
+        if (uploadedFile) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFileData(reader.result);
+            };
+            reader.readAsArrayBuffer(uploadedFile);
+        }
+    };
 
     const mostrarProduto = () => {
         console.log("Produto enviado:")
         console.log(produto);
+    }
+
+    const setProdutoImagem = () => {
+        const imgElement = document.getElementById('produtoImage');
+        if (produto.foto !== null) {
+            imgElement.style.width = 'auto';
+            imgElement.style.height = '100%';
+            imgElement.style.objectFit = 'cover';
+            imgElement.style.borderRadius = '10px';
+            imgElement.src = produto.foto
+        } else {
+            imgElement.src = CameraIcon
+        }
+    };
+
+    function arrayBufferToImage(arrayBuffer) {
+        const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
+        const imageUrl = URL.createObjectURL(blob);
+
+        const imgElement = document.getElementById('produtoImage');
+        if (imgElement) {
+            imgElement.style.width = 'auto';
+            imgElement.style.height = '100%';
+            imgElement.style.objectFit = 'cover';
+            imgElement.style.borderRadius = '10px';
+        }
+
+        return imageUrl;
     }
 
     const handleRecheioChange = (value) => {
@@ -260,7 +301,7 @@ const ProdutoEditar = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const cadastramento = async (event) => {
+    const editar = async (event) => {
         if(!canClick) return;
         setCanClick(false)
         event?.preventDefault();
@@ -298,12 +339,14 @@ const ProdutoEditar = () => {
         const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
         const tipoProdutoId = tipoProdutoEncontrado.id
 
+        let foto = Array.from(new Uint8Array(fileData));
+
         try {
-            await api.post('/produtos', { 
+            await api.put(`/produtos/${produto.id}`, { 
                 "nome": nome,
                 "preco": preco,
                 "descricao": descricao,
-                "foto": fotoId,
+                "foto": foto,
                 "qtdDisponivel": 1,
                 "recheioId": recheioId,
                 "massaId": massaId,
@@ -312,13 +355,13 @@ const ProdutoEditar = () => {
                 "tipoProdutoId": tipoProdutoId
             });
 
-            toast.success('Produto cadastrado com sucesso!', { theme: "colored", autoClose: 2000 });
+            toast.success('Produto editado com sucesso!', { theme: "colored", autoClose: 2000 });
             setTimeout(() => {
                 navigate(`/produtos`)
             }, 2000)
         } catch (error) {
             console.log(error);
-            toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
+            toast.error('Erro ao editar o produto!', { theme: "colored" });
             setCanClick(true)
         }
     };
@@ -355,9 +398,15 @@ const ProdutoEditar = () => {
                 </div>
 
                 <div className={styles["produtoEditarMainContainer"]}>
-                    <div className={styles["imageContainer"]}>
-                        <div className={styles["produtoEditarImage"]}>
-                            <img src={CameraIcon} />
+                <div className={styles["imageContainer"]}>
+                        <div className={styles["produtoEditarImage"]}
+                        onClick={() => document.getElementById('file-upload').click()}>
+                            <input type="file"
+                            id="file-upload"
+                            onChange={handleFileUpload}/>
+                            <img
+                            id='produtoImage'
+                            src={fileData ? arrayBufferToImage(fileData) : CameraIcon}/>
                         </div>
                     </div>
                     <div className={styles["inputsContainer"]}>
@@ -472,8 +521,8 @@ const ProdutoEditar = () => {
                                 width='25%'>
                             </ButtonDelete>
                             <Button
-                                onClick={cadastramento}
-                                label='Cadastrar produto'
+                                onClick={editar}
+                                label='Editar produto'
                                 icon='check'
                                 iconPosition='left'
                                 width='25%'>

@@ -18,7 +18,6 @@ const ProdutoCadastro = () => {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [descricao, setDescricao] = useState('');
-    const [fotoId, setFoto] = useState('')
     const [massa, setMassa] = useState('');
     const [cobertura, setCobertura] = useState('');
     const [recheio, setRecheio] = useState('');
@@ -42,6 +41,8 @@ const ProdutoCadastro = () => {
 
     const [canClick, setCanClick] = useState({});
 
+    const [fileData, setFileData] = useState(null);
+
     useEffect(() => {
         getUnidadeMedida();
         getMassa();
@@ -49,6 +50,17 @@ const ProdutoCadastro = () => {
         getRecheio();
         getTipoProduto();
     }, []);
+
+    const handleFileUpload = (event) => {
+        const uploadedFile = event.target.files[0];
+        if (uploadedFile) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFileData(reader.result);
+            };
+            reader.readAsArrayBuffer(uploadedFile);
+        }
+    };
 
     const getUnidadeMedida = async () => {
         try {
@@ -197,6 +209,21 @@ const ProdutoCadastro = () => {
         }
     };
 
+    function arrayBufferToImage(arrayBuffer) {
+        const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
+        const imageUrl = URL.createObjectURL(blob);
+
+        const imgElement = document.getElementById('produtoImage');
+        if (imgElement) {
+            imgElement.style.width = 'auto';
+            imgElement.style.height = '100%';
+            imgElement.style.objectFit = 'cover';
+            imgElement.style.borderRadius = '10px';
+        }
+
+        return imageUrl;
+    }
+
     const handleRecheioChange = (value) => {
         setRecheio(value);
         handlePrecoRecheio(value);
@@ -263,13 +290,18 @@ const ProdutoCadastro = () => {
 
         const tipoProdutoEncontrado = tipoProdutoDataNow.find(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())
         const tipoProdutoId = tipoProdutoEncontrado.id
+        let foto = null;
+
+        if (fileData !== null) {
+            foto = Array.from(new Uint8Array(fileData));
+        }
 
         try {
             await api.post('/produtos', { 
                 "nome": nome,
                 "preco": preco,
                 "descricao": descricao,
-                "foto": fotoId,
+                "foto": foto,
                 "qtdDisponivel": 1,
                 "recheioId": recheioId,
                 "massaId": massaId,
@@ -304,8 +336,14 @@ const ProdutoCadastro = () => {
 
                 <div className={styles["produtoCadastroMainContainer"]}>
                     <div className={styles["imageContainer"]}>
-                        <div className={styles["produtoCadastroImage"]}>
-                            <img src={CameraIcon} />
+                        <div className={styles["produtoCadastroImage"]}
+                        onClick={() => document.getElementById('file-upload').click()}>
+                            <input type="file"
+                            id="file-upload"
+                            onChange={handleFileUpload}/>
+                            <img
+                            id='produtoImage'
+                            src={fileData ? arrayBufferToImage(fileData) : CameraIcon}/>
                         </div>
                     </div>
                     <div className={styles["inputsContainer"]}>
