@@ -14,18 +14,21 @@ function Login() {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-
-        api.post('/usuarios/login', { "email": email, "senha": password }).then((response) => {
+    
+        try {
+            const response = await api.post('/usuarios/login', { "email": email, "senha": password });
             localStorage.setItem('token', response.data.token);
-            toast.success('Login efetuado com sucesso! Redirecionando...', { theme: "colored" })
+            sessionStorage.setItem('userEmail', email); // Armazena o email no sessionStorage
+            toast.success('Login efetuado com sucesso! Redirecionando...', { theme: "colored" });
             setTimeout(() => {
                 navigate('/loading');
-            }, 6000)
-        }).catch((error) => {
-            console.log(error, "error")
-            toast.error('Email e/ou senha inválidos', { theme: "colored" })
-        })
+            }, 6000);
+        } catch (error) {
+            console.log(error, "error");
+            toast.error('Email e/ou senha inválidos', { theme: "colored" });
+        }
     };
+    
 
     return (
         <div className={LoginStyles['App']}>
