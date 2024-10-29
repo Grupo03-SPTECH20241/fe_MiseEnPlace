@@ -73,3 +73,17 @@
         font-size: medium !important;
     }
 }
+
+@media screen and (max-width: 560px) {
+    .donutChartContainer {
+        max-width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+    .donutChartBox {
+        width: 90%;
+    }
+    .donutChartText p {
+        font-size: medium !important;
+    }
+}

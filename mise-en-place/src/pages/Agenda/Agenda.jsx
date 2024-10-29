@@ -123,7 +123,7 @@ const Agenda = () => {
               'Content-Type': 'application/json'
             }
           });
-  
+
           if (response.status === 200) {
             toast.success('Pedidos importados com sucesso!', { theme: "colored" });
           } else {
@@ -135,7 +135,7 @@ const Agenda = () => {
           toast.error('Erro na importação dos pedidos!', { theme: "colored" });
         }
       };
-  
+
       reader.readAsDataURL(file);
     } catch (error) {
       console.error("Erro ao importar pedidos", error);
@@ -171,7 +171,7 @@ const Agenda = () => {
             </div>
           </div>
           <div className={styles["DivSpace"]}>
-            <div className={styles["DivActions"]}>
+            <div className={styles["DivActions-1"]}>
               <div className={styles["DivButtonAddPedido"]}>
                 <ButtonDefault
                   label="Adicionar Pedido"
@@ -187,6 +187,8 @@ const Agenda = () => {
                   <Filter options={['Mensal', 'Semanal']} onChange={handleFilterStatus} />
                 </div>
               </div>
+            </div>
+            <div className={styles["DivActions-2"]}>
               <div className={styles["DivButtonTrocarVisualizacao"]}>
                 <div>
                   <ButtonDefault

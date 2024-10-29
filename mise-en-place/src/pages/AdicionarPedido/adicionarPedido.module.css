@@ -192,6 +192,12 @@
     .produtoBreadcrumbsContainer {
         display: none;
     }
+    .carrinho-container {
+        top: 85%;
+        left: 80%;
+        box-shadow: 0px 8px 4px 0px rgba(142, 139, 139, 0.653);
+        border-radius: 25px;
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -202,8 +208,12 @@
         display: none;
     }
     .dashboardTittleCard {
-        width: 89.9%;
+        width: 100%;
         margin: 0;
         border-radius: 0;
+    }
+    .innerContainerSearch {
+        width: 90%;
+        justify-content: center;
     }
 }

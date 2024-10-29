@@ -64,7 +64,7 @@
     justify-content: flex-start;
 }
 
-.DivActions {
+.DivActions-1, .DivActions-2 {
     display: flex;
     align-items: center;
     width: 87.50%;
@@ -123,7 +123,7 @@
         border-radius: 12px;
     }
 
-    .DivActions{
+    .DivActions-1, .DivActions-2{
         width: 90%;
         margin-left: 0!important;
     }
@@ -152,7 +152,7 @@
         border-radius: 12px;
     }
 
-    .DivActions{
+    .DivActions-1, .DivActions-2{
         width: 90%;
         margin-left: 4vw!important;
     }
@@ -181,7 +181,7 @@
         border-radius: 12px;
     }
 
-    .DivActions{
+    .DivActions-1, .DivActions-2{
         width: 90%;
         margin-left: 4vw!important;
     }
@@ -210,7 +210,7 @@
         border-radius: 12px;
     }
 
-    .DivActions{
+    .DivActions-1, .DivActions-2{
         width: 90%;
         margin-left: 5vw!important;
     }
@@ -227,5 +227,25 @@
 
 @media screen and (min-device-width: 1201px) {
     
+}
+
+@media screen and (max-width: 630px) {
+    .DivSpace {
+        flex-direction: column;
+    }
+    .DivButtonTrocarVisualizacao{
+        width: 100%;
+    }
+    .dashboardTittleCard {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .dashboardBreadcrumbsContainer {
+        display: none;
+    }
 }
 

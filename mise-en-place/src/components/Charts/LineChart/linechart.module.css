@@ -70,3 +70,18 @@
         font-size: medium !important;
     }
 }
+
+
+@media screen and (max-width: 560px) {
+    .lineChartContainer {
+        max-width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+    .lineChartBox {
+        width: 90%;
+    }
+    .lineChartText p {
+        font-size: medium !important;
+    }
+}
