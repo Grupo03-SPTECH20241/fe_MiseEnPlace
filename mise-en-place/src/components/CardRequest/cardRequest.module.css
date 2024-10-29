@@ -60,6 +60,15 @@
     margin: 0;
 }
 
-
-
-
+@media screen and (max-width: 576px) {
+    .imagem-pedido {
+        width: 40%;
+    }
+    .imagem-pedido img {
+        width: 100%;
+    }
+    .importantes {
+        font-size: medium;
+        margin-left: 5vw;
+    }
+}

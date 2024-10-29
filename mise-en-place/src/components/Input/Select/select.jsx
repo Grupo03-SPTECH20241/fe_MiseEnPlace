@@ -39,14 +39,14 @@ const InputSelect = ({ label = 'Label:', placeholder = '', id = 'input', isRequi
   }  
 
   return (
-    <div className={styles['input-field-container']}>
+    <div className={styles['input-field-container']} style={{width: `${width}`}}>
       <span className={styles['label-content']}>{label}</span>
       <select
         id={id}
         placeholder={placeholder}
         disabled={isDisabled}
         value={value}
-        style={{width: `${width}`, height: `${height}`}}
+        style={{width: '100%'}}
         onChange={handleChange}
         onBlur={handleBlur}
         className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''}`}

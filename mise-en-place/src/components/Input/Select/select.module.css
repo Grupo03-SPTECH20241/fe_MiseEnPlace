@@ -1,50 +1,49 @@
 @font-face {
-    font-family: "Nunito-Regular";
-    src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
-  }
-  
-  .input-field-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .input-label {
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .input-field {
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    width: 235px;
-    height: 43px;
-    padding-left: 20px;
-    outline: none;
-    font-family: Nunito-Regular;
-    -webkit-appearance: none; /* Remove default arrow */
-    -moz-appearance: none; /* Remove default arrow */
-    appearance: none; /* Remove default arrow */
-    background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
-    background-color: white;
-  }
-  
-  .input-field-error {
-    border-color: #4B24E5;;
-  }
-  
-  .label-content {
-    font-size: 16px;
-    color: #303030;
-    font-family: Nunito-Regular;
-  }
-  
-  .error-message {
-    color: #4B24E5;;
-    font-size: 12px;
-    margin-top: 5px;
-    font-family: Nunito-Regular;
-  }
-  
+  font-family: "Nunito-Regular";
+  src: url("../../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.input-field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.input-field {
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 235px;
+  height: 43px;
+  padding-left: 20px;
+  outline: none;
+  font-family: Nunito-Regular;
+  -webkit-appearance: none; /* Remove default arrow */
+  -moz-appearance: none; /* Remove default arrow */
+  appearance: none; /* Remove default arrow */
+  background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+  background-color: white;
+}
+
+.input-field-error {
+  border-color: #4B24E5;;
+}
+
+.label-content {
+  font-size: 16px;
+  color: #303030;
+  font-family: Nunito-Regular;
+}
+
+.error-message {
+  color: #4B24E5;;
+  font-size: 12px;
+  margin-top: 5px;
+  font-family: Nunito-Regular;
+}
