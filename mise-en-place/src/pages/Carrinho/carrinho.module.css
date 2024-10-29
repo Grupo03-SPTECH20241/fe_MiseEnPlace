@@ -6,6 +6,8 @@
 .mainContainer {
     font-family: Nunito-Regular;
     display: flex;
+    width: 100% !important;
+    overflow: hidden;
 }
 
 .carrinhoBreadcrumbContainer {
@@ -13,7 +15,7 @@
     padding-top: 5vh;
 }
 
-.carrinhoTittleCard {
+.containerTittleCard {
     background-image: linear-gradient(to left, #E5246B, #DE0052);
     display: flex;
     width: 85vw;
@@ -26,20 +28,20 @@
     border-radius: 12px;
 }
 
-.carrinhoTittleCard h2,
-.carrinhoTittleCard p {
+.containerTittleCard h2,
+.containerTittleCard p {
     margin-left: 3vh;
     color: white;
 }
 
-.carrinhoTittleCard h2 {
+.containerTittleCard h2 {
     font-family: 'Nunito-Bold';
     font-weight: 400;
     margin: 0;
     margin-bottom: 1.5vh;
 }
 
-.carrinhoTittleCard p {
+.containerTittleCard p {
     font-weight: 400;
     margin: 0;
 }
@@ -48,10 +50,16 @@
     margin-left: 6.5vh;
     padding-top: 3vh;
     margin-bottom: 3vh;
+    width: 88%;
 }
 
+.party-container {
+    width: 100%;
+}
 .clientInfo {
     margin-bottom: 16px;
+    width: 100%;
+    margin-left: 0;
 }
 
 .requestInfo {
@@ -62,7 +70,6 @@
 .clientInfo, .requestInfo {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     gap: 1vw;
 }
@@ -88,6 +95,7 @@
 
 .carrinhoFooter {
     display: flex;
+    width: 100vw;
 }
 
 .carrinhoFooter .actions {
@@ -95,14 +103,12 @@
     flex-direction: row;
     justify-content: right;
     align-items: center;
-    gap: 32px;
-    width: 90%;
+    width: 80%;
 }
 
 .carrinhoFooter .values {
     display: flex;
     flex-direction: row;
-    gap: 1vw;
 } 
 
 .carrinhoFooter .values p{
@@ -115,6 +121,7 @@
     font-size: 16px;
     border: 2px solid #DD0543;
     background-color: #31cfff00;
+    margin-right: 5%;
 }
 
 .carrinhoFooter .return {
@@ -123,4 +130,78 @@
     justify-content: center;
     margin-left: 6.5vh;
     width: 10%;
+}
+
+@media screen and (max-width: 1056px) {
+    .carrinhoBreadcrumbsContainer {
+        display: none;
+    }
+    .containerTittleCard {
+        display: flex;
+        width: 100% !important;
+        justify-content: center;
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0
+    }
+}
+
+@media screen and (max-width: 900px) {
+    
+    .inputsContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .inputsContainer {
+        width: 100% !important;
+    }
+    .containerTittleCard {
+        display: flex;
+        width: 100%;
+        margin-top: 0;
+        border-radius: 0;
+        justify-content: center;
+    }
+    .basic-oreder-details{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+    }
+    .requestInfo {
+        width: 100%;
+        gap: 0;
+    }
+    .clientInfo {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .carrinhoFooter .actions {
+        justify-content: space-around;
+        width: 100%;
+        gap: 0;
+    }
+    .carrinhoFooter .return {
+        width: 100%;
+        margin-left: 0;
+    }
+    .containerTittleCard {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    .carrinhoFooter .actions .values p{
+        width: 25vw;
+        border-radius: 500px;
+        font-size: 16px;
+        margin-right: 3vw;
+    }
+    .carrinhoFooter {
+        flex-direction: column-reverse;
+        margin-bottom: 12vh;
+    }
 }

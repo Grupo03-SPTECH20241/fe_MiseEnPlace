@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumb from '../../components/Texts/Breadcrumbs/breadcrumbs';  
 import Select from '../../components/Input/Select/select';  
 import ButtonFilledDefault from '../../components/Button/Default/default';  
-import ButtonFilledDefaultVariant from "../../components/Button/Default-variant/defaultv";
+import ButtonOutlinedNegative from "../../components/Button/Cancelar-variant/cancelarv";
 import CardPedido from '../../components/CardRequest/cardRequest';  
 import { toast, ToastContainer } from 'react-toastify';
 import InputCalendar from '../../components/Input/Calendar/calendar';  
@@ -272,10 +272,10 @@ const Carrinho = () => {
             <ToastContainer />
             <Sidebar />  
             <div className={styles["innerContainer"]}>  
-                <div className={styles["carrinhoBreadcrumbContainer"]}>  
+                <div className={styles["carrinhoBreadcrumbsContainer"]}>  
                     <Breadcrumb />  
                 </div>  
-                <div className={styles["carrinhoTittleCard"]}>  
+                <div className={styles["containerTittleCard"]}>  
                     <h2>Carrinho</h2>  
                     <p>Verifique os produtos e conclua o pedido</p>  
                 </div>  
@@ -283,14 +283,16 @@ const Carrinho = () => {
                     <div className={styles["clientInfo"]}>  
                         <InputText  
                             label="Cliente:"  
-                            placeholder="Insira o nome do cliente"  
-                            width="44vw"  
+                            placeholder="Nome do cliente"  
+                            width="100%" 
+                            fieldWidth={"50%"} 
                             onChange={handleNomeClienteChange}
                         />  
                         <InputText  
                             label="Número de telefone:"  
-                            placeholder="Insira o número"  
-                            width="43vw"  
+                            placeholder="Número do cliente"  
+                            width="100%" 
+                            fieldWidth={"50%"} 
                             defaultValue={numeroTelefone}
                             onChange={handleNumeroTelefoneChange}
                         />                 
@@ -302,23 +304,25 @@ const Carrinho = () => {
                                 value={formaPagamento}  
                                 options={formaPagamentoOptions}  
                                 onChange={handleFormaPagamentoChange}  
-                                width="53vh"  
+                                width="50%"  
                             />  
                             <InputCalendar  
                                 label="Data de entrega:"  
                                 onChange={handleDataEntregaChange}  
                                 value={dataEntrega}  
-                                width="53vh"  
+                                width="45%"  
                             />  
+                        </div>  
+                        <div className={styles["requestInfo"]}>
                             <Select  
                                 label="Forma de entrega:"  
                                 placeholder="Selecione uma opção"  
-                                width="53vh"  
+                                width="50%"  
                                 value={formaEntrega}  
                                 onChange={handleFormaEntregaChange}  
                                 options={formaEntregaOptions}>  
                             </Select>  
-                        </div>  
+                        </div>
                     </div>  
                     {formaEntrega === '3' && (  
                         <div className={styles["party-container"]}>  
@@ -326,13 +330,15 @@ const Carrinho = () => {
                                 <InputText  
                                     label="CEP:"  
                                     placeholder="00000-000"  
-                                    width="53vh"  
+                                    width="100%"
+                                    fieldWidth={"50%"}  
                                     value={cep}  
                                     onChange={handleCEPChange}  
                                 />  
                                 <InputText  
                                     label="Logradouro:"  
-                                    width="112vh"  
+                                    width="100%"
+                                    fieldWidth={"50%"}  
                                     value={logradouro}  
                                     onChange={handleLogradouroChange}  
                                 />  
@@ -361,11 +367,12 @@ const Carrinho = () => {
 
                 <div className={styles["carrinhoFooter"]}>
                     <div className={styles["return"]}>
-                        <ButtonFilledDefaultVariant
+                        <ButtonOutlinedNegative
                             label="< Voltar"
                             onClick={voltarParaTelaOrigem}
+                            width="100%"
                             showIcon={false}
-                        ></ButtonFilledDefaultVariant>
+                        ></ButtonOutlinedNegative>
                     </div>
                     <div className={styles["actions"]}>  
                         <div className={styles["values"]}>  
@@ -375,9 +382,9 @@ const Carrinho = () => {
                         <ButtonFilledDefault   
                             label="Cadastrar pedido"  
                             iconPosition="left"  
-                            width="215px"  
+                            width="40%"  
                             onClick={adicionarPedido}
-                        />  
+                        ></ButtonFilledDefault>  
                     </div>  
                 </div>
             </div>  

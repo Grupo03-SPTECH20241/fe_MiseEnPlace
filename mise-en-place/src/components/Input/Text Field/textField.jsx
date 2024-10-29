@@ -29,7 +29,7 @@ const InputTextField = ({ label = '', placeholder = '', id = 'input', isRequired
   };
 
   return (
-    <div className={styles['input-field-container']}>
+    <div className={styles['input-field-container']} style={{width: `${width}`, height: `${height}`}}>
       <span className={styles['label-content']}>{label}</span>
       <textarea
         id={id}

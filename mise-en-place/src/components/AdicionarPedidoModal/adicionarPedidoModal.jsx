@@ -113,7 +113,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
             {produto?.nome && (<hr />)}
             <div className={styles["produto-info-container"]}>
                 <InputSelect
-                    width='25vw'
+                    width='30vw'
                     label='Massa:'
                     options={massaOptions}
                     defaultValue={produto?.massa}
@@ -121,7 +121,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                     isDisabled={true}
                 ></InputSelect>
                 <InputSelect
-                    width='20vw'
+                    width='30vw'
                     label='Recheio:'
                     options={recheioOptions}
                     isDisabled={true}
@@ -147,7 +147,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                         id='input-observacoes'
                         width='35vw'
                         defaultValue={produtoPedido?.observacoes}
-                        height='20vh'
+                        height='100%'
                         label='Observações:'
                     ></InputTextField>
                 </div>
@@ -163,7 +163,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                         label='Adicionar ao carrinho'  
                         iconPosition='left'  
                         icon='shopping-cart'  
-                        width='18vw'  
+                        width='80%'  
                         onClick={adicionarProduto}
                     ></ButtonFilledDefault>)}  
 

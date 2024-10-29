@@ -180,8 +180,13 @@
     .produtoBreadcrumbsContainer {
         display: none;
     }
-    .containerInputs{
-        display: none;
+    .innerContainerSearch {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .containerInputs {
+        margin-bottom: 2vh;
     }
 }
 

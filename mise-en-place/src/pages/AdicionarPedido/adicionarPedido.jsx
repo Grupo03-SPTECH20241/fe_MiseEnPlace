@@ -16,8 +16,10 @@ import api from '../../api';
 
 const customStyles = {
     content: {
-      width: '60%',
-      height: '70%',
+      width: '80%',
+      height: '50%',
+      left:0,
+      right:0,
       margin: 'auto',
       borderRadius: '20px',
       borderColor: 'gray'
@@ -123,12 +125,12 @@ const AdicionarPedido = () => {
                     </div>
                 <div className={styles["innerContainerSearch"]}>
                     <div className={styles["containerButton"]}>
-                    <ButtonOutlinedNegative
-                        icon='cancel'
-                        iconPosition='left'
-                        label='Cancelar'
-                        onClick={retornarParaAgenda}
-                    ></ButtonOutlinedNegative>
+                        <ButtonOutlinedNegative
+                            icon='cancel'
+                            iconPosition='left'
+                            label='Cancelar'
+                            onClick={retornarParaAgenda}
+                        ></ButtonOutlinedNegative>
                     </div>
                     <div className={styles["containerInputs"]}>
                         <InputSearch

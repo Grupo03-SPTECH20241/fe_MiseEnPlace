@@ -31,7 +31,7 @@ const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isReq
   };
 
   return (
-    <div className={styles['input-calendar-container']}>
+    <div className={styles['input-calendar-container']} style={{width: `${width}`}}>
       <span className={styles['label-content']}>{label}</span>
       <input
         type={type === 'date' ? 'date' : 'datetime-local'}
@@ -40,7 +40,7 @@ const InputCalendar = ({ label = 'Label:', placeholder = '', id = 'input', isReq
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        style={{width: `${width}`}}
+        style={{width: '100%'}}
         className={`${styles['input-calendar']} ${error ? styles['input-calendar-error'] : ''}`}
       />
       {error && <span className={styles['error-message']}>{error}</span>}

@@ -179,6 +179,7 @@ const Agenda = () => {
                   icon="plus"
                   iconPosition="left"
                   fontSize="small"
+                  width="100%"
                   className={styles['ButtonAddPedido']}
                   onClick={navigateToAdicionarPedido} />
               </div>
