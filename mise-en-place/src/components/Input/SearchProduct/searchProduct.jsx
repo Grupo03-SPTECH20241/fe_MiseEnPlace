@@ -25,7 +25,7 @@ const InputField = ({ onKeyUp , label = "Label:", placeholder = "", id = 'input'
   };
 
   return (
-    <div className={styles['search-input-field-container']}>
+    <div className={styles['search-input-field-container']} style={{width: `60%`}}>
       
       <div className={styles['search-input-container']}>
         <input

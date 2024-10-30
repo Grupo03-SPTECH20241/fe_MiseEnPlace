@@ -17,7 +17,7 @@
 
 .search-input-container {
   position: relative;
-  width: 235px; 
+  width: 100%; 
 }
 
 .search-input-container input {

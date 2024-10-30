@@ -19,7 +19,7 @@
 
 .containerInputs {
     display: flex;
-    width: 360px;
+    width: 100%;
     justify-content: center;
     justify-content: space-between;
 }
@@ -27,6 +27,8 @@
 .containerButton {
     display: flex;
     justify-content: flex-start;
+    width: 50%;
+    margin-right: 4vw;
 }
 
 .containerButton button {
@@ -120,6 +122,7 @@
 
 .containerInputs {
     display: flex;
+    margin-left: 2vw;
 }
 
 
@@ -158,6 +161,11 @@
     flex-basis: 100%;
 }
 
+.exportButtons {
+    display: flex;
+    gap: 0.5vw;
+}
+
 @media screen and (max-width: 1056px) {
     .quadrado {
         flex-basis: calc(99% - 20px);
@@ -175,8 +183,20 @@
     .produtoBreadcrumbsContainer {
         display: none;
     }
-    .containerInputs{
-        display: none;
+    .innerContainerSearch {
+        flex-direction: column-reverse;
+    }
+    .containerButton {
+        width: 100%;
+        margin-top: 2vh;
+    }
+    .exportButtons {
+        gap: 0;
+        justify-content: space-evenly;
+    }
+    .containerInputs {
+        margin-left: 0;
+        margin-bottom: 2vh;
     }
 }
 

@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import Filter from '../../components/Filter/filter';
 import CardProduct from '../../components/CardProduct/CardProduct';
 import api from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
@@ -16,6 +17,7 @@ const Produtos = () => {
     const [cardsData, setCardsData] = useState([]);
     const [filteredCardsData, setFilteredCardsData] = useState([]);
     const [value, setValue] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchDataDrop();
@@ -136,14 +138,19 @@ const Produtos = () => {
                 </div>
                 <div className={styles["innerContainerSearch"]}>
                     <div className={styles["containerButton"]}>
-                        <a onClick={() => window.location.href = '/produto-cadastro'}>
-                            <Button></Button>
-                        </a>
+                        <DefaultButton
+                            onClick={()=>{navigate('/produto-cadastro')}}
+                            label='Cadastrar novo produto'
+                            width='100%'
+                            iconPosition='left'
+                        ></DefaultButton>
                     </div>
-                    <div>
-                        <DefaultButton onClick={fetchExportarProdutos} label="Exportar Produtos" />
-                    </div>
-                    <div>
+                    <div className={styles["exportButtons"]}>
+                        <DefaultButton 
+                            onClick={fetchExportarProdutos} 
+                            label="Exportar Produtos"
+                            showIcon={false}
+                        ></DefaultButton>
                         <input
                             type="file"
                             id="fileInput"
@@ -154,7 +161,11 @@ const Produtos = () => {
                                 }
                             }}
                         />
-                        <DefaultButton onClick={() => document.getElementById('fileInput').click()} label="Importar Produtos" />
+                        <DefaultButton 
+                            onClick={() => document.getElementById('fileInput').click()} 
+                            label="Importar Produtos"
+                            showIcon={false}
+                        ></DefaultButton>
                     </div>
                     <div className={styles["containerInputs"]}>
                         <InputSearch
