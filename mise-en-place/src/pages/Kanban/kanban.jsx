@@ -12,6 +12,8 @@ import api from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const Column = ({ title, cards, setCards, moveCard, columnStatus }) => {
+    const navigate = useNavigate();
+
     const [, dropRef] = useDrop({
         accept: 'CARD',
         drop: (item) => moveCard(item.id, item.status, setCards, columnStatus),
@@ -172,9 +174,7 @@ const Kanban = () => {
                                 />
                             </div>
                             <div className={styles["DivButtonTrocarVisualizacao"]}>
-                                <a onClick={() => window.location.href = '/Agenda'}>
-                                    <img className={styles["IconAgenda"]} src={IconAgenda} alt="" />
-                                </a>
+                                <img onClick={()=>{navigate('/agenda')}} className={styles["IconAgenda"]} src={IconAgenda} alt="" />
                                 <div className={styles["BackgroundColorIcon"]}>
                                     <img className={styles["IconKanban"]} src={IconKanban} alt="" />
                                 </div>
