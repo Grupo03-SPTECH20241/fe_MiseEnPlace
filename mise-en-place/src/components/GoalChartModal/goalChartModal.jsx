@@ -128,48 +128,53 @@ const GoalChartModal = ({closeModal}) => {
             </InputMaskCustom>
 
             <div className={styles["dateInputs"]}>
-                <InputMaskCustom
-                    type="date"
-                    fieldWidth='48%'
-                    width='100%'
-                    label='Data início:'
-                    mask="99/99/9999"
-                    placeholder="DD/MM/YYYY"
-                    maskChar={null}
-                    defaultValue={dataInicio}
-                    isDisabled={true}
-                    >
-                </InputMaskCustom>
-                <InputMaskCustom
-                    type="date"
-                    fieldWidth='48%'
-                    width='100%'
-                    label='Data fim:'
-                    mask="99/99/9999"
-                    placeholder="DD/MM/YYYY"
-                    maskChar={null}
-                    defaultValue={dataFimDefault}
-                    onChange={handleDataFimChange}
-                    >
-                </InputMaskCustom>
+                <div className={styles["div-input-dates-1"]}> 
+                    <InputMaskCustom
+                        type="date"
+                        fieldWidth='100%'
+                        width='100%'
+                        label='Data início:'
+                        mask="99/99/9999"
+                        placeholder="DD/MM/YYYY"
+                        maskChar={null}
+                        defaultValue={dataInicio}
+                        isDisabled={true}
+                    ></InputMaskCustom>
+                </div>
+                <div className={styles["div-input-dates-2"]}>
+                    <InputMaskCustom
+                        type="date"
+                        fieldWidth='100%'
+                        width='100%'
+                        label='Data fim:'
+                        mask="99/99/9999"
+                        placeholder="DD/MM/YYYY"
+                        maskChar={null}
+                        defaultValue={dataFimDefault}
+                        onChange={handleDataFimChange}
+                    ></InputMaskCustom>
+                </div>
             </div>
 
             <div className={styles["modalButtons"]}>
-                <ButtonFilledNegative
-                    onClick={exit}
-                    label='Cancelar'
-                    showIcon={false}
-                    >
-                </ButtonFilledNegative>
-                <ButtonFilledDefault
-                    icon='check'
-                    label='Definir meta'
-                    showIcon={true}
-                    iconPosition='left'
-                    width='180px'
-                    onClick={cadastrarMeta}
-                    >
-                </ButtonFilledDefault>
+                <div className={styles["div-button-1"]}>                    
+                    <ButtonFilledNegative
+                        onClick={exit}
+                        label='Cancelar'
+                        width='100%'
+                        showIcon={false}
+                    ></ButtonFilledNegative>
+                </div>
+                <div className={styles["div-button-2"]}>
+                    <ButtonFilledDefault
+                        icon='check'
+                        label='Definir meta'
+                        showIcon={true}
+                        iconPosition='left'
+                        width='100%'
+                        onClick={cadastrarMeta}
+                    ></ButtonFilledDefault>
+                </div>
             </div>
             
         </div>
