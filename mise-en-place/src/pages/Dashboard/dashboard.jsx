@@ -13,16 +13,6 @@ import Modal from "react-modal"
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
-const customStyles = {
-    content: {
-      width: '60%',
-      height: '50%',
-      margin: 'auto',
-      borderRadius: '20px',
-      borderColor: 'gray'
-    },
-};
-
 const Dashboard = () => {
     const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
@@ -55,7 +45,7 @@ const Dashboard = () => {
                     </div>
 
                     <Modal
-                        style={customStyles}
+                        className={styles["dashboardGoalChartModal"]}
                         isOpen={modalIsOpen}
                         >
                             <GoalChartModal closeModal={closeModal}></GoalChartModal>

@@ -36,6 +36,7 @@
 
 .modalButtons {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     margin-top: 4%;
     font-family: 'Nunito';
@@ -47,4 +48,42 @@
     pointer-events: none;
     width: 20px;
     height: 20px;
-  }
+}
+
+.div-input-dates-1 {
+    width: 50%;
+}
+
+.div-input-dates-2 {
+    width: 50%;
+}
+.div-button-1 {
+    width: 25%;
+    display: flex;
+    justify-content: start;
+}
+
+.div-button-2 {
+    width: 25%;
+    display: flex;
+    justify-content: end;
+}
+
+@media screen and (max-width: 560px) {
+    .modalButtons{
+        flex-direction: column;
+    }
+    .div-button-1 {
+        margin-bottom: 2vh;
+    }
+    .div-button-1, .div-button-2 {
+        width: 100%;
+    }
+    .dateInputs {
+        flex-direction: column;
+        margin-bottom: 2vh;
+    }
+    .div-input-dates-1, .div-input-dates-2 {
+        width: 100%;
+    }
+}
