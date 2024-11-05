@@ -82,6 +82,7 @@
     }
     .donutChartBox {
         width: 90%;
+        height: 55vh;
     }
     .donutChartText p {
         font-size: medium !important;
