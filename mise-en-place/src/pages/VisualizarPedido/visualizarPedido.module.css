@@ -6,6 +6,12 @@
 .mainContainer {
     font-family: Nunito-Regular;
     display: flex;
+    width: 100% !important;
+}
+
+.innerContainer{
+    width: 100% !important;
+    overflow: hidden;
 }
 
 .carrinhoBreadcrumbContainer {
@@ -74,10 +80,16 @@
     margin-left: 6.5vh;
     padding-top: 3vh;
     margin-bottom: 3vh;
+    width: 95%;
 }
 
+.party-container {
+    width: 100%;
+}
 .clientInfo {
     margin-bottom: 16px;
+    width: 100%;
+    margin-left: 0;
 }
 
 .requestInfo {
@@ -88,7 +100,6 @@
 .clientInfo, .requestInfo {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     gap: 1vw;
 }
@@ -112,33 +123,43 @@
     font-weight: 400;
 }
 
-.buttons-container {
+.pedidos-footer {
     display: flex;
-    position: sticky;
-    left: 0;
+    margin-left: 3vw;
 }
 
-.actions-container {
-    display: flex;
-    position: sticky;
-    left: 100%;
-}
-
-.actions-container .actions, .buttons-container .buttons {
+.pedidos-footer .actions {
     display: flex;
     flex-direction: row;
     justify-content: right;
     align-items: center;
-    gap: 32px;
+    width: 80%;
 }
 
-.values {
+.actions-container {
+    width: 40%;
+}
+
+.buttons-container {
+    display: flex;
+    width: 60%;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+.pedidos-footer .values {
     display: flex;
     flex-direction: row;
-    gap: 1vw;
 } 
 
-.values p{
+.cardsContainer {
+    width: 100%;
+}
+
+.pedidos-footer .values p{
     width: 12vw;
     height: 40px;
     border-radius: 500px;
@@ -148,11 +169,91 @@
     font-size: 16px;
     border: 2px solid #DD0543;
     background-color: #31cfff00;
+    margin-right: 5%;
 }
 
-.pedidos-footer {
-    display: flex;
-    margin-left: 6.5vh;
-    margin-top: 15%;
-    bottom: 0px !important;
+@media screen and (max-width: 1056px) {
+    .carrinhoBreadcrumbContainer {
+        display: none;
+    }
+    .carrinhoTittleCard {
+        display: flex;
+        width: 100% !important;
+        justify-content: center;
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .inputsContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .carrinhoTittleCard {
+        display: flex;
+        width: 100%;
+        margin-top: 0;
+        border-radius: 0;
+        justify-content: center;
+    }
+    .basic-oreder-details{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .requestInfo {
+        width: 95%;
+        gap: 0;
+    }
+    .clientInfo {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .pedidos-footer .actions {
+        justify-content: space-evenly;
+        display: flex;
+        width: 100%;
+        gap: 0;
+    }
+    .carrinhoTittleCard {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    .pedidos-footer .actions .values p{
+        width: 25vw;
+        border-radius: 500px;
+        font-size: 16px;
+        margin-right: 3vw;
+    }
+    .buttons-container .buttons {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        gap: 0;
+    }
+    .pedidos-footer {
+        margin-bottom: 12vh;
+        margin-left: 0;
+        flex-direction: column;
+    }
+    .productsList {
+        margin-bottom: 3vh;
+        margin-left: 0;
+    }
+    .actions-container {
+        width: 100%;
+    }
+    
+    .buttons-container {
+        display: flex;
+        width: 100%;
+    }
 }
