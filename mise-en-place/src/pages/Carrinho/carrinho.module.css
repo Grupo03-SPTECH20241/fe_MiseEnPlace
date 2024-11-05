@@ -150,7 +150,6 @@
 }
 
 @media screen and (max-width: 900px) {
-    
     .inputsContainer {
         width: 100%;
         margin-left: 0;
@@ -158,9 +157,6 @@
 }
 
 @media (max-width: 768px) {
-    .inputsContainer {
-        width: 100% !important;
-    }
     .containerTittleCard {
         display: flex;
         width: 100%;
@@ -201,7 +197,7 @@
         justify-content: center;
     }
     .carrinhoFooter .actions .values p{
-        width: 25vw;
+        width: 27vw;
         border-radius: 500px;
         font-size: 16px;
         margin-right: 3vw;

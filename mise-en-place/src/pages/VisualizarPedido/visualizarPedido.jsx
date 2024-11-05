@@ -366,16 +366,18 @@ const VisualizarPedido = () => {
                     <div className={styles["clientInfo"]}>  
                         <InputText  
                             label="Cliente:"  
-                            placeholder="Insira o nome do cliente"  
+                            placeholder="Nome do cliente"  
+                            width="100%" 
                             defaultValue={nomeCliente}
-                            width="44vw"  
+                            fieldWidth={"50%"} 
                             onChange={handleNomeClienteChange}
                         />  
                         <InputText  
                             label="Número de telefone:"  
-                            placeholder="Insira o número"  
+                            placeholder="Número do cliente"  
+                            width="100%" 
+                            fieldWidth={"50%"} 
                             defaultValue={numeroTelefone}
-                            width="43vw"  
                             onChange={handleNumeroTelefoneChange}
                         />                 
                     </div>  
@@ -384,22 +386,24 @@ const VisualizarPedido = () => {
                             <Select  
                                 label="Forma de pagamento:"  
                                 value={formaPagamento}  
-                                options={formaPagamentoOptions}  
-                                defaultValue={formaPagamento}
+                                options={formaPagamentoOptions} 
+                                defaultValue={formaPagamento} 
                                 onChange={handleFormaPagamentoChange}  
-                                width="53vh"  
+                                width="50%"  
                             />  
                             <InputCalendar  
                                 label="Data de entrega:"  
                                 onChange={handleDataEntregaChange}  
                                 value={dataEntrega}  
                                 defaultValue={dataEntrega}
-                                width="53vh"  
+                                width="45%"  
                             />  
+                        </div>
+                        <div className={styles["requestInfo"]}>  
                             <Select  
                                 label="Forma de entrega:"  
                                 placeholder="Selecione uma opção"  
-                                width="53vh"  
+                                width="50%"  
                                 value={formaEntrega}  
                                 onChange={handleFormaEntregaChange}  
                                 options={formaEntregaOptions}
@@ -413,13 +417,15 @@ const VisualizarPedido = () => {
                                 <InputText  
                                     label="CEP:"  
                                     placeholder="00000-000"  
-                                    width="53vh"  
+                                    width="100%"
+                                    fieldWidth={"50%"}  
                                     value={cep}  
                                     onChange={handleCEPChange}  
                                 />  
                                 <InputText  
                                     label="Logradouro:"  
-                                    width="112vh"  
+                                    width="100%"
+                                    fieldWidth={"50%"}  
                                     value={logradouro}  
                                     onChange={handleLogradouroChange}  
                                 />  
