@@ -7,7 +7,6 @@
     font-family: Nunito-Regular;
     display: flex;
     width: 100% !important;
-    overflow: hidden;
 }
 
 .carrinhoBreadcrumbContainer {
@@ -95,7 +94,7 @@
 
 .carrinhoFooter {
     display: flex;
-    width: 100vw;
+    margin-left: 3vw;
 }
 
 .carrinhoFooter .actions {
@@ -110,6 +109,10 @@
     display: flex;
     flex-direction: row;
 } 
+
+.cardsContainer {
+    width: 100%;
+}
 
 .carrinhoFooter .values p{
     width: 12vw;
@@ -177,6 +180,9 @@
     .clientInfo {
         width: 100%;
     }
+    .mainContainer {
+        overflow: hidden;
+    }
 }
 
 @media (max-width: 576px) {
@@ -203,5 +209,9 @@
     .carrinhoFooter {
         flex-direction: column-reverse;
         margin-bottom: 12vh;
+        margin-left: 0;
+    }
+    .productsList {
+        margin-left: 0;
     }
 }
