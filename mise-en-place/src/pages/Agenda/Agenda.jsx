@@ -113,35 +113,33 @@ const Agenda = () => {
   };
 
   const fetchImportarPedidos = async (file) => {
-    try {
-      const reader = new FileReader();
-      reader.onload = async (e) => {
-        const base64 = e.target.result.split(',')[1];
-        try {
-          const response = await api.post('produto-pedidos/importar-pedidos', { file: base64 }, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-
-          if (response.status === 200) {
-            toast.success('Pedidos importados com sucesso!', { theme: "colored" });
-          } else {
-            toast.error('Erro na importação dos pedidos: ' + response.message, { theme: "colored" });
-          }
-          document.getElementById('fileInput').value = '';
-        } catch (error) {
-          console.error("Erro na requisição:", error);
-          toast.error('Erro na importação dos pedidos!', { theme: "colored" });
-        }
-      };
-
-      reader.readAsDataURL(file);
-    } catch (error) {
-      console.error("Erro ao importar pedidos", error);
-      toast.error('Erro ao importar pedidos!', { theme: "colored" });
+    if (!file) {
+        toast.error('Nenhum arquivo selecionado!', { theme: "colored" });
+        return;
     }
-  };
+
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await api.post('/produto-pedidos/importar-pedidos', {
+            multipartFile: file
+        },{
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+
+        if (response.status === 200) {
+            toast.success('Pedidos importados com sucesso!', { theme: "colored" });
+            fetchData(); // Atualiza a lista de produtos
+        } else {
+            const errorMessage = response.data?.message || response.statusText || 'Erro desconhecido';
+            toast.error('Erro na importação dos Pedidos: ' + errorMessage, { theme: "colored" });
+        }
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        toast.error('Erro na importação dos Pedidos!', { theme: "colored" });
+    }
+};
 
   const navigateToAdicionarPedido = () => {
     navigate('/adicionar-pedido');
