@@ -298,7 +298,7 @@
     }
 }
 
-@media screen and (min-device-width: 1025px) and (max-device-width: 1200px) {
+@media screen and (min-device-width: 1025px) {
     .cardTitle {
         margin-left: 0;
     }
@@ -314,4 +314,9 @@
     .seta {
         padding: 2%;
     }
+
+    .openNestedListMainContainer, .closedNestedListMainContainer {
+        margin-left: 0;
+    }
+    
 }
