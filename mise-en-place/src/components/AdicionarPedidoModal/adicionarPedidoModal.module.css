@@ -35,14 +35,18 @@
 
 .adicionarPedidoModal .produto-observacoes-container {
     display: flex;
+    width: 100%;
     margin-bottom: 2vh;
 }
 
 .adicionarPedidoModal .produto-observacoes-container .imagem-container {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    height: 18vh;
+    width: 40%;
+    margin-left: 1vw;
+    height: 22vh;
+    margin-left: 1vw;
+    margin-right: 2vw;
 }
 
 .adicionarPedidoModal .produto-observacoes-container p {
@@ -50,7 +54,7 @@
 }
 
 .adicionarPedidoModal .imagem-container img {
-    width: 100%;
+    width: 50%;
     min-height: 50%;
     max-height: 100%;
 }
@@ -58,7 +62,7 @@
 .adicionarPedidoModal .observacao-field-container {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 50%;
     min-height: 50%;
     max-height: 100%;
     justify-content: center;
@@ -76,7 +80,7 @@
 }
 
 .adicionarPedidoModal .adicionar-pedido-modal-footer .outer-value-container .value-container {
-    width: 25vw;
+    width: 18vw;
     height: 40px;
     border-radius: 500px;
     display: flex;
@@ -90,6 +94,26 @@
 
 .adicionarPedidoModal .adicionar-pedido-modal-footer .confirmation-button-container {
     display: flex;
-    width: 70%;
-    justify-content: end;
+    width: 30%;
+    right: 2vw;
+    position: absolute;
+}
+
+@media screen and (max-width: 520px) {
+    .adicionarPedidoModal .adicionar-pedido-modal-footer .confirmation-button-container {
+        width: 55%;
+        right: 5vw;
+    }
+
+    .adicionarPedidoModal .imagem-container img {
+        width: 75%;
+    }
+
+    .adicionarPedidoModal .produto-observacoes-container {
+        width: 90%;
+    }
+
+    .adicionarPedidoModal .adicionar-pedido-modal-footer .outer-value-container .value-container {
+        width: 23vw;
+    }
 }

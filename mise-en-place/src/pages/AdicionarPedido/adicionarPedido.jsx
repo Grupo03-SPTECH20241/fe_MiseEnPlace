@@ -14,18 +14,6 @@ import api from '../../api';
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap" rel="stylesheet"></link>
 
-const customStyles = {
-    content: {
-      width: '80%',
-      height: '50%',
-      left:0,
-      right:0,
-      margin: 'auto',
-      borderRadius: '20px',
-      borderColor: 'gray'
-    },
-};
-
 const AdicionarPedido = () => {
     // Modal de adição do produto
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -167,7 +155,7 @@ const AdicionarPedido = () => {
                 </div>
             </div>
 
-            <Modal style={customStyles} isOpen={modalIsOpen}>
+            <Modal className={styles["adicionarPedidoModalStyle"]} isOpen={modalIsOpen}>
                 <AdicionarPedidoModal
                     produto={modalProduct}
                     closeModal={closeModal}
