@@ -34,7 +34,7 @@ function NestedList({ testeMap, title, onClick }) {
 
   return (
     <>
-      <div>
+      <div className={isOpen ? styles["openNestedListMainContainer"] : styles["closedNestedListMainContainer"]}>
         <div onClick={handleToggle} className={isOpen ? styles["cardTitleSelect"] : styles["cardTitle"]}>
           <div className={styles["titleContent"]}>
             <div className={styles["titleContent2"]}>

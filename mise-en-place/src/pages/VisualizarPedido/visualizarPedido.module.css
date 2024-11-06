@@ -160,7 +160,7 @@
 }
 
 .pedidos-footer .values p{
-    width: 12vw;
+    width: 15vw;
     height: 40px;
     border-radius: 500px;
     display: flex;
@@ -227,11 +227,16 @@
         width: 100%;
         justify-content: center;
     }
+    .pedidos-footer .actions .values {
+        display: flex;
+        justify-content: space-around;
+        gap: 3vw;
+    }
     .pedidos-footer .actions .values p{
-        width: 25vw;
+        width: 30vw;
         border-radius: 500px;
         font-size: 16px;
-        margin-right: 3vw;
+        margin-right: 0;
     }
     .buttons-container .buttons {
         display: flex;
@@ -246,7 +251,6 @@
     }
     .productsList {
         margin-bottom: 3vh;
-        margin-left: 0;
     }
     .actions-container {
         width: 100%;
