@@ -220,6 +220,9 @@ body {
         justify-content: center;
         display: flex;
     }
+    .sidebar-header {
+        display: none !important;
+    }
 }  
 
 @media screen and (max-width: 400px) {
