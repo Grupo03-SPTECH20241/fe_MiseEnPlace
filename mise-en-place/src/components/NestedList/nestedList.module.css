@@ -124,7 +124,12 @@
 .listContainer {
     max-height: 0;
     transition: max-height 0.5s ease-in-out;
+    overflow: scroll;
 }
+
+.listContainer::-webkit-scrollbar {  
+    display: none;
+} 
   
 .open {
     max-height: 100vh;  /* Large enough to accommodate the content */
