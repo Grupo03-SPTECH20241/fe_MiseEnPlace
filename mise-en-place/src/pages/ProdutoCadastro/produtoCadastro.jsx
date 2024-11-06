@@ -384,7 +384,7 @@ const ProdutoCadastro = () => {
                             </div>
                         </div>
                         <div className={styles["inputsContainerLine2"]}>
-                            <div className={styles["responsividadeInput50"]}>
+                            <div className={styles["responsividadeInputMassa"]}>
                                 <Input
                                     label='Massa:'
                                     placeholder='Insira o tipo de massa'
@@ -410,7 +410,7 @@ const ProdutoCadastro = () => {
                             </div>
                         </div>
                         <div className={styles["inputsContainerLine3"]}>
-                            <div className={styles["responsividadeInput50"]}>
+                            <div className={styles["responsividadeInputRecheio"]}>
                                 <Input
                                     label='Recheio:'
                                     placeholder='Selecione um recheio'
@@ -460,13 +460,15 @@ const ProdutoCadastro = () => {
                             </div>
                         </div>
                         <div className={styles["inputsContainerLine5"]}>
-                            <Button
-                                onClick={cadastramento}
-                                label='Cadastrar produto'
-                                icon='plus'
-                                iconPosition='left'
-                                width='25%'>
-                            </Button>
+                            <div className={styles["buttonCadastro"]}>
+                                <Button
+                                    onClick={cadastramento}
+                                    label='Cadastrar produto'
+                                    icon='plus'
+                                    iconPosition='left'
+                                    width='100%'>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>

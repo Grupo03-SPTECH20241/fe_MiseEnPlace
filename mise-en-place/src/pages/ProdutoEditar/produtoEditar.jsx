@@ -412,122 +412,144 @@ const ProdutoEditar = () => {
                     </div>
                     <div className={styles["inputsContainer"]}>
                         <div className={styles["inputsContainerLine1"]}>
-                            <Input
-                                label='Nome do produto:'
-                                placeholder='Insira o nome do produto'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={setNome}
-                                hasError={errors.nome}
-                                defaultValue={produto.nome}>
-                            </Input>
-                            <InputMaskCustomProdutoCadastro
-                                label='Preço:'
-                                id='precoInput'
-                                width='100%'
-                                fieldWidth="23%"
-                                value={preco}
-                                onChange={setPreco}
-                                hasError={errors.preco}
-                                defaultValue={produto.preco}>
-                            </InputMaskCustomProdutoCadastro>
-                            <Input
-                                label='Unidade de medida:'
-                                placeholder='Selecione a medida'
-                                fieldWidth="23%"
-                                width='100%'
-                                onChange={setUnidadeMedida}
-                                availableSelect={true}
-                                selectOptions={unidadeMedidaOptions}
-                                hasError={errors.unidadeMedida}
-                                defaultValue={produto.unidadeMedida.unidadeMedida}>
-                            </Input>
+                            <div className={styles["responsividadeInputNomeProduto"]}>
+                                <Input
+                                    label='Nome do produto:'
+                                    placeholder='Insira o nome do produto'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setNome}
+                                    hasError={errors.nome}
+                                    defaultValue={produto.nome}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInputPreco"]}>
+                                <InputMaskCustomProdutoCadastro
+                                    label='Preço:'
+                                    id='precoInput'
+                                    width='100%'
+                                    fieldWidth="100%"
+                                    value={preco}
+                                    onChange={setPreco}
+                                    hasError={errors.preco}
+                                    defaultValue={produto.preco}>
+                                </InputMaskCustomProdutoCadastro>
+                            </div>
+                            <div className={styles["responsividadeInputMedida"]}>
+                                <Input
+                                    label='Unidade de medida:'
+                                    placeholder='Selecione a medida'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setUnidadeMedida}
+                                    availableSelect={true}
+                                    selectOptions={unidadeMedidaOptions}
+                                    hasError={errors.unidadeMedida}
+                                    defaultValue={produto.unidadeMedida.unidadeMedida}>
+                                </Input>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine2"]}>
-                            <Input
-                                label='Massa:'
-                                placeholder='Insira o tipo de massa'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={setMassa}
-                                availableSelect={true}
-                                selectOptions={massaOptions}
-                                hasError={errors.massa}
-                                defaultValue={produto.massa.nome}>
-                            </Input>
-                            <Input
-                                label='Cobertura:'
-                                placeholder='Insira o tipo de cobertura'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={setCobertura}
-                                availableSelect={true}
-                                selectOptions={coberturaOptions}
-                                hasError={errors.cobertura}
-                                defaultValue={produto.cobertura.nome}>
-                            </Input>
+                            <div className={styles["responsividadeInputMassa"]}>
+                                <Input
+                                    label='Massa:'
+                                    placeholder='Insira o tipo de massa'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setMassa}
+                                    availableSelect={true}
+                                    selectOptions={massaOptions}
+                                    hasError={errors.massa}
+                                    defaultValue={produto.massa.nome}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInput50"]}>
+                                <Input
+                                    label='Cobertura:'
+                                    placeholder='Insira o tipo de cobertura'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setCobertura}
+                                    availableSelect={true}
+                                    selectOptions={coberturaOptions}
+                                    hasError={errors.cobertura}
+                                    defaultValue={produto.cobertura.nome}>
+                                </Input>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine3"]}>
-                            <Input
-                                label='Recheio:'
-                                placeholder='Selecione um recheio'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={handleRecheioChange}
-                                availableSelect={true}
-                                selectOptions={recheioOptions}
-                                hasError={errors.recheio}
-                                defaultValue={produto.recheio.nome}>
-                            </Input>
-                            <InputMaskCustomProdutoCadastro
-                                label='Preço do recheio:'
-                                id='precoCoberturaInput'
-                                width='100%'
-                                fieldWidth="48%"
-                                value={precoRecheio}
-                                onChange={setPrecoRecheio}
-                                hasError={errors.precoRecheio}
-                                defaultValue={produto.recheio.preco}
-                            >
-                            </InputMaskCustomProdutoCadastro>
+                            <div className={styles["responsividadeInputRecheio"]}>
+                                <Input
+                                    label='Recheio:'
+                                    placeholder='Selecione um recheio'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={handleRecheioChange}
+                                    availableSelect={true}
+                                    selectOptions={recheioOptions}
+                                    hasError={errors.recheio}
+                                    defaultValue={produto.recheio.nome}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInput50"]}>
+                                <InputMaskCustomProdutoCadastro
+                                    label='Preço do recheio:'
+                                    id='precoCoberturaInput'
+                                    width='100%'
+                                    fieldWidth="100%"
+                                    value={precoRecheio}
+                                    onChange={setPrecoRecheio}
+                                    hasError={errors.precoRecheio}
+                                    defaultValue={produto.recheio.preco}
+                                >
+                                </InputMaskCustomProdutoCadastro>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine4"]}>
-                            <Input
-                                label='Descrição:'
-                                placeholder='Insira a descrição do novo produto'
-                                fieldWidth="65%"
-                                width='100%'
-                                onChange={setDescricao}
-                                hasError={errors.descricao}
-                                defaultValue={produto.descricao}>
-                            </Input>
-                            <Input
-                                label='Tipo de produto:'
-                                placeholder='Selecione o tipo'
-                                fieldWidth="31%"
-                                width='100%'
-                                onChange={setTipoProduto}
-                                availableSelect={true}
-                                selectOptions={tipoProdutoOptions}
-                                hasError={errors.tipoProduto}
-                                defaultValue={produto.tipoProduto.tipo}>
-                            </Input>
+                            <div className={styles["responsividadeInputDescricao"]}>
+                                <Input
+                                    label='Descrição:'
+                                    placeholder='Insira a descrição do novo produto'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setDescricao}
+                                    hasError={errors.descricao}
+                                    defaultValue={produto.descricao}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInputTipo"]}>
+                                <Input
+                                    label='Tipo de produto:'
+                                    placeholder='Selecione o tipo'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setTipoProduto}
+                                    availableSelect={true}
+                                    selectOptions={tipoProdutoOptions}
+                                    hasError={errors.tipoProduto}
+                                    defaultValue={produto.tipoProduto.tipo}>
+                                </Input>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine5"]}>
-                            <ButtonDelete
-                                onClick={removeProduto}
-                                label='Excluir produto'
-                                icon='delete'
-                                iconPosition='left'
-                                width='25%'>
-                            </ButtonDelete>
-                            <Button
-                                onClick={editar}
-                                label='Editar produto'
-                                icon='check'
-                                iconPosition='left'
-                                width='25%'>
-                            </Button>
+                            <div className={styles["responsividadeInputTipo"]}>
+                                <ButtonDelete
+                                    onClick={removeProduto}
+                                    label='Excluir produto'
+                                    icon='delete'
+                                    iconPosition='left'
+                                    width='100%'>
+                                </ButtonDelete>
+                            </div>
+                            <div className={styles["responsividadeInputTipo"]}>
+                                <Button
+                                    onClick={editar}
+                                    label='Editar produto'
+                                    icon='check'
+                                    iconPosition='left'
+                                    width='100%'>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>

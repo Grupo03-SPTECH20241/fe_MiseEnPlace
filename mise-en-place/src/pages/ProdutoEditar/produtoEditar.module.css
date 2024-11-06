@@ -8,6 +8,38 @@
     flex-direction: row;
 }
 
+.responsividadeInputNomeProduto {
+    width: 48%;
+}
+
+.responsividadeInputPreco {
+    width: 23%;
+}
+
+.responsividadeInputMedida {
+    width: 23%;
+}
+
+.responsividadeInput50 {
+    width: 48%;
+}
+
+.responsividadeInputMassa {
+    width: 48%;
+}
+
+.responsividadeInputRecheio {
+    width: 48%;
+}
+
+.responsividadeInputDescricao {
+    width: 65%;
+}
+
+.responsividadeInputTipo {
+    width: 31%;
+}
+
 .innerContainer {
     display: flex;
     flex-direction: column;
@@ -126,4 +158,100 @@
     justify-content: space-between;
     width: 100%;
     margin-top: 5%;
+}
+
+@media screen and (max-width: 600px) {
+    .produtoEditarTittleCard {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
+
+    .produtoEditarMainContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine3 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine4 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine5 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .responsividadeInputNomeProduto {
+        margin-top: 5%;
+        width: 100%;
+    }
+    
+    .responsividadeInputPreco {
+        margin-top: 5%;
+        width: 100%;
+    }
+    
+    .responsividadeInputMedida {
+        margin-top: 5%;
+        width: 100%;
+    }
+    
+    .responsividadeInput50 {
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .responsividadeInputRecheio {
+        width: 100%;
+    }
+
+    .responsividadeInputMassa {
+        width: 100%;
+    }
+    
+    .responsividadeInputDescricao {
+        width: 100%;
+    }
+    
+    .responsividadeInputTipo {
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .imageContainer {
+        width: 100%;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .inputsContainerLine5 {
+        margin-top: 5vh;
+        margin-bottom: 20vh;
+    }
+
+    .buttonCadastro {
+        width: 100%;
+    }
 }

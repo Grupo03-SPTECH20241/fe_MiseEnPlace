@@ -25,6 +25,14 @@
     width: 48%;
 }
 
+.responsividadeInputMassa {
+    width: 48%;
+}
+
+.responsividadeInputRecheio {
+    width: 48%;
+}
+
 .responsividadeInputDescricao {
     width: 65%;
 }
@@ -42,6 +50,10 @@
 .produtoBreadcrumbsContainer {
     margin-left: 6.5vh;
     padding-top: 5vh;
+}
+
+.buttonCadastro {
+    width: 25%;
 }
 
 .produtoCadastroTittleCard {
@@ -196,18 +208,30 @@
     }
 
     .responsividadeInputNomeProduto {
+        margin-top: 5%;
         width: 100%;
     }
     
     .responsividadeInputPreco {
+        margin-top: 5%;
         width: 100%;
     }
     
     .responsividadeInputMedida {
+        margin-top: 5%;
         width: 100%;
     }
     
     .responsividadeInput50 {
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .responsividadeInputRecheio {
+        width: 100%;
+    }
+
+    .responsividadeInputMassa {
         width: 100%;
     }
     
@@ -216,6 +240,7 @@
     }
     
     .responsividadeInputTipo {
+        margin-top: 5%;
         width: 100%;
     }
 
@@ -226,7 +251,12 @@
     }
 
     .inputsContainerLine5 {
-        margin-bottom: 15vh;
+        margin-top: 5vh;
+        margin-bottom: 20vh;
+    }
+
+    .buttonCadastro {
+        width: 100%;
     }
     
 }
