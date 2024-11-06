@@ -60,7 +60,7 @@ const InputMaskCustomProdutoCadastro = ({
                     autoComplete="off"
                     type="text"
                     id={id}
-                    style={{ width: `calc(${width} - 25px)`, paddingLeft: '35px' }}
+                    style={{ width: `calc(${width})`, paddingLeft: '35px' }}
                     className={`${styles['input-field']} ${error ? styles['input-field-error'] : ''} ${hasError ? styles['input-field-error-leandro'] : ''}`}
                 />
             </div>

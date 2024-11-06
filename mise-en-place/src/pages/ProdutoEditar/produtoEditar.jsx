@@ -406,6 +406,7 @@ const ProdutoEditar = () => {
                             onChange={handleFileUpload}/>
                             <img
                             id='produtoImage'
+                            className={styles["productImage"]}
                             src={fileData ? arrayBufferToImage(fileData) : CameraIcon}/>
                         </div>
                     </div>

@@ -6,6 +6,31 @@
 .mainContainer {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
+}
+
+.responsividadeInputNomeProduto {
+    width: 48%;
+}
+
+.responsividadeInputPreco {
+    width: 23%;
+}
+
+.responsividadeInputMedida {
+    width: 23%;
+}
+
+.responsividadeInput50 {
+    width: 48%;
+}
+
+.responsividadeInputDescricao {
+    width: 65%;
+}
+
+.responsividadeInputTipo {
+    width: 31%;
 }
 
 .innerContainer {
@@ -23,7 +48,6 @@
     background-image: linear-gradient(to left, #E5246B, #DE0052);
     display: flex;
     width: 85.25%;
-    height: 7%;
     max-height: 20vh;
     margin-top: 3vh;
     flex-direction: column;
@@ -52,6 +76,11 @@
     justify-content: center;
     align-items: center;
     width: 30%;
+}
+
+.productImage {
+    max-width: 35vh;
+    max-height: 35vh;
 }
 
 .produtoCadastroImage {
@@ -121,4 +150,83 @@
     justify-content: flex-end;
     width: 100%;
     margin-top: 5%;
+}
+
+@media screen and (max-width: 600px) {
+    .produtoCadastroTittleCard {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
+
+    .produtoCadastroMainContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine3 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine4 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine5 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .responsividadeInputNomeProduto {
+        width: 100%;
+    }
+    
+    .responsividadeInputPreco {
+        width: 100%;
+    }
+    
+    .responsividadeInputMedida {
+        width: 100%;
+    }
+    
+    .responsividadeInput50 {
+        width: 100%;
+    }
+    
+    .responsividadeInputDescricao {
+        width: 100%;
+    }
+    
+    .responsividadeInputTipo {
+        width: 100%;
+    }
+
+    .imageContainer {
+        width: 100%;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+
+    .inputsContainerLine5 {
+        margin-bottom: 15vh;
+    }
+    
 }

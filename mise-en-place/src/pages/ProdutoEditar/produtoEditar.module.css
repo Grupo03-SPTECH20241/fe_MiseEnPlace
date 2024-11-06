@@ -54,6 +54,11 @@
     width: 30%;
 }
 
+.productImage {
+    max-width: 35vh;
+    max-height: 35vh;
+}
+
 .produtoEditarImage {
     display: flex;
     justify-content: center;
