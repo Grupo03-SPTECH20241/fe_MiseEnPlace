@@ -70,7 +70,7 @@ const Agenda = () => {
       }
       api.get(stringUrl).then((response) => {
         const data = response.data;
-        setTesteMap(data.itemsAgenda.reverse());
+        setTesteMap(data.itemsAgenda);
       }).catch((error) => {
         console.error("Erro ao buscar dados da agenda", error);
       });
@@ -130,6 +130,7 @@ const Agenda = () => {
 
         if (response.status === 200) {
             toast.success('Pedidos importados com sucesso!', { theme: "colored" });
+            fetchAgenda();
         } else {
             const errorMessage = response.data?.message || response.statusText || 'Erro desconhecido';
             toast.error('Erro na importação dos Pedidos: ' + errorMessage, { theme: "colored" });
