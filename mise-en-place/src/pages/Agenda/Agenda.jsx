@@ -130,14 +130,13 @@ const Agenda = () => {
 
         if (response.status === 200) {
             toast.success('Pedidos importados com sucesso!', { theme: "colored" });
-            fetchData(); // Atualiza a lista de produtos
         } else {
             const errorMessage = response.data?.message || response.statusText || 'Erro desconhecido';
             toast.error('Erro na importação dos Pedidos: ' + errorMessage, { theme: "colored" });
         }
     } catch (error) {
         console.error("Erro na requisição:", error);
-        toast.error('Erro na importação dos Pedidos!', { theme: "colored" });
+        toast.error('Erro na importação dos Pedidos! ' + error.response.data?.message , { theme: "colored" });
     }
 };
 
