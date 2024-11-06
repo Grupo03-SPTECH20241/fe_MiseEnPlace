@@ -35,7 +35,7 @@ const CardPedido = ({
                     <p>Qtd: {quantidade}</p>
                 </div>
                 <div className={styles["valor"]}>
-                    <h3>Valor R$: {valor.toFixed(2)}</h3>
+                    <h3>Valor: R${valor.toFixed(2)}</h3>
                 </div>
             </div>
         </div>

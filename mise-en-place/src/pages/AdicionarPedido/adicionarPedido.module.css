@@ -163,6 +163,20 @@
     transform: translate(-50%, -50%);  
 }
 
+.adicionarPedidoModalStyle {
+    position: absolute;
+    inset: 40px 0px;
+    border: 1px solid gray;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 20px;
+    outline: none;
+    padding: 20px;
+    width: 80%;
+    height: 55%;
+    margin: auto
+}
+
 @media screen and (max-width: 1056px) {
     .quadrado {
         flex-basis: calc(99% - 20px);
@@ -220,5 +234,8 @@
     .innerContainerSearch {
         width: 90%;
         justify-content: center;
+    }
+    .adicionarPedidoModalStyle {
+        height: 50%;
     }
 }

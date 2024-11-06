@@ -487,7 +487,7 @@ const VisualizarPedido = () => {
                     onConfirm={deletarPedido}
                 ></ExcluirPedidoModal>
             </Modal>
-            <Modal style={customStyles} isOpen={editarProdutoModalIsOpen}>
+            <Modal className={styles["adicionarPedidoModalStyle"]}isOpen={editarProdutoModalIsOpen}>
                 <AdicionarPedidoModal
                     produto={produtoSendoEditado?.produtoDto}
                     isEditing={true}

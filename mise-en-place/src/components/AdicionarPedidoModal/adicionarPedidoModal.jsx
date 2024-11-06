@@ -145,7 +145,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                 <div className={styles["observacao-field-container"]}>
                     <InputTextField
                         id='input-observacoes'
-                        width='35vw'
+                        width='40vw'
                         defaultValue={produtoPedido?.observacoes}
                         height='100%'
                         label='Observações:'
@@ -163,7 +163,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                         label='Adicionar ao carrinho'  
                         iconPosition='left'  
                         icon='shopping-cart'  
-                        width='80%'  
+                        width='100%'  
                         onClick={adicionarProduto}
                     ></ButtonFilledDefault>)}  
 
@@ -171,7 +171,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
                         label='Salvar alterações'  
                         iconPosition='left'  
                         icon='check'  
-                        width='18vw'  
+                        width='100%'  
                         onClick={editarProduto}
                     ></ButtonFilledDefault>)}  
                 </div>

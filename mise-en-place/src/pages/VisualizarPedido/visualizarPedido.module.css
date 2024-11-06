@@ -138,6 +138,9 @@
 
 .actions-container {
     width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .buttons-container {
@@ -170,6 +173,20 @@
     border: 2px solid #DD0543;
     background-color: #31cfff00;
     margin-right: 5%;
+}
+
+.adicionarPedidoModalStyle {
+    position: absolute;
+    inset: 40px 0px;
+    border: 1px solid gray;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 20px;
+    outline: none;
+    padding: 20px;
+    width: 80%;
+    height: 55%;
+    margin: auto
 }
 
 @media screen and (max-width: 1056px) {
@@ -259,5 +276,26 @@
     .buttons-container {
         display: flex;
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .quadrado {
+        flex-basis: 100%;
+    }
+    .produtoBreadcrumbsContainer {
+        display: none;
+    }
+    .dashboardTittleCard {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    .innerContainerSearch {
+        width: 90%;
+        justify-content: center;
+    }
+    .adicionarPedidoModalStyle {
+        height: 50%;
     }
 }

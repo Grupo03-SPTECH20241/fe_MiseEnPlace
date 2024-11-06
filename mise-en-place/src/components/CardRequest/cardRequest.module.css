@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 576px) {
     .imagem-pedido {
-        width: 40%;
+        width: 100%;
     }
     .imagem-pedido img {
         width: 100%;
