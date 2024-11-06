@@ -218,7 +218,7 @@ const Agenda = () => {
               </div>
             </div>
           </div>
-          <div style={{ marginTop: "3vh" }}>
+          <div className={styles["AgendaNestedListContainer"]} style={{ marginTop: "3vh" }}>
             {testeMap.map((item, index) => (
               <NestedList
                 key={index}
