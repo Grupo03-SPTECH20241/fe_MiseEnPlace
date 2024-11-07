@@ -343,111 +343,132 @@ const ProdutoCadastro = () => {
                             onChange={handleFileUpload}/>
                             <img
                             id='produtoImage'
+                            className={styles["productImage"]}
                             src={fileData ? arrayBufferToImage(fileData) : CameraIcon}/>
                         </div>
                     </div>
                     <div className={styles["inputsContainer"]}>
                         <div className={styles["inputsContainerLine1"]}>
-                            <Input
-                                label='Nome do produto:'
-                                placeholder='Insira o nome do produto'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={setNome}
-                                hasError={errors.nome}>
-                            </Input>
-                            <InputMaskCustomProdutoCadastro
-                                label='Preço:'
-                                id='precoInput'
-                                width='100%'
-                                fieldWidth="23%"
-                                value={preco}
-                                onChange={setPreco}
-                                hasError={errors.preco}>
-                            </InputMaskCustomProdutoCadastro>
-                            <Input
-                                label='Unidade de medida:'
-                                placeholder='Selecione a medida'
-                                fieldWidth="23%"
-                                width='100%'
-                                onChange={setUnidadeMedida}
-                                availableSelect={true}
-                                selectOptions={unidadeMedidaOptions}
-                                hasError={errors.unidadeMedida}>
-                            </Input>
+                            <div className={styles["responsividadeInputNomeProduto"]}>
+                                <Input
+                                    label='Nome do produto:'
+                                    placeholder='Insira o nome do produto'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setNome}
+                                    hasError={errors.nome}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInputPreco"]}>
+                                <InputMaskCustomProdutoCadastro
+                                    label='Preço:'
+                                    id='precoInput'
+                                    width='100%'
+                                    fieldWidth="100%"
+                                    value={preco}
+                                    onChange={setPreco}
+                                    hasError={errors.preco}>
+                                </InputMaskCustomProdutoCadastro>
+                            </div>
+                            <div className={styles["responsividadeInputMedida"]}>
+                                <Input
+                                    label='Unidade de medida:'
+                                    placeholder='Selecione a medida'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setUnidadeMedida}
+                                    availableSelect={true}
+                                    selectOptions={unidadeMedidaOptions}
+                                    hasError={errors.unidadeMedida}>
+                                </Input>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine2"]}>
-                            <Input
-                                label='Massa:'
-                                placeholder='Insira o tipo de massa'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={setMassa}
-                                availableSelect={true}
-                                selectOptions={massaOptions}
-                                hasError={errors.massa}>
-                            </Input>
-                            <Input
-                                label='Cobertura:'
-                                placeholder='Insira o tipo de cobertura'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={setCobertura}
-                                availableSelect={true}
-                                selectOptions={coberturaOptions}
-                                hasError={errors.cobertura}>
-                            </Input>
+                            <div className={styles["responsividadeInputMassa"]}>
+                                <Input
+                                    label='Massa:'
+                                    placeholder='Insira o tipo de massa'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setMassa}
+                                    availableSelect={true}
+                                    selectOptions={massaOptions}
+                                    hasError={errors.massa}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInput50"]}>
+                                <Input
+                                    label='Cobertura:'
+                                    placeholder='Insira o tipo de cobertura'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setCobertura}
+                                    availableSelect={true}
+                                    selectOptions={coberturaOptions}
+                                    hasError={errors.cobertura}>
+                                </Input>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine3"]}>
-                            <Input
-                                label='Recheio:'
-                                placeholder='Selecione um recheio'
-                                fieldWidth="48%"
-                                width='100%'
-                                onChange={handleRecheioChange}
-                                availableSelect={true}
-                                selectOptions={recheioOptions}
-                                hasError={errors.recheio}>
-                            </Input>
-                            <InputMaskCustomProdutoCadastro
-                                label='Preço do recheio:'
-                                id='precoCoberturaInput'
-                                width='100%'
-                                fieldWidth="48%"
-                                value={precoRecheio}
-                                onChange={setPrecoRecheio}
-                                hasError={errors.precoRecheio}
-                            >
-                            </InputMaskCustomProdutoCadastro>
+                            <div className={styles["responsividadeInputRecheio"]}>
+                                <Input
+                                    label='Recheio:'
+                                    placeholder='Selecione um recheio'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={handleRecheioChange}
+                                    availableSelect={true}
+                                    selectOptions={recheioOptions}
+                                    hasError={errors.recheio}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInput50"]}>
+                                <InputMaskCustomProdutoCadastro
+                                    label='Preço do recheio:'
+                                    id='precoCoberturaInput'
+                                    width='100%'
+                                    fieldWidth="100%"
+                                    value={precoRecheio}
+                                    onChange={setPrecoRecheio}
+                                    hasError={errors.precoRecheio}
+                                >
+                                </InputMaskCustomProdutoCadastro>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine4"]}>
-                            <Input
-                                label='Descrição:'
-                                placeholder='Insira a descrição do novo produto'
-                                fieldWidth="65%"
-                                width='100%'
-                                onChange={setDescricao}
-                                hasError={errors.descricao}>
-                            </Input>
-                            <Input
-                                label='Tipo de produto:'
-                                placeholder='Selecione o tipo'
-                                fieldWidth="31%"
-                                width='100%'
-                                onChange={setTipoProduto}
-                                availableSelect={true}
-                                selectOptions={tipoProdutoOptions}
-                                hasError={errors.tipoProduto}>
-                            </Input>
+                            <div className={styles["responsividadeInputDescricao"]}>
+                                <Input
+                                    label='Descrição:'
+                                    placeholder='Insira a descrição do novo produto'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setDescricao}
+                                    hasError={errors.descricao}>
+                                </Input>
+                            </div>
+                            <div className={styles["responsividadeInputTipo"]}>
+                                <Input
+                                    label='Tipo de produto:'
+                                    placeholder='Selecione o tipo'
+                                    fieldWidth="100%"
+                                    width='100%'
+                                    onChange={setTipoProduto}
+                                    availableSelect={true}
+                                    selectOptions={tipoProdutoOptions}
+                                    hasError={errors.tipoProduto}>
+                                </Input>
+                            </div>
                         </div>
                         <div className={styles["inputsContainerLine5"]}>
-                            <Button
-                                onClick={cadastramento}
-                                label='Cadastrar produto'
-                                icon='plus'
-                                iconPosition='left'
-                                width='25%'>
-                            </Button>
+                            <div className={styles["buttonCadastro"]}>
+                                <Button
+                                    onClick={cadastramento}
+                                    label='Cadastrar produto'
+                                    icon='plus'
+                                    iconPosition='left'
+                                    width='100%'>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
