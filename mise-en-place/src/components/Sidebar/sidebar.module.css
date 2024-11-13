@@ -37,6 +37,7 @@ body {
 .sidebar-logo {
     display: flex;
     width: 80% !important;
+    height: auto;
     display: flex;
 }
 
@@ -47,8 +48,8 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 10%;
+    width: 100%;
     align-items: center;
-    justify-content: space-around;
     padding-bottom: 50px;
     padding-top: 50px;
 
