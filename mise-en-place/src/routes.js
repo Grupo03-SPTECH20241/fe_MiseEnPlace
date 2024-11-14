@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Breadcrumb from './components/Texts/Breadcrumbs/breadcrumbs';
 import Login from "./pages/Login/login";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import Dashboard from "./pages/Dashboard/dashboard";

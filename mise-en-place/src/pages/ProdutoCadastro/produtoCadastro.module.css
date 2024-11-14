@@ -173,6 +173,10 @@
         padding-right: 0;
     }
 
+    .inputsContainer {
+        width: 80%;
+    }
+
     .produtoBreadcrumbsContainer {
         display: none;
     }
