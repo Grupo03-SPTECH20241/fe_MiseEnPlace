@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Breadcrumb from './components/Texts/Breadcrumbs/breadcrumbs';
 import Login from "./pages/Login/login";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import Dashboard from "./pages/Dashboard/dashboard";
@@ -23,6 +22,7 @@ function Rotas() {
                 <Route path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/cadastro" element={<Cadastro />} />
+                <Route element=""></Route>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/loading" element={<Loading />} />
                 <Route path="/produtos" element={<Produtos />} />
