@@ -97,6 +97,10 @@
     width: 100%;
 }
 
+.inputContainer {
+    width: 50%;
+}
+
 .clientInfo, .requestInfo {
     display: flex;
     flex-direction: row;
@@ -223,10 +227,6 @@
         display: flex;
         flex-direction: column;
     }
-    .requestInfo {
-        width: 95%;
-        gap: 0;
-    }
     .clientInfo {
         width: 100%;
     }
@@ -243,6 +243,7 @@
         display: flex;
         width: 100%;
         justify-content: center;
+        padding: 2.5vh;
     }
     .pedidos-footer .actions .values {
         display: flex;
@@ -275,6 +276,12 @@
     
     .buttons-container {
         display: flex;
+        width: 100%;
+    }
+    .requestInfo, .clientInfo {
+        flex-direction: column;
+    }
+    .inputContainer {
         width: 100%;
     }
 }
