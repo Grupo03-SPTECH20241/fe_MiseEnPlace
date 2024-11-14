@@ -364,71 +364,85 @@ const VisualizarPedido = () => {
                 </div>  
                 <div className={styles["inputsContainer"]}>  
                     <div className={styles["clientInfo"]}>  
-                        <InputText  
-                            label="Cliente:"  
-                            placeholder="Nome do cliente"  
-                            width="100%" 
-                            defaultValue={nomeCliente}
-                            fieldWidth={"50%"} 
-                            onChange={handleNomeClienteChange}
-                        />  
-                        <InputText  
-                            label="Número de telefone:"  
-                            placeholder="Número do cliente"  
-                            width="100%" 
-                            fieldWidth={"50%"} 
-                            defaultValue={numeroTelefone}
-                            onChange={handleNumeroTelefoneChange}
-                        />                 
+                        <div className={styles["inputContainer"]}>                            
+                            <InputText  
+                                label="Cliente:"  
+                                placeholder="Nome do cliente"  
+                                width="100%" 
+                                defaultValue={nomeCliente}
+                                fieldWidth={"100%"} 
+                                onChange={handleNomeClienteChange}
+                            ></InputText>  
+                        </div>
+                        <div className={styles["inputContainer"]}>
+                            <InputText  
+                                label="Número de telefone:"  
+                                placeholder="Número do cliente"  
+                                width="100%" 
+                                fieldWidth={"100%"} 
+                                defaultValue={numeroTelefone}
+                                onChange={handleNumeroTelefoneChange}
+                            ></InputText>                 
+                        </div>
                     </div>  
                     <div className={styles["basic-oreder-details"]}>  
                         <div className={styles["requestInfo"]}>  
-                            <Select  
-                                label="Forma de pagamento:"  
-                                value={formaPagamento}  
-                                options={formaPagamentoOptions} 
-                                defaultValue={formaPagamento} 
-                                onChange={handleFormaPagamentoChange}  
-                                width="50%"  
-                            />  
-                            <InputCalendar  
-                                label="Data de entrega:"  
-                                onChange={handleDataEntregaChange}  
-                                value={dataEntrega}  
-                                defaultValue={dataEntrega}
-                                width="45%"  
-                            />  
+                            <div className={styles["inputContainer"]}>
+                                <Select  
+                                    label="Forma de pagamento:"  
+                                    value={formaPagamento}  
+                                    options={formaPagamentoOptions} 
+                                    defaultValue={formaPagamento} 
+                                    onChange={handleFormaPagamentoChange}  
+                                    width="100%"  
+                                ></Select>  
+                            </div>
+                            <div className={styles["inputContainer"]}>
+                                <InputCalendar  
+                                    label="Data de entrega:"  
+                                    onChange={handleDataEntregaChange}  
+                                    value={dataEntrega}  
+                                    defaultValue={dataEntrega}
+                                    width="93%"  
+                                ></InputCalendar>  
+                            </div>
                         </div>
                         <div className={styles["requestInfo"]}>  
-                            <Select  
-                                label="Forma de entrega:"  
-                                placeholder="Selecione uma opção"  
-                                width="50%"  
-                                value={formaEntrega}  
-                                onChange={handleFormaEntregaChange}  
-                                options={formaEntregaOptions}
-                                defaultValue={formaEntrega}>  
-                            </Select>  
+                            <div className={styles["inputContainer"]}>
+                                <Select  
+                                    label="Forma de entrega:"  
+                                    placeholder="Selecione uma opção"  
+                                    width="100%"  
+                                    value={formaEntrega}  
+                                    onChange={handleFormaEntregaChange}  
+                                    options={formaEntregaOptions}
+                                    defaultValue={formaEntrega}>  
+                                </Select>  
+                            </div>
                         </div>  
                     </div>  
                     {(formaEntrega === 3 || formaEntrega === '3') && (  
                         <div className={styles["party-container"]}>  
-                            <div className={styles["requestInfo"]}>  
-                                <InputText  
-                                    label="CEP:"  
-                                    placeholder="00000-000"  
-                                    width="100%"
-                                    fieldWidth={"50%"}  
-                                    value={cep}  
-                                    onChange={handleCEPChange}  
-                                />  
-                                <InputText  
-                                    label="Logradouro:"  
-                                    width="100%"
-                                    fieldWidth={"50%"}  
-                                    value={logradouro}  
-                                    onChange={handleLogradouroChange}  
-                                />  
+                            <div className={styles["requestInfo"]}> 
+                                <div className={styles["inputContainer"]}>
+                                    <InputText  
+                                        label="CEP:"  
+                                        placeholder="00000-000"  
+                                        width="100%"
+                                        fieldWidth={"100%"}  
+                                        value={cep}  
+                                        onChange={handleCEPChange}  
+                                    ></InputText>  
+                                </div> 
+                                <div className={styles["inputContainer"]}>
+                                    <InputText  
+                                        label="Logradouro:"  
+                                        width="100%"
+                                        fieldWidth={"100%"}  
+                                        value={logradouro}  
+                                        onChange={handleLogradouroChange}  
+                                    ></InputText>  
+                                </div> 
                             </div>  
                         </div>  
                     )}  
