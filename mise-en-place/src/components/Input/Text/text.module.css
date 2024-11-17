@@ -61,7 +61,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-    border: 1px solid #ccc;
+    border: 2.2px solid #ccc;
     max-height: 150px;
     overflow-y: auto;
     border-bottom-left-radius: 25px;
