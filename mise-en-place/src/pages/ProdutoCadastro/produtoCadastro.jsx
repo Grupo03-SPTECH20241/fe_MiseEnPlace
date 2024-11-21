@@ -237,20 +237,93 @@ const ProdutoCadastro = () => {
         }
     }
 
+    const getProdutos = async () => {
+        try {
+            const response = await api.get('/produtos');
+
+            console.log("Produtos cadastrados:")
+            console.log(response.data)
+
+            return response.data
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const validateForm = () => {
         const newErrors = {};
         if (!nome.trim()) newErrors.nome = true;
         if (!preco.trim() || preco[0] === ".") newErrors.preco = true;
         if (!descricao.trim()) newErrors.descricao = true;
-        if (!massa.trim()) newErrors.massa = true;
-        if (!cobertura.trim()) newErrors.cobertura = true;
-        if (!recheio.trim()) newErrors.recheio = true;
-        if (!precoRecheio.trim() || precoRecheio[0] === ".") newErrors.precoRecheio = true;
+        if (((precoRecheio && !recheio.trim()) || (!precoRecheio && recheio.trim())) && (recheio.toLowerCase() != "n/a")) {
+            newErrors.precoRecheio = true;
+            newErrors.recheio = true;
+        }
         if (!unidadeMedida.trim()) newErrors.unidadeMedida = true;
         if (!tipoProduto.trim()) newErrors.tipoProduto = true;
         
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
+    };
+
+    const produtoExisteAsync = async () => {
+        const produtosEncontrados = await getProdutos();
+
+        const nomeEncontrado = produtosEncontrados.some(e => e.nome === nome);
+
+        var massaEncontrado;
+        var recheioEncontrado;
+        var coberturaEncontrado;
+
+        if (nomeEncontrado) {
+            const produtoEncontrado = produtosEncontrados.find(e => e.nome.toLowerCase() === nome.toLowerCase())
+
+            massaEncontrado = await massaIgualAsync(produtoEncontrado, produtoEncontrado.massa.id);
+            recheioEncontrado = await recheioIgualAsync(produtoEncontrado, produtoEncontrado.recheio.id);
+            coberturaEncontrado = await coberturaIgualAsync(produtoEncontrado, produtoEncontrado.cobertura.id);
+
+            if (massaEncontrado && recheioEncontrado && coberturaEncontrado) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    const massaIgualAsync = async (produto, id) => {
+        try {
+            const massaEncontradoNow = await api.get(`/massas/${id}`);
+
+            if (massaEncontradoNow.data.nome.toLowerCase() === massa.toLowerCase()) return true;
+
+            return false;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const recheioIgualAsync = async (produto, id) => {
+        try {
+            const recheioEncontradoNow = await api.get(`/recheios/${id}`);
+
+            if (recheioEncontradoNow.data.nome.toLowerCase() === recheio.toLowerCase() && recheioEncontradoNow.data.preco === precoRecheio) return true;
+
+            return false;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const coberturaIgualAsync = async (produto, id) => {
+        try {
+            const coberturaEncontradoNow = await api.get(`/coberturas/${id}`);
+
+            if (coberturaEncontradoNow.data.nome.toLowerCase() === cobertura.toLowerCase()) return true;
+
+            return false;
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const cadastramento = async (event) => {
@@ -264,9 +337,17 @@ const ProdutoCadastro = () => {
             return;
         }
 
-        await cadastroRecheio();
-        await cadastroMassa();
-        await cadastroCobertura();
+        const produtoExiste = await produtoExisteAsync();
+
+        if (produtoExiste) {
+            toast.error('Produto já existe!', { theme: "colored" });
+            setCanClick(true)
+            return;
+        }
+
+        if ((recheio && precoRecheio) && (recheio.toLowerCase() != "n/a")) await cadastroRecheio();
+        if (massa && massa.toLowerCase() != "n/a") await cadastroMassa();
+        if (cobertura && cobertura.toLowerCase() != "n/a") await cadastroCobertura();
         await cadastroUnidadeMedida();
         await cadastroTipoProduto();
 
@@ -276,14 +357,23 @@ const ProdutoCadastro = () => {
         const recheioDataNow = await getRecheio();
         const tipoProdutoDataNow = await getTipoProduto();
 
-        const recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
-        const recheioId = recheioEncontrado.idRecheio
+        var recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
+        if (!recheioEncontrado) {
+            recheioEncontrado = recheioDataNow.find(e => e.nome.toLowerCase() === "n/a")
+        }
+        const recheioId = recheioEncontrado ? recheioEncontrado.idRecheio : null
 
-        const massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
-        const massaId = massaEncontrado.idMassa
+        var massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === massa.toLowerCase())
+        if (!massaEncontrado) {
+            massaEncontrado = massaDataNow.find(e => e.nome.toLowerCase() === "n/a")
+        }
+        const massaId = massaEncontrado ? massaEncontrado.idMassa : null
 
-        const coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
-        const coberturaId = coberturaEncontrado.idCobertura
+        var coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === cobertura.toLowerCase())
+        if (!coberturaEncontrado) {
+            coberturaEncontrado = coberturaDataNow.find(e => e.nome.toLowerCase() === "n/a")
+        }
+        const coberturaId = coberturaEncontrado ? coberturaEncontrado.idCobertura : null
 
         const unidadeMedidaEncontrado = unidadeMedidaDataNow.find(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())
         const unidadeMedidaId = unidadeMedidaEncontrado.idUnidadeMedida
@@ -351,7 +441,7 @@ const ProdutoCadastro = () => {
                         <div className={styles["inputsContainerLine1"]}>
                             <div className={styles["responsividadeInputNomeProduto"]}>
                                 <Input
-                                    label='Nome do produto:'
+                                    label='Nome do produto: *'
                                     placeholder='Insira o nome do produto'
                                     fieldWidth="100%"
                                     width='100%'
@@ -361,7 +451,7 @@ const ProdutoCadastro = () => {
                             </div>
                             <div className={styles["responsividadeInputPreco"]}>
                                 <InputMaskCustomProdutoCadastro
-                                    label='Preço:'
+                                    label='Preço: *'
                                     id='precoInput'
                                     width='100%'
                                     fieldWidth="100%"
@@ -372,7 +462,7 @@ const ProdutoCadastro = () => {
                             </div>
                             <div className={styles["responsividadeInputMedida"]}>
                                 <Input
-                                    label='Unidade de medida:'
+                                    label='Unidade de medida: *'
                                     placeholder='Selecione a medida'
                                     fieldWidth="100%"
                                     width='100%'
@@ -438,7 +528,7 @@ const ProdutoCadastro = () => {
                         <div className={styles["inputsContainerLine4"]}>
                             <div className={styles["responsividadeInputDescricao"]}>
                                 <Input
-                                    label='Descrição:'
+                                    label='Descrição: *'
                                     placeholder='Insira a descrição do novo produto'
                                     fieldWidth="100%"
                                     width='100%'
@@ -448,7 +538,7 @@ const ProdutoCadastro = () => {
                             </div>
                             <div className={styles["responsividadeInputTipo"]}>
                                 <Input
-                                    label='Tipo de produto:'
+                                    label='Tipo de produto: *'
                                     placeholder='Selecione o tipo'
                                     fieldWidth="100%"
                                     width='100%'

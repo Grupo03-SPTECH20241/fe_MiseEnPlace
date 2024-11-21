@@ -86,14 +86,20 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowDropdown(false);
+      if (event.type === 'mousedown') {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setShowDropdown(false);
+        }
+      } else if (event.type === 'keydown' && event.key === 'Tab') {
+          setShowDropdown(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleClickOutside);
     };
   }, [dropdownRef]);
 
