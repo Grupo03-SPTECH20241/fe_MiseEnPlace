@@ -14,6 +14,7 @@ import ProdutoCadastro from "./pages/ProdutoCadastro/produtoCadastro";
 import ProdutoEditar from "./pages/ProdutoEditar/produtoEditar";
 import VisualizarPedido from "./pages/VisualizarPedido/visualizarPedido";
 import AdicionarPedido from "./pages/AdicionarPedido/adicionarPedido";
+import Configuracao from "./pages/Configuracao/configuracao"
 
 function Rotas() {
     return (
@@ -34,6 +35,7 @@ function Rotas() {
                 <Route path="/agenda" element={<Agenda />} />
                 <Route path="/visualizar-pedido" element={<VisualizarPedido />} />
                 <Route path="/adicionar-pedido" element={<AdicionarPedido />} />
+                <Route path="/configuracao" element={<Configuracao />} />
             </Routes>
         </BrowserRouter>  
         </>

@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../utils/fonts/Nunito-Regular.ttf") format("truetype");
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.breadCrumbsContainer {
+    margin-left: 6.5vh;
+    padding-top: 5vh;
+}
