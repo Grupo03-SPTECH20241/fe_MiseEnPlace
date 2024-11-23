@@ -194,6 +194,7 @@
     .containerTittleCard {
         display: flex;
         width: 100%;
+        padding: 2.5vh;
         justify-content: center;
     }
     .carrinhoFooter .actions .values p{
@@ -205,9 +206,6 @@
     .carrinhoFooter {
         flex-direction: column-reverse;
         margin-bottom: 12vh;
-        margin-left: 0;
-    }
-    .productsList {
         margin-left: 0;
     }
 }

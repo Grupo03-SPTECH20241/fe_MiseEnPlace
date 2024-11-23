@@ -51,6 +51,7 @@ const Kanban = () => {
 
     useEffect(() => {
         const fetchPedidos = async () => {
+            console.log("PEDIDO")
             try {
                 const response = await api.get('/produto-pedidos');
                 const data = response.data;

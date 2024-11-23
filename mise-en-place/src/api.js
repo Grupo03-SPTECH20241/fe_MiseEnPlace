@@ -8,7 +8,7 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
 
-    if (token && config.url !== '/usuario') {
+    if (token && config.url !== '/usuarios') {
       console.log(config.url);
       config.headers['Authorization'] = `Bearer ${token}`;
     }

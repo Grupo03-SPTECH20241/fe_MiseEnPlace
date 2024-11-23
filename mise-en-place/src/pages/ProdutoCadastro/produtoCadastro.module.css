@@ -63,10 +63,23 @@
     max-height: 20vh;
     margin-top: 3vh;
     flex-direction: column;
-    justify-content: center;
+    justify-content: left;
     margin-left: 6.5vh;
     padding: 2.5vh;
     border-radius: 12px;
+}
+
+.produtoCadastroTittleCard h2 {
+    font-family: 'Nunito-Regular';
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1.5vh;
+}
+
+.produtoCadastroTittleCard p {
+    font-family: 'Nunito-Regular';
+    font-weight: 400;
+    margin: 0;
 }
 
 .produtoCadastroTittleCard h2,
@@ -74,7 +87,6 @@
     margin-left: 3vh !important;
     font-family: 'Nunito-Regular';
     color: white;
-    margin: 0.6vh;
 }
 
 .produtoCadastroMainContainer {
