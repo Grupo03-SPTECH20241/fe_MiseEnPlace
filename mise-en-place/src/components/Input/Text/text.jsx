@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';  
 import styles from './text.module.css';
 
-const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null, hasError = false, defaultValue, numericOnly = false, postiveValuesOnly = false }) => {
+const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequired = false, width = '235px', fieldWidth, availableSelect = false, selectOptions = [], onChange = null, hasError = false, defaultValue, numericOnly = false, postiveValuesOnly = false, passwordType = false }) => {
   const [value, setValue] = useState(defaultValue ? defaultValue : null);
   const [error, setError] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
@@ -102,7 +102,7 @@ const InputText = ({ label = "Label:", placeholder = "", id = 'input', isRequire
       style={{ width: `${fieldWidth}` }}>
       <span className={styles['label-content']}>{label}</span>
       <input
-        type={numericOnly ? "number": "text"}
+        type={numericOnly ? "number" : passwordType ? "password" : "text"}
         id={id}
         placeholder={placeholder}
         value={value}

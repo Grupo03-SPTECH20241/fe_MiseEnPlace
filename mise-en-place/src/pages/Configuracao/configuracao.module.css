@@ -19,3 +19,96 @@
     margin-left: 6.5vh;
     padding-top: 5vh;
 }
+
+.tittleCard {
+    background-image: linear-gradient(to left, #E5246B, #DE0052);
+    display: flex;
+    width: 85.25%;
+    max-height: 20vh;
+    margin-top: 3vh;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6.5vh;
+    padding: 2.5vh;
+    border-radius: 12px;
+}
+
+.tittleCard h2,
+.tittleCard p {
+    margin-left: 3vh !important;
+    font-family: 'Nunito-Regular';
+    color: white;
+    margin: 0.6vh;
+}
+
+.produtoCadastroMainContainer {
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.logoImage {
+    max-width: 35vh;
+    max-height: 35vh;
+}
+
+.logoCadastroImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35vh;
+    height: 35vh;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+.logoCadastroImage:hover {
+    cursor: pointer;
+    img {
+        opacity: 50%;
+    }
+}
+
+.logoCadastroImage img {
+    width: auto;
+    height: 25%;
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+}
+
+.inputsContainerLine1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7%;
+}
+
+.inputsContainerLine2 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7%;
+}
+
+.inputsContainerLine3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.responsividadeInput {
+    width: 48%;
+}
+
+.responsividadeButton {
+    width: 25%;
+}

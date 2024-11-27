@@ -4,6 +4,7 @@ import homeImage from '../../utils/img/home.png';
 import agendaImage from '../../utils/img/calendar.png';
 import listImage from '../../utils/img/List.png';
 import setaImage from '../../utils/img/seta.png';
+import gearImage from '../../utils/img/icons/gear-solid.png'
 import esquerda from '../../utils/img/esquerda.png';
 import acessibilidadeImage from '../../utils/img/circle-question-regular.png';
 import { useNavigate } from 'react-router-dom';
@@ -58,6 +59,10 @@ const Sidebar = () => {
                 <div className={styles['div-item']}>
                     <img onClick={() => redirect('/produtos')} className='list' src={listImage} alt="Icon List" />
                     <a href="/produtos">Produtos</a>
+                </div>
+                <div className={styles['div-item']}>
+                    <img onClick={() => redirect('/configuracao')} className='gear' src={gearImage} alt="Icon Gear" />
+                    <a href="/configuracao">Configuracao</a>
                 </div>
                 <div id={styles['accessibility-mobile']} className={styles['div-item']}>
                     <img className='acessibilidade' src={acessibilidadeImage} alt="Icon Acessibilidade" />
