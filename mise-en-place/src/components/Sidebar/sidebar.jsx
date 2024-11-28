@@ -18,7 +18,7 @@ const Sidebar = () => {
     useEffect(() => {
         const email = sessionStorage.getItem('userEmail'); // Recupera o email do sessionStorage
         if (email) {
-            api.get(`/usuarios/obter-foto-cliente?email=${email}`)
+            api.get(`/java-api/usuarios/obter-foto-cliente?email=${email}`)
                 .then((response) => {
                     setUserPhoto(response.data); // Armazena a foto no estado
                 })

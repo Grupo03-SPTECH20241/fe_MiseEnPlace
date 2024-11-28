@@ -184,7 +184,7 @@ const ProdutoCadastro = () => {
                 const recheioEncontrado = recheioData.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
 
                 if (recheioEncontrado.preco !== parseFloat(precoRecheio)) {
-                    await api.put(`/recheios/${recheioEncontrado.idRecheio}`, {
+                    await api.put(`/java-api/recheios/${recheioEncontrado.idRecheio}`, {
                         "nome": recheioEncontrado.nome,
                         "preco": parseFloat(precoRecheio)
                     });
@@ -292,7 +292,7 @@ const ProdutoCadastro = () => {
 
     const massaIgualAsync = async (produto, id) => {
         try {
-            const massaEncontradoNow = await api.get(`/massas/${id}`);
+            const massaEncontradoNow = await api.get(`/java-api/massas/${id}`);
 
             if (massaEncontradoNow.data.nome.toLowerCase() === massa.toLowerCase()) return true;
 
@@ -304,7 +304,7 @@ const ProdutoCadastro = () => {
 
     const recheioIgualAsync = async (produto, id) => {
         try {
-            const recheioEncontradoNow = await api.get(`/recheios/${id}`);
+            const recheioEncontradoNow = await api.get(`/java-api/recheios/${id}`);
 
             if (recheioEncontradoNow.data.nome.toLowerCase() === recheio.toLowerCase() && recheioEncontradoNow.data.preco === precoRecheio) return true;
 
@@ -316,7 +316,7 @@ const ProdutoCadastro = () => {
 
     const coberturaIgualAsync = async (produto, id) => {
         try {
-            const coberturaEncontradoNow = await api.get(`/coberturas/${id}`);
+            const coberturaEncontradoNow = await api.get(`/java-api/coberturas/${id}`);
 
             if (coberturaEncontradoNow.data.nome.toLowerCase() === cobertura.toLowerCase()) return true;
 
@@ -402,7 +402,7 @@ const ProdutoCadastro = () => {
 
             toast.success('Produto cadastrado com sucesso!', { theme: "colored", autoClose: 2000 });
             setTimeout(() => {
-                navigate(`/produtos`)
+                navigate(`/java-api/produtos`)
             }, 2000)
         } catch (error) {
             console.log(error);

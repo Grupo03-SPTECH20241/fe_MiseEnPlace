@@ -61,7 +61,7 @@ const GoalChartModal = ({closeModal}) => {
         
         try {
             setIsSaving(true);
-            await api.put(`/metas/${1}/in-range/${atualizarDataInicio}`, payload);
+            await api.put(`/java-api/metas/${1}/in-range/${atualizarDataInicio}`, payload);
 
             if (atualizarDataInicio){
                 toast.success('Meta atualizada com sucesso', { theme: 'colored' });

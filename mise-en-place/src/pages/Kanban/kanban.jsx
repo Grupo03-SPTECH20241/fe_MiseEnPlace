@@ -108,7 +108,7 @@ const Kanban = () => {
         try {
             console.log(`Iniciando atualização do status do pedido ${cardId} para ${newStatus}`);
 
-            const response = await api.put(`/pedidos/${cardId}/status/${newStatus}`, {
+            const response = await api.put(`/java-api/pedidos/${cardId}/status/${newStatus}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
