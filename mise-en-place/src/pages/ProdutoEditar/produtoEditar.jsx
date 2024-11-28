@@ -270,7 +270,7 @@ const ProdutoEditar = () => {
                 const recheioEncontrado = recheioData.find(e => e.nome.toLowerCase() === recheio.toLowerCase())
 
                 if (recheioEncontrado.preco !== parseFloat(precoRecheio)) {
-                    await api.put(`/recheios/${recheioEncontrado.idRecheio}`, {
+                    await api.put(`/java-api/recheios/${recheioEncontrado.idRecheio}`, {
                         "nome": recheioEncontrado.nome,
                         "preco": parseFloat(precoRecheio)
                     });
@@ -339,7 +339,7 @@ const ProdutoEditar = () => {
 
     const massaIgualAsync = async (produto, id) => {
         try {
-            const massaEncontradoNow = await api.get(`/massas/${id}`);
+            const massaEncontradoNow = await api.get(`/java-api/massas/${id}`);
 
             if (massaEncontradoNow.data.nome.toLowerCase() === massa.toLowerCase()) return true;
 
@@ -351,7 +351,7 @@ const ProdutoEditar = () => {
 
     const recheioIgualAsync = async (produto, id) => {
         try {
-            const recheioEncontradoNow = await api.get(`/recheios/${id}`);
+            const recheioEncontradoNow = await api.get(`/java-api/recheios/${id}`);
 
             if (recheioEncontradoNow.data.nome.toLowerCase() === recheio.toLowerCase() && recheioEncontradoNow.data.preco === precoRecheio) return true;
 
@@ -363,7 +363,7 @@ const ProdutoEditar = () => {
 
     const coberturaIgualAsync = async (produto, id) => {
         try {
-            const coberturaEncontradoNow = await api.get(`/coberturas/${id}`);
+            const coberturaEncontradoNow = await api.get(`/java-api/coberturas/${id}`);
 
             if (coberturaEncontradoNow.data.nome.toLowerCase() === cobertura.toLowerCase()) return true;
 
@@ -434,7 +434,7 @@ const ProdutoEditar = () => {
         
 
         try {
-            await api.put(`/produtos/${produto.id}`, { 
+            await api.put(`/java-api/produtos/${produto.id}`, { 
                 "nome": nome,
                 "preco": preco,
                 "descricao": descricao,
@@ -449,7 +449,7 @@ const ProdutoEditar = () => {
 
             toast.success('Produto editado com sucesso!', { theme: "colored", autoClose: 2000 });
             setTimeout(() => {
-                navigate(`/produtos`)
+                navigate(`/java-api/produtos`)
             }, 2000)
         } catch (error) {
             console.log(error);
@@ -460,13 +460,13 @@ const ProdutoEditar = () => {
 
     const removeProduto = async () => {
         try {
-            const response = await api.delete(`/produtos/deletar-produto-por-id/${produto.id}`);
+            const response = await api.delete(`/java-api/produtos/deletar-produto-por-id/${produto.id}`);
             if (response.status === 202) {
                 toast.error('Não é possível remover este produto. Há pedidos vinculados à ele', {theme: "colored"})
             } else if (response.status === 204) {
                 toast.success('Produto deletado com sucesso!', {autoClose: 2000, theme:"colored"})
                 setTimeout(() => {
-                    navigate(`/produtos`);
+                    navigate(`/java-api/produtos`);
                 }, 2000);
             } else {
                 toast.error('Ocorreu um erro inesperado na tentativa de excluir o produto', {theme: "colored"})

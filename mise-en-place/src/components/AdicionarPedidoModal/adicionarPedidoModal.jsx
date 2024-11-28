@@ -35,7 +35,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
 
     // busca produtos-pedidos
     const fetchProdutoPedido = async () => {
-        const response = await api.get(`/produto-pedidos`);
+        const response = await api.get(`/java-api/produto-pedidos`);
         const data = response?.data;
         setProdutoPedido(data.find((currentData) => currentData?.idProdutoPedido === idProdutoPedido));
     }

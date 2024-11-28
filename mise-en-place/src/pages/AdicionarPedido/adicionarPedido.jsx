@@ -81,7 +81,7 @@ const AdicionarPedido = () => {
         if (value === 'Todos') {
             setFilteredCardsData(cardsData);
         } else {
-            api.get(`/produtos/filtrar-tipo/${value}`).then((response) => {
+            api.get(`/java-api/produtos/filtrar-tipo/${value}`).then((response) => {
                 setValue(response.data.map((item) => item.nome));
                 setFilteredCardsData(response.data);
                 fetchDataDrop()
