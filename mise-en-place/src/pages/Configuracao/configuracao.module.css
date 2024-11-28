@@ -41,7 +41,7 @@
     margin: 0.6vh;
 }
 
-.produtoCadastroMainContainer {
+.configuracaoMainContainer {
     display: flex;
     flex-direction: row;
     height: 50%;
@@ -111,4 +111,72 @@
 
 .responsividadeButton {
     width: 25%;
+}
+
+@media screen and (max-width: 600px) {
+    .tittleCard {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .configuracaoMainContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mainContainer {
+        display: block;
+    }
+
+    .breadCrumbsContainer {
+        display: none;
+    }
+
+    .inputsContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsContainerLine1 {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .inputsContainerLine2 {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .inputsContainerLine3 {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 5vh;
+        margin-bottom: 20vh;
+    }
+
+    .responsividadeInput {
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .responsividadeButton {
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .imageContainer {
+        width: 100%;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
 }

@@ -144,10 +144,20 @@ const Configuracao = () => {
                 "email": email
             });
 
+            sessionStorage.setItem('userEmail', email);
+
             if (senha) {
-                await api.put(`/usuarios/atualizar-senha-por-email/${sessionStorage.getItem('userEmail')}?senhaNova=${senha}`);
+                await api.patch(`/usuarios`, {
+                    "email": sessionStorage.getItem('userEmail'),
+                    "senha": senha
+                });
             }
             
+            toast.success('Informações de conta atualizadas!', { theme: "colored", autoClose: 2000 });
+
+            setTimeout(() => {
+                navigate(`/dashboard`);
+            }, 2000);
         } catch (error) {
             console.log(error);
             toast.error('Erro ao atualizar a conta!', { theme: "colored" });
@@ -170,7 +180,7 @@ const Configuracao = () => {
                     <p>Aqui você consegue personalizar sua conta</p>
                 </div>
 
-                <div className={styles["produtoCadastroMainContainer"]}>
+                <div className={styles["configuracaoMainContainer"]}>
                     <div className={styles["imageContainer"]}>
                         <div className={styles["logoCadastroImage"]}
                         onClick={() => document.getElementById('file-upload').click()}>
@@ -202,7 +212,8 @@ const Configuracao = () => {
                                     label='CNPJ:'
                                     fieldWidth="100%"
                                     defaultValue={cnpj}
-                                    width='100%'>
+                                    width='100%'
+                                    isDisabled={true}>
                                 </Input>
                             </div>
                         </div>
