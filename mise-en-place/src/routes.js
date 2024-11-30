@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Breadcrumb from './components/Texts/Breadcrumbs/breadcrumbs';
 import Login from "./pages/Login/login";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import Dashboard from "./pages/Dashboard/dashboard";
@@ -15,27 +14,81 @@ import ProdutoEditar from "./pages/ProdutoEditar/produtoEditar";
 import VisualizarPedido from "./pages/VisualizarPedido/visualizarPedido";
 import AdicionarPedido from "./pages/AdicionarPedido/adicionarPedido";
 import Configuracao from "./pages/Configuracao/configuracao"
+import RotasProtegidas from "./components/RotasProtegidas/rotasProtegidas";
 
 function Rotas() {
     return (
         <>
         <BrowserRouter>
             <Routes>
+                <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/" element={<Login />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/loading" element={<Loading />} />
-                <Route path="/produtos" element={<Produtos />} />
+
+                <Route path="/dashboard" element={
+                    <RotasProtegidas> 
+                        <Dashboard />
+                    </RotasProtegidas>
+                } 
+                ></Route>
+
+                <Route path="/produtos" element={
+                    <RotasProtegidas> 
+                        <Produtos />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/carrinho" element={
+                    <RotasProtegidas> 
+                        <Carrinho />
+                    </RotasProtegidas>}
+                ></Route>
+
+                <Route path="/kanban" element={
+                    <RotasProtegidas> 
+                        <Kanban />
+                    </RotasProtegidas> 
+                }
+                ></Route>
+
+                <Route path="/produto-cadastro" element={
+                    <RotasProtegidas> 
+                        <ProdutoCadastro />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/produto-editar" element={
+                    <RotasProtegidas> 
+                        <ProdutoEditar />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/agenda" element={
+                    <RotasProtegidas> 
+                        <Agenda />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/visualizar-pedido" element={
+                    <RotasProtegidas> 
+                        <VisualizarPedido />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/adicionar-pedido" element={
+                    <RotasProtegidas> 
+                        <AdicionarPedido />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/configuracao" element={
+                    <RotasProtegidas> 
+                        <Configuracao />
+                    </RotasProtegidas>} 
+                ></Route>
+
                 <Route path="/components" element={<Stories />} />
-                <Route path="/carrinho" element={<Carrinho />}/>
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/produto-cadastro" element={<ProdutoCadastro />} />
-                <Route path="/produto-editar" element={<ProdutoEditar />} />
-                <Route path="/agenda" element={<Agenda />} />
-                <Route path="/visualizar-pedido" element={<VisualizarPedido />} />
-                <Route path="/adicionar-pedido" element={<AdicionarPedido />} />
-                <Route path="/configuracao" element={<Configuracao />} />
             </Routes>
         </BrowserRouter>  
         </>

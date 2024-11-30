@@ -188,4 +188,8 @@
         min-width: 51%;
         max-width: 52%;
     }
+
+    .goalChartCircleZero, .goalChartCircleCinquenta, .goalChartCircleCem {
+        width: 300vw;
+    }
 }
