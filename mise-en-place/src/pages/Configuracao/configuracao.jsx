@@ -97,6 +97,7 @@ const Configuracao = () => {
 
     const logout = async () => {
         try {
+            localStorage.clear();
             sessionStorage.clear();
 
             setTimeout(() => {
