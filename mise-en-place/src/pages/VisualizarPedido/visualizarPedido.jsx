@@ -75,7 +75,7 @@ const VisualizarPedido = () => {
 
     const handleExcluirProduto = async () => {
         try {
-            await api.delete(`/produto-pedidos/${proutoQueVaiSerExcluido?.idProdutoPedido}`);
+            await api.delete(`/java-api/produto-pedidos/${proutoQueVaiSerExcluido?.idProdutoPedido}`);
             toast.success('Produto excluído com sucesso', { theme: 'colored' });
             closeExcluirProdutoModal();
             atualizarValores();
@@ -161,7 +161,7 @@ const VisualizarPedido = () => {
                     clienteId: idClienteSelecionado ? idClienteSelecionado : idNovoCliente,
                     formaPagamentoId: formaPagamento
                 };
-                await api.put(`/pedidos/${pedido?.idPedido}`, payload);
+                await api.put(`/java-api/pedidos/${pedido?.idPedido}`, payload);
                 
                 //Caso seja apenas alterações nas informações (exceto produtos) então navegará de volta para a dashboard
                 if(!vlrAtualizado){
@@ -222,7 +222,7 @@ const VisualizarPedido = () => {
     // busca os dados do pedido
     const fetchPedido = async () => {
         if(idPedido) {
-            const response = await api.get(`/produto-pedidos/visualizar-pedido/${idPedido}`);  
+            const response = await api.get(`/java-api/produto-pedidos/visualizar-pedido/${idPedido}`);  
             const { data } = response;
             setNomeCliente(data?.pedidoListagemDTO?.clienteDto?.nome);
             setNumeroTelefone(data?.pedidoListagemDTO?.clienteDto?.numero);
@@ -240,7 +240,7 @@ const VisualizarPedido = () => {
         produtoPedidoCriacaoDto.qtProduto = Number(produtoPedidoCriacaoDto.qtProduto);
 
         try {
-            await api.put(`/produto-pedidos/${idProdutoPedidoAtual}`, produtoPedidoCriacaoDto);  
+            await api.put(`/java-api/produto-pedidos/${idProdutoPedidoAtual}`, produtoPedidoCriacaoDto);  
             toast.success('Produto atualizado!', { theme: "colored" });
             fetchPedido();
             atualizarValores();
@@ -252,7 +252,7 @@ const VisualizarPedido = () => {
     };
 
     const atualizarValores = async () => {
-        const response = await api.get(`/produto-pedidos`);  
+        const response = await api.get(`/java-api/produto-pedidos`);  
         const {data} = response;
         let produtosDoPedido = data.filter((element) => element?.pedidoDto?.idPedido === pedido?.idPedido);
         let valorAtualizadoDoPedido = 0;
