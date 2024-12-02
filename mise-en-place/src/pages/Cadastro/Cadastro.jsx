@@ -56,7 +56,7 @@ function Cadastro() {
         setIsSubmitting(true);
 
         try {
-            await api.post('/usuarios', payload);
+            await api.post('/java-api/usuarios', payload);
             toast.success('Cadastro efetuado com sucesso!', { theme: 'colored' });
 
             // Limpar os campos após o sucesso

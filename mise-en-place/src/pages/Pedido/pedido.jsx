@@ -95,7 +95,7 @@ const Pedido = ( {idPedido = 1} ) => {
 
     // busca das opções para os inputs
     const fetchFormaEntregaOptions = async () => {
-        const response = await api.get('/forma-entregas');  
+        const response = await api.get('/java-api/forma-entregas');  
         const { data } = response;
         setFormaEntregaOptions(data.map((value) =>{
             return {
@@ -106,7 +106,7 @@ const Pedido = ( {idPedido = 1} ) => {
     }
 
     const fetchFormaPagamentoOptions = async () => {
-        const response = await api.get('/forma-pagamento');  
+        const response = await api.get('/java-api/forma-pagamento');  
         const { data } = response;
         setFormaPagamentoOptions(data.map((value) =>{
             return {
@@ -118,7 +118,7 @@ const Pedido = ( {idPedido = 1} ) => {
 
     // busca os dados do pedido
     const fetchPedido = async () => {
-        const response = await api.get('/pedidos');
+        const response = await api.get('/java-api/pedidos');
         const { data } = response;
         for (let i = 0; i < data.length; i++) {
             if (data[i]?.idPedido === idPedido) {

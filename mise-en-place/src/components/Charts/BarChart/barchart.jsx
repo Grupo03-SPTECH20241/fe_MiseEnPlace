@@ -39,7 +39,7 @@ const BarChart = () => {
       if (filterSelectedValue === 'Mensal') {
 
         try {
-          const response = await api.get('/quantidade-vendida-valor-vendido');
+          const response = await api.get('/java-api/quantidade-vendida-valor-vendido');
           const { data } = response;
           let newLabelMes = [];
           let newValoresVendidosPorMes = [];
@@ -72,7 +72,7 @@ const BarChart = () => {
       } else if (filterSelectedValue === 'Semanal') {
 
         try {
-          const response = await api.get('/quantidade-vendida-valor-vendido-semana');
+          const response = await api.get('/java-api/quantidade-vendida-valor-vendido-semana');
           const { data } = response;
           let newLabelSemana = [];
           let newValoresVendidosPorSemana = [];
@@ -105,7 +105,7 @@ const BarChart = () => {
       } else if (filterSelectedValue === 'Hoje') {
 
         try {
-          const response = await api.get('/quantidade-vendida-valor-vendido-dia');
+          const response = await api.get('/java-api/quantidade-vendida-valor-vendido-dia');
           const { data } = response;
           let newLabelDiaria = [];
           let newValoresVendidosPorDia = [];

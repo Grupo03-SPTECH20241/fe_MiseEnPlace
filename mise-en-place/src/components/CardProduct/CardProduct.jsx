@@ -15,7 +15,7 @@ const CardProduto = ({
     const ip = process.env.REACT_APP_LOCALHOST_IP;
     
     const navigateToEditProduct = () => {
-        navigate(`/java-api/produto-editar`, { state: { produto: produto } });
+        navigate(`/produto-editar`, { state: { produto: produto } });
     };
 
     // Verifica se o valor é um número válido

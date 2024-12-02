@@ -54,7 +54,7 @@ const Agenda = () => {
         var firstDay = new Date(y, m, 1);
         var lastDay = new Date(y, m + 1, 0);
 
-        stringUrl = "produto-pedidos/agenda?dataInicio=";
+        stringUrl = "/java-api/produto-pedidos/agenda?dataInicio=";
         stringUrl += firstDay.getDate() < 10 ? "0" + firstDay.getDate().toString() : firstDay.getDate();
         stringUrl += "%2F";
         stringUrl += (firstDay.getMonth() + 1) < 10 ? "0" + (firstDay.getMonth() + 1) : firstDay.getMonth() + 1;
@@ -85,7 +85,7 @@ const Agenda = () => {
 
   const fetchExportarPedidos = async () => {
     try {
-      const urlExportarPedidos = stringUrlGeneral.replace("produto-pedidos/agenda?", "produto-pedidos/exportar-pedidos?");
+      const urlExportarPedidos = stringUrlGeneral.replace("/java-api/produto-pedidos/agenda?", "/java-api/produto-pedidos/exportar-pedidos?");
 
       const response = await api.get(urlExportarPedidos, { responseType: 'blob' });
 
@@ -122,7 +122,7 @@ const Agenda = () => {
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await api.post('/produto-pedidos/importar-pedidos', {
+        const response = await api.post('/java-api/produto-pedidos/importar-pedidos', {
             multipartFile: file
         },{
             headers: { 'Content-Type': 'multipart/form-data' },

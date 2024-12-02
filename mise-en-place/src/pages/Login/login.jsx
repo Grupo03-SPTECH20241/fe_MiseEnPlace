@@ -16,7 +16,7 @@ function Login() {
         event.preventDefault();
     
         try {
-            const response = await api.post('/usuarios/login', { "email": email, "senha": password });
+            const response = await api.post('/java-api/usuarios/login', { "email": email, "senha": password });
             localStorage.setItem('token', response.data.token);
             sessionStorage.setItem('userEmail', email); // Armazena o email no sessionStorage
             toast.success('Login efetuado com sucesso! Redirecionando...', { theme: "colored" });

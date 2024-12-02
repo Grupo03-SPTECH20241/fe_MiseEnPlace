@@ -20,7 +20,7 @@ const DonutChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get('/quantidade-vendidos-tipo-produto');
+        const response = await api.get('/java-api/quantidade-vendidos-tipo-produto');
         const { data } = response;
         let newTipoValues = [];
         let newVendaValues = [];

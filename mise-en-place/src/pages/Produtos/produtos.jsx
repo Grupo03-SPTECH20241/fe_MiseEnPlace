@@ -25,7 +25,7 @@ const Produtos = () => {
     }, []);
 
     const fetchDataDrop = () => {
-        api.get('/tipo-produtos').then((response) => {
+        api.get('/java-api/tipo-produtos').then((response) => {
             response.data.unshift({ nome: 'Todos' });
             setValue(response.data.map((item) => item.nome));
         }).catch((error) => {
@@ -35,7 +35,7 @@ const Produtos = () => {
     };
 
     const fetchData = () => {
-        api.get('/produtos').then((response) => {
+        api.get('/java-api/produtos').then((response) => {
             setCardsData(response.data);
             setFilteredCardsData(response.data);
         }).catch((error) => {
@@ -69,7 +69,7 @@ const Produtos = () => {
     // Função para exportar produtos
     const fetchExportarProdutos = async () => {
         try {
-            const response = await api.get('/txt/export', { responseType: 'blob' });
+            const response = await api.get('/java-api/txt/export', { responseType: 'blob' });
             if (response.status === 200) {
                 const blob = new Blob([response.data], { type: 'application/octet-stream' });
                 const downloadUrl = window.URL.createObjectURL(blob);
@@ -104,7 +104,7 @@ const Produtos = () => {
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await api.post('/txt/import', {
+            const response = await api.post('/java-api/txt/import', {
                 multipartFile: file
             },{
                 headers: { 'Content-Type': 'multipart/form-data' },

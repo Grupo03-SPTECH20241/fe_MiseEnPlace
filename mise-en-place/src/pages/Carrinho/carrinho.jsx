@@ -69,7 +69,7 @@ const Carrinho = () => {
                 nome: nomeCliente,
                 numero: numeroTelefone,
             }
-            const response = await api.post('/clientes', ClienteCriacaoDto);
+            const response = await api.post('/java-api/clientes', ClienteCriacaoDto);
             const { data } = response;
             idNovoCliente = data?.idCliente;
         }
@@ -86,7 +86,7 @@ const Carrinho = () => {
                     dtEntrega: dataEntrega,
                 };
 
-                const responsePedidoCriacao = await api.post('/pedidos', pedidoCriacaoDTO);
+                const responsePedidoCriacao = await api.post('/java-api/pedidos', pedidoCriacaoDTO);
                 for(let i = 0; i < produtoPedidoCriacaoDtos.length; i++){
                     let produtoPedidoCriacaoDto = {
                         qtProduto: produtoPedidoCriacaoDtos[i]?.qtProduto,
@@ -95,7 +95,7 @@ const Carrinho = () => {
                         personalizacaoId: null,
                         pedidoId: responsePedidoCriacao?.data?.idPedido,
                     };
-                    await api.post('/produto-pedidos', produtoPedidoCriacaoDto);
+                    await api.post('/java-api/produto-pedidos', produtoPedidoCriacaoDto);
                 }
 
                 toast.success('Pedido cadastrado com sucesso!', { theme: "colored" });
@@ -147,7 +147,7 @@ const Carrinho = () => {
 
     // busca dos valores auxiliares
     const fetchClientes = async () => {
-        const response = await api.get('/clientes');  
+        const response = await api.get('/java-api/clientes');  
         const { data } = response;
         setClientes(data);
         console.log("dataOOOOOOOOOOOOOOO");
@@ -156,7 +156,7 @@ const Carrinho = () => {
 
     // busca das opções para os inputs
     const fetchFormaEntregaOptions = async () => {
-        const response = await api.get('/forma-entregas');  
+        const response = await api.get('/java-api/forma-entregas');  
         const { data } = response;
         setFormaEntregaOptions(data.map((value) =>{
             return {
@@ -176,7 +176,7 @@ const Carrinho = () => {
     }
 
     const fetchFormaPagamentoOptions = async () => {
-        const response = await api.get('/forma-pagamento');  
+        const response = await api.get('/java-api/forma-pagamento');  
         const { data } = response;
         setFormaPagamentoOptions(data.map((value) =>{
             return {
@@ -187,7 +187,7 @@ const Carrinho = () => {
     }
 
     const fetchProdutosSelecionados = async () => {
-        const response = await api.get('/produtos');  
+        const response = await api.get('/java-api/produtos');  
         const { data } = response;
         let produtosPreviamenteSelecionados = [];
         let valorTotal = 0;

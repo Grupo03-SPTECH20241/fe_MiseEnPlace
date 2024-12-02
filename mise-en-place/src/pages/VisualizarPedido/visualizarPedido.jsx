@@ -129,7 +129,7 @@ const VisualizarPedido = () => {
     }, []);
 
     const fetchClientes = async () => {
-        const response = await api.get('/clientes');  
+        const response = await api.get('/java-api/clientes');  
         const { data } = response;
         setClientes(data);
     }
@@ -143,7 +143,7 @@ const VisualizarPedido = () => {
                     nome: nomeCliente,
                     numero: numeroTelefone,
                 }
-                const response = await api.post('/clientes', ClienteCriacaoDto);
+                const response = await api.post('/java-api/clientes', ClienteCriacaoDto);
                 const { data } = response;
                 idNovoCliente = data?.idCliente;
                 setIdClienteSelecionado(idNovoCliente);
@@ -198,7 +198,7 @@ const VisualizarPedido = () => {
 
     // busca das opções para os inputs
     const fetchFormaEntregaOptions = async () => {
-        const response = await api.get('/forma-entregas');  
+        const response = await api.get('/java-api/forma-entregas');  
         const { data } = response;
         setFormaEntregaOptions(data.map((value) =>{
             return {
@@ -209,7 +209,7 @@ const VisualizarPedido = () => {
     }
 
     const fetchFormaPagamentoOptions = async () => {
-        const response = await api.get('/forma-pagamento');  
+        const response = await api.get('/java-api/forma-pagamento');  
         const { data } = response;
         setFormaPagamentoOptions(data.map((value) =>{
             return {
@@ -307,7 +307,7 @@ const VisualizarPedido = () => {
     const deletarPedido = async () => {
         try {
             try {
-                await api.delete('/produto-pedidos/'+produtos?.idProdutoPedido);
+                await api.delete('/java-api/produto-pedidos/'+produtos?.idProdutoPedido);
             } catch (e) {
                 console.log(e);
             }

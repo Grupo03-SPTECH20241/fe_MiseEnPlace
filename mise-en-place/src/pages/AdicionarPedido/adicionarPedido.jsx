@@ -55,7 +55,7 @@ const AdicionarPedido = () => {
     }, []);
 
     const fetchDataDrop = () => {
-        api.get('/tipo-produtos').then((response) => {
+        api.get('/java-api/tipo-produtos').then((response) => {
             response.data.unshift({ nome: 'Todos' });
             setValue(response.data.map((item) => item.nome));
         }).catch((error) => {
@@ -64,7 +64,7 @@ const AdicionarPedido = () => {
     }
 
     const fetchData = () => {
-        api.get('/produtos').then((response) => {
+        api.get('/java-api/produtos').then((response) => {
             setCardsData(response.data);
             setFilteredCardsData(response.data);
         }).catch((error) => {

@@ -79,7 +79,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
     }
 
     const fetchRecheioOptions = async () => {
-        const response = await api.get('/recheios');  
+        const response = await api.get('/java-api/recheios');  
         const { data } = response;
         setRecheioOptions(data.map((value) =>{
             return {
@@ -90,7 +90,7 @@ const AdicionarPedidoModal = ({ produto, qtdProduto, idProdutoPedido, closeModal
     }
 
     const fetchMassaOptions = async () => {
-        const response = await api.get('/massas');  
+        const response = await api.get('/java-api/massas');  
         const { data } = response;
         setMassaOptions(data.map((value) =>{
             return {
