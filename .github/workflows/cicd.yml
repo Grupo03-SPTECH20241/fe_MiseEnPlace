@@ -1,0 +1,79 @@
+name: CI/CD Frontend
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        path: fe_MiseEnPlace
+
+    - name: Set CI environment variable to false
+      run: echo "CI=false" >> $GITHUB_ENV
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+
+    - name: List directory structure
+      run: ls -R
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./fe_MiseEnPlace/mise-en-place/
+
+    - name: Build React app
+      run: npm run build
+      working-directory: ./fe_MiseEnPlace/mise-en-place/
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-frontend
+        path: ./fe_MiseEnPlace/mise-en-place/build/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-frontend
+        path: ./fe_MiseEnPlace/mise-en-place/build/
+
+    - name: Create .pem file from DEPLOY_KEY variable and set permissions
+      id: create-pem-file
+      run: |
+        echo "${{ secrets.DEPLOY_KEY }}" >> $HOME/public-key.pem
+        chmod 400 $HOME/public-key.pem
+
+    - name: Transfer build files to EC2 via SCP
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ubuntu
+        key: ${{ secrets.DEPLOY_KEY }}
+        port: 22
+        source: "./fe_MiseEnPlace/mise-en-place/build/"
+        target: "/home/ubuntu/"
+
+    - name: Set permissions on remote server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ubuntu
+        key: ${{ secrets.DEPLOY_KEY }}
+        port: 22
+        script: |
+          chown -R ubuntu:ubuntu /home/ubuntu/
+          chmod -R 770 /home/ubuntu/
