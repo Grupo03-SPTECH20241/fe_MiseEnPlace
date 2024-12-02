@@ -3,7 +3,7 @@ import Sidebar from '../../components/Sidebar/sidebar';
 import Breadcrumbs from '../../components/Texts/Breadcrumbs/breadcrumbs';
 import styles from './produtoCadastro.module.css';
 import CameraIcon from "../../utils/img/icons/camera.png"
-import Input from "../../components/Input/Text/text"
+import Input from "../../components/Input/Text/text";
 import InputMaskCustomProdutoCadastro from "../../components/Input/InputMask/inputMaskCustomProdutoCadastro"
 import Button from "../../components/Button/Default/default"
 import api from "../../api"
@@ -407,7 +407,9 @@ const ProdutoCadastro = () => {
         } catch (error) {
             console.log(error);
             toast.error('Erro ao cadastrar o produto!', { theme: "colored" });
-            setCanClick(true)
+            setCanClick(true);
+        } finally {
+            setCanClick(true);
         }
     };
 
