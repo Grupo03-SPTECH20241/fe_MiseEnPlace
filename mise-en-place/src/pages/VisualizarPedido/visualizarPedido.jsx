@@ -17,6 +17,7 @@ import Modal from "react-modal"
 import ExcluirPedidoModal from "../../components/ExcluirPedidoModal/excluirPedidoModal";
 import AdicionarPedidoModal from "../../components/AdicionarPedidoModal/adicionarPedidoModal";
 import ExcluirProdutoModal from "../../components/ModalExclusaoProdutoPedido/modalExclusaoProdutoPedido";
+import { isNumber } from "chart.js/helpers";
 
 const customStyles = {
     content: {
@@ -151,12 +152,13 @@ const VisualizarPedido = () => {
         }
 
         if(validateBody()){
+            debugger
             try {
                 const payload = {
                     dtPedido: dataEntrega,
-                    vlPedido: vlrAtualizado ? vlrAtualizado : pedido?.vlPedido,
+                    vlPedido: vlrAtualizado && isNumber(vlrAtualizado) ? vlrAtualizado : pedido?.vlPedido,
                     status: pedido?.status ? pedido?.status : 'N',
-                    valorSinal: vlrAtualizado ? vlrAtualizado/2 : pedido?.vlPedido ? pedido.vlPedido/2 : 0,
+                    valorSinal: vlrAtualizado && isNumber(vlrAtualizado) ? vlrAtualizado/2 : pedido?.vlPedido ? pedido.vlPedido/2 : 0,
                     formaEntregaId: formaEntrega,
                     clienteId: idClienteSelecionado ? idClienteSelecionado : idNovoCliente,
                     formaPagamentoId: formaPagamento
@@ -164,10 +166,10 @@ const VisualizarPedido = () => {
                 await api.put(`/java-api/pedidos/${pedido?.idPedido}`, payload);
                 
                 //Caso seja apenas alterações nas informações (exceto produtos) então navegará de volta para a dashboard
-                if(!vlrAtualizado){
+                if(!vlrAtualizado || typeof(vlrAtualizado) !== "boolean"){
                     toast.success('Pedido atualizado com sucesso!', { theme: "colored" });
                     setTimeout(()=>{
-                        navigate("/dashboard")
+                        navigate("/agenda")
                     }, 6000);
                 //Caso contrário buscará novamente o pedido para trazer os valores atualizados do pedido
                 } else {
@@ -307,11 +309,15 @@ const VisualizarPedido = () => {
     const deletarPedido = async () => {
         try {
             try {
-                await api.delete('/java-api/produto-pedidos/'+produtos?.idProdutoPedido);
+                await api.delete('/java-api/produto-pedidos/'+produtos[0]?.idProdutoPedido);
             } catch (e) {
                 console.log(e);
             }
-            await api.delete('/pedidos/'+pedido?.idPedido);
+            try {
+                await api.delete('/java-api/pedidos/'+pedido?.idPedido);
+            } catch (e) {
+                console.log(e);
+            }
             toast.success('Pedido Excluído com sucesso!', { theme: "colored" });
             closeExcluirPedidoModal();
             setTimeout(()=>{
