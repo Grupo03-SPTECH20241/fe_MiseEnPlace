@@ -76,5 +76,5 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: 22
         script: |
-          chown -R ubuntu:ubuntu /home/ubuntu/Desktop/Frontend/
-          chmod -R 770 /home/ubuntu/Desktop/Frontend/
+          chown -R ubuntu:ubuntu /home/ubuntu/
+          chmod -R 770 /home/ubuntu/
