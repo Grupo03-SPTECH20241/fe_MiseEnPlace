@@ -13,7 +13,7 @@ const GoalChart = ({openModal}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get('/metas');
+        const response = await api.get('/java-api/metas');
         const { data } = response;
         let percentualTratado;
 

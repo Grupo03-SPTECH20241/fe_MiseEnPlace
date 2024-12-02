@@ -117,7 +117,7 @@ const ProdutoEditar = () => {
 
     const getProdutos = async () => {
         try {
-            const response = await api.get('/produtos');
+            const response = await api.get('/java-api/produtos');
 
             console.log("Produtos cadastrados:")
             console.log(response.data)
@@ -130,7 +130,7 @@ const ProdutoEditar = () => {
 
     const getUnidadeMedida = async () => {
         try {
-            const response = await api.get('/unidades-medida');
+            const response = await api.get('/java-api/unidades-medida');
             const options = response.data.map(element => ({
                 label: element.unidadeMedida,
                 value: element.idUnidadeMedida,
@@ -149,7 +149,7 @@ const ProdutoEditar = () => {
 
     const getMassa = async () => {
         try {
-            const response = await api.get('/massas');
+            const response = await api.get('/java-api/massas');
             const options = response.data.map(element => ({
                 label: element.nome,
                 value: element.idMassa,
@@ -168,7 +168,7 @@ const ProdutoEditar = () => {
 
     const getCobertura = async () => {
         try {
-            const response = await api.get('/coberturas');
+            const response = await api.get('/java-api/coberturas');
             const options = response.data.map(element => ({
                 label: element.nome,
                 value: element.idCobertura,
@@ -187,7 +187,7 @@ const ProdutoEditar = () => {
 
     const getRecheio = async () => {
         try {
-            const response = await api.get('/recheios');
+            const response = await api.get('/java-api/recheios');
             const options = response.data.map(element => ({
                 label: element.nome,
                 value: element.idRecheio,
@@ -206,7 +206,7 @@ const ProdutoEditar = () => {
 
     const getTipoProduto = async () => {
         try {
-            const response = await api.get('/tipo-produtos');
+            const response = await api.get('/java-api/tipo-produtos');
             const options = response.data.map(element => ({
                 label: element.nome,
                 value: element.id,
@@ -226,7 +226,7 @@ const ProdutoEditar = () => {
     const cadastroUnidadeMedida = async () => {
         try {
             if (!unidadeMedidaData.some(e => e.unidadeMedida.toLowerCase() === unidadeMedida.toLowerCase())) {
-                await api.post('/unidades-medida', {
+                await api.post('/java-api/unidades-medida', {
                     "unidadeMedida": unidadeMedida
                 });
             }
@@ -238,7 +238,7 @@ const ProdutoEditar = () => {
     const cadastroMassa = async () => {
         try {
             if (!massaData.some(e => e.nome.toLowerCase() === massa.toLowerCase())) {
-                await api.post('/massas', {
+                await api.post('/java-api/massas', {
                     "nome": massa
                 });
             }
@@ -250,7 +250,7 @@ const ProdutoEditar = () => {
     const cadastroCobertura = async () => {
         try {
             if (!coberturaData.some(e => e.nome.toLowerCase() === cobertura.toLowerCase())) {
-                await api.post('/coberturas', {
+                await api.post('/java-api/coberturas', {
                     "nome": cobertura
                 });
             }
@@ -262,7 +262,7 @@ const ProdutoEditar = () => {
     const cadastroRecheio = async () => {
         try {
             if (!recheioData.some(e => e.nome.toLowerCase() === recheio.toLowerCase())) {
-                await api.post('/recheios', {
+                await api.post('/java-api/recheios', {
                     "nome": recheio,
                     "preco": precoRecheio
                 });
@@ -286,7 +286,7 @@ const ProdutoEditar = () => {
     const cadastroTipoProduto = async () => {
         try {
             if (!tipoProdutoData.some(e => e.nome.toLowerCase() === tipoProduto.toLowerCase())) {
-                await api.post('/tipo-produtos', {
+                await api.post('/java-api/tipo-produtos', {
                     "tipo": tipoProduto
                 });
             }
@@ -447,7 +447,7 @@ const ProdutoEditar = () => {
 
             toast.success('Produto editado com sucesso!', { theme: "colored", autoClose: 2000 });
             setTimeout(() => {
-                navigate(`/java-api/produtos`)
+                navigate(`/produtos`)
             }, 2000)
         } catch (error) {
             console.log(error);
@@ -466,7 +466,7 @@ const ProdutoEditar = () => {
             } else if (response.status === 204) {
                 toast.success('Produto deletado com sucesso!', {autoClose: 2000, theme:"colored"})
                 setTimeout(() => {
-                    navigate(`/java-api/produtos`);
+                    navigate(`/produtos`);
                 }, 2000);
             } else {
                 toast.error('Ocorreu um erro inesperado na tentativa de excluir o produto', {theme: "colored"})

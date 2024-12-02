@@ -52,7 +52,7 @@ const LineChart = () => {
         setCurrentLabel(labelAnual);
         setCurrentData(quantidadeVendidaAno);
         try {
-          const response = await api.get('/quantidade-vendidos-mes');
+          const response = await api.get('/java-api/quantidade-vendidos-mes');
           const { data } = response;
           for (let i = 0; i < data.length; i++) {
             if ([data[i].mes]) {
@@ -65,7 +65,7 @@ const LineChart = () => {
 
       } else if (filterSelectedValue === 'Semanal') {
         try {
-          const response = await api.get('/quantidade-vendidos-semana');
+          const response = await api.get('/java-api/quantidade-vendidos-semana');
           const { data } = response;
 
           let newLabelSemanalValues = [];
@@ -88,7 +88,7 @@ const LineChart = () => {
 
       } else if (filterSelectedValue === 'Mensal') {
         try {
-          const response = await api.get('/quantidade-vendidos-dia');
+          const response = await api.get('/java-api/quantidade-vendidos-dia');
           const { data } = response;
 
           const organizedData = bubbleSortByDay(data);

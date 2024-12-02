@@ -25,7 +25,7 @@ const Card = ({ id, pedido, cliente, data, status }) => {
     useEffect(() => {
         const fetchQuantidadeProdutos = async () => {
             try {
-                const response = await api.get('/produto-pedidos/quantidade-produto');
+                const response = await api.get('/java-api/produto-pedidos/quantidade-produto');
                 const data = response.data;
 
                 const pedidoEncontrado = data.find(p => p.idPedido === id); // Comparando id com o idPedido

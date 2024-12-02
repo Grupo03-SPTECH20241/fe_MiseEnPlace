@@ -30,7 +30,7 @@ const GoalChartModal = ({closeModal}) => {
     }
 
     const getDataInicial = async () => {
-        const response = await api.get('/metas');
+        const response = await api.get('/java-api/metas');
         const { data } = response;
 
         const inicio = new Date(data.dtInicio);  
