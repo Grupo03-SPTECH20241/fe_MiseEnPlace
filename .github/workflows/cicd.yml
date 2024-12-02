@@ -66,7 +66,17 @@ jobs:
         key: 
         port: 22
         source: "./fe_MiseEnPlace/mise-en-place/build/"
-        target: "/home/ubuntu/Desktop/Frontend/"
+        target: "/home/ubuntu/"
+
+    - name: Transfer JAR to Public EC2
+      uses: appleboy/scp-action@v0.1.6
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ubuntu
+        key: $HOME/public-key.pem
+        source: "target/*.jar"
+        target: "temporaria/"
+
 
     - name: Ajustar permissões no servidor remoto
       uses: appleboy/ssh-action@v1.0.3
