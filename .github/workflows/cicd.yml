@@ -2,7 +2,7 @@
 name: CI/CD fe
 
 on:
-  push:
+  pull_request:
     branches:
       - main # Executa o workflow ao fazer push na branch main
 
