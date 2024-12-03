@@ -162,7 +162,7 @@
 }
 
 .exportButtons {
-    display: flex;
+    display: none;
     gap: 0.5vw;
 }
 

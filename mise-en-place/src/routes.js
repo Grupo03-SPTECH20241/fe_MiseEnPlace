@@ -13,6 +13,7 @@ import ProdutoCadastro from "./pages/ProdutoCadastro/produtoCadastro";
 import ProdutoEditar from "./pages/ProdutoEditar/produtoEditar";
 import VisualizarPedido from "./pages/VisualizarPedido/visualizarPedido";
 import AdicionarPedido from "./pages/AdicionarPedido/adicionarPedido";
+import Configuracao from "./pages/Configuracao/configuracao"
 import RotasProtegidas from "./components/RotasProtegidas/rotasProtegidas";
 
 function Rotas() {
@@ -78,6 +79,12 @@ function Rotas() {
                 <Route path="/adicionar-pedido" element={
                     <RotasProtegidas> 
                         <AdicionarPedido />
+                    </RotasProtegidas>} 
+                ></Route>
+
+                <Route path="/configuracao" element={
+                    <RotasProtegidas> 
+                        <Configuracao />
                     </RotasProtegidas>} 
                 ></Route>
 

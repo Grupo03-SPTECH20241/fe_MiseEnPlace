@@ -296,9 +296,7 @@ const ProdutoEditar = () => {
     };
     const validateForm = () => {
         const newErrors = {};
-        console.log({
-            "preco": preco
-        })
+        
         if (!nome.trim()) newErrors.nome = true;
         if (!preco.toString().trim() || preco[0] === ".") newErrors.preco = true;
         if (!descricao.trim()) newErrors.descricao = true;
@@ -454,6 +452,8 @@ const ProdutoEditar = () => {
         } catch (error) {
             console.log(error);
             toast.error('Erro ao editar o produto!', { theme: "colored" });
+            setCanClick(true);
+        } finally {
             setCanClick(true)
         }
     };
