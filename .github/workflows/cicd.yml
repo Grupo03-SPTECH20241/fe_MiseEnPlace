@@ -43,7 +43,9 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
+            cd /home/ubuntu/fe_MiseEnPlace/ # Navega até o diretório do projeto
             git checkout main # Certifica-se de que está na branch main
-            cd /home/ubuntu/fe_MiseEnPlace/mise-en-place/ # Navega até o diretório do projeto
+            git pull # Atualiza o código
+            cd mise-en-place/ # Navega até o diretório do frontend
             npm install # Certifica-se de que as dependências estão instaladas
             nohup npm start & # Inicia o servidor em background
