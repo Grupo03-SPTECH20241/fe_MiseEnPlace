@@ -4,6 +4,7 @@ import Filter from '../../Filter/filter';
 import { Line } from 'react-chartjs-2';
 import styles from './linechart.module.css';
 import api from '../../../api';
+import InputCalendar from '../../Input/Calendar/calendar';
 
 const LineChart = () => {
   // valor da filtragem
@@ -24,12 +25,34 @@ const LineChart = () => {
   const [quantidadeVendidaMes, setQuantidadeVendidaMes] = useState([]);
   const [labelMensal, setLabelMensal] = useState([]);
 
+  const [quantidadeVendidaIntervalo, setQuantidadeVendidaIntervalo] = useState([]);
+  const [labelIntervalo, setLabelIntervalo] = useState([]);
+
   // variáveis que guardam a label e os dados que serão exibidos no gráfico
   const [currentLabel, setCurrentLabel] = useState(labelAnual);
   const [currentData, setCurrentData] = useState(quantidadeVendidaAno);
 
+  const [dataInicio, setDataInicio] = useState();
+  const [dataFim, setDataFim] = useState();
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const [trigger, setTrigger] = useState(false);
+
   const handleFilterChange = (value) => {
     setFilterSelectedValue(value);
+  };
+
+  const handleDataInicio = (event) => {  
+    setDataInicio(event?.target?.value ? event?.target?.value : event);  
+  };
+
+  const handleDataFim = (event) => {  
+  setDataFim(event?.target?.value ? event?.target?.value : event);  
+  };
+
+  const toggleVisibility = (value) => {
+    setIsVisible(value);
   };
 
   function bubbleSortByDay(data) {
@@ -49,6 +72,8 @@ const LineChart = () => {
     const fetchData = async () => {
 
       if (filterSelectedValue === 'Anual') {
+        toggleVisibility(false);
+
         setCurrentLabel(labelAnual);
         setCurrentData(quantidadeVendidaAno);
         try {
@@ -65,6 +90,8 @@ const LineChart = () => {
 
       } else if (filterSelectedValue === 'Semanal') {
         try {
+          toggleVisibility(false);
+
           const response = await api.get('/java-api/quantidade-vendidos-semana');
           const { data } = response;
 
@@ -88,6 +115,8 @@ const LineChart = () => {
 
       } else if (filterSelectedValue === 'Mensal') {
         try {
+          toggleVisibility(false);
+
           const response = await api.get('/java-api/quantidade-vendidos-dia');
           const { data } = response;
 
@@ -109,6 +138,11 @@ const LineChart = () => {
 
         } catch (error) {
           console.error(error);
+        }
+      } else if (filterSelectedValue === 'Intervalo') {
+        toggleVisibility(true);
+        if ((dataInicio && dataFim) && new Date(dataInicio) < new Date(dataFim)) {
+          setTrigger((prev) => !prev);
         }
       }
     };
@@ -133,8 +167,37 @@ const LineChart = () => {
     return () => clearInterval(fetchDataInterval);
   }, [filterSelectedValue]);
 
+  useEffect(() => {
+    const handleChange = async () => {
+      if ((dataInicio && dataFim) && new Date(dataInicio) < new Date(dataFim)) {
+        try {
+            const response = await api.get(`/java-api/quantidade-vendidos-intervalo?startDate=${dataInicio}&endDate=${dataFim}`);
+            const { data } = response;
+
+            let newLabelInterval = [];
+            let newQuantidadeVendidaInterval = [];
+
+            for (let i = 0; i < data.length; i++) {
+              if (data[i].dia) {
+                newLabelInterval.push(data[i].dia);
+                newQuantidadeVendidaInterval.push(data[i].quantidadeVendida);
+              }
+            }
+            setLabelIntervalo(newLabelInterval);
+            setQuantidadeVendidaIntervalo(newQuantidadeVendidaInterval);
+            setCurrentLabel(labelIntervalo);
+            setCurrentData(quantidadeVendidaIntervalo);
+        } catch(ex) {
+          console.log(ex)
+        }
+      }
+    };
+
+    handleChange();
+  }, [dataInicio, dataFim, trigger]);
+
   //Configurações do gráfico/labels/opções de filtragem:
-  const filterOptions = ['Anual', 'Semanal', 'Mensal'];
+  const filterOptions = ['Anual', 'Semanal', 'Mensal', 'Intervalo'];
   const labels = currentLabel;
 
   const data = {
@@ -168,6 +231,21 @@ const LineChart = () => {
           <div className={styles["lineChartSelectOption"]}>
             <Filter options={filterOptions} onChange={handleFilterChange}></Filter>
           </div>
+        </div>
+        <div
+        className={styles["lineInterval"]}
+        style={{ display: isVisible ? 'flex' : 'none' }}
+        >
+          <InputCalendar
+            label='Início'
+            width='30%'
+            onChange={handleDataInicio}
+          ></InputCalendar>
+          <InputCalendar
+            label='Fim'
+            width='30%'
+            onChange={handleDataFim}
+          ></InputCalendar>
         </div>
         <div className={styles["lineChart"]}>
           <Line data={data} options={options} />
