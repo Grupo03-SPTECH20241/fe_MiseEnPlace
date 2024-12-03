@@ -64,9 +64,10 @@ const Sidebar = () => {
                     <img onClick={() => redirect('/configuracao')} className='gear' src={gearImage} alt="Icon Gear" />
                     <a href="/configuracao">Configuracao</a>
                 </div>
-                <div id={styles['accessibility-mobile']} className={styles['div-item']}>
+                {/* Acessibilidade foi comentada pois não foi desenvolvida */}
+                {/* <div id={styles['accessibility-mobile']} className={styles['div-item']}>
                     <img className='acessibilidade' src={acessibilidadeImage} alt="Icon Acessibilidade" />
-                </div>
+                </div> */}
             </div>
             <div className={styles['minimizar-div']}>
                 <div className={styles['div-bola']}>
