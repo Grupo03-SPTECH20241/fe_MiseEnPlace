@@ -30,10 +30,6 @@ jobs:
       run: npm install
       working-directory: ./fe_MiseEnPlace/mise-en-place/
 
-    - name: Build React app
-      run: npm run build
-      working-directory: ./fe_MiseEnPlace/mise-en-place/
-
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
@@ -65,9 +61,9 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: 22
         source: "./fe_MiseEnPlace/mise-en-place/build/"
-        target: "/home/ubuntu/"
+        target: "/home/ubuntu/build/"
 
-    - name: Set permissions on remote server
+    - name: Start application on remote server
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.DEPLOY_HOST }}
@@ -75,5 +71,6 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: 22
         script: |
-          chown -R ubuntu:ubuntu /home/ubuntu/
-          chmod -R 770 /home/ubuntu/
+          cd /home/ubuntu/build/
+          npm install # Certifica-se de que as dependências estão instaladas
+          nohup npm start & # Inicia o servidor em background
