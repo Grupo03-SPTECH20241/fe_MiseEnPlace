@@ -35,13 +35,13 @@ const Configuracao = () => {
 
     const getUsuario = async () => {
         try {
-            const responseUsuario = await api.get(`/java-api//usuarios/obter-por-email/${sessionStorage.getItem('userEmail')}`);
+            const responseUsuario = await api.get(`/java-api/usuarios/obter-por-email/${sessionStorage.getItem('userEmail')}`);
 
             setNome(responseUsuario.data.nome);
             setEmail(responseUsuario.data.email);
             setCnpj(responseUsuario.data.cnpj);
 
-            const responseFoto = await api.get(`/java-api//usuarios/obter-foto-cliente?email=${sessionStorage.getItem('userEmail')}`);
+            const responseFoto = await api.get(`/java-api/usuarios/obter-foto-cliente?email=${sessionStorage.getItem('userEmail')}`);
 
             setFoto(responseFoto.data)
             
