@@ -48,5 +48,5 @@ jobs:
             git pull # Atualiza o código
             cd mise-en-place/ # Navega até o diretório do frontend
             npm install # Certifica-se de que as dependências estão instaladas
-            npm install pm2 -g # Instala o pm2 globalmente
+            sudo npm install pm2 -g # Instala o pm2 globalmente
             pm2 start npm -- start # Inicia o servidor usando pm2
