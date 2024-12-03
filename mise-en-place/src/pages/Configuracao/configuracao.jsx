@@ -35,13 +35,13 @@ const Configuracao = () => {
 
     const getUsuario = async () => {
         try {
-            const responseUsuario = await api.get(`/usuarios/obter-por-email/${sessionStorage.getItem('userEmail')}`);
+            const responseUsuario = await api.get(`/java-api/usuarios/obter-por-email/${sessionStorage.getItem('userEmail')}`);
 
             setNome(responseUsuario.data.nome);
             setEmail(responseUsuario.data.email);
             setCnpj(responseUsuario.data.cnpj);
 
-            const responseFoto = await api.get(`/usuarios/obter-foto-cliente?email=${sessionStorage.getItem('userEmail')}`);
+            const responseFoto = await api.get(`/java-api/usuarios/obter-foto-cliente?email=${sessionStorage.getItem('userEmail')}`);
 
             setFoto(responseFoto.data)
             
@@ -139,7 +139,7 @@ const Configuracao = () => {
                 fotoByte = Array.from(new Uint8Array(fileData));
             }
 
-            await api.put(`/usuarios/atualizar-por-email/${sessionStorage.getItem('userEmail')}`, {
+            await api.put(`/java-api/usuarios/atualizar-por-email/${sessionStorage.getItem('userEmail')}`, {
                 "nome": nome,
                 "logo": fotoByte,
                 "email": email
@@ -148,7 +148,7 @@ const Configuracao = () => {
             sessionStorage.setItem('userEmail', email);
 
             if (senha) {
-                await api.patch(`/usuarios`, {
+                await api.patch(`/java-api/usuarios`, {
                     "email": sessionStorage.getItem('userEmail'),
                     "senha": senha
                 });
